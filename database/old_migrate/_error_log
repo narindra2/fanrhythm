@@ -1,0 +1,144 @@
+[03-Jul-2023 08:52:45 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2014_10_12_000000_create_users_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2014_10_12_000000_create_users_table.php on line 7
+[03-Jul-2023 08:52:49 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_05_09_125020_create_attachments_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_05_09_125020_create_attachments_table.php on line 7
+[22-Jul-2023 20:45:20 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php on line 7
+[22-Jul-2023 20:45:27 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php on line 7
+[22-Jul-2023 20:45:32 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php on line 7
+[22-Jul-2023 20:45:49 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php on line 7
+[22-Jul-2023 20:45:57 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php on line 7
+[22-Jul-2023 20:46:08 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php on line 7
+[22-Jul-2023 20:46:40 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php on line 7
+[22-Jul-2023 20:46:40 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php on line 7
+[22-Jul-2023 20:47:00 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php on line 7
+[22-Jul-2023 20:47:48 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php on line 7
+[22-Jul-2023 20:47:53 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php on line 7
+[22-Jul-2023 20:47:54 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php on line 7
+[22-Jul-2023 20:49:12 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php on line 7
+[22-Jul-2023 20:50:15 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php on line 7
+[22-Jul-2023 20:50:15 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php on line 7
+[22-Jul-2023 20:51:36 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php on line 7
+[22-Jul-2023 20:53:25 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php on line 7
+[22-Jul-2023 20:53:45 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php on line 7
+[22-Jul-2023 20:57:17 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php on line 7
+[22-Jul-2023 20:58:33 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php on line 7
+[22-Jul-2023 20:59:13 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php on line 7
+[22-Jul-2023 21:06:47 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php on line 7
+[22-Jul-2023 21:09:43 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php on line 7
+[22-Jul-2023 21:11:54 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php on line 7
+[22-Jul-2023 21:21:08 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php on line 7
+[22-Jul-2023 21:23:25 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php on line 7
+[22-Jul-2023 21:26:06 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php on line 7
+[22-Jul-2023 21:36:10 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php on line 7
+[22-Jul-2023 21:38:17 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php on line 7
+[22-Jul-2023 21:41:06 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php on line 7
+[22-Jul-2023 21:50:15 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_07_30_164554_create_notifications_table.php on line 7
+[22-Jul-2023 21:51:08 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2023_07_13_100443_update_transaction_table.php on line 7
+[22-Jul-2023 21:56:36 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php on line 7
+[22-Jul-2023 22:58:10 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/migrations/2021_04_27_192318_create_withdrawals_table.php on line 7

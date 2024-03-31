@@ -1,0 +1,48 @@
+[22-Jul-2023 20:28:05 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home/afrifan/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/bootstrap/app.php on line 14
+[22-Jul-2023 20:28:36 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home/afrifan/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/bootstrap/app.php on line 14
+[22-Jul-2023 20:28:57 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home/afrifan/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/bootstrap/app.php on line 14
+[22-Jul-2023 20:29:34 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home/afrifan/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/bootstrap/app.php on line 14
+[22-Jul-2023 20:31:13 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home/afrifan/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/bootstrap/app.php on line 14
+[22-Jul-2023 20:33:53 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home/afrifan/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/bootstrap/app.php on line 14
+[22-Jul-2023 20:38:24 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home/afrifan/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/bootstrap/app.php on line 14
+[22-Jul-2023 20:48:17 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home/afrifan/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/bootstrap/app.php on line 14
+[22-Jul-2023 21:02:26 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home/afrifan/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/bootstrap/app.php on line 14
+[22-Jul-2023 21:17:58 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home/afrifan/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/bootstrap/app.php on line 14
+[22-Jul-2023 21:35:49 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home/afrifan/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/bootstrap/app.php on line 14
+[23-Jul-2023 02:42:56 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Application" not found in /home/afrifan/public_html/bootstrap/app.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/bootstrap/app.php on line 14

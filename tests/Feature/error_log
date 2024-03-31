@@ -1,0 +1,44 @@
+[22-Jul-2023 20:28:47 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/afrifan/public_html/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/tests/Feature/ExampleTest.php on line 8
+[22-Jul-2023 20:29:02 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/afrifan/public_html/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/tests/Feature/ExampleTest.php on line 8
+[22-Jul-2023 20:29:34 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/afrifan/public_html/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/tests/Feature/ExampleTest.php on line 8
+[22-Jul-2023 20:30:27 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/afrifan/public_html/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/tests/Feature/ExampleTest.php on line 8
+[22-Jul-2023 20:31:55 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/afrifan/public_html/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/tests/Feature/ExampleTest.php on line 8
+[22-Jul-2023 20:34:44 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/afrifan/public_html/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/tests/Feature/ExampleTest.php on line 8
+[22-Jul-2023 20:39:14 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/afrifan/public_html/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/tests/Feature/ExampleTest.php on line 8
+[22-Jul-2023 20:48:17 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/afrifan/public_html/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/tests/Feature/ExampleTest.php on line 8
+[22-Jul-2023 21:03:47 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/afrifan/public_html/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/tests/Feature/ExampleTest.php on line 8
+[22-Jul-2023 21:19:28 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/afrifan/public_html/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/tests/Feature/ExampleTest.php on line 8
+[22-Jul-2023 21:32:11 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Tests\TestCase" not found in /home/afrifan/public_html/tests/Feature/ExampleTest.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/tests/Feature/ExampleTest.php on line 8

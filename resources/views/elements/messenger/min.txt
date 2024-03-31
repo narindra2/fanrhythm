@@ -1,0 +1,1 @@
+payments.ayments.min_ppv_content_price

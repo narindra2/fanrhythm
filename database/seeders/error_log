@@ -1,0 +1,348 @@
+[22-Jul-2023 20:45:01 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php on line 7
+[22-Jul-2023 20:45:20 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/InsertCountries.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/InsertCountries.php on line 6
+[22-Jul-2023 20:45:26 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php on line 7
+[22-Jul-2023 20:45:37 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php on line 7
+[22-Jul-2023 20:45:37 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php on line 7
+[22-Jul-2023 20:45:49 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/InsertCountries.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/InsertCountries.php on line 6
+[22-Jul-2023 20:46:01 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php on line 7
+[22-Jul-2023 20:46:08 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php on line 7
+[22-Jul-2023 20:46:08 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php on line 7
+[22-Jul-2023 20:46:08 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionsTableSeeder.php on line 7
+[22-Jul-2023 20:46:13 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php on line 7
+[22-Jul-2023 20:46:13 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php on line 7
+[22-Jul-2023 20:46:14 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php on line 7
+[22-Jul-2023 20:46:40 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/InsertCountries.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/InsertCountries.php on line 6
+[22-Jul-2023 20:46:54 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php on line 7
+[22-Jul-2023 20:47:00 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php on line 7
+[22-Jul-2023 20:47:00 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php on line 7
+[22-Jul-2023 20:47:09 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionsTableSeeder.php on line 7
+[22-Jul-2023 20:47:14 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php on line 7
+[22-Jul-2023 20:47:14 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php on line 7
+[22-Jul-2023 20:47:43 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/InsertCountries.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/InsertCountries.php on line 6
+[22-Jul-2023 20:47:44 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php on line 7
+[22-Jul-2023 20:47:53 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php on line 7
+[22-Jul-2023 20:47:55 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php on line 7
+[22-Jul-2023 20:48:21 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php on line 7
+[22-Jul-2023 20:48:22 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php on line 7
+[22-Jul-2023 20:48:35 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php on line 7
+[22-Jul-2023 20:48:41 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenuItemsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenuItemsTableSeeder.php on line 7
+[22-Jul-2023 20:49:06 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php on line 7
+[22-Jul-2023 20:49:21 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php on line 7
+[22-Jul-2023 20:49:21 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php on line 7
+[22-Jul-2023 20:49:26 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php on line 7
+[22-Jul-2023 20:49:31 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php on line 7
+[22-Jul-2023 20:49:41 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenuItemsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenuItemsTableSeeder.php on line 7
+[22-Jul-2023 20:50:15 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php on line 7
+[22-Jul-2023 20:50:15 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/InsertCountries.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/InsertCountries.php on line 6
+[22-Jul-2023 20:50:52 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php on line 7
+[22-Jul-2023 20:51:01 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php on line 7
+[22-Jul-2023 20:51:01 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php on line 7
+[22-Jul-2023 20:52:25 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php on line 7
+[22-Jul-2023 20:52:26 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php on line 7
+[22-Jul-2023 20:52:43 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php on line 7
+[22-Jul-2023 20:53:31 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php on line 7
+[22-Jul-2023 20:53:36 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/InsertCountries.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/InsertCountries.php on line 6
+[22-Jul-2023 20:54:02 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php on line 7
+[22-Jul-2023 20:54:03 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php on line 7
+[22-Jul-2023 20:57:36 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php on line 7
+[22-Jul-2023 20:57:37 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php on line 7
+[22-Jul-2023 20:58:16 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php on line 7
+[22-Jul-2023 20:58:22 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php on line 7
+[22-Jul-2023 20:58:23 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/InsertCountries.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/InsertCountries.php on line 6
+[22-Jul-2023 20:58:52 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php on line 7
+[22-Jul-2023 21:00:31 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php on line 7
+[22-Jul-2023 21:07:43 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php on line 7
+[22-Jul-2023 21:07:48 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php on line 7
+[22-Jul-2023 21:08:23 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php on line 7
+[22-Jul-2023 21:08:43 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php on line 7
+[22-Jul-2023 21:08:56 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php on line 7
+[22-Jul-2023 21:10:27 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/InsertCountries.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/InsertCountries.php on line 6
+[22-Jul-2023 21:10:43 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php on line 7
+[22-Jul-2023 21:21:14 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php on line 7
+[22-Jul-2023 21:22:28 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php on line 7
+[22-Jul-2023 21:24:38 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php on line 7
+[22-Jul-2023 21:24:45 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/InsertCountries.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/InsertCountries.php on line 6
+[22-Jul-2023 21:25:09 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php on line 7
+[22-Jul-2023 21:25:18 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php on line 7
+[22-Jul-2023 21:25:54 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php on line 7
+[22-Jul-2023 21:35:25 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php on line 7
+[22-Jul-2023 21:36:36 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php on line 7
+[22-Jul-2023 21:37:39 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php on line 7
+[22-Jul-2023 21:39:50 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php on line 7
+[22-Jul-2023 21:41:47 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/InsertCountries.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/InsertCountries.php on line 6
+[22-Jul-2023 21:43:06 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php on line 7
+[22-Jul-2023 21:45:46 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php on line 7
+[22-Jul-2023 21:51:57 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PublicPagesTableSeeder.php on line 7
+[22-Jul-2023 21:52:20 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php on line 7
+[22-Jul-2023 21:53:17 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php on line 7
+[22-Jul-2023 21:54:40 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/RolesTableSeeder.php on line 7
+[22-Jul-2023 21:55:47 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php on line 7
+[22-Jul-2023 21:55:55 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionRoleTableSeeder.php on line 7
+[22-Jul-2023 21:59:49 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/InsertCountries.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/InsertCountries.php on line 6
+[22-Jul-2023 22:01:18 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/SettingsTableSeeder.php on line 7
+[22-Jul-2023 22:31:10 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenuItemsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenuItemsTableSeeder.php on line 7
+[23-Jul-2023 01:54:03 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/PermissionsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/PermissionsTableSeeder.php on line 7
+[23-Jul-2023 03:08:31 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/MenusTableSeeder.php on line 7
+[23-Jul-2023 03:10:04 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/InsertCountries.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/InsertCountries.php on line 6
+[23-Jul-2023 03:37:51 Europe/Paris] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/afrifan/public_html/database/seeders/DataRowsTableSeeder.php on line 7
