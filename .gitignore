@@ -14,16 +14,10 @@ npm-debug.log
 yarn-error.log
 .idea
 public/node_modules
-public/libs
-public/dist
-public/css/theme
 app/cloudfront/*
 .php-cs-fixer.cache
 public/sitemap.xml
 public_key.pem
 private_key.pem
-app.zip
-fanrythm.zip
-vendor.zip
 deploy_prod
 composer.phar

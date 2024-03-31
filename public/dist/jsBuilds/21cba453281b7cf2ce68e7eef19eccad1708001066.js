@@ -1,0 +1,2 @@
+$(function(){var cardBox={cardName,cardNumber,cardExp,cardCvv,billingName,billingLastName,billingPostal,billingCity,billingEtat,billingCountry,billingPhone,billingAdress,}
+var cardForm={validateFieldRequired:(element)=>{aler(element)}}});
