@@ -17,11 +17,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+       
         if (! InstallerServiceProvider::checkIfInstalled()) {
             return Redirect::to(route('installer.install'));
         }
-
+       
         JavaScript::put(['skipDefaultScrollInits' => true]);
 
         // If there's a custom site index

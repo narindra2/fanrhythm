@@ -1060,5 +1060,10 @@
      "Message de bienvenue automatique pour tous vos nouveaux abonnés":"Automatic Welcome message for all your new subscribers",
     "Obtenez 35 % des gains de Fanrhythm" : "Get 35% of Fanrhythm's earnings",
     "Obtenez 15 % des gains de Fanrhythm" : "Get 15% of Fanrhythm's earnings",
-    "Bonjour! Merci pour ton abonnement." : "Good morning! Thank you for your subscription."
+    "Bonjour! Merci pour ton abonnement." : "Good morning! Thank you for your subscription.",
+    "Abonnez-vous à moi" : "Subscribe to me",
+    "Post créé avec succès" : "Post created successfully",
+    "Non autorisé" : "Unauthorized",
+    "Post mis à jour avec succès" : "Post updated successfully",
+    "Post supprimé avec succès" : "Post successfully deleted"
 }

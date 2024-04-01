@@ -204,7 +204,10 @@
                     </svg>
                 </div>
                 @else
-                <div onclick="goToRegister()">
+                <div class="disabled"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ _('Abonnez-vous à moi') }}"
+                @if (!Auth::check() )
+                    onclick="goToRegister()"
+                @endif >
                     <svg width="21px" height="18px" viewBox="0 0 21 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
@@ -270,8 +273,10 @@
                     </svg>
                 </div>
                 @else
-                <div class="send-a-tip disabled" onclick="goToRegister()">
-
+                <div class="send-a-tip disabled"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ _('Abonnez-vous à moi') }}"
+                @if (!Auth::check() )
+                    onclick="goToRegister()"
+                @endif >
                     <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"

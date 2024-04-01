@@ -169,7 +169,18 @@ Minify::javascript([
                     </svg>
                     <input type="text" placeholder="{{__('Recherche ...')}}">
                 </div>
-                <div class="conversations-list">
+                <style>
+                    ::-webkit-scrollbar {
+                    display: none;
+                }
+                .scrollable-list{
+                    overflow: scroll;
+                    height: -webkit-fill-available;
+                    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+                    scrollbar-width: none;  /* Firefox */
+                }
+                </style>
+                <div class="conversations-list scrollable-list">
                     @if($lastContactID == false)
                     
                     @else

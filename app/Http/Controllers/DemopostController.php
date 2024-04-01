@@ -28,7 +28,7 @@ class DemopostController extends Controller
                 $imagesArray[] = $name;  
             }
         }else{
-            return redirect()->back()->with('error', 'Pas de fichier (vidéo ou photo) de presentation sélectionnée');
+            return redirect()->back()->with('error', __('Pas de fichier (vidéo ou photo) de presentation sélectionnée'));
         }
         // Création du Demopost
         $demopost = new Demopost();
@@ -38,7 +38,7 @@ class DemopostController extends Controller
         $demopost->save();
     
         // Rediriger l'utilisateur avec un message de succès
-        return redirect()->back()->with('success', 'Post créé avec succès');
+        return redirect()->back()->with('success', __('Post créé avec succès'));
     }
     
 
@@ -48,7 +48,7 @@ class DemopostController extends Controller
     
         // Assurer que l'utilisateur est autorisé à modifier le post
         if (Auth::id() !== $demopost->user_id) {
-            return redirect()->back()->with('error', 'Non autorisé');
+            return redirect()->back()->with('error',  __('Non autorisé') );
         }
     
         $request->validate([
@@ -66,7 +66,7 @@ class DemopostController extends Controller
                 $imagesArray[] = $name;
             }
         }else{
-            return redirect()->back()->with('error', 'Pas de fichier (vidéo ou photo) de presentation sélectionnée');
+            return redirect()->back()->with('error', __('Pas de fichier (vidéo ou photo) de presentation sélectionnée'));
         }
     
         // Mise à jour du post
@@ -74,7 +74,7 @@ class DemopostController extends Controller
         $demopost->images = json_encode($imagesArray);
         $demopost->save();
     
-        return redirect()->back()->with('success', 'Post mis à jour avec succès');
+        return redirect()->back()->with('success', __('Post mis à jour avec succès'));
     }
     
 
@@ -84,7 +84,7 @@ class DemopostController extends Controller
     
         // Vérification des droits de l'utilisateur
         if (Auth::id() !== $demopost->user_id) {
-            return redirect()->back()->with('error', 'Non autorisé');
+            return redirect()->back()->with('error', __('Non autorisé') );
         }
     
         // Supprimer les images du serveur si nécessaire
@@ -101,7 +101,7 @@ class DemopostController extends Controller
         // Supprimer le post
         $demopost->delete();
     
-        return redirect()->back()->with('success', 'Post supprimé avec succès');
+        return redirect()->back()->with('success', __('Post supprimé avec succès'));
     }
     
 
