@@ -227,29 +227,29 @@
                 @endif
 
                 @if(Auth::check() && $post->user->id != Auth::user()->id)
-                @if($post->isSubbed || (getSetting('profiles.allow_users_enabling_open_profiles') &&
-                $post->user->open_profile))
+                {{-- @if($post->isSubbed || (getSetting('profiles.allow_users_enabling_open_profiles') && $post->user->open_profile)) --}}
+                @if(1)
                 <div class="send-a-tip to-tooltip poi {{(!GenericHelper::creatorCanEarnMoney($post->user)) ? 'disabled' : ''}}"
                     @if(!GenericHelper::creatorCanEarnMoney($post->user))
-                    data-placement="top"
-                    title="{{__('This creator cannot earn money yet')}}">
+                        data-placement="top"
+                        title="{{__('This creator cannot earn money yet')}}">
                     @else
-                    data-toggle="modal"
-                    data-target="#checkout-center"
-                    data-post-id="{{$post->id}}"
-                    data-type="tip"
-                    data-first-name="{{Auth::user()->first_name}}"
-                    data-last-name="{{Auth::user()->last_name}}"
-                    data-billing-address="{{Auth::user()->billing_address}}"
-                    data-country="{{Auth::user()->country}}"
-                    data-city="{{Auth::user()->city}}"
-                    data-state="{{Auth::user()->state}}"
-                    data-postcode="{{Auth::user()->postcode}}"
-                    data-available-credit="{{Auth::user()->wallet->total}}"
-                    data-username="{{$post->user->username}}"
-                    data-name="{{$post->user->name}}"
-                    data-avatar="{{$post->user->avatar}}"
-                    data-recipient-id="{{$post->user_id}}">
+                        data-toggle="modal"
+                        data-target="#checkout-center"
+                        data-post-id="{{$post->id}}"
+                        data-type="tip"
+                        data-first-name="{{Auth::user()->first_name}}"
+                        data-last-name="{{Auth::user()->last_name}}"
+                        data-billing-address="{{Auth::user()->billing_address}}"
+                        data-country="{{Auth::user()->country}}"
+                        data-city="{{Auth::user()->city}}"
+                        data-state="{{Auth::user()->state}}"
+                        data-postcode="{{Auth::user()->postcode}}"
+                        data-available-credit="{{Auth::user()->wallet->total}}"
+                        data-username="{{$post->user->username}}"
+                        data-name="{{$post->user->name}}"
+                        data-avatar="{{$post->user->avatar}}"
+                        data-recipient-id="{{$post->user_id}}">
                     @endif
                     <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -274,10 +274,11 @@
                     </svg>
                 </div>
                 @else
-                <div class="send-a-tip disabled"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ _('Abonnez-vous à moi') }}"
-                @if (!Auth::check() )
-                    onclick="goToRegister()"
-                @endif >
+                {{-- <div class="send-a-tip disabled"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ _('Abonnez-vous à moi') }}" --}}
+                <div class="send-a-tip disabled"  
+                    @if (!Auth::check() )
+                        onclick="goToRegister()"
+                    @endif >
                     <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
@@ -311,8 +312,7 @@
                     {{trans_choice('likes', count($post->reactions))}}
                 </a>
 
-                @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&
-                $post->user->open_profile))
+                @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') && $post->user->open_profile))
                     <a
                         href="{{Route::currentRouteName() != 'posts.get' ? route('posts.get',['post_id'=>$post->id,'username'=>$post->user->username]) : '#comments'}}">
                         <span>
@@ -321,7 +321,11 @@
                         {{trans_choice('comments',  count($post->comments))}}
                     </a>
                 @else
-                    <a href="#" onclick="goToRegister()">
+                    <a href="#" data-toggle="modal" data-target="#subrcribe-dialog"  data-toggle="tooltip" 
+                    @if(!Auth::check())
+                        onclick="goToRegister()"
+                    @endif
+                    >
                         <span>
                             {{count($post->comments)}}
                         </span>
@@ -354,7 +358,7 @@
        
         @if(Auth::check())
        
-        @include('elements.feed.post-new-comment')
+            @include('elements.feed.post-new-comment')
         @endif
     </div>
     @endif
