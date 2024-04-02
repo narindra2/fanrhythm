@@ -42,6 +42,12 @@ $(function () {
 	});
 
 	$('#checkout-center').on('show.bs.modal', function (e) {
+		try {
+			$('#subrcribe-dialog').modal('hide');
+			
+		} catch (error) {
+			
+		}
 		//get data-id attribute of the clicked element
 		var postId = $(e.relatedTarget).data('post-id');
 		var recipientId = $(e.relatedTarget).data('recipient-id');

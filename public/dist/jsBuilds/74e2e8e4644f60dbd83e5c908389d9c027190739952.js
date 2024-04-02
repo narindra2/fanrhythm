@@ -71,7 +71,8 @@ else{launchToast('danger',trans('Error'),result.errors[0]);}},error:function(res
 $.ajax({type:'POST',data:data,url:app.baseUrl+'/my/lists/save',success:function(result){if(type==='create'){$('.lists-wrapper').append('<hr class="my-2">');$('.lists-wrapper').append(result.data);$('#list-update-dialog').modal('hide');launchToast('success',trans('Success'),trans('List added')+'.');$('#list-name').val('');}
 else{$('.list-name-label').html($('#list-name').val());$('#list-update-dialog').modal('hide');launchToast('success',trans('Success'),trans('List renamed')+'.');}},error:function(result){$.each(result.responseJSON.errors,function(field){if(field==='name'){$('#list-name').addClass('is-invalid');$('#list-name').focus();}});}});},manageFollowsAction:function(userId){$.ajax({type:'POST',data:{user_id:userId,},url:app.baseUrl+'/my/lists/manage/follows',success:function(result){$('.manage-follows-text').text(result.text);window.reload();}});}};'use strict';if(typeof log=="undefined"){const{log}=require("video.js");}
 $(function(){$('#checkout-amount').on('change',function(){if(!checkout.checkoutAmountValidation()){return false;}
-checkout.paymentData.amount=parseFloat($('#checkout-amount').val());checkout.updatePaymentSummaryData();});$('.checkout-continue-btn').on('click',function(){checkout.initPayment();});$('.custom-control').on('change',function(){$('.error-message').hide();});$('#headingOne').on('click',function(){if($('#headingOne').hasClass('collapsed')){$('.card-header .label-icon').html('<ion-icon name="chevron-up-outline"></ion-icon>');}else{$('.card-header .label-icon').html('<ion-icon name="chevron-down-outline"></ion-icon>');}});$('#checkout-center').on('show.bs.modal',function(e){var postId=$(e.relatedTarget).data('post-id');var recipientId=$(e.relatedTarget).data('recipient-id');var amount=$(e.relatedTarget).data('amount');var type=$(e.relatedTarget).data('type');var username=$(e.relatedTarget).data('username');var firstName=$(e.relatedTarget).data('first-name');var lastName=$(e.relatedTarget).data('last-name');var billingAddress=$(e.relatedTarget).data('billing-address');var name=$(e.relatedTarget).data('name');var avatar=$(e.relatedTarget).data('avatar');var country=$(e.relatedTarget).data('country');var city=$(e.relatedTarget).data('city');var state=$(e.relatedTarget).data('state');var phone=$(e.relatedTarget).data('phone');var postcode=$(e.relatedTarget).data('postcode');var availableCredit=$(e.relatedTarget).data('available-credit');var streamId=$(e.relatedTarget).data('stream-id');var userMessageId=$(e.relatedTarget).data('message-id');checkout.initiatePaymentData(type,amount,postId,recipientId,firstName,lastName,billingAddress,country,city,state,phone,postcode,availableCredit,streamId,userMessageId);checkout.updateUserDetails(avatar,username,name);checkout.fillCountrySelectOptions();checkout.updatePaymentSummaryData();checkout.prefillBillingDetails();let paymentTitle='';let paymentDescription='';$('#checkout-amount').attr("disabled",true);if(type==='tip'||type==='chat-tip'){$('#checkout-amount').attr("disabled",false);$('.payment-body .checkout-amount-input').removeClass('d-none');paymentTitle=trans('Send a tip');paymentDescription=trans('Send a tip to this user');checkout.togglePaymentProviders(true,checkout.oneTimePaymentProcessorClasses);}else if(type==='one-month-subscription'||type==='three-months-subscription'||type==='six-months-subscription'||type==='yearly-subscription'){let numberOfMonths=1;let showStripeProvider=!app.stripeRecurringDisabled;let showPaypalProvider=!app.paypalRecurringDisabled;let showCCBillProvider=!app.ccBillRecurringDisabled;if(showCCBillProvider){if(type==='three-months-subscription'){numberOfMonths=3;}else if(type==='six-months-subscription'){numberOfMonths=6;showCCBillProvider=false;}else if(type==='yearly-subscription'){numberOfMonths=12;showCCBillProvider=false;}}
+checkout.paymentData.amount=parseFloat($('#checkout-amount').val());checkout.updatePaymentSummaryData();});$('.checkout-continue-btn').on('click',function(){checkout.initPayment();});$('.custom-control').on('change',function(){$('.error-message').hide();});$('#headingOne').on('click',function(){if($('#headingOne').hasClass('collapsed')){$('.card-header .label-icon').html('<ion-icon name="chevron-up-outline"></ion-icon>');}else{$('.card-header .label-icon').html('<ion-icon name="chevron-down-outline"></ion-icon>');}});$('#checkout-center').on('show.bs.modal',function(e){try{$('#subrcribe-dialog').modal('hide');}catch(error){}
+var postId=$(e.relatedTarget).data('post-id');var recipientId=$(e.relatedTarget).data('recipient-id');var amount=$(e.relatedTarget).data('amount');var type=$(e.relatedTarget).data('type');var username=$(e.relatedTarget).data('username');var firstName=$(e.relatedTarget).data('first-name');var lastName=$(e.relatedTarget).data('last-name');var billingAddress=$(e.relatedTarget).data('billing-address');var name=$(e.relatedTarget).data('name');var avatar=$(e.relatedTarget).data('avatar');var country=$(e.relatedTarget).data('country');var city=$(e.relatedTarget).data('city');var state=$(e.relatedTarget).data('state');var phone=$(e.relatedTarget).data('phone');var postcode=$(e.relatedTarget).data('postcode');var availableCredit=$(e.relatedTarget).data('available-credit');var streamId=$(e.relatedTarget).data('stream-id');var userMessageId=$(e.relatedTarget).data('message-id');checkout.initiatePaymentData(type,amount,postId,recipientId,firstName,lastName,billingAddress,country,city,state,phone,postcode,availableCredit,streamId,userMessageId);checkout.updateUserDetails(avatar,username,name);checkout.fillCountrySelectOptions();checkout.updatePaymentSummaryData();checkout.prefillBillingDetails();let paymentTitle='';let paymentDescription='';$('#checkout-amount').attr("disabled",true);if(type==='tip'||type==='chat-tip'){$('#checkout-amount').attr("disabled",false);$('.payment-body .checkout-amount-input').removeClass('d-none');paymentTitle=trans('Send a tip');paymentDescription=trans('Send a tip to this user');checkout.togglePaymentProviders(true,checkout.oneTimePaymentProcessorClasses);}else if(type==='one-month-subscription'||type==='three-months-subscription'||type==='six-months-subscription'||type==='yearly-subscription'){let numberOfMonths=1;let showStripeProvider=!app.stripeRecurringDisabled;let showPaypalProvider=!app.paypalRecurringDisabled;let showCCBillProvider=!app.ccBillRecurringDisabled;if(showCCBillProvider){if(type==='three-months-subscription'){numberOfMonths=3;}else if(type==='six-months-subscription'){numberOfMonths=6;showCCBillProvider=false;}else if(type==='yearly-subscription'){numberOfMonths=12;showCCBillProvider=false;}}
 checkout.togglePaymentProvider(showCCBillProvider,'.ccbill-payment-method');checkout.togglePaymentProvider(showStripeProvider,'.stripe-payment-method');checkout.togglePaymentProvider(showPaypalProvider,'.paypal-payment-method');$('.payment-body .checkout-amount-input').addClass('d-none');paymentTitle=trans(type);let subscriptionInterval=trans_choice('months',numberOfMonths,{number:numberOfMonths,});paymentDescription=trans('Subscribe to',{amount:amount,currency:app.currencySymbol,username:name,subscription_interval:subscriptionInterval,});checkout.toggleCryptoPaymentProviders(false);}else if(type==='post-unlock'){$('.payment-body .checkout-amount-input').addClass('d-none');paymentTitle=trans('Unlock post');paymentDescription=trans('Unlock post for')+' '+app.currencySymbol+amount;checkout.togglePaymentProviders(true,checkout.oneTimePaymentProcessorClasses);}else if(type==='stream-access'){$('.payment-body .checkout-amount-input').addClass('d-none');paymentTitle=trans('Join streaming');paymentDescription=trans('Join streaming now for')+' '+app.currencySymbol+amount;checkout.togglePaymentProviders(true,checkout.oneTimePaymentProcessorClasses);}else if(type==='message-unlock'){$('.payment-body .checkout-amount-input').addClass('d-none');paymentTitle=trans('Unlock message');paymentDescription=trans('Unlock message for')+' '+app.currencySymbol+amount;checkout.togglePaymentProviders(true,checkout.oneTimePaymentProcessorClasses);}
 if(paymentTitle!==''||paymentDescription!==''){$('#payment-title').text(paymentTitle);$('.payment-body .payment-description').removeClass('d-none');$('.payment-body .payment-description').text(paymentDescription);}
 if(!firstName||!lastName||!billingAddress||!city||!state||!phone||!postcode||!country){$('#billingInformation').collapse('show');}else{$('#billingInformation').collapse('hide');}
@@ -411,142 +412,258 @@ messenger.state.conversation.push(result.data.message);messenger.reloadConversat
 if($('#userMessageForm #messageText').val()===""){$('#userMessageForm .mfv-errorBox').html('<div class="alert alert-dismissable alert-danger text-white"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+trans('Please enter your message')+'.</div>');return false;}
 $.ajax({type:'POST',url:app.baseUrl+'/my/messenger/sendMessage',data:data,error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);updateButtonState('loaded',submitButton,trans('Save'));},success:function(result){$("textarea[name=message]").val("");$('#messageModal').modal('hide');let contactID=result.data.contact[0].contactID;if(!messenger.isExistingContact(contactID)){messenger.state.contacts.unshift(result.data.contact[0]);}
 else{$.map(messenger.state.contacts,function(contact,k){if(contactID===contact.contactID){let newContact=result.data.contact[0];messenger.state.contacts[k]=newContact;}});}
-messenger.reloadContactsList();messenger.state.activeConversationUserID=contactID;messenger.fetchConversation(contactID);messenger.hideEmptyChatElements();messenger.initLiveSockets();initTooltips();updateButtonState('loaded',submitButton,trans('Save'));}});},sendDMFromProfilePage:function(){let submitButton=$('.new-conversation-label');updateButtonState('loading',submitButton,trans('Send'),'white');let data=$("#userMessageForm").serialize()+'&new=true';$.ajax({type:'POST',url:app.baseUrl+'/my/messenger/sendMessage',data:data,success:function(){$("textarea[name=message]").val("");$('#messageModal').modal('hide');window.location.assign(app.baseUrl+'/my/messenger');updateButtonState('loaded',submitButton,trans('Save'));},error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);updateButtonState('loaded',submitButton,trans('Save'));},});},initMarkAsSeen:function(){$(".messageBoxInput").on('click',function(){if($('#unseenValue').val()!==0){$.ajax({type:'POST',url:app.baseUrl+'/my/messenger/markSeen',data:{userID:messenger.state.activeConversationUserID},dataType:'json',success:function(result){messenger.markConversationAsRead(messenger.state.activeConversationUserID,'read');messenger.updateUnreadMessagesCount(parseInt($('#unseenMessages').html())-result.data.count);incrementNotificationsCount('.menu-notification-badge.chat-menu-count',(-parseInt(result.data.count)));messenger.reloadContactsList();}});}});},isExistingContact:function(contactID){let isNewContact=false;$.map(messenger.state.contacts,function(contact){if(contactID===contact.contactID){isNewContact=true;}});return isNewContact;},reloadContactsList:function(){let contactsHtml='';$.each(messenger.state.contacts,function(key,value){contactsHtml+=contactElement(value);});if(messenger.state.contacts.length>0){$('.conversations-list').html('<div>'+contactsHtml+'</div>');}},reloadConversationHeader:function(){if(typeof messenger.state.conversation[0]!=='undefined'){const contact=messenger.state.conversation[0];const userID=(contact.receiver_id!==messenger.state.activeConversationUserID?contact.sender.id:contact.receiver.id);const username=(contact.receiver_id!==messenger.state.activeConversationUserID?contact.sender.username:contact.receiver.username);const avatar=(contact.receiver_id!==messenger.state.activeConversationUserID?contact.sender.avatar:contact.receiver.avatar);const name=contact.receiver_id!==messenger.state.activeConversationUserID?`${contact.sender.name} `:`${contact.receiver.name}`;const profile=contact.receiver_id!==messenger.state.activeConversationUserID?contact.sender.profileUrl:contact.receiver.profileUrl;$('.conversation-header').removeClass('d-none');$('.conversation-header-loading-box').addClass('d-none');$('.conversation-header-avatar').attr('src',avatar);$('.conversation-header-user').html(name);$('.conversation-profile-link').attr('href',profile);$('.details-holder .unfollow-btn').unbind('click');$('.details-holder .block-btn').unbind('click');$('.details-holder .report-btn').unbind('click');$('.details-holder .unfollow-btn').on('click',function(){Lists.showListManagementConfirmation('unfollow',userID);});$('.details-holder .block-btn').on('click',function(){Lists.showListManagementConfirmation('block',userID);});$('.details-holder .report-btn').on('click',function(){Lists.showReportBox(userID,null);});if(contact.sender.canEarnMoney===false){$('.details-holder .tip-btn').addClass('hidden');}else{$('.details-holder .tip-btn').attr('data-username','@'+username);$('.details-holder .tip-btn').attr('data-name',name);$('.details-holder .tip-btn').attr('data-avatar',avatar);$('.details-holder .tip-btn').attr('data-recipient-id',userID);}}},reloadConversation:function(){let conversationHtml='';$.each(messenger.state.conversation,function(key,value){conversationHtml+=messageElement(value);});$('.conversation-content').html(conversationHtml);let urlParams=new URLSearchParams(window.location.search);if(urlParams.has('token')&&!messenger.state.redirectedToMessage){let token='#m-'.concat(urlParams.get('token'));if($('.conversation-content .message-box').length&&$('.conversation-content').find(token).length){let offset=$('.conversation-content').find(token).offset().top-$('.conversation-content').offset().top+$('.conversation-content').scrollTop();$(".conversation-content").animate({scrollTop:offset},'slow');}
+messenger.reloadContactsList();messenger.state.activeConversationUserID=contactID;messenger.fetchConversation(contactID);messenger.hideEmptyChatElements();messenger.initLiveSockets();initTooltips();updateButtonState('loaded',submitButton,trans('Save'));}});},sendDMFromProfilePage:function(){let submitButton=$('.new-conversation-label');updateButtonState('loading',submitButton,trans('Send'),'white');let data=$("#userMessageForm").serialize()+'&new=true';$.ajax({type:'POST',url:app.baseUrl+'/my/messenger/sendMessage',data:data,success:function(){$("textarea[name=message]").val("");$('#messageModal').modal('hide');window.location.assign(app.baseUrl+'/my/messenger');updateButtonState('loaded',submitButton,trans('Save'));},error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);updateButtonState('loaded',submitButton,trans('Save'));},});},initMarkAsSeen:function(){$(".messageBoxInput").on('click',function(){if($('#unseenValue').val()!==0){$.ajax({type:'POST',url:app.baseUrl+'/my/messenger/markSeen',data:{userID:messenger.state.activeConversationUserID},dataType:'json',success:function(result){messenger.markConversationAsRead(messenger.state.activeConversationUserID,'read');messenger.updateUnreadMessagesCount(parseInt($('#unseenMessages').html())-result.data.count);incrementNotificationsCount('.menu-notification-badge.chat-menu-count',(-parseInt(result.data.count)));messenger.reloadContactsList();}});}});},isExistingContact:function(contactID){let isNewContact=false;$.map(messenger.state.contacts,function(contact){if(contactID===contact.contactID){isNewContact=true;}});return isNewContact;},reloadContactsList:function(){let contactsHtml='';$.each(messenger.state.contacts,function(key,value){contactsHtml+=contactElement(value);});if(messenger.state.contacts.length>0){$('.conversations-list').html('<div>'+contactsHtml+'</div>');}},reloadConversationHeader:function(){if(typeof messenger.state.conversation[0]!=='undefined'){const contact=messenger.state.conversation[0];const userID=(contact.receiver_id!==messenger.state.activeConversationUserID?contact.sender.id:contact.receiver.id);const username=(contact.receiver_id!==messenger.state.activeConversationUserID?contact.sender.username:contact.receiver.username);const avatar=(contact.receiver_id!==messenger.state.activeConversationUserID?contact.sender.avatar:contact.receiver.avatar);const name=contact.receiver_id!==messenger.state.activeConversationUserID?`${contact.sender.name} `:`${contact.receiver.name}`;const profile=contact.receiver_id!==messenger.state.activeConversationUserID?contact.sender.profileUrl:contact.receiver.profileUrl;$('.conversation-header').removeClass('d-none');$('.conversation-header-loading-box').addClass('d-none');$('.conversation-header-avatar').attr('src',avatar);$('.conversation-header-user').html(name);$('.conversation-header-user').attr("href",profile);$('.conversation-profile-link').attr('href',profile);$('.details-holder .unfollow-btn').unbind('click');$('.details-holder .block-btn').unbind('click');$('.details-holder .report-btn').unbind('click');$('.details-holder .unfollow-btn').on('click',function(){Lists.showListManagementConfirmation('unfollow',userID);});$('.details-holder .block-btn').on('click',function(){Lists.showListManagementConfirmation('block',userID);});$('.details-holder .report-btn').on('click',function(){Lists.showReportBox(userID,null);});if(contact.sender.canEarnMoney===false){$('.details-holder .tip-btn').addClass('hidden');}else{$('.details-holder .tip-btn').attr('data-username','@'+username);$('.details-holder .tip-btn').attr('data-name',name);$('.details-holder .tip-btn').attr('data-avatar',avatar);$('.details-holder .tip-btn').attr('data-recipient-id',userID);}}},reloadConversation:function(){let conversationHtml='';$.each(messenger.state.conversation,function(key,value){conversationHtml+=messageElement(value);});$('.conversation-content').html(conversationHtml);let urlParams=new URLSearchParams(window.location.search);if(urlParams.has('token')&&!messenger.state.redirectedToMessage){let token='#m-'.concat(urlParams.get('token'));if($('.conversation-content .message-box').length&&$('.conversation-content').find(token).length){let offset=$('.conversation-content').find(token).offset().top-$('.conversation-content').offset().top+$('.conversation-content').scrollTop();$(".conversation-content").animate({scrollTop:offset},'slow');}
 $('.conversation-content').find(token).animate({backgroundColor:"rgb(89 184 247 / 20%)",},1000).delay(2000).queue(function(){$('.conversation-content').find(token).animate({backgroundColor:"rgba(0,0,0,0)",},1000).dequeue();});messenger.state.redirectedToMessage=true;}else{if($('.conversation-content .message-box').length){$(".conversation-content").animate({scrollTop:$('.conversation-content')[0].scrollHeight+100},800);}}
 $('.conversation-loading-box').addClass('d-none');messenger.initLinks();messenger.initMessengerGalleries();},textAreaAdjust:function(el){el.style.height=(el.scrollHeight>el.clientHeight)?(el.scrollHeight)+"px":"40px";},resetTextAreaHeight:function(){$(".messageBoxInput").css('height',45);},setActiveContact:function(userID){$('.messageBoxInput').focus();$('#receiverID').val(userID);$('.contact-box').each(function(k,el){$(el).removeClass('contact-active');});setTimeout(function(){$('.contact-'+userID).addClass('contact-active');},100);},clearMessageBox:function(){$(".messageBoxInput").val('');},updateUnreadMessagesCount:function(val){$("#unseenMessages").html(val);return true;},markConversationAsRead:function(userID,type){$.map(messenger.state.contacts,function(contact,k){if(userID===contact.contactID){let newContact=contact;newContact.isSeen=type==='read'?1:0;messenger.state.contacts[k]=newContact;}});let newContactsList=messenger.state.contacts;},addLatestMessageToConversation:function(contactID,message){let contactKey=null;let contactObj=null;let newContact=null;$.map(messenger.state.contacts,function(contact,k){if(contactID===contact.contactID){newContact=contact;contactKey=k;newContact.lastMessage=message.message;newContact.dateAdded=message.dateAdded;newContact.dateAdded=message.dateAdded;newContact.senderID=message.sender_id;newContact.lastMessageSenderID=message.sender_id;messenger.state.contacts[k]=newContact;}});let newContactsList=messenger.state.contacts;if(contactKey!==null){newContactsList.splice(contactKey,1);newContactsList.unshift(newContact);messenger.state.contacts=newContactsList;}},initLinks:function(){$('.conversation-content .message-bubble').html(function(i,text){var body=text.replace(/\bhttps:\/\/([\w\.-]+\.)+[a-z]{2,}\/.+\b/gi,'<a target="_blank" class="text-white" href="$&">$&</a>');return body.replace(/\bhttp:\/\/([\w\.-]+\.)+[a-z]{2,}\/.+\b/gi,'<a target="_blank" class="text-white" href="$&">$&</a>');});},initMessengerGalleries:function(){$('.message-box').each(function(index,item){if($(item).find('.attachments-holder').children().length>0){mswpScanPage($(item),'mswp');}});},parseMessage:function(text){return filterXSS(text.replaceAll('\n','<br/>'));},hideEmptyChatElements:function(){$('.conversation-writeup').removeClass('hidden');$('.no-contacts').addClass('hidden');},initSelectizeUserList:function(){$('#messageModal').on('show.bs.modal',function(){if(messenger.state.fetchedContactsListsCount===1&&!messenger.state.hasAvailableFetchedContacts){$('.new-message-has-contacts').hide();$('.new-message-no-contacts').show();}});if(typeof Selectize!=='undefined'){$('#select-repo').selectize({valueField:'id',searchField:'label',options:messengerVars.availableContacts,create:false,render:{option:function(item,escape){return'<div>'+'<img class="searchAvatar ml-3 my-1" src="'+escape(item.avatar)+'" alt="">'+'<span class="name ml-2">'+escape(item.name)+'</span>'+'</div>';},item:function(item,escape){return'<div>'+'<img class="searchAvatar ml-1" src="'+escape(item.avatar)+'" alt="">'+'<span class="name ml-2">'+escape(item.name)+'</span>'+'</div>';}},});}},showNewMessageDialog:function(){$('#messageModal').modal('show');},initEmojiPicker:function(){try{const button=document.querySelector('.conversation-writeup .trigger');const picker=new EmojiButton({position:'top-end',theme:app.theme,autoHide:false,rows:4,recentsCount:16,emojiSize:'1.3em',showSearch:false,});picker.on('emoji',emoji=>{document.querySelector('input').value+=emoji;$('.messageBoxInput').val($('.messageBoxInput').val()+emoji);});button.addEventListener('click',()=>{picker.togglePicker(button);});}
 catch(e){}},showSetPriceDialog:function(){$('#message-set-price-dialog').modal('show');},clearMessagePrice:function(){messenger.state.messagePrice=5;messenger.state.isPaidMessage=false;$('#message-price').val(5);$('.message-price-lock').removeClass('d-none');$('.message-price-close').addClass('d-none');$('#message-set-price-dialog').modal('hide');},saveMessagePrice:function(){messenger.state.isPaidMessage=true;messenger.state.messagePrice=$('#message-price').val();if(!passesMinMaxPPVContentCreationLimits(messenger.state.messagePrice)){$('#message-price').addClass('is-invalid');return false;}
 $('.message-price-lock').addClass('d-none');$('.message-price-close').removeClass('d-none');$('#message-set-price-dialog').modal('hide');$('#message-price').removeClass('is-invalid');},parseMessageAttachment:function(file,isSender=true){let attachmentsHtml='';let pendingStatusMessage="*"+trans('En attent de validation contenue média');let declinedStatusMessage="*"+trans('Le fichier que vous avez sélectionné ne respecte pas nos normes de modération et ne peut pas être téléchargé');let declinedStatusMessageNotSender="*"+trans('Le fichier  ne respecte pas nos normes de modération et ne peut pas être visualisé');let style='font-size: 10px;color:red;display: table';if(!isSender){style+=';margin-left: -6px;';}
 if(!isSender&&file.moderation_status=="pending"){style=' font-size: 10px;color: red;display: table; margin-left: 0px;'
 return`
+
                     <img src="${app.baseUrl + '/img/message-moderation-validation.png'}" class="mr-2 mt-2"/> 
+
                 <div style ='margin-right: 103%; margin-top: -2px'> </div>
+
                 <span style='${style}'> ${pendingStatusMessage} </span>
+
             `;}
 if(!isSender&&file.moderation_status=="declined"){return`
+
                 <img src="${app.baseUrl + '/img/message-moderation-validation.png'}" class="mr-2 mt-2">
+
                 <span style='${style}'>${declinedStatusMessageNotSender}</span>
+
                 `;}
 let messageModeration='';if(file.moderation_status=="pending"){messageModeration=pendingStatusMessage;}
 if(file.moderation_status=="declined"){messageModeration=declinedStatusMessage;}
 switch(file.type){case'avi':case'mp4':case'wmw':case'mpeg':case'm4v':case'moov':case'mov':attachmentsHtml=`
+
                 <a href="${file.path}" rel="mswp" title="" class="mr-2 mt-2">
+
                     <div class="video-wrapper">
+
                      <video class="video-preview" src="${file.path}" width="150" height="150" controls autoplay muted></video>
+
                      <br>
+
                         <span style='${style}'>${messageModeration}</span>
+
                     </div>
+
                  </a>`;break;case'mp3':case'wav':case'ogg':attachmentsHtml=`
+
                 <a href="${file.path}" rel="mswp" title="" class="mr-2 mt-2 d-flex align-items-center">
+
                     <div class="video-wrapper">
+
                          <audio id="video-preview" src="${file.path}" controls type="audio/mpeg" muted></audio>
+
                     </div>
+
                     <br>
+
                     <span style='${style}'>${messageModeration}</span>
+
                  </a>`;break;case'png':case'jpg':case'jpeg':attachmentsHtml=`
+
                     <a href="${file.path}" rel="mswp" title="">
+
                         <img src="${file.thumbnail}" class="mr-2 mt-2">
+
                         <br>
+
                         <span style='${style}'>${messageModeration}</span>
+
                     </a>`;break;default:attachmentsHtml=`<img src="${file.thumbnail}" class="mr-2 mt-2"> <br> <span style='${style}'>${messageModeration}</span>  `;break;}
 return attachmentsHtml;},showMessageDeleteDialog:function(messageID){showDialog('message-delete-dialog');messenger.state.activeMessageID=messageID;},deleteMessage:function(){$.ajax({type:'DELETE',dataType:'json',url:app.baseUrl+'/my/messenger/delete/'+messenger.state.activeMessageID,success:function(){let element=$('*[data-messageid="'+messenger.state.activeMessageID+'"]');element.remove();hideDialog('message-delete-dialog');launchToast('success',trans('Success'),trans('Message removed'));},error:function(result){hideDialog('message-delete-dialog');launchToast('danger',trans('Error'),result.responseJSON.message);}});}};function contactElement(contact){const avatar=contact.receiverID===user.user_id?contact.senderAvatar:contact.receiverAvatar;const name=contact.receiverID===user.user_id?contact.senderName:contact.receiverName;return`
+
       <div class="contact-box contact-${contact.contactID}" onclick="messenger.fetchConversation(${contact.contactID})">
+
         <div>
+
             <img src="${ avatar }"/>
+
             <div>
+
                 <div class="${contact.lastMessageSenderID !== user.user_id && contact.isSeen === 0 ? 'font-weight-bold' : ''}">${filterXSS(name)}</div>
+
                 <div>
+
                     ${(contact.created_at !== null ? '&nbsp;' + contact.created_at : '')} 
+
                 </div>
+
             </div>
+
         </div>
+
         <div></div> 
+
       </div>
+
     `;}
 function messageElement(message){let isSender=false;if(parseInt(message.sender_id)===parseInt(user.user_id)){isSender=true;}
 let attachmentsHtml='';message.attachments.map(function(file){attachmentsHtml+=messenger.parseMessageAttachment(file,isSender);});if(message.hasUserUnlockedMessage===false&&message.price>0&&!isSender){return`
+
           <div class="col-12 no-gutters pt-1 pb-1 message-box px-0" data-messageid="${message.id}" id="m-${message.id}">
+
                     <div class="m-0 paid-message-box message-box text-break alert ${isSender ? 'alert-primary text-white' : 'alert-default'}">
+
                         <div class="col-12 d-flex mb-2 ${isSender ? 'sender d-flex flex-row-reverse pr-1' : 'pl-0'}">
+
                             ${message.message === null ? '' : messenger.parseMessage(message.message)}
+
                             </div>
+
                             <div class="d-flex justify-content-center">
+
                             <span style="margin-left: 2%;font-size: 13px;margin-top: 10%; position: absolute;">  ${message.attchmntInfoPreview} </span> <br>
+
                         ${lockedMessagePreview({'id' : message.id, 'price': message.price ,'attchmntInfoPreview' : message.attchmntInfoPreview},message.sender)}
+
                         </div>
+
                     </div>
+
                 </div>
+
           </div>
+
         `;}
 else{return`
+
           <div class="col-12 no-gutters pt-1 pb-1 message-box px-0" data-messageid="${message.id}" id="m-${message.id}">
+
             ${message.message === null ? '' : messageBubble(isSender, message)}
+
             ${messageAttachments(isSender, attachmentsHtml, message)}
+
           </div>
+
     `;}}
 function messageBubble(isSender,message){return`
+
         <div class="d-flex flex-row">
+
                 <div class="col-12 d-flex  ${isSender ? 'sender d-flex flex-row-reverse pr-1' : 'pl-0'}">
+
                     <div class="m-0 message-bubble text-break alert ${isSender ? 'alert-primary text-white' : 'alert-default'}">${messenger.parseMessage(message.message)}</div>
+
                     ${isSender ? messageActions(true, message) : ''}
+
                 </div>
+
         </div>
+
     `;}
 function messageAttachments(isSender,attachmentsHtml,message){return`
+
              <div class="col-12 d-flex  ${isSender ? 'sender d-flex flex-row-reverse pr-1' : 'pl-0'}">
+
                 <div class="attachments-holder row no-gutters flex-row-reverse">
+
                     ${attachmentsHtml}
+
                     
+
                 </div>
+
                 ${attachmentsHtml.length && isSender ? messageActions(true, message) : ''}
+
             </div>
+
      `;}
 function messageActions(showDeleteButton,message){return`
+
         <div class="d-flex message-actions-wrapper">
+
             ${showDeleteButton ? `<div class="d-flex justify-content-center align-items-center pointer-cursor mr-2"><div class="to-tooltip message-action-button d-flex justify-content-center align-items-center"data-placement="top"title="${trans('Delete')}"onClick="messenger.showMessageDeleteDialog(${message.id})"><ion-icon name="trash-outline"></ion-icon></div></div>` : ``}
 
+
+
            ${message.price > 0 ? `<div class="d-flex justify-content-center align-items-center mr-2"><div class="to-tooltip message-action-button d-flex justify-content-center align-items-center"data-placement="top"title="${trans('Paid message')}"><ion-icon name="cash-outline"></ion-icon></div></div>` : ``}
+
       </div>
+
     `;}
 function lockedMessagePreview(messageData,senderData){return`
+
             <div>
+
               <div>
+
               <div class="lockedPreviewWrapper">
+
                 
+
                   <img style="border-radius: 20px!important; margin-bottom: 8px;" class="card-img" src="${messengerVars.lockedMessageSVGPath}" >
+
               </div>
+
                   <div class="card-img-overlay d-flex flex-column-reverse">
+
                            ${lockedMessagePaymentButton(messageData, senderData)}
+
                     </div>
+
                   </div>
+
               </div>
+
             </div>
+
 `;}
 function lockedMessagePaymentButton(messageData,senderData){let modalData=`
+
                         data-toggle="modal"
+
                         data-target="#checkout-center"
+
                         data-type="message-unlock"
+
                         data-recipient-id="${senderData.id}"
+
                         data-amount="${messageData.price}"
+
                         data-first-name="${user.billingData.first_name}"
+
                         data-last-name="${user.billingData.last_name}"
+
                         data-billing-address="${user.billingData.billing_address}"
+
                         data-country="${user.billingData.country}"
+
                         data-city="${user.billingData.city}"
+
                         data-state="${user.billingData.state}"
+
                         data-postcode="${user.billingData.postcode}"
+
                         data-available-credit="${user.billingData.credit}"
+
                         data-username="${senderData.username}"
+
                         data-name="${senderData.first_name}"
+
                         data-avatar="${senderData.avatar}"
+
                         data-message-id="${messageData.id}"
+
     `;if(senderData.canEarnMoney===false){modalData=`
+
             data-placement="top"
+
             title="${trans('This creator cannot earn money yet')}"
+
         `;}
 return`
+
                 <button class="btn btn-round btn-primary btn-block d-flex align-items-center justify-content-center justify-content-lg-between mt-2 mb-0 to-tooltip" ${modalData}>
+
                   <span>${trans('Prix')} ${app.currencySymbol}${messageData.price}</span>
+
                 </button>
+
     `;}'use strict';$(function(){cardForm.initCardInput()
 $(".card-save").on("click",function(){if(!cardForm.validateFieldRequired()){return;}
 cardForm.removeError()

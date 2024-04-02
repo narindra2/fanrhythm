@@ -23,6 +23,7 @@
                 data-username="{{$user->username}}"
                 data-name="{{$user->name}}"
                 data-avatar="{{$user->avatar}}"
+                data-dismiss="#subrcribe-dialog"
             @endif
         @else
             data-toggle="modal"

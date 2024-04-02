@@ -66,6 +66,7 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
 
     public function getCoverAttribute($value)
     {
+        return str_replace(['/public',"http://127.0.0.1:8000"],["" ,"https://web.fanrhythm.com"] ,GenericHelperServiceProvider::getStorageCoverPath($value)) ;
         return GenericHelperServiceProvider::getStorageCoverPath($value);
     }
 

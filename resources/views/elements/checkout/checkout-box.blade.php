@@ -27,7 +27,7 @@
         <div class="paymentOption ml-2 paymentStripe d-none">
             <button id="stripe-checkout-button">{{__('Checkout')}}</button>
         </div> 
-        <div class="checkout-popup modal fade" id="checkout-center" tabindex="-1" role="dialog"
+        <div class="checkout-popup modal fade" id="checkout-center"  tabindex="-1" role="dialog"
             aria-labelledby="checkout" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">

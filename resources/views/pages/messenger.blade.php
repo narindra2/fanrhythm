@@ -174,6 +174,7 @@ Minify::javascript([
                     display: none;
                 }
                 .scrollable-list{
+                    margin-bottom: 55px;
                     overflow: scroll;
                     height: -webkit-fill-available;
                     -ms-overflow-style: none;  /* Internet Explorer 10+ */

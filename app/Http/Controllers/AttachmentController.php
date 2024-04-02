@@ -38,7 +38,7 @@ class AttachmentController extends Controller
         $type = $request->route('type');
 
         $fileMimeType = $file->getMimeType();
-        // try {
+        try {
             switch ($fileMimeType) {
                 case 'video/mp4':
                 case 'video/avi':
@@ -109,9 +109,9 @@ class AttachmentController extends Controller
                     $attachment->moderation_status = Moderation::STATUS_PENDING;
                 }
             }
-        // } catch (\Exception $exception) {
-        //     return response()->json(['success' => false, 'errors' => [$exception->getMessage()]], 500);
-        // }
+        } catch (\Exception $exception) {
+            return response()->json(['success' => false, 'errors' => [$exception->getMessage()]], 500);
+        }
         dispatch(function () use ( $attachment) {
             $attachment->save();
         })->afterResponse();

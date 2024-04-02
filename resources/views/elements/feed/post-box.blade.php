@@ -204,7 +204,8 @@
                     </svg>
                 </div>
                 @else
-                <div class="disabled"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ _('Abonnez-vous à moi') }}"
+                {{-- <div class="disabled"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ _('Abonnez-vous à moi') }}" --}}
+                <div class="disabled" data-toggle="modal" data-target="#subrcribe-dialog"  data-toggle="tooltip" 
                 @if (!Auth::check() )
                     onclick="goToRegister()"
                 @endif >
@@ -357,5 +358,4 @@
         @endif
     </div>
     @endif
-
 </div>

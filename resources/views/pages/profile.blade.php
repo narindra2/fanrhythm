@@ -118,12 +118,18 @@
                         @if (!Auth::check() || Auth::user()->id !== $user->id)
 
                             @if (Auth::check())
-                            <span onclick="copieClipboard('{{ route('profile', ['username' =>$user->username]) }}' , '#copyUrlUser')" id="copyUrlUser" class="pointer-cursor" data-toggle="tooltip" data-placement="top" title="{{ __('Copier le lien de profil : ') .  " " .$user->name }} ">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-                                    <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/>
-                                    <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
-                                </svg>
-                            </span>
+                                <span
+                                    onclick="copieClipboard('{{ route('profile', ['username' => $user->username]) }}' , '#copyUrlUser')"
+                                    id="copyUrlUser" class="pointer-cursor" data-toggle="tooltip" data-placement="top"
+                                    title="{{ __('Copier le lien de profil : ') . ' ' . $user->name }} ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                        fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z" />
+                                        <path
+                                            d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
+                                    </svg>
+                                </span>
 
                                 <span class="to-tooltip"
                                     @if (!Auth::user()->email_verified_at && getSetting('site.enforce_email_validation')) data-placement="top"
@@ -149,7 +155,7 @@
                         data-name="{{ $user->name }}"
                         data-avatar="{{ $user->avatar }}"
                         data-recipient-id="{{ $user->id }}" @endif>
-                                    
+
 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -207,27 +213,32 @@
 
                                     </button>
                                 @else
-                                    <button data-toggle="modal" data-target="#login-dialog" data-original-title="" title="" 
-                                    {{-- onclick="window.location.href='/login'"  --}}
-                                    >
+                                    <button data-toggle="modal" data-target="#login-dialog" data-original-title=""
+                                        title="" {{-- onclick="window.location.href='/login'"  --}}>
                                         {{ __('Suivre gratuitement') }}
                                     </button>
                                 @endif
 
                             @endif
                         @else
-                            <span onclick="copieClipboard('{{ route('profile', ['username' => Auth::user()->username]) }}' , '#copyUrlProfil')" id="copyUrlProfil" class="pointer-cursor" data-toggle="tooltip" data-placement="top" title="{{ __('Copier le lien de mon profil') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-                                    <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/>
-                                    <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
+                            <span
+                                onclick="copieClipboard('{{ route('profile', ['username' => Auth::user()->username]) }}' , '#copyUrlProfil')"
+                                id="copyUrlProfil" class="pointer-cursor" data-toggle="tooltip" data-placement="top"
+                                title="{{ __('Copier le lien de mon profil') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                                    <path
+                                        d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z" />
+                                    <path
+                                        d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
                                 </svg>
                             </span>
                             <a href="{{ route('my.settings') }}/profile" class="modifier_profil">
                                 {{ __('Modifier') }}
                                 <svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
-                                        stroke-linecap="round" stroke-linejoin="round">
+                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                                        fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
                                         <g id="Mon-profil" transform="translate(-1099.000000, -344.000000)"
                                             stroke="#28A0F0">
                                             <g id="Group-5" transform="translate(534.000000, 117.000000)">
@@ -508,7 +519,10 @@
 
                     @endif
                 @else
-                    @if ($user->email_verified_at && ($user->verification && $user->verification->status == 'verified') && count($demoposts) <= 2)
+                    @if (
+                        $user->email_verified_at &&
+                            ($user->verification && $user->verification->status == 'verified') &&
+                            count($demoposts) <= 2)
                         <div class="post_video_form">
                             <form action="{{ route('demoposts.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -520,11 +534,12 @@
                                 <p>{{ __('Celle-ci sera visible publiquement sur votre profil, offrant à tous une fenêtre unique sur votre personnalité et vos passions.') }}
                                 </p>
 
-                                <div id="fake_place_holder_mobile" onclick="document.getElementById('file_input_mobile').click();">
+                                <div id="fake_place_holder_mobile"
+                                    onclick="document.getElementById('file_input_mobile').click();">
                                     {{ __('Choisir un fichier') }}
                                 </div>
-                                <input id="file_input_mobile" type="file" name="images[]" multiple style="display: none;"
-                                    accept="video/*">
+                                <input id="file_input_mobile" type="file" name="images[]" multiple
+                                    style="display: none;" accept="video/*">
                                 <input name="text" type="hidden" value="video">
                                 <button type="submit">{{ __('Publier ') }}</button>
                             </form>
@@ -737,7 +752,10 @@
 
                 @endif
             @else
-                @if ($user->email_verified_at && ($user->verification && $user->verification->status == 'verified')  && count($demoposts) <= 2 )
+                @if (
+                    $user->email_verified_at &&
+                        ($user->verification && $user->verification->status == 'verified') &&
+                        count($demoposts) <= 2)
                     <div class="post_video_form">
                         <form action="{{ route('demoposts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -784,10 +802,12 @@
         ])
         @include('elements.checkout.checkout-box')
         @include('elements.messenger.send-user-message', ['receiver' => $user])
+        @include('elements.horizontal-member-card', ['user' => $user])
+
     @else
         @include('elements.modal-login')
     @endif
 
     @include('elements.profile.qr-code-dialog')
-
+   
 @stop

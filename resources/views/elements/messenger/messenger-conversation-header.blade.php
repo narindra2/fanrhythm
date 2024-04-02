@@ -4,9 +4,9 @@
             <div class="">
                 <img class="conversation-header-avatar" src="{{asset('/img/no-avatar.png')}}" />
             </div>
-            <div class="conversation-header-user text-truncate">
+            <a class="conversation-header-user text-truncate" href="#">
 
-            </div>
+            </a>
         </div>
         <div>
             <div class="dropdown {{GenericHelper::getSiteDirection() == 'rtl' ? 'dropright' : 'dropleft'}}">

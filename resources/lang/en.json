@@ -1065,5 +1065,8 @@
     "Post créé avec succès" : "Post created successfully",
     "Non autorisé" : "Unauthorized",
     "Post mis à jour avec succès" : "Post updated successfully",
-    "Post supprimé avec succès" : "Post successfully deleted"
+    "Post supprimé avec succès" : "Post successfully deleted",
+    "Accès complet à ce contenu de créateur gratuit" : "Full access to this free creator content",
+    "Annulez votre abonnement gratuit à tout moment": "Cancel your free subscription anytime",
+    "Messages directs et accès aux commentaires sur les publications publiques":"Direct messages and access comments on public posts"
 }

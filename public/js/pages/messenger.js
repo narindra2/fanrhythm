@@ -403,6 +403,7 @@ var messenger = {
             $('.conversation-header-loading-box').addClass('d-none');
             $('.conversation-header-avatar').attr('src',avatar);
             $('.conversation-header-user').html(name);
+            $('.conversation-header-user').attr("href",profile);
             $('.conversation-profile-link').attr('href',profile);
 
             $('.details-holder .unfollow-btn').unbind('click');
