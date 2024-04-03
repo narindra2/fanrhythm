@@ -11,14 +11,10 @@ html=`<div id="${id}" class="toast ${globalToastStyles}" role="alert" aria-live=
 if(indicator){html+=`<div class="toast-indicator bg-gradient-${indicator.type} mr-2 rounded"></div>`;}
 html+=`<strong class="mr-auto">${title}</strong>`;if(subtitle){html+=`<small class="${classes.subtitle}">${subtitle}</small>`;}
 if(dismissible){html+=`<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-
                         <span aria-hidden="true" class="${classes.dismiss}">&times;</span>
-
                     </button>`;}
 html+=`</div>`;if(content){html+=`<div class="toast-body">
-
                         ${content}
-
                     </div>`;}
 html+=`</div>`;if(!$.toastDefaults.stackable){toastContainer.find('.toast').each(function(){$(this).remove();});toastContainer.append(html);toastContainer.find('.toast:last').toast('show');}else{toastContainer.append(html);toastContainer.find('.toast:last').toast('show');}
 if($.toastDefaults.pauseDelayOnHover){setTimeout(function(){if(!paused){$(`#${id}`).toast('hide');}},opts.delay);$('body').on('mouseover',`#${id}`,function(){paused=true;});$(document).on('mouseleave','#'+id,function(){const current=Math.floor(Date.now()/ 1000),future=parseInt($(this).data('hideAfter'));paused=false;if(current>=future){$(this).toast('hide');}});}
@@ -72,15 +68,10 @@ function updateButtonState(state,buttonElement,buttonContent=false,loadingColor=
 else{buttonElement.html('<div class="d-flex justify-content-center align-items-center"><ion-icon name="paper-plane"></ion-icon></div>');}
 buttonElement.removeClass('disabled');}
 else{buttonElement.html(`<div class="d-flex justify-content-center align-items-center">
-
             <div class="spinner-border text-${loadingColor} spinner-border-sm" role="status">
-
             <span class="sr-only">${trans('Loading...')}</span>
-
             </div>
-
             ${(buttonContent !== false ? '<div class="ml-2">'+buttonContent+'</div>' : '')}
-
             </div>`);buttonElement.addClass('disabled');}}
 function sendEmailConfirmation(callback=function(){}){$('.unverified-email-box').attr('onClick','');$.ajax({url:app.baseUrl+'/resendVerification',type:'POST',success:function(){$('.unverified-email-box').fadeOut();launchToast('success',trans('Success'),trans('Confirmation email sent. Please check your inbox and spam folder.'),'now');callback();},error:function(){}});}
 function prepBeaconDataSample(){var fd=new FormData();fd.append('prevPage',PostsPaginator.currentPage);return fd;}
