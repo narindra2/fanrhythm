@@ -15,7 +15,16 @@ PostsPaginator.initPostsGalleries(postIDs);},initPostsGalleries:function(postIDs
 else{postElement.find('.show-all-comments-label').addClass('d-none');}}
 else{postElement.find('.no-comments-label').removeClass('d-none');}
 $(CommentsPaginator.container).find('.comments-loading-box').addClass('d-none');initTooltips();},error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);}});},appendCommentsResults:function(comments){let htmlOut=[];let commentIDs=[];$.map(comments,function(comments){htmlOut.push(comments.html);commentIDs.push(comments.id);});if(typeof CommentsPaginator.container==='string'){$(CommentsPaginator.container).append(htmlOut.join("\n")).fadeIn('slow');}
-else{CommentsPaginator.container.append(htmlOut.join("\n")).fadeIn('slow');}},};"use strict";var Post={draftData:{text:"",attachments:[]},activePage:'post',postID:null,commentID:null,setActivePage:function(page){Post.activePage=page;},initPostsMediaModule:function(){return new Swiper(".post-box .mySwiper",{slidesPerView:'auto',pagination:{el:".swiper-pagination",dynamicBullets:true,},navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev",},});},initGalleryModule:function(gallerySelector=false){mswpScanPage(gallerySelector,'mswp');},addComment:function(postID){let postElement=$('*[data-postID="'+postID+'"]');let newCommentButton=postElement.find('.new-post-comment-area').find('button');updateButtonState('loading',newCommentButton);$.ajax({type:'POST',data:{'message':postElement.find('textarea').val(),'post_id':postID},url:app.baseUrl+'/posts/comments/add',success:function(result){if(result.success){launchToast('success',trans('Success'),trans('Comment added'));postElement.find('.no-comments-label').addClass('d-none');postElement.find('.post-comments-wrapper').prepend(result.data).fadeIn('slow');postElement.find('textarea').val('');const commentsCount=parseInt(postElement.find('.post-comments-label-count').html())+1;postElement.find('.post-comments-label-count').html(commentsCount);postElement.find('.post-comments-label').html(trans_choice('comments',commentsCount));updateButtonState('loaded',newCommentButton);}
+else{CommentsPaginator.container.append(htmlOut.join("\n")).fadeIn('slow');}},};"use strict";var StreamsPaginator={isFetching:false,nextPageUrl:'',prevPageUrl:'',currentPage:null,container:'',method:'GET',init:function(route,container,method='GET'){StreamsPaginator.nextPageUrl=route;StreamsPaginator.prevPageUrl=paginatorConfig.prev_page_url;StreamsPaginator.currentPage=paginatorConfig.current_page;StreamsPaginator.container=container;StreamsPaginator.method=method;},loadResults:function(direction='next'){if(StreamsPaginator.isFetching===true){return false;}
+StreamsPaginator.isFetching=true;let url=StreamsPaginator.nextPageUrl;if(direction==='prev'){url=StreamsPaginator.prevPageUrl;}
+StreamsPaginator.toggleLoadingIndicator(true);$.ajax({type:StreamsPaginator.method,url:url,dataType:'json',success:function(result){if(result.success){if(result.data.hasMore===false){StreamsPaginator.unbindPaginator();}
+if(direction!=='prev'){StreamsPaginator.nextPageUrl=result.data.next_page_url;}
+else{StreamsPaginator.prevPageUrl=result.data.prev_page_url;$('.reverse-paginate-btn').find('button').removeClass('disabled');}
+if(result.data.prev_page_url===null){$('.reverse-paginate-btn').fadeOut("fast",function(){});}
+StreamsPaginator.appendPostResults(result.data.users,direction);StreamsPaginator.isFetching=false;}
+else{StreamsPaginator.isFetching=false;}
+StreamsPaginator.toggleLoadingIndicator(false);}});},toggleLoadingIndicator:function(loading=false){if(loading===true){$('.posts-loading-indicator .spinner').removeClass('d-none');}
+else{$('.posts-loading-indicator .spinner').addClass('d-none');}},appendPostResults:function(posts,direction='next'){let htmlOut=[];let postIDs=[];$.map(posts,function(post){htmlOut.push(post.html);postIDs.push(post.id);});if(direction==='next'){$(StreamsPaginator.container).append(htmlOut.join('')).fadeIn('slow');}else{$(StreamsPaginator.container).prepend(htmlOut.join('')).fadeIn('slow');}},initScrollLoad:function(){window.onscroll=function(){if(((window.innerHeight+window.scrollY+2)*window.devicePixelRatio.toFixed(2))>=document.body.offsetHeight*window.devicePixelRatio.toFixed(2)){StreamsPaginator.loadResults();}};},unbindPaginator:function(){StreamsPaginator.nextPageUrl='';window.onscroll=function(){};},};"use strict";var Post={draftData:{text:"",attachments:[]},activePage:'post',postID:null,commentID:null,setActivePage:function(page){Post.activePage=page;},initPostsMediaModule:function(){return new Swiper(".post-box .mySwiper",{slidesPerView:'auto',pagination:{el:".swiper-pagination",dynamicBullets:true,},navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev",},});},initGalleryModule:function(gallerySelector=false){mswpScanPage(gallerySelector,'mswp');},addComment:function(postID){let postElement=$('*[data-postID="'+postID+'"]');let newCommentButton=postElement.find('.new-post-comment-area').find('button');updateButtonState('loading',newCommentButton);$.ajax({type:'POST',data:{'message':postElement.find('textarea').val(),'post_id':postID},url:app.baseUrl+'/posts/comments/add',success:function(result){if(result.success){launchToast('success',trans('Success'),trans('Comment added'));postElement.find('.no-comments-label').addClass('d-none');postElement.find('.post-comments-wrapper').prepend(result.data).fadeIn('slow');postElement.find('textarea').val('');const commentsCount=parseInt(postElement.find('.post-comments-label-count').html())+1;postElement.find('.post-comments-label-count').html(commentsCount);postElement.find('.post-comments-label').html(trans_choice('comments',commentsCount));updateButtonState('loaded',newCommentButton);}
 else{launchToast('danger',trans('Error'),result.errors[0]);updateButtonState('loaded',newCommentButton);}
 newCommentButton.blur();},error:function(result){postElement.find('textarea').addClass('is-invalid');if(result.status===422){$.each(result.responseJSON.errors,function(field,error){if(field==='message'){postElement.find('textarea').parent().find('.invalid-feedback').html(error);}});updateButtonState('loaded',newCommentButton);}
 else if(result.status===403||result.status===404){launchToast('danger',trans('Error'),result.responseJSON.message);}
@@ -40,9 +49,16 @@ launchToast('success',trans('Success'),result.message);}
 else{$('#post-delete-dialog').modal('hide');launchToast('danger',trans('Error'),result.errors[0]);}},error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);}});},togglePostBookmark:function(id){let reactElement=$('*[data-postID="'+id+'"] .bookmark-button');const isBookmarked=reactElement.hasClass('active');$.ajax({type:'POST',data:{'action':(isBookmarked===true?'remove':'add'),'id':id},dataType:'json',url:app.baseUrl+'/posts/bookmark',success:function(result){if(result.success){if(isBookmarked){reactElement.removeClass('active');reactElement.html(trans('Bookmark this post'));}
 else{reactElement.addClass('active');reactElement.html(trans('Remove this bookmark'));}
 launchToast('success',trans('Success'),result.message);}
-else{launchToast('danger',trans('Error'),result.errors[0]);}},error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);}});},disablePostsRightClick:function(){$(".post-media, .pswp__item").unbind('contextmenu');$(".post-media, .pswp__item").on("contextmenu",function(){return false;});}};"use strict";$(function(){});var SuggestionsSlider={init:function(container){let swiperConfig={pagination:{el:container+" .swiper-pagination",dynamicBullets:true,},};if(sliderConfig.autoslide===true){swiperConfig.autoplay={delay:10000};}
-return new Swiper(container+" .mySwiper",swiperConfig);},loadSuggestions:function(filters={}){$.ajax({type:'POST',data:{filters},dataType:'json',url:app.baseUrl+'/suggestions/members',success:function(result){if(result.success){SuggestionsSlider.appendSuggestionsResults(result.data);launchToast('success',trans('Success'),trans('Suggestions list refreshed'));}
-else{launchToast('danger',trans('Error'),trans('Error fetching suggestions'));}},error:function(){launchToast('danger',trans('Error'),trans('Error fetching suggestions'));}});},appendSuggestionsResults:function(posts){$('.suggestions-content').html('');$('.suggestions-content').append(posts.html).fadeIn('slow');SuggestionsSlider.init();},};"use strict";$(function(){});var Lists={state:{listMemberToDelete:null,},showListClearConfirmation:function(){$('#list-clear-dialog').modal('show');},clearList:function(){$.ajax({type:'POST',data:{list_id:listVars.list_id},dataType:'json',url:app.baseUrl+'/my/lists/members/clear',success:function(result){let element=$('*[data-memberuserid="'+Lists.state.listMemberToDelete+'"]');if(result.success){redirect(app.baseUrl+'/my/lists');}
+else{launchToast('danger',trans('Error'),result.errors[0]);}},error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);}});},disablePostsRightClick:function(){$(".post-media, .pswp__item").unbind('contextmenu');$(".post-media, .pswp__item").on("contextmenu",function(){return false;});}};"use strict";$(function(){if(typeof paginatorConfig!=='undefined'){if((paginatorConfig.total>0&&paginatorConfig.total>paginatorConfig.per_page)&&paginatorConfig.hasMore){PostsPaginator.initScrollLoad();}
+PostsPaginator.init(paginatorConfig.next_page_url,'.posts-wrapper');}
+else{console.error('Pagination failed to initialize.');}
+PostsPaginator.initPostsGalleries(initialPostIDs);Post.setActivePage('profile');if(getCookie('app_prev_post')!==null){PostsPaginator.scrollToLastPost(getCookie('app_prev_post'));}
+Post.initPostsMediaModule();Post.initGalleryModule('.recent-media');if(app.feedDisableRightClickOnMedia!==null){Post.disablePostsRightClick();}
+if(postsFilter==='streams'){if(typeof paginatorConfig!=='undefined'){if((paginatorConfig.total>0&&paginatorConfig.total>paginatorConfig.per_page)&&paginatorConfig.hasMore){StreamsPaginator.initScrollLoad();}
+StreamsPaginator.init(paginatorConfig.next_page_url,'.streams-wrapper');}
+else{console.error('Pagination failed to initialize.');}}});$(window).scroll(function(){var top=$(window).scrollTop();if($(".main-wrapper").length){if($(".main-wrapper").offset().top<top){$(".profile-widgets-area").addClass("sticky-profile-widgets");}else{$(".profile-widgets-area").removeClass("sticky-profile-widgets");}}});window.onunload=function(){$(".inline-border-tabs").get(0).scrollIntoView();};var Profile={toggleFullDescription:function(){$('.profile-description-holder .label-less, .profile-description-holder .label-more').addClass('d-none');if($('.description-content').hasClass('line-clamp-1')){$('.description-content').removeClass('line-clamp-1');$('.profile-description-holder .label-less').removeClass('d-none');}
+else{$('.description-content').addClass('line-clamp-1');$('.profile-description-holder .label-more').removeClass('d-none');}},toggleBundles:function(){$('.subscription-holder .label-less, .subscription-holder .label-more').addClass('d-none');if($('.subscription-bundles').hasClass('d-none')){$('.subscription-bundles').removeClass('d-none');$('.subscription-holder .label-less').removeClass('d-none');$('.subscription-holder .label-icon').html('<ion-icon name="chevron-up-outline"></ion-icon>');}
+else{$('.subscription-bundles').addClass('d-none');$('.subscription-holder .label-more').removeClass('d-none');$('.subscription-holder .label-icon').html('<ion-icon name="chevron-down-outline"></ion-icon>');}},getProfileQRCode:function(){var QRoptions={text:window.location.href,};$('#qrcode').html('');new QRCode(document.getElementById("qrcode"),QRoptions);$('#qr-code-dialog').modal('show');},downloadQRCode:function(){var canvas=$("#qrcode canvas")[0];var image=canvas.toDataURL();var aDownloadLink=document.createElement('a');aDownloadLink.download='canvas_image.png';aDownloadLink.href=image;aDownloadLink.click();}};"use strict";$(function(){});var Lists={state:{listMemberToDelete:null,},showListClearConfirmation:function(){$('#list-clear-dialog').modal('show');},clearList:function(){$.ajax({type:'POST',data:{list_id:listVars.list_id},dataType:'json',url:app.baseUrl+'/my/lists/members/clear',success:function(result){let element=$('*[data-memberuserid="'+Lists.state.listMemberToDelete+'"]');if(result.success){redirect(app.baseUrl+'/my/lists');}
 else{launchToast('danger',trans('Error'),result.errors[0]);}},error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);}});},removeListMember:function(){const requestMethod='DELETE';const requestUrl=app.baseUrl+'/my/lists/members/delete';let data={'list_id':listVars.list_id,'user_id':Lists.state.listMemberToDelete};$('#list-member-delete-dialog').modal('show');$.ajax({type:requestMethod,data:data,dataType:'json',url:requestUrl,success:function(result){if(result.success){let element=$('*[data-memberuserid="'+Lists.state.listMemberToDelete+'"]');launchToast('success',trans('Success'),result.message);$('#list-member-delete-dialog').modal('hide');element.parent().fadeOut(300,function(){$(this).remove();});}
 else{launchToast('danger',trans('Error'),result.errors[0]);}},error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);}});},showListMemberRemoveModal:function(member_id){$('#list-member-delete-dialog').modal('show');Lists.state.listMemberToDelete=member_id;},showListAddModal:function(){$('#list-add-user-dialog').modal('show');Lists.initListsCheckboxes();},initListsCheckboxes:function(){let listCheckboxes=$('input[type=checkbox]');listCheckboxes.unbind('click');listCheckboxes.on('click',function(){let type='add';if(!$(this).is(':checked')){type='remove';}
 Lists.updateListMember($(this).data('listid'),profileVars.user_id,type);});},updateListMember:function(list_id,user_id,type,showMessages=true){let data={'list_id':list_id,'user_id':user_id};let requestMethod='POST';let requestUrl=app.baseUrl+'/my/lists/members/save';if(type!=='add'){requestMethod='DELETE';requestUrl=app.baseUrl+'/my/lists/members/delete';}
@@ -53,13 +69,10 @@ else if(type==='block'){dialogElement.find('.block-user-label').removeClass('d-n
 Lists.updateListMember(list_id,user_id,innerType,false);},removeList:function(){$.ajax({type:'DELETE',data:{'id':listVars.list_id},dataType:'json',url:app.baseUrl+'/my/lists/delete',success:function(result){if(result.success){redirect(app.baseUrl+'/my/lists');}
 else{launchToast('danger',trans('Error'),result.errors[0]);}},error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);}});},showListDeleteConfirmation:function(){$('#list-delete-dialog').modal('show');},showListEditDialog:function(mode){$('#list-update-dialog').modal('show');if(mode==='edit'&&$('#list-name').val().length===0){$('#list-name').val(listVars.name);}},updateList:function(type){let data={'name':$('#list-name').val(),'type':type};if(type==='edit'){data.list_id=listVars.list_id;}
 $.ajax({type:'POST',data:data,url:app.baseUrl+'/my/lists/save',success:function(result){if(type==='create'){$('.lists-wrapper').append('<hr class="my-2">');$('.lists-wrapper').append(result.data);$('#list-update-dialog').modal('hide');launchToast('success',trans('Success'),trans('List added')+'.');$('#list-name').val('');}
-else{$('.list-name-label').html($('#list-name').val());$('#list-update-dialog').modal('hide');launchToast('success',trans('Success'),trans('List renamed')+'.');}},error:function(result){$.each(result.responseJSON.errors,function(field){if(field==='name'){$('#list-name').addClass('is-invalid');$('#list-name').focus();}});}});},manageFollowsAction:function(userId){$.ajax({type:'POST',data:{user_id:userId,},url:app.baseUrl+'/my/lists/manage/follows',success:function(result){$('.manage-follows-text').text(result.text);window.reload();}});}};"use strict";$(function(){if(typeof paginatorConfig!=='undefined'){if((paginatorConfig.total>0&&paginatorConfig.total>paginatorConfig.per_page)&&paginatorConfig.hasMore){PostsPaginator.initScrollLoad();}
-PostsPaginator.init(paginatorConfig.next_page_url,'.posts-wrapper');}
-else{console.error('Pagination failed to initialize.');}
-PostsPaginator.initPostsGalleries(initialPostIDs);Post.setActivePage('feed');if(getCookie('app_prev_post')!==null){PostsPaginator.scrollToLastPost(getCookie('app_prev_post'));}
-Post.initPostsMediaModule();SuggestionsSlider.init('.suggestions-box-mobile');SuggestionsSlider.init('.suggestions-box');if(app.feedDisableRightClickOnMedia!==null){Post.disablePostsRightClick();}});window.onunload=function(){window.scrollTo(0,0);};$(window).scroll(function(){initStickyComponent('.feed-widgets','sticky');});var Feed={};'use strict';if(typeof log=="undefined"){const{log}=require("video.js");}
+else{$('.list-name-label').html($('#list-name').val());$('#list-update-dialog').modal('hide');launchToast('success',trans('Success'),trans('List renamed')+'.');}},error:function(result){$.each(result.responseJSON.errors,function(field){if(field==='name'){$('#list-name').addClass('is-invalid');$('#list-name').focus();}});}});},manageFollowsAction:function(userId){$.ajax({type:'POST',data:{user_id:userId,},url:app.baseUrl+'/my/lists/manage/follows',success:function(result){$('.manage-follows-text').text(result.text);window.reload();}});}};'use strict';if(typeof log=="undefined"){const{log}=require("video.js");}
 $(function(){$('#checkout-amount').on('change',function(){if(!checkout.checkoutAmountValidation()){return false;}
-checkout.paymentData.amount=parseFloat($('#checkout-amount').val());checkout.updatePaymentSummaryData();});$('.checkout-continue-btn').on('click',function(){checkout.initPayment();});$('.custom-control').on('change',function(){$('.error-message').hide();});$('#headingOne').on('click',function(){if($('#headingOne').hasClass('collapsed')){$('.card-header .label-icon').html('<ion-icon name="chevron-up-outline"></ion-icon>');}else{$('.card-header .label-icon').html('<ion-icon name="chevron-down-outline"></ion-icon>');}});$('#checkout-center').on('show.bs.modal',function(e){var postId=$(e.relatedTarget).data('post-id');var recipientId=$(e.relatedTarget).data('recipient-id');var amount=$(e.relatedTarget).data('amount');var type=$(e.relatedTarget).data('type');var username=$(e.relatedTarget).data('username');var firstName=$(e.relatedTarget).data('first-name');var lastName=$(e.relatedTarget).data('last-name');var billingAddress=$(e.relatedTarget).data('billing-address');var name=$(e.relatedTarget).data('name');var avatar=$(e.relatedTarget).data('avatar');var country=$(e.relatedTarget).data('country');var city=$(e.relatedTarget).data('city');var state=$(e.relatedTarget).data('state');var phone=$(e.relatedTarget).data('phone');var postcode=$(e.relatedTarget).data('postcode');var availableCredit=$(e.relatedTarget).data('available-credit');var streamId=$(e.relatedTarget).data('stream-id');var userMessageId=$(e.relatedTarget).data('message-id');checkout.initiatePaymentData(type,amount,postId,recipientId,firstName,lastName,billingAddress,country,city,state,phone,postcode,availableCredit,streamId,userMessageId);checkout.updateUserDetails(avatar,username,name);checkout.fillCountrySelectOptions();checkout.updatePaymentSummaryData();checkout.prefillBillingDetails();let paymentTitle='';let paymentDescription='';$('#checkout-amount').attr("disabled",true);if(type==='tip'||type==='chat-tip'){$('#checkout-amount').attr("disabled",false);$('.payment-body .checkout-amount-input').removeClass('d-none');paymentTitle=trans('Send a tip');paymentDescription=trans('Send a tip to this user');checkout.togglePaymentProviders(true,checkout.oneTimePaymentProcessorClasses);}else if(type==='one-month-subscription'||type==='three-months-subscription'||type==='six-months-subscription'||type==='yearly-subscription'){let numberOfMonths=1;let showStripeProvider=!app.stripeRecurringDisabled;let showPaypalProvider=!app.paypalRecurringDisabled;let showCCBillProvider=!app.ccBillRecurringDisabled;if(showCCBillProvider){if(type==='three-months-subscription'){numberOfMonths=3;}else if(type==='six-months-subscription'){numberOfMonths=6;showCCBillProvider=false;}else if(type==='yearly-subscription'){numberOfMonths=12;showCCBillProvider=false;}}
+checkout.paymentData.amount=parseFloat($('#checkout-amount').val());checkout.updatePaymentSummaryData();});$('.checkout-continue-btn').on('click',function(){checkout.initPayment();});$('.custom-control').on('change',function(){$('.error-message').hide();});$('#headingOne').on('click',function(){if($('#headingOne').hasClass('collapsed')){$('.card-header .label-icon').html('<ion-icon name="chevron-up-outline"></ion-icon>');}else{$('.card-header .label-icon').html('<ion-icon name="chevron-down-outline"></ion-icon>');}});$('#checkout-center').on('show.bs.modal',function(e){try{$('#subrcribe-dialog').modal('hide');}catch(error){}
+var postId=$(e.relatedTarget).data('post-id');var recipientId=$(e.relatedTarget).data('recipient-id');var amount=$(e.relatedTarget).data('amount');var type=$(e.relatedTarget).data('type');var username=$(e.relatedTarget).data('username');var firstName=$(e.relatedTarget).data('first-name');var lastName=$(e.relatedTarget).data('last-name');var billingAddress=$(e.relatedTarget).data('billing-address');var name=$(e.relatedTarget).data('name');var avatar=$(e.relatedTarget).data('avatar');var country=$(e.relatedTarget).data('country');var city=$(e.relatedTarget).data('city');var state=$(e.relatedTarget).data('state');var phone=$(e.relatedTarget).data('phone');var postcode=$(e.relatedTarget).data('postcode');var availableCredit=$(e.relatedTarget).data('available-credit');var streamId=$(e.relatedTarget).data('stream-id');var userMessageId=$(e.relatedTarget).data('message-id');checkout.initiatePaymentData(type,amount,postId,recipientId,firstName,lastName,billingAddress,country,city,state,phone,postcode,availableCredit,streamId,userMessageId);checkout.updateUserDetails(avatar,username,name);checkout.fillCountrySelectOptions();checkout.updatePaymentSummaryData();checkout.prefillBillingDetails();let paymentTitle='';let paymentDescription='';$('#checkout-amount').attr("disabled",true);if(type==='tip'||type==='chat-tip'){$('#checkout-amount').attr("disabled",false);$('.payment-body .checkout-amount-input').removeClass('d-none');paymentTitle=trans('Send a tip');paymentDescription=trans('Send a tip to this user');checkout.togglePaymentProviders(true,checkout.oneTimePaymentProcessorClasses);}else if(type==='one-month-subscription'||type==='three-months-subscription'||type==='six-months-subscription'||type==='yearly-subscription'){let numberOfMonths=1;let showStripeProvider=!app.stripeRecurringDisabled;let showPaypalProvider=!app.paypalRecurringDisabled;let showCCBillProvider=!app.ccBillRecurringDisabled;if(showCCBillProvider){if(type==='three-months-subscription'){numberOfMonths=3;}else if(type==='six-months-subscription'){numberOfMonths=6;showCCBillProvider=false;}else if(type==='yearly-subscription'){numberOfMonths=12;showCCBillProvider=false;}}
 checkout.togglePaymentProvider(showCCBillProvider,'.ccbill-payment-method');checkout.togglePaymentProvider(showStripeProvider,'.stripe-payment-method');checkout.togglePaymentProvider(showPaypalProvider,'.paypal-payment-method');$('.payment-body .checkout-amount-input').addClass('d-none');paymentTitle=trans(type);let subscriptionInterval=trans_choice('months',numberOfMonths,{number:numberOfMonths,});paymentDescription=trans('Subscribe to',{amount:amount,currency:app.currencySymbol,username:name,subscription_interval:subscriptionInterval,});checkout.toggleCryptoPaymentProviders(false);}else if(type==='post-unlock'){$('.payment-body .checkout-amount-input').addClass('d-none');paymentTitle=trans('Unlock post');paymentDescription=trans('Unlock post for')+' '+app.currencySymbol+amount;checkout.togglePaymentProviders(true,checkout.oneTimePaymentProcessorClasses);}else if(type==='stream-access'){$('.payment-body .checkout-amount-input').addClass('d-none');paymentTitle=trans('Join streaming');paymentDescription=trans('Join streaming now for')+' '+app.currencySymbol+amount;checkout.togglePaymentProviders(true,checkout.oneTimePaymentProcessorClasses);}else if(type==='message-unlock'){$('.payment-body .checkout-amount-input').addClass('d-none');paymentTitle=trans('Unlock message');paymentDescription=trans('Unlock message for')+' '+app.currencySymbol+amount;checkout.togglePaymentProviders(true,checkout.oneTimePaymentProcessorClasses);}
 if(paymentTitle!==''||paymentDescription!==''){$('#payment-title').text(paymentTitle);$('.payment-body .payment-description').removeClass('d-none');$('.payment-body .payment-description').text(paymentDescription);}
 if(!firstName||!lastName||!billingAddress||!city||!state||!phone||!postcode||!country){$('#billingInformation').collapse('show');}else{$('#billingInformation').collapse('hide');}
@@ -67,9 +80,13 @@ $('#checkout-amount').val(amount);});$('#checkout-center').on('hidden.bs.modal',
 let processor=checkout.getSelectedPaymentMethod();if(!processor){$('.payment-error').removeClass('d-none');}
 if(processor){$('.paymentProcessorError').hide();$('.error-message').hide();if(checkout.allowedPaymentProcessors.includes(processor)){checkout.updatePaymentForm();$('.checkout-continue-btn .spinner-border').removeClass('d-none');checkout.validateAllFields(()=>{$('.payment-button').trigger('click');});}}},validateAllFields:function(callback){checkout.clearFormErrors();$.ajax({type:'POST',data:$('#pp-buyItem').serialize(),url:app.baseUrl+'/payment/initiate/validate',success:function(){callback();},error:function(result){$('.checkout-continue-btn .spinner-border').addClass('d-none');if(result.status===500){launchToast('danger',trans('Error'),result.responseJSON.message);}
 $.each(result.responseJSON.errors,function(field,error){let fieldElement=$('.uifield-'+field);fieldElement.addClass('is-invalid');fieldElement.parent().append(`
+
                             <span class="invalid-feedback" role="alert">
+
                                 <strong>${error}</strong>
+
                             </span>
+
                         `);});},});},clearFormErrors:function(){$('.invalid-feedback').remove();$('input').removeClass('is-invalid');},getSelectedPaymentMethod:function(){const paypalProvider=$('.paypal-payment-provider').hasClass('selected');const stripeProvider=$('.stripe-payment-provider').hasClass('selected');const creditProvider=$('.credit-payment-provider').hasClass('selected');const coinbaseProvider=$('.coinbase-payment-provider').hasClass('selected');const nowPaymentsProvider=$('.nowpayments-payment-provider').hasClass('selected');const ccbillProvider=$('.ccbill-payment-provider').hasClass('selected');const paystackProvider=$('.paystack-payment-provider').hasClass('selected');const digitalVirgo=$('.digital-virgo-payment-provider').hasClass('selected');const Paydunya=$('.paydunya-payment-provider').hasClass('selected');const oxxoProvider=$('.oxxo-payment-provider').hasClass('selected');let val=null;if(paypalProvider){val='paypal';}else if(stripeProvider){val='stripe';}else if(creditProvider){val='credit';}else if(coinbaseProvider){val='coinbase';}else if(nowPaymentsProvider){val='nowpayments';}else if(ccbillProvider){val='ccbill';}else if(paystackProvider){val='paystack';}else if(oxxoProvider){val='oxxo';}else if(digitalVirgo){val='digital-virgo';}else if(Paydunya){val='paydunya';}
 if(val){checkout.paymentData.provider=val;return val;}
 return false;},checkoutAmountValidation:function(){const checkoutAmount=$('#checkout-amount').val();if(checkout.paymentData.type=='tip'){if(checkoutAmount.length>0&&checkoutAmount>=app.tipMinAmount&&checkoutAmount<=app.tipMaxAmount){$('#checkout-amount').removeClass('is-invalid');$('#paypal-deposit-amount').val(checkoutAmount);if(checkout.paymentData.availableCredit<checkoutAmount){$('.credit-payment-provider').css('pointer-events','none');}
@@ -367,4 +384,311 @@ if(!media.start)media.start=function(){};if(!media.stop)media.stop=function(){};
 return media.img;};this.listen=function(evt,fct){return pswp.listen(evt,fct);};this.init=function(){return pswp.init();};if(debug)console.log('MediaSwipe Starts');var pswp=new PhotoSwipe(element,options,items,params);pswp.setCustomMedia(_createMedia);pswp.listen('close',function(){stop(pswp.currItem);clear(pswp.currItem);execute(1,function(id){clear(pswp.items[id]);});pswp=null;if(debug)console.log('MediaSwipe Closed');});pswp.listen('afterChange',function(param){execute(2,function(id){clear(pswp.items[id]);});execute(1,function(id){stop(pswp.items[id]);});if(!param){let a=pswp.currItem.container.childNodes;start(pswp.currItem);}});}"use strict";var url=new URL(location.href);var debug=0;if(debug)console.log('Debug level '+debug);var mswpScanPage=function(selector,tag='mswp'){if(debug)console.log('Scan page using tag "'+tag+'"');var items=new Array();jQuery(function($){$(selector).find(" a[rel*='"+tag+"']").each(function(){var exp=new RegExp('('+tag+'|\[|\])','g');var rel=$(this).attr('rel').replace(exp,'')||0;if(!items[rel]){if(debug)console.log('Create list '+rel);items[rel]=new Array();}
 let width=$(this).attr('width')||0;let height=$(this).attr('height')||0;var idx=items[rel].length;items[rel][idx]={src:this.href,title:this.title,w:width,h:height,html:""};$(this).unbind("click").on('click',function(){if(debug)console.log('Items from list '+rel,items[rel]);var element=document.querySelectorAll('.pswp')[0];let swiperSettings={index:idx,bgOpacity:0.8,showHideOpacity:true,shareEl:false,fullscreenEl:false,captionEl:false,counterEl:true,barsSize:{top:0,bottom:'auto'},maxSpreadZoom:1,};if(appSettings.feed.allow_gallery_zoom===true){swiperSettings.zoomEl=true;}
 else{swiperSettings.zoomEl=false;swiperSettings.getDoubleTapZoom=function(isMouseClick,item){return item.initialZoomLevel;};}
-var mswp=new MediaSwipe(element,PhotoSwipeUI_Default,items[rel],swiperSettings);mswp.init();return false;});});});};mswpScanPage('.a-swiper','mswp');
+var mswp=new MediaSwipe(element,PhotoSwipeUI_Default,items[rel],swiperSettings);mswp.init();return false;});});});};mswpScanPage('.a-swiper','mswp');"use strict";$(function(){if(showLoginDialog){LoginModal.launchModal();}
+$('.login-section form, .register-section form, .forgot-section form').on('submit',function(){LoginModal.submitForm($(this).serialize());return false;});});var LoginModal={activeTab:'login',tabs:['login-section','register-section','forgot-section',],changeActiveTab:function(activeTab){LoginModal.activeTab=activeTab;LoginModal.tabs.map(function(tab){$('.'+tab).addClass('d-none');});$('.'+activeTab+'-section').removeClass('d-none');LoginModal.clearFormErrors();},launchModal:function(){$('#login-dialog').modal('show');},submitForm:function(data){LoginModal.clearFormErrors();let route='';if(LoginModal.activeTab==='forgot'){route=app.baseUrl+'/password/email';}
+else{route=app.baseUrl+'/'+LoginModal.activeTab;}
+$.ajax({type:'POST',data:data,url:route,success:function(result){if(result.success){if(LoginModal.activeTab==='forgot'){launchToast('success',trans('Success'),result.message);$('#login-dialog').modal('hide');$('input[name="email"]').val('');}
+else{window.reload();}}},error:function(result){if(result.status===500){launchToast('danger',trans('Error'),result.responseJSON.message);}
+if(result.status===404){result.responseJSON.errors={email:[trans('These credentials do not match our records.')]};}
+$.each(result.responseJSON.errors,function(field,error){if(field==='g-recaptcha-response'){$('.captcha-field .text-danger').addClass('d-flex');$('.captcha-field').append(`
+
+                            <span class="invalid-feedback text-danger d-flex justify-content-center" role="alert">
+
+                                <strong>${trans("Please check the captcha field.")}</strong>
+
+                            </span>
+
+                        `);}
+let fieldElement=$('input[name="'+field+'"]');fieldElement.addClass('is-invalid');fieldElement.parent().append(`
+
+                            <span class="invalid-feedback" role="alert">
+
+                                <strong>${error}</strong>
+
+                            </span>
+
+                        `);});}});},clearFormErrors:function(){$('.invalid-feedback').remove();$('input').removeClass('is-invalid');}};"use strict";$(function(){if(messengerVars.bootFullMessenger){messenger.boot();messenger.fetchContacts();messenger.initAutoScroll();messenger.initMarkAsSeen();messenger.resetTextAreaHeight();messenger.initEmojiPicker();if(messengerVars.lastContactID!==false&&messengerVars.lastContactID!==0){messenger.fetchConversation(messengerVars.lastContactID);}
+FileUpload.initDropZone('.dropzone','/attachment/upload/message');messenger.initSelectizeUserList();}});var messenger={state:{contacts:[],conversation:[],activeConversationUserID:null,activeConversationUser:null,currentBreakPoint:'lg',redirectedToMessage:false,fetchedContactsListsCount:0,hasAvailableFetchedContacts:true,messagePrice:5,isPaidMessage:false,activeMessageID:null,},pusher:null,boot:function(){Pusher.logToConsole=typeof messengerVars.pusherDebug!=='undefined'?messengerVars.pusherDebug:false;let params={authorizer:PusherBatchAuthorizer,authDelay:200,authEndpoint:app.baseUrl+'/my/messenger/authorizeUser',auth:{headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')}}};if(socketsDriver==='soketi'){params.wsHost=soketi.host;params.wsPort=soketi.port;params.forceTLS=soketi.useTSL?true:false;}
+else{params.cluster=messengerVars.pusherCluster;}
+messenger.pusher=new Pusher(socketsDriver==='soketi'?soketi.key:pusher.key,params);},initLiveSockets:function(){$.each(messenger.state.contacts,function(k,v){const minID=Math.min(v.receiverID,v.senderID);const maxID=Math.max(v.receiverID,v.senderID);const keyID=(""+minID+'-'+maxID);let channel=messenger.pusher.subscribe('private-chat-channel-'+keyID);channel.bind('new-message',function(data){const message=jQuery.parseJSON(data.message);if(message.sender_id===messenger.state.activeConversationUserID){messenger.state.conversation.push(message);messenger.reloadConversation();}
+messenger.updateUnreadMessagesCount(parseInt($('#unseenMessages').html())+1);messenger.addLatestMessageToConversation(message.sender_id,message);messenger.markConversationAsRead(message.sender_id,'unread');messenger.reloadContactsList();messenger.setActiveContact(messenger.state.activeConversationUserID);});});},initAutoScroll:function(){$(".messageBoxInput").keydown(function(e){if(e.keyCode===13){if(!e.shiftKey){e.preventDefault();$('.send-message').trigger('click');}}});},fetchContacts:function(){$.ajax({type:'GET',url:app.baseUrl+'/my/messenger/fetchContacts',dataType:'json',success:function(result){if(result.status==='success'){messenger.state.contacts=result.data.contacts;messenger.reloadContactsList();messenger.initLiveSockets();}
+else{}}});},makeContactsHeaderResponsive:function(){const breakPoint=bootstrapDetectBreakpoint();if(breakPoint.name==='xs'){$('.conversations-list').mCustomScrollbar({theme:"minimal-dark",axis:'x',scrollInertia:200,});$('.conversations-list').addClass('border-top');}
+else{$('.conversations-list').mCustomScrollbar("destroy");$('.conversations-list').removeClass('border-top');}},fetchConversation:function(userID){$('.conversation-loading-box').removeClass('d-none');$('.conversation-header-loading-box').removeClass('d-none');$('.conversation-header').addClass('d-none');$('.conversation-loading-box').removeClass('d-none');$('.conversation-content').html('');$.ajax({type:'GET',url:app.baseUrl+'/my/messenger/fetchMessages/'+userID,dataType:'json',success:function(result){if(result.status==='success'){messenger.state.conversation=result.data.messages;messenger.reloadConversation();messenger.state.activeConversationUserID=userID;messenger.setActiveContact(userID);messenger.reloadConversationHeader();initTooltips();}
+else{}}});},sendMessage:function(forceSave=false){$("#errorModerationMessage").html("")
+if(FileUpload.isLoading===true&&forceSave===false){$('.confirm-post-save').unbind('click');$('.confirm-post-save').on('click',function(){messenger.sendMessage(true);});$('#confirm-post-save').modal('show');return false;}
+if(messenger.state.isPaidMessage&&FileUpload.attachaments.length===0){$('#no-attachments-locked-post').modal('show');return false;}
+updateButtonState('loading',$('.send-message'));if($('.messageBoxInput').val().length===0&&FileUpload.attachaments.length===0){updateButtonState('loaded',$('.send-message'));return false;}
+$.ajax({type:'POST',url:app.baseUrl+'/my/messenger/sendMessage',data:{'message':$('.conversation-writeup .messageBoxInput').val(),'attachments':FileUpload.attachaments,'receiverID':$('.conversation-writeup #receiverID').val(),'price':messenger.state.isPaidMessage?messenger.state.messagePrice:0},dataType:'json',success:function(result){if(!result.success&&typeof result.errorModerationMessage!="undefined"){updateButtonState('loaded',$('.send-message'));$("#errorModerationMessage").text(result.errorModerationMessage)
+return false;}
+messenger.state.conversation.push(result.data.message);messenger.reloadConversation();messenger.clearMessageBox();messenger.addLatestMessageToConversation(result.data.message.receiverID,result.data.message);messenger.reloadContactsList();messenger.hideEmptyChatElements();messenger.clearFileUploadsState();messenger.resetTextAreaHeight();messenger.clearMessagePrice();updateButtonState('loaded',$('.send-message'));$('#confirm-post-save').modal('hide');initTooltips();},error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);}});},clearFileUploadsState:function(){FileUpload.attachaments=[];$('.dropzone-previews').html('');},createConversation:function(){let submitButton=$('.new-conversation-label');updateButtonState('loading',submitButton,trans('Send'),'white');let data=$("#userMessageForm").serialize()+'&new=true';if($('#userMessageForm #select-repo').val()===""){$('#userMessageForm .mfv-errorBox').html('<div class="alert alert-dismissable alert-danger text-white"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+trans('Please select an user first')+'. </div>');return false;}
+if($('#userMessageForm #messageText').val()===""){$('#userMessageForm .mfv-errorBox').html('<div class="alert alert-dismissable alert-danger text-white"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+trans('Please enter your message')+'.</div>');return false;}
+$.ajax({type:'POST',url:app.baseUrl+'/my/messenger/sendMessage',data:data,error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);updateButtonState('loaded',submitButton,trans('Save'));},success:function(result){$("textarea[name=message]").val("");$('#messageModal').modal('hide');let contactID=result.data.contact[0].contactID;if(!messenger.isExistingContact(contactID)){messenger.state.contacts.unshift(result.data.contact[0]);}
+else{$.map(messenger.state.contacts,function(contact,k){if(contactID===contact.contactID){let newContact=result.data.contact[0];messenger.state.contacts[k]=newContact;}});}
+messenger.reloadContactsList();messenger.state.activeConversationUserID=contactID;messenger.fetchConversation(contactID);messenger.hideEmptyChatElements();messenger.initLiveSockets();initTooltips();updateButtonState('loaded',submitButton,trans('Save'));}});},sendDMFromProfilePage:function(){let submitButton=$('.new-conversation-label');updateButtonState('loading',submitButton,trans('Send'),'white');let data=$("#userMessageForm").serialize()+'&new=true';$.ajax({type:'POST',url:app.baseUrl+'/my/messenger/sendMessage',data:data,success:function(){$("textarea[name=message]").val("");$('#messageModal').modal('hide');window.location.assign(app.baseUrl+'/my/messenger');updateButtonState('loaded',submitButton,trans('Save'));},error:function(result){launchToast('danger',trans('Error'),result.responseJSON.message);updateButtonState('loaded',submitButton,trans('Save'));},});},initMarkAsSeen:function(){$(".messageBoxInput").on('click',function(){if($('#unseenValue').val()!==0){$.ajax({type:'POST',url:app.baseUrl+'/my/messenger/markSeen',data:{userID:messenger.state.activeConversationUserID},dataType:'json',success:function(result){messenger.markConversationAsRead(messenger.state.activeConversationUserID,'read');messenger.updateUnreadMessagesCount(parseInt($('#unseenMessages').html())-result.data.count);incrementNotificationsCount('.menu-notification-badge.chat-menu-count',(-parseInt(result.data.count)));messenger.reloadContactsList();}});}});},isExistingContact:function(contactID){let isNewContact=false;$.map(messenger.state.contacts,function(contact){if(contactID===contact.contactID){isNewContact=true;}});return isNewContact;},reloadContactsList:function(){let contactsHtml='';$.each(messenger.state.contacts,function(key,value){contactsHtml+=contactElement(value);});if(messenger.state.contacts.length>0){$('.conversations-list').html('<div>'+contactsHtml+'</div>');}},reloadConversationHeader:function(){if(typeof messenger.state.conversation[0]!=='undefined'){const contact=messenger.state.conversation[0];const userID=(contact.receiver_id!==messenger.state.activeConversationUserID?contact.sender.id:contact.receiver.id);const username=(contact.receiver_id!==messenger.state.activeConversationUserID?contact.sender.username:contact.receiver.username);const avatar=(contact.receiver_id!==messenger.state.activeConversationUserID?contact.sender.avatar:contact.receiver.avatar);const name=contact.receiver_id!==messenger.state.activeConversationUserID?`${contact.sender.name} `:`${contact.receiver.name}`;const profile=contact.receiver_id!==messenger.state.activeConversationUserID?contact.sender.profileUrl:contact.receiver.profileUrl;$('.conversation-header').removeClass('d-none');$('.conversation-header-loading-box').addClass('d-none');$('.conversation-header-avatar').attr('src',avatar);$('.conversation-header-user').html(name);$('.conversation-header-user').attr("href",profile);$('.conversation-profile-link').attr('href',profile);$('.details-holder .unfollow-btn').unbind('click');$('.details-holder .block-btn').unbind('click');$('.details-holder .report-btn').unbind('click');$('.details-holder .unfollow-btn').on('click',function(){Lists.showListManagementConfirmation('unfollow',userID);});$('.details-holder .block-btn').on('click',function(){Lists.showListManagementConfirmation('block',userID);});$('.details-holder .report-btn').on('click',function(){Lists.showReportBox(userID,null);});if(contact.sender.canEarnMoney===false){$('.details-holder .tip-btn').addClass('hidden');}else{$('.details-holder .tip-btn').attr('data-username','@'+username);$('.details-holder .tip-btn').attr('data-name',name);$('.details-holder .tip-btn').attr('data-avatar',avatar);$('.details-holder .tip-btn').attr('data-recipient-id',userID);}}},reloadConversation:function(){let conversationHtml='';$.each(messenger.state.conversation,function(key,value){conversationHtml+=messageElement(value);});$('.conversation-content').html(conversationHtml);let urlParams=new URLSearchParams(window.location.search);if(urlParams.has('token')&&!messenger.state.redirectedToMessage){let token='#m-'.concat(urlParams.get('token'));if($('.conversation-content .message-box').length&&$('.conversation-content').find(token).length){let offset=$('.conversation-content').find(token).offset().top-$('.conversation-content').offset().top+$('.conversation-content').scrollTop();$(".conversation-content").animate({scrollTop:offset},'slow');}
+$('.conversation-content').find(token).animate({backgroundColor:"rgb(89 184 247 / 20%)",},1000).delay(2000).queue(function(){$('.conversation-content').find(token).animate({backgroundColor:"rgba(0,0,0,0)",},1000).dequeue();});messenger.state.redirectedToMessage=true;}else{if($('.conversation-content .message-box').length){$(".conversation-content").animate({scrollTop:$('.conversation-content')[0].scrollHeight+100},800);}}
+$('.conversation-loading-box').addClass('d-none');messenger.initLinks();messenger.initMessengerGalleries();},textAreaAdjust:function(el){el.style.height=(el.scrollHeight>el.clientHeight)?(el.scrollHeight)+"px":"40px";},resetTextAreaHeight:function(){$(".messageBoxInput").css('height',45);},setActiveContact:function(userID){$('.messageBoxInput').focus();$('#receiverID').val(userID);$('.contact-box').each(function(k,el){$(el).removeClass('contact-active');});setTimeout(function(){$('.contact-'+userID).addClass('contact-active');},100);},clearMessageBox:function(){$(".messageBoxInput").val('');},updateUnreadMessagesCount:function(val){$("#unseenMessages").html(val);return true;},markConversationAsRead:function(userID,type){$.map(messenger.state.contacts,function(contact,k){if(userID===contact.contactID){let newContact=contact;newContact.isSeen=type==='read'?1:0;messenger.state.contacts[k]=newContact;}});let newContactsList=messenger.state.contacts;},addLatestMessageToConversation:function(contactID,message){let contactKey=null;let contactObj=null;let newContact=null;$.map(messenger.state.contacts,function(contact,k){if(contactID===contact.contactID){newContact=contact;contactKey=k;newContact.lastMessage=message.message;newContact.dateAdded=message.dateAdded;newContact.dateAdded=message.dateAdded;newContact.senderID=message.sender_id;newContact.lastMessageSenderID=message.sender_id;messenger.state.contacts[k]=newContact;}});let newContactsList=messenger.state.contacts;if(contactKey!==null){newContactsList.splice(contactKey,1);newContactsList.unshift(newContact);messenger.state.contacts=newContactsList;}},initLinks:function(){$('.conversation-content .message-bubble').html(function(i,text){var body=text.replace(/\bhttps:\/\/([\w\.-]+\.)+[a-z]{2,}\/.+\b/gi,'<a target="_blank" class="text-white" href="$&">$&</a>');return body.replace(/\bhttp:\/\/([\w\.-]+\.)+[a-z]{2,}\/.+\b/gi,'<a target="_blank" class="text-white" href="$&">$&</a>');});},initMessengerGalleries:function(){$('.message-box').each(function(index,item){if($(item).find('.attachments-holder').children().length>0){mswpScanPage($(item),'mswp');}});},parseMessage:function(text){return filterXSS(text.replaceAll('\n','<br/>'));},hideEmptyChatElements:function(){$('.conversation-writeup').removeClass('hidden');$('.no-contacts').addClass('hidden');},initSelectizeUserList:function(){$('#messageModal').on('show.bs.modal',function(){if(messenger.state.fetchedContactsListsCount===1&&!messenger.state.hasAvailableFetchedContacts){$('.new-message-has-contacts').hide();$('.new-message-no-contacts').show();}});if(typeof Selectize!=='undefined'){$('#select-repo').selectize({valueField:'id',searchField:'label',options:messengerVars.availableContacts,create:false,render:{option:function(item,escape){return'<div>'+'<img class="searchAvatar ml-3 my-1" src="'+escape(item.avatar)+'" alt="">'+'<span class="name ml-2">'+escape(item.name)+'</span>'+'</div>';},item:function(item,escape){return'<div>'+'<img class="searchAvatar ml-1" src="'+escape(item.avatar)+'" alt="">'+'<span class="name ml-2">'+escape(item.name)+'</span>'+'</div>';}},});}},showNewMessageDialog:function(){$('#messageModal').modal('show');},initEmojiPicker:function(){try{const button=document.querySelector('.conversation-writeup .trigger');const picker=new EmojiButton({position:'top-end',theme:app.theme,autoHide:false,rows:4,recentsCount:16,emojiSize:'1.3em',showSearch:false,});picker.on('emoji',emoji=>{document.querySelector('input').value+=emoji;$('.messageBoxInput').val($('.messageBoxInput').val()+emoji);});button.addEventListener('click',()=>{picker.togglePicker(button);});}
+catch(e){}},showSetPriceDialog:function(){$('#message-set-price-dialog').modal('show');},clearMessagePrice:function(){messenger.state.messagePrice=5;messenger.state.isPaidMessage=false;$('#message-price').val(5);$('.message-price-lock').removeClass('d-none');$('.message-price-close').addClass('d-none');$('#message-set-price-dialog').modal('hide');},saveMessagePrice:function(){messenger.state.isPaidMessage=true;messenger.state.messagePrice=$('#message-price').val();if(!passesMinMaxPPVContentCreationLimits(messenger.state.messagePrice)){$('#message-price').addClass('is-invalid');return false;}
+$('.message-price-lock').addClass('d-none');$('.message-price-close').removeClass('d-none');$('#message-set-price-dialog').modal('hide');$('#message-price').removeClass('is-invalid');},parseMessageAttachment:function(file,isSender=true){let attachmentsHtml='';let pendingStatusMessage="*"+trans('En attent de validation contenue média');let declinedStatusMessage="*"+trans('Le fichier que vous avez sélectionné ne respecte pas nos normes de modération et ne peut pas être téléchargé');let declinedStatusMessageNotSender="*"+trans('Le fichier  ne respecte pas nos normes de modération et ne peut pas être visualisé');let style='font-size: 10px;color:red;display: table';if(!isSender){style+=';margin-left: -6px;';}
+if(!isSender&&file.moderation_status=="pending"){style=' font-size: 10px;color: red;display: table; margin-left: 0px;'
+return`
+
+                    <img src="${app.baseUrl + '/img/message-moderation-validation.png'}" class="mr-2 mt-2"/> 
+
+                <div style ='margin-right: 103%; margin-top: -2px'> </div>
+
+                <span style='${style}'> ${pendingStatusMessage} </span>
+
+            `;}
+if(!isSender&&file.moderation_status=="declined"){return`
+
+                <img src="${app.baseUrl + '/img/message-moderation-validation.png'}" class="mr-2 mt-2">
+
+                <span style='${style}'>${declinedStatusMessageNotSender}</span>
+
+                `;}
+let messageModeration='';if(file.moderation_status=="pending"){messageModeration=pendingStatusMessage;}
+if(file.moderation_status=="declined"){messageModeration=declinedStatusMessage;}
+switch(file.type){case'avi':case'mp4':case'wmw':case'mpeg':case'm4v':case'moov':case'mov':attachmentsHtml=`
+
+                <a href="${file.path}" rel="mswp" title="" class="mr-2 mt-2">
+
+                    <div class="video-wrapper">
+
+                     <video class="video-preview" src="${file.path}" width="150" height="150" controls autoplay muted></video>
+
+                     <br>
+
+                        <span style='${style}'>${messageModeration}</span>
+
+                    </div>
+
+                 </a>`;break;case'mp3':case'wav':case'ogg':attachmentsHtml=`
+
+                <a href="${file.path}" rel="mswp" title="" class="mr-2 mt-2 d-flex align-items-center">
+
+                    <div class="video-wrapper">
+
+                         <audio id="video-preview" src="${file.path}" controls type="audio/mpeg" muted></audio>
+
+                    </div>
+
+                    <br>
+
+                    <span style='${style}'>${messageModeration}</span>
+
+                 </a>`;break;case'png':case'jpg':case'jpeg':attachmentsHtml=`
+
+                    <a href="${file.path}" rel="mswp" title="">
+
+                        <img src="${file.thumbnail}" class="mr-2 mt-2">
+
+                        <br>
+
+                        <span style='${style}'>${messageModeration}</span>
+
+                    </a>`;break;default:attachmentsHtml=`<img src="${file.thumbnail}" class="mr-2 mt-2"> <br> <span style='${style}'>${messageModeration}</span>  `;break;}
+return attachmentsHtml;},showMessageDeleteDialog:function(messageID){showDialog('message-delete-dialog');messenger.state.activeMessageID=messageID;},deleteMessage:function(){$.ajax({type:'DELETE',dataType:'json',url:app.baseUrl+'/my/messenger/delete/'+messenger.state.activeMessageID,success:function(){let element=$('*[data-messageid="'+messenger.state.activeMessageID+'"]');element.remove();hideDialog('message-delete-dialog');launchToast('success',trans('Success'),trans('Message removed'));},error:function(result){hideDialog('message-delete-dialog');launchToast('danger',trans('Error'),result.responseJSON.message);}});}};function contactElement(contact){const avatar=contact.receiverID===user.user_id?contact.senderAvatar:contact.receiverAvatar;const name=contact.receiverID===user.user_id?contact.senderName:contact.receiverName;return`
+
+      <div class="contact-box contact-${contact.contactID}" onclick="messenger.fetchConversation(${contact.contactID})">
+
+        <div>
+
+            <img src="${ avatar }"/>
+
+            <div>
+
+                <div class="${contact.lastMessageSenderID !== user.user_id && contact.isSeen === 0 ? 'font-weight-bold' : ''}">${filterXSS(name)}</div>
+
+                <div>
+
+                    ${(contact.created_at !== null ? '&nbsp;' + contact.created_at : '')} 
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div></div> 
+
+      </div>
+
+    `;}
+function messageElement(message){let isSender=false;if(parseInt(message.sender_id)===parseInt(user.user_id)){isSender=true;}
+let attachmentsHtml='';message.attachments.map(function(file){attachmentsHtml+=messenger.parseMessageAttachment(file,isSender);});if(message.hasUserUnlockedMessage===false&&message.price>0&&!isSender){return`
+
+          <div class="col-12 no-gutters pt-1 pb-1 message-box px-0" data-messageid="${message.id}" id="m-${message.id}">
+
+                    <div class="m-0 paid-message-box message-box text-break alert ${isSender ? 'alert-primary text-white' : 'alert-default'}">
+
+                        <div class="col-12 d-flex mb-2 ${isSender ? 'sender d-flex flex-row-reverse pr-1' : 'pl-0'}">
+
+                            ${message.message === null ? '' : messenger.parseMessage(message.message)}
+
+                            </div>
+
+                            <div class="d-flex justify-content-center">
+
+                            <span style="margin-left: 2%;font-size: 13px;margin-top: 10%; position: absolute;">  ${message.attchmntInfoPreview} </span> <br>
+
+                        ${lockedMessagePreview({'id' : message.id, 'price': message.price ,'attchmntInfoPreview' : message.attchmntInfoPreview},message.sender)}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+          </div>
+
+        `;}
+else{return`
+
+          <div class="col-12 no-gutters pt-1 pb-1 message-box px-0" data-messageid="${message.id}" id="m-${message.id}">
+
+            ${message.message === null ? '' : messageBubble(isSender, message)}
+
+            ${messageAttachments(isSender, attachmentsHtml, message)}
+
+          </div>
+
+    `;}}
+function messageBubble(isSender,message){return`
+
+        <div class="d-flex flex-row">
+
+                <div class="col-12 d-flex  ${isSender ? 'sender d-flex flex-row-reverse pr-1' : 'pl-0'}">
+
+                    <div class="m-0 message-bubble text-break alert ${isSender ? 'alert-primary text-white' : 'alert-default'}">${messenger.parseMessage(message.message)}</div>
+
+                    ${isSender ? messageActions(true, message) : ''}
+
+                </div>
+
+        </div>
+
+    `;}
+function messageAttachments(isSender,attachmentsHtml,message){return`
+
+             <div class="col-12 d-flex  ${isSender ? 'sender d-flex flex-row-reverse pr-1' : 'pl-0'}">
+
+                <div class="attachments-holder row no-gutters flex-row-reverse">
+
+                    ${attachmentsHtml}
+
+                    
+
+                </div>
+
+                ${attachmentsHtml.length && isSender ? messageActions(true, message) : ''}
+
+            </div>
+
+     `;}
+function messageActions(showDeleteButton,message){return`
+
+        <div class="d-flex message-actions-wrapper">
+
+            ${showDeleteButton ? `<div class="d-flex justify-content-center align-items-center pointer-cursor mr-2"><div class="to-tooltip message-action-button d-flex justify-content-center align-items-center"data-placement="top"title="${trans('Delete')}"onClick="messenger.showMessageDeleteDialog(${message.id})"><ion-icon name="trash-outline"></ion-icon></div></div>` : ``}
+
+
+
+           ${message.price > 0 ? `<div class="d-flex justify-content-center align-items-center mr-2"><div class="to-tooltip message-action-button d-flex justify-content-center align-items-center"data-placement="top"title="${trans('Paid message')}"><ion-icon name="cash-outline"></ion-icon></div></div>` : ``}
+
+      </div>
+
+    `;}
+function lockedMessagePreview(messageData,senderData){return`
+
+            <div>
+
+              <div>
+
+              <div class="lockedPreviewWrapper">
+
+                
+
+                  <img style="border-radius: 20px!important; margin-bottom: 8px;" class="card-img" src="${messengerVars.lockedMessageSVGPath}" >
+
+              </div>
+
+                  <div class="card-img-overlay d-flex flex-column-reverse">
+
+                           ${lockedMessagePaymentButton(messageData, senderData)}
+
+                    </div>
+
+                  </div>
+
+              </div>
+
+            </div>
+
+`;}
+function lockedMessagePaymentButton(messageData,senderData){let modalData=`
+
+                        data-toggle="modal"
+
+                        data-target="#checkout-center"
+
+                        data-type="message-unlock"
+
+                        data-recipient-id="${senderData.id}"
+
+                        data-amount="${messageData.price}"
+
+                        data-first-name="${user.billingData.first_name}"
+
+                        data-last-name="${user.billingData.last_name}"
+
+                        data-billing-address="${user.billingData.billing_address}"
+
+                        data-country="${user.billingData.country}"
+
+                        data-city="${user.billingData.city}"
+
+                        data-state="${user.billingData.state}"
+
+                        data-postcode="${user.billingData.postcode}"
+
+                        data-available-credit="${user.billingData.credit}"
+
+                        data-username="${senderData.username}"
+
+                        data-name="${senderData.first_name}"
+
+                        data-avatar="${senderData.avatar}"
+
+                        data-message-id="${messageData.id}"
+
+    `;if(senderData.canEarnMoney===false){modalData=`
+
+            data-placement="top"
+
+            title="${trans('This creator cannot earn money yet')}"
+
+        `;}
+return`
+
+                <button class="btn btn-round btn-primary btn-block d-flex align-items-center justify-content-center justify-content-lg-between mt-2 mb-0 to-tooltip" ${modalData}>
+
+                  <span>${trans('Prix')} ${app.currencySymbol}${messageData.price}</span>
+
+                </button>
+
+    `;}'use strict';$(function(){cardForm.initCardInput()
+$(".card-save").on("click",function(){if(!cardForm.validateFieldRequired()){return;}
+cardForm.removeError()
+cardForm.Submitform()})
+$(".required").on("change",function(){cardForm.removeError()})
+cardForm.fillCountrySelectOptions();$(".activeThisCard").on("click",function(){let cartId=$(this).data("card_id")
+if(cartId){$.ajax({type:"POST",headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},url:app.baseUrl+'/my/settings/active/card-billing',cache:false,data:{"card_id":cartId},dataType:"json",success:function(response){if(response.success){return location.reload();}else{return location.reload();}},});}})});var cardBox={}
+var cardForm={fillCountrySelectOptions:function(){$.ajax({type:'GET',url:app.baseUrl+'/countries',success:function(result){if(result!==null&&typeof result.countries!=='undefined'&&result.countries.length>0){$('.country-select').find('option').remove().end().append('<option value="">'+trans('Select a country')+'</option>');$.each(result.countries,function(i,item){$('.country-select').append($('<option>',{value:item.id,text:item.name,}));});}},});},validateFieldRequired:(element)=>{$("#billing-error").addClass("d-none")
+$(".required").each((i,element)=>{if(!$(element).val()){$("#billing-error").removeClass("d-none")
+return false;}})
+return true;},removeError:()=>{$("#billing-error").addClass("d-none")
+$("#saveError").addClass("d-nome")
+$("#saveError").html("")},initCardInput:()=>{var month=0;$("#expired_date").on('keypress',function(event){if(event.charCode>=48&&event.charCode<=57){if($(this).val().length===1){$(this).val($(this).val()+event.key+"/");}else if($(this).val().length===0){if(event.key==1||event.key==0){month=event.key;return event.charCode;}else{$(this).val(0+event.key+"/");}}else if($(this).val().length>2&&$(this).val().length<5){return event.charCode;}}
+return false;}).on('keyup',function(event){if(event.keyCode==8&&$("#expired_date").val().length==2){$(this).val(month);}})},Submitform:()=>{const data={"name_card":$("input[name='card_name']").val(),"card_number":$("input[name='card_number']").val(),"expired_date":$("input[name='expired_date']").val(),"cvv":$("input[name='cvv']").val(),"billing_name":$("input[name='BillingName']").val(),"billing_last_name":$("input[name='BillinglastName']").val(),"billing_phone":$("input[name='billingPhone']").val(),"billing_address":$("#billingAddress").val(),"active_card":$('input[name="active_card"]:checked').val(),};$.ajax({type:"POST",headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},url:app.baseUrl+'/my/settings/add/card-billing',cache:false,data:data,dataType:"json",success:function(response){if(response.success){return location.reload();}else{$("#saveError").text(trans('Erreur')+" : "+response.message)
+$("#saveError").removeClass("d-none")}},error:function(jqXHR,textStatus,errorThrown){$("#saveError").text(trans('Error')+" :"+textStatus)
+$("#saveError").removeClass("d-none")}});},}

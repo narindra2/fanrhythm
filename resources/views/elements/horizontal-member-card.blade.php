@@ -49,13 +49,26 @@
                        
                         <a class='mini-text' href="{{route('profile',['username'=>$user->username])}}"> <span>@</span>{{ $user->username }}</a>
                        
-                        <p class="card-text">
-                            <ul class="list-unstyled">
-                                <li class="d-flex align-items-center" style="font-size: 14px;" >@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__("Accès complet à ce contenu de créateur gratuit")}}</li>
-                                <li class="d-flex align-items-center" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium']) {{__('Annulez votre abonnement gratuit à tout moment')}}</li>
-                                <li class="d-flex align-items-center" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__('Direct messages and access comments on public posts')}}</li>
-                            </ul>
-                        </p>
+                        @if ($user->paid_profile)
+                            <p class="card-text">
+                                <ul class="list-unstyled">
+                                    <li class="d-flex align-items-center" style="font-size: 14px;" >@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__("Accès complet à ce contenu de créateur")}}</li>
+                                    <li class="d-flex align-items-center" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium']) {{__('Annulez votre abonnement gratuit à tout moment')}}</li>
+                                    <li class="d-flex align-items-center" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__('Discutez avec moi et demandez du contenu exclusif')}}</li>
+                                    <li class="d-flex align-items-center" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__('Contenus exclusifs via le chat')}}</li>
+                                    <li class="d-flex align-items-center" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__('Découvrez ma bibliothèque média à la demande')}}</li>
+                                </ul>
+                            </p>
+                        @else 
+                            <p class="card-text">
+                                <ul class="list-unstyled">
+                                    <li class="d-flex align-items-center" style="font-size: 14px;" >@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__("Accès complet à ce contenu de créateur gratuit")}}</li>
+                                    <li class="d-flex align-items-center" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium']) {{__('Annulez votre abonnement gratuit à tout moment')}}</li>
+                                    <li class="d-flex align-items-center" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__('Direct messages and access comments on public posts')}}</li>
+                                </ul>
+                            </p>
+                        @endif
+                        
                         <style>
                             .btn-follow{
                                 background: transparent;
@@ -71,7 +84,7 @@
                                 padding: 0px 14px;
                                 width: 100%;
                             }
-                            }
+                           
                         </style>
                         @if (Auth::check())
                             @if ( $user->paid_profile &&  (!getSetting('profiles.allow_users_enabling_open_profiles') || (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
