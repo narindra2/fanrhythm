@@ -31,7 +31,7 @@ class UploadAttachamentRequest extends FormRequest
             ];
         } else {
             return [
-                'file' => 'required|mimes:jpg,jpeg,png,gif,mp4,mp3,mov,avi,wav|max:200000', // Remplacez par la liste complète des types MIME que vous souhaitez autoriser.
+                'file' => 'required|mimes:jpg,jpeg,png,gif,mp4,mp3,mov,avi,wav|max:300000', // Remplacez par la liste complète des types MIME que vous souhaitez autoriser.
             ];
         }
     }

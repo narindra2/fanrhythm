@@ -16,7 +16,7 @@ class DemopostController extends Controller
         $request->validate([
             'text' => 'required|max:1000', // Exemple de validation pour le champ text
             'images' => 'nullable|array',  // Valider que le champ images est un tableau (pour plusieurs images)
-            'images.*' => 'required|file|mimes:jpg,jpeg,png,gif,svg,mp4,mov,avi,webm|max:2048000', // Inclure les types de fichiers vidéo
+            'images.*' => 'required|file|mimes:jpg,jpeg,png,gif,svg,mp4,mov,avi,webm|max:300000', // Inclure les types de fichiers vidéo
 
         ]);
         // Traitement et stockage des images
@@ -54,7 +54,7 @@ class DemopostController extends Controller
         $request->validate([
             'text' => 'required|max:1000',
             'images' => 'nullable|array',
-            'images.*' => 'required|file|mimes:jpg,jpeg,png,gif,svg,mp4,mov,avi,webm|max:2048000', // Inclure les types de fichiers vidéo
+            'images.*' => 'required|file|mimes:jpg,jpeg,png,gif,svg,mp4,mov,avi,webm|max:300000', // Inclure les types de fichiers vidéo
         ]);
     
         // Traitement et mise à jour des images

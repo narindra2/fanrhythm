@@ -1,7 +1,6 @@
 @if(count($posts))
 @foreach($posts as $post)
     @include('elements.feed.post-box')
-
 @endforeach
     @include('elements.report-user-or-post',['reportStatuses' => ListsHelper::getReportTypes()])
     @include('elements.feed.post-delete-dialog')
