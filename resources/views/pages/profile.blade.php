@@ -585,7 +585,8 @@
                 <div>
                     <a class=" {{ $activeFilter == false ? 'active' : '' }}"
                         href="{{ route('profile', ['username' => $user->username]) }}">
-                        {{ __('Toutes') }}
+                        {{-- {{ __('Toutes') }} --}}
+                        {{ __('Post') }}
                         <span>
                             {{ $posts->total() }}
                         </span>
