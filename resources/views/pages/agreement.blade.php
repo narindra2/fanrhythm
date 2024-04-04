@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,500,600,700"
         rel="preload" as="style">
     <link rel="stylesheet" href="https://web.fanrhythm.com/css/site.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.3.0/dist/photoswipe.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -48,44 +47,6 @@
         }
 
     </style>
-      <style>
-        body {
-          margin: 0;
-          padding: 0;
-          font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
-          font-size: 14px;
-          line-height: 20px;
-          background: #eee;
-        }
-        h1 {
-          margin: 0;
-          padding: 50px 50px 30px 50px;
-          font-size: 26px;
-          line-height: 1.3;
-        }
-        .pswp-gallery__item {
-          margin: 0 4px 4px 0;
-        }
-        .pswp-gallery__item img {
-          display: block;
-        }
-        .pswp-gallery {
-          max-width: 650px;
-          padding: 0 50px 50px;
-          background: #eee;
-          position: relative;
-          display: flex;
-          flex-wrap: wrap;
-        }
-        .pswp__dynamic-caption {
-          color: #fff;
-          width: 100%;
-        }
-        .pswp__dynamic-caption a {
-          color: #fff;
-          text-decoration: underline;
-        }
-      </style>
 </head>
 
 <body>
@@ -110,138 +71,7 @@
         </div>
     </nav>
 
-    <h1><a href="https://github.com/dimsemenov/photoswipe-dynamic-caption-plugin">Dynamic caption plugin</a> for <a href="https://photoswipe.com">PhotoSwipe v5</a></h1>
-    <div class="pswp-gallery" id="gallery">
-      <div class="pswp-gallery__item">
-        <a  
-          href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg" 
-          data-pswp-width="1669" 
-          data-pswp-height="2500" 
-          target="_blank">
-          <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg" alt="Demo image 1" />
-        </a>
-        <div class="pswp-caption-content"><b>Lorem ipsum dolor (1933)</b><br>Color photograph<br>12 x 10</div>
-      </div>
-    
-      <div class="pswp-gallery__item">
-        <a  
-          href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg" 
-          data-pswp-width="2500" 
-          data-pswp-height="1666" 
-          target="_blank">
-          <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg" alt="Demo image 2" />
-        </a>
-        <div class="pswp-caption-content">
-          <b>Vivamus elementum (2016)</b><br>ullamcorper ultricies nisi, nam eget dui, etiam rhoncus, maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero<br>32 x 37 x 1.8 inches
-        </div>
-      </div>
-    
-      <div class="pswp-gallery__item">
-        <a  
-          href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/4/img-2500.jpg" 
-          data-pswp-width="2500" 
-          data-pswp-height="1667" 
-          target="_blank">
-          <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/4/img-200.jpg" alt="Demo image 3" />
-        </a>
-        <div class="pswp-caption-content">
-          <b>Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. (2008)</b><br>quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem, ut libero venenatis faucibus.
-        </div>
-      </div>
-      
-      <div class="pswp-gallery__item">
-        <a  
-          href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/5/img-2500.jpg" 
-          data-pswp-width="2500" 
-          data-pswp-height="1668" 
-          target="_blank">
-          <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/5/img-200.jpg" alt="Demo image 4" />
-        </a>
-        <div class="pswp-caption-content">
-          Short caption with <a href="https://example.com" target="_blank">the link</a>.
-        </div>
-      </div>
-
-      <div class="pswp-gallery__item">
-        <a  
-          href="https://dummyimage.com/400x400/555/fff/?text=400x400" 
-          data-pswp-width="500" 
-          data-pswp-height="500" 
-          target="_blank">
-          <img src="https://dummyimage.com/100x100/555/fff/" alt="Demo image 5" />
-        </a>
-        <div class="pswp-caption-content">
-          Small image
-        </div>
-      </div>
-
-      <div class="pswp-gallery__item">
-        <a  
-          href="https://dummyimage.com/200x1000/555/fff/" 
-          data-pswp-width="200" 
-          data-pswp-height="1000" 
-          target="_blank">
-          <img src="https://dummyimage.com/20x100/555/fff/" alt="Tall image" />
-        </a>
-      </div>
-
-      <div class="pswp-gallery__item">
-        <a  
-          href="https://dummyimage.com/1000x200/555/fff/" 
-          data-pswp-width="1000" 
-          data-pswp-height="200" 
-          target="_blank">
-          <img src="https://dummyimage.com/100x20/555/fff/" alt="Wide image" />
-        </a>
-      </div>
-
-      <div class="pswp-gallery__item">
-        <a  
-          href="https://dummyimage.com/1200x500/555/fff/?text=no+caption" 
-          data-pswp-width="1200" 
-          data-pswp-height="500" 
-          target="_blank">
-          <img src="https://dummyimage.com/240x100/555/fff/" alt="" />
-        </a>
-      </div>
-    
-      <div class="pswp-gallery__item">
-        <a  
-          href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/6/img-2500.jpg" 
-          data-pswp-width="2500" 
-          data-pswp-height="1667" 
-          target="_blank">
-          <img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/6/img-200.jpg" alt="Demo image 8" />
-        </a>
-        <div class="pswp-caption-content">
-          <b>Long caption</b><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum<br>Lorem Ipsum
-        </div>
-      </div>
-
-      <div class="pswp-gallery__item">
-        <a  
-          href="https://dummyimage.com/1500x1500/555/fff/?text=1500x1500" 
-          data-pswp-width="1500" 
-          data-pswp-height="1500" 
-          target="_blank">
-          <img src="https://dummyimage.com/100x100/555/fff/" alt="Large 1500x1500 square" />
-        </a>
-      </div>
-
-
-      <div class="pswp-gallery__item">
-        <a  
-          href="https://dummyimage.com/600x1500/555/fff/?text=600x1500" 
-          data-pswp-width="600" 
-          data-pswp-height="1500" 
-          target="_blank">
-          <img src="https://dummyimage.com/60x150/555/fff/" alt="Demo image 9" />
-        </a>
-        <div class="pswp-caption-content">
-          <b>Another long caption</b><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum<br>Lorem Ipsum
-        </div>
-      </div>
-    </div>
+ 
     <div>
         <div class="container">
             <div class="row justify-content-center">
@@ -1775,90 +1605,6 @@
     <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-
-<script  type="module">
-    import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5.3.0/dist/photoswipe-lightbox.esm.js';
-     import PhotoSwipeDynamicCaption from './libs/photoswipe5/photoswipe-dynamic-caption-plugin.esm.js';
-
-    const smallScreenPadding = {
-      top: 0, bottom: 0, left: 0, right: 0
-    };
-    const largeScreenPadding = {
-      top: 30, bottom: 30, left: 0, right: 0
-    };
-    const lightbox = new PhotoSwipeLightbox({
-      gallerySelector: '#gallery',
-      childSelector: '.pswp-gallery__item',
-      
-      // optionaly adjust viewport
-      paddingFn: (viewportSize) => {
-        return viewportSize.x < 700 ? smallScreenPadding : largeScreenPadding
-      },
-      pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5.3.0/dist/photoswipe.esm.js')
-    });
-
-    const captionPlugin = new PhotoSwipeDynamicCaption(lightbox, {
-      mobileLayoutBreakpoint: 700,
-      type: 'auto',
-      mobileCaptionOverlapRatio: 1
-    });
-
-    lightbox.init();
-    </script>
-<style>
-    .pswp__dynamic-caption {
-  color: #fff;
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: 0;
-  transition: opacity 120ms linear !important; /* override default */
-}
-
-.pswp-caption-content {
-  display: none;
-}
-
-.pswp__dynamic-caption a {
-  color: #fff;
-}
-
-.pswp__dynamic-caption--faded {
-  opacity: 0 !important;
-}
-
-.pswp__dynamic-caption--aside {
-  width: auto;
-  max-width: 300px;
-  padding: 20px 15px 20px 20px;
-  margin-top: 70px;
-}
-
-.pswp__dynamic-caption--below {
-  width: auto;
-  max-width: 700px;
-  padding: 15px 0 0;
-}
-
-.pswp__dynamic-caption--on-hor-edge {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.pswp__dynamic-caption--mobile {
-  width: 100%;
-  background: rgba(0,0,0,0.5);
-  padding: 10px 15px;
-
-  right: 0;
-  bottom: 0;
-
-  /* override styles that were set via JS.
-    as they interfere with size measurement */
-  top: auto !important; 
-  left: 0 !important;
-}
-</style>
     <script>
         var up = document.getElementById('GFG_UP');
         var down = document.getElementById('GFG_DOWN');
@@ -1872,8 +1618,5 @@
         }
 
     </script>
-
-
 </body>
-
 </html>
