@@ -1,20 +1,18 @@
 @php
-    $Moderation = "\App\Model\Moderation";
+$Moderation = "\App\Model\Moderation";
 @endphp
 
-<div class="aff_post_block post-box" data-postid="{{$post->id}}"
-
-    @if ($post->moderationStatus == $Moderation::STATUS_PENDING )
-        style ="opacity: 0.6;"
+<div class="aff_post_block post-box" data-postid="{{$post->id}}" @if ($post->moderationStatus ==
+    $Moderation::STATUS_PENDING )
+    style ="opacity: 0.6;"
     @endif
     @if ($post->moderationStatus == $Moderation::STATUS_DECLINED )
-        style ="opacity: 0.8;border: 1px red solid;"
+    style ="opacity: 0.8;border: 1px red solid;"
     @endif
->
+    >
 
     <div class="aff_header_post">
         <a href="{{route('profile',['username'=>$post->user->username])}}">
-
             <img src="{{$post->user->avatar}}">
             <div class="aff_info_name">
                 <div>
@@ -29,9 +27,7 @@
                 </div>
             </div>
         </a>
-
         <div>
-
             @if(Auth::check() && $post->user_id === Auth::user()->id && $post->status == 0)
             <span class="aff_pending">
                 {{__('En attente')}}
@@ -42,16 +38,13 @@
                 {{ucfirst(__("PPV"))}}
             </span>
             @endif
- 
-            <a class="aff_post_date" 
-                @if(!Auth::check()) 
-                    onclick="goToRegister()"
-                @else
-                    onclick="PostsPaginator.goToPostPageKeepingNav({{$post->id}},{{$post->postPage}},'{{route('posts.get',['post_id'=>$post->id,'username'=>$post->user->username])}}')" 
-                @endif 
-                href="javascript:void(0)">{{$post->created_at->diffForHumans(null,false,true)}}
+
+            <a class="aff_post_date" @if(!Auth::check()) onclick="goToRegister()" @else
+                onclick="PostsPaginator.goToPostPageKeepingNav({{$post->id}},{{$post->postPage}},'{{route('posts.get',['post_id'=>$post->id,'username'=>$post->user->username])}}')"
+                @endif href="javascript:void(0)">{{$post->created_at->diffForHumans(null,false,true)}}
             </a>
-            <div  @if(!Auth::check()) onclick="goToRegister()"   @endif class="dropdown {{GenericHelper::getSiteDirection() == 'rtl' ? 'dropright' : 'dropleft'}}">
+            <div @if(!Auth::check()) onclick="goToRegister()" @endif
+                class="dropdown {{GenericHelper::getSiteDirection() == 'rtl' ? 'dropright' : 'dropleft'}}">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                     aria-expanded="false">
                     <svg width="5px" height="18px" viewBox="0 0 5 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -73,9 +66,9 @@
                     </svg>
                 </a>
                 <div class="dropdown-menu">
-                   
+
                     @if(Auth::check())
-                    
+
                     <a class="dropdown-item" href="javascript:void(0);"
                         onclick="Lists.showListManagementConfirmation('{{'unfollow'}}', {{$post->user->id}});">
                         {{__("Se désabonner")}}
@@ -89,8 +82,7 @@
                         {{__("Signaler")}}
                     </a>
                     @if(Auth::check() && Auth::user()->id == $post->user->id)
-                    <a class="dropdown-item"
-                        href="{{route('posts.edit',['post_id'=>$post->id])}}">
+                    <a class="dropdown-item" href="{{route('posts.edit',['post_id'=>$post->id])}}">
                         {{__("Modifier")}}
                     </a>
                     @if(!getSetting('compliance.minimum_posts_deletion_limit') ||
@@ -109,19 +101,20 @@
 
     </div>
     @if($post->moderationStatus == $Moderation::STATUS_DECLINED)
-        <div class="aff_post_text">
-            <span  class="text-danger "  > * {{ __("Ce post ne respecte pas nos normes de modération et ne peut pas être publié") }}</span>
-        </div>
+    <div class="aff_post_text">
+        <span class="text-danger "> * {{ __("Ce post ne respecte pas nos normes de modération et ne peut pas être
+            publié") }}</span>
+    </div>
     @endif
     @if($post->moderationStatus == $Moderation::STATUS_PENDING )
-        <div class="aff_post_text">
-            <span  class="text-danger "  > * {{ __("En attent de validation contenue média") }}</span>
-        </div>
+    <div class="aff_post_text">
+        <span class="text-danger "> * {{ __("En attent de validation contenue média") }}</span>
+    </div>
     @endif
 
     @if (isset($post->text))
     <div class="aff_post_text">
-    {!! nl2br(e($post->text)) !!}
+        {!! nl2br(e($post->text)) !!}
     </div>
     @endif
 
@@ -129,33 +122,32 @@
     @if(count($post->attachments))
     <div class="post-media">
         @if($post->isSubbed || (getSetting('profiles.allow_users_enabling_open_profiles') && $post->user->open_profile))
-        @if((Auth::check() && Auth::user()->id !== $post->user_id && $post->price > 0 &&
-        !PostsHelper::hasUserUnlockedPost($post->postPurchases)) || (!Auth::check() && $post->price > 0 ))
-        @include('elements.feed.post-locked',['type'=>'post','post'=>$post])
-        @else
-        @if(count($post->attachments) > 1)
-        <div class="swiper-container mySwiper pointer-cursor">
-            <div class="swiper-wrapper">
-                @foreach($post->attachments as $attachment)
-                <div class="swiper-slide">
-                    @include('elements.feed.post-box-media-wrapper',[
-                    'attachment' => $attachment,
-                    'isGallery' => true,
-                    ])
+            @if((Auth::check() && Auth::user()->id !== $post->user_id && $post->price > 0 && !PostsHelper::hasUserUnlockedPost($post->postPurchases)) || (!Auth::check() && $post->price > 0 ))
+                @include('elements.feed.post-locked',['type'=>'post','post'=>$post])
+            @else
+            @if(count($post->attachments) > 1)
+                <div class="swiper-container mySwiper pointer-cursor">
+                    <div class="swiper-wrapper">
+                        @foreach($post->attachments as $attachment)
+                        <div class="swiper-slide">
+                            @include('elements.feed.post-box-media-wrapper',[
+                            'attachment' => $attachment,
+                            'isGallery' => true,
+                            ])
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-button swiper-button-next p-pill-white">
+                        @include('elements.icon',['icon'=>'chevron-forward-outline'])</div>
+                    <div class="swiper-button swiper-button-prev p-pill-white">
+                        @include('elements.icon',['icon'=>'chevron-back-outline'])</div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                @endforeach
-            </div>
-            <div class="swiper-button swiper-button-next p-pill-white">
-                @include('elements.icon',['icon'=>'chevron-forward-outline'])</div>
-            <div class="swiper-button swiper-button-prev p-pill-white">
-                @include('elements.icon',['icon'=>'chevron-back-outline'])</div>
-            <div class="swiper-pagination"></div>
-        </div>
-        @else
-        @include('elements.feed.post-box-media-wrapper',[
-        'attachment' => $post->attachments[0],
-        'isGallery' => false,
-        ])
+            @else
+            @include('elements.feed.post-box-media-wrapper',[
+            'attachment' => $post->attachments[0],
+            'isGallery' => false,
+            ])
         @endif
         @endif
         @else
@@ -204,11 +196,10 @@
                     </svg>
                 </div>
                 @else
-                {{-- <div class="disabled"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ _('Abonnez-vous à moi') }}" --}}
-                <div class="disabled" data-toggle="modal" data-target="#subrcribe-dialog"  data-toggle="tooltip" 
-                @if (!Auth::check() )
-                    onclick="goToRegister()"
-                @endif >
+                {{-- <div class="disabled" data-toggle="tooltip" data-placement="top" title=""
+                    data-original-title="{{ _('Abonnez-vous à moi') }}" --}} <div class="disabled" data-toggle="modal"
+                    data-target="#subrcribe-dialog" data-toggle="tooltip" @if (!Auth::check() ) onclick="goToRegister()"
+                    @endif>
                     <svg width="21px" height="18px" viewBox="0 0 21 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
@@ -227,29 +218,30 @@
                 @endif
 
                 @if(Auth::check() && $post->user->id != Auth::user()->id)
-                {{-- @if($post->isSubbed || (getSetting('profiles.allow_users_enabling_open_profiles') && $post->user->open_profile)) --}}
+                {{-- @if($post->isSubbed || (getSetting('profiles.allow_users_enabling_open_profiles') &&
+                $post->user->open_profile)) --}}
                 @if(1)
                 <div class="send-a-tip to-tooltip poi {{(!GenericHelper::creatorCanEarnMoney($post->user)) ? 'disabled' : ''}}"
                     @if(!GenericHelper::creatorCanEarnMoney($post->user))
-                        data-placement="top"
-                        title="{{__('This creator cannot earn money yet')}}">
+                    data-placement="top"
+                    title="{{__('This creator cannot earn money yet')}}">
                     @else
-                        data-toggle="modal"
-                        data-target="#checkout-center"
-                        data-post-id="{{$post->id}}"
-                        data-type="tip"
-                        data-first-name="{{Auth::user()->first_name}}"
-                        data-last-name="{{Auth::user()->last_name}}"
-                        data-billing-address="{{Auth::user()->billing_address}}"
-                        data-country="{{Auth::user()->country}}"
-                        data-city="{{Auth::user()->city}}"
-                        data-state="{{Auth::user()->state}}"
-                        data-postcode="{{Auth::user()->postcode}}"
-                        data-available-credit="{{Auth::user()->wallet->total}}"
-                        data-username="{{$post->user->username}}"
-                        data-name="{{$post->user->name}}"
-                        data-avatar="{{$post->user->avatar}}"
-                        data-recipient-id="{{$post->user_id}}">
+                    data-toggle="modal"
+                    data-target="#checkout-center"
+                    data-post-id="{{$post->id}}"
+                    data-type="tip"
+                    data-first-name="{{Auth::user()->first_name}}"
+                    data-last-name="{{Auth::user()->last_name}}"
+                    data-billing-address="{{Auth::user()->billing_address}}"
+                    data-country="{{Auth::user()->country}}"
+                    data-city="{{Auth::user()->city}}"
+                    data-state="{{Auth::user()->state}}"
+                    data-postcode="{{Auth::user()->postcode}}"
+                    data-available-credit="{{Auth::user()->wallet->total}}"
+                    data-username="{{$post->user->username}}"
+                    data-name="{{$post->user->name}}"
+                    data-avatar="{{$post->user->avatar}}"
+                    data-recipient-id="{{$post->user_id}}">
                     @endif
                     <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -274,11 +266,9 @@
                     </svg>
                 </div>
                 @else
-                {{-- <div class="send-a-tip disabled"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ _('Abonnez-vous à moi') }}" --}}
-                <div class="send-a-tip disabled"  
-                    @if (!Auth::check() )
-                        onclick="goToRegister()"
-                    @endif >
+                {{-- <div class="send-a-tip disabled" data-toggle="tooltip" data-placement="top" title=""
+                    data-original-title="{{ _('Abonnez-vous à moi') }}" --}} <div class="send-a-tip disabled" @if
+                    (!Auth::check() ) onclick="goToRegister()" @endif>
                     <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
@@ -312,26 +302,24 @@
                     {{trans_choice('likes', count($post->reactions))}}
                 </a>
 
-                @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') && $post->user->open_profile))
-                    <a
-                        href="{{Route::currentRouteName() != 'posts.get' ? route('posts.get',['post_id'=>$post->id,'username'=>$post->user->username]) : '#comments'}}">
-                        <span>
-                            {{count($post->comments)}}
-                        </span>
-                        {{trans_choice('comments',  count($post->comments))}}
-                    </a>
+                @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&
+                $post->user->open_profile))
+                <a
+                    href="{{Route::currentRouteName() != 'posts.get' ? route('posts.get',['post_id'=>$post->id,'username'=>$post->user->username]) : '#comments'}}">
+                    <span>
+                        {{count($post->comments)}}
+                    </span>
+                    {{trans_choice('comments', count($post->comments))}}
+                </a>
                 @else
-                    <a href="#" data-toggle="modal" data-target="#subrcribe-dialog"  data-toggle="tooltip" 
-                    @if(!Auth::check())
-                        onclick="goToRegister()"
-                    @endif
-                    >
-                        <span>
-                            {{count($post->comments)}}
-                        </span>
-                        {{trans_choice('comments',  count($post->comments))}}
-                        </span>
-                    </a>
+                <a href="#" data-toggle="modal" data-target="#subrcribe-dialog" data-toggle="tooltip"
+                    @if(!Auth::check()) onclick="goToRegister()" @endif>
+                    <span>
+                        {{count($post->comments)}}
+                    </span>
+                    {{trans_choice('comments', count($post->comments))}}
+                    </span>
+                </a>
                 @endif
             </div>
         </div>
@@ -339,8 +327,8 @@
 
     @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&
     $post->user->open_profile))
-    <div class="post-comments d-none" {{Route::currentRouteName() == 'posts.get' ? 'id="comments"' : ''}}>
-      
+    <div class="post-comments d-none" {{Route::currentRouteName()=='posts.get' ? 'id="comments"' : '' }}>
+
         <div class="post-comments-wrapper">
             <div class="comments-loading-box">
                 @include('elements.preloading.messenger-contact-box',['limit'=>1])
@@ -349,16 +337,17 @@
         <div class="show-all-comments-label pl-3 d-none">
             @if(Route::currentRouteName() != 'posts.get')
             <a href="javascript:void(0)"
-                onclick="PostsPaginator.goToPostPageKeepingNav({{$post->id}},{{$post->postPage}},'{{route('posts.get',['post_id'=>$post->id,'username'=>$post->user->username])}}')">{{__('Show more')}}</a>
+                onclick="PostsPaginator.goToPostPageKeepingNav({{$post->id}},{{$post->postPage}},'{{route('posts.get',['post_id'=>$post->id,'username'=>$post->user->username])}}')">{{__('Show
+                more')}}</a>
             @else
-            <a onClick="CommentsPaginator.loadResults({{$post->id}});"
-                href="javascript:void(0);">{{__('Show more')}}</a>
+            <a onClick="CommentsPaginator.loadResults({{$post->id}});" href="javascript:void(0);">{{__('Show
+                more')}}</a>
             @endif
         </div>
-       
+
         @if(Auth::check())
-       
-            @include('elements.feed.post-new-comment')
+
+        @include('elements.feed.post-new-comment')
         @endif
     </div>
     @endif

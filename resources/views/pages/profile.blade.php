@@ -45,6 +45,8 @@
         '/css/pages/lists.css',
         '/css/posts/post.css',
     ])->withFullUrl() !!}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.3.0/dist/photoswipe.css">
 @stop
 
 @section('meta')
@@ -412,7 +414,7 @@
                     @else
                         <div class="liste_abonnements">
                             @if ($user->paid_profile)
-                                @if ($user->offer && $user->id !== Auth::user()->id)
+                                @if ($user->offer && $user->id !== (Auth::check() ? Auth::id() : 0 ))
                                     @php
                                         $expiresAt = $user->offer->expires_at;
                                         $now = \Carbon\Carbon::now();
@@ -593,19 +595,32 @@
                     </a>
                 </div>
 
-                @if ($filterTypeCounts['image'] > 0)
+                {{-- @if ($filterTypeCounts['image'] > 0 )
                     <div>
                         <a class=" {{ $activeFilter == 'image' ? 'active' : '' }}"
-                            href="{{ route('profile', ['username' => $user->username]) . '?filter=image' }}">
+                            href="{{ route('profile', ['username' => $user->username]) . '?filter=library' }}">
                             {{ __('Photos') }}
+                            
                             <span>
-                                {{ $filterTypeCounts['image'] }}
+                                {{ $filterTypeCounts['image'] }}  
+                            </span>
+                        </a>
+                    </div>
+                @endif --}}
+                @if ($filterTypeCounts['image'] > 0 ||  $filterTypeCounts['video'] > 0)
+                    <div>
+                        <a class=" {{ $activeFilter == 'library' ? 'active' : '' }}"
+                            href="{{ route('profile', ['username' => $user->username]) . '?filter=library' }}">
+                            {{-- {{ __('Photos') }} --}}
+                            {{ __('library ') }}
+                            <span>
+                                {{ $filterTypeCounts['image'] + $filterTypeCounts['video']  }}  
                             </span>
                         </a>
                     </div>
                 @endif
 
-                @if ($filterTypeCounts['video'] > 0)
+                {{-- @if ($filterTypeCounts['video'] > 0)
                     <div>
                         <a class=" {{ $activeFilter == 'video' ? 'active' : '' }}"
                             href="{{ route('profile', ['username' => $user->username]) . '?filter=video' }}">
@@ -615,7 +630,19 @@
                             </span>
                         </a>
                     </div>
-                @endif
+                @endif --}}
+
+                @if (1)
+                <div>
+                    <a class=" {{ $activeFilter == 'video' ? 'active' : '' }}"
+                        href="{{ route('profile', ['username' => $user->username]) . '?filter=video' }}">
+                        {{ __('Media on demand ') }}
+                        <span>
+                           {{-- count(); --}}
+                        </span>
+                    </a>
+                </div>
+            @endif
 
                 @if ($filterTypeCounts['audio'] > 0)
                     <div>
@@ -651,10 +678,17 @@
             <div
                 class="justify-content-center align-items-center {{ Cookie::get('app_feed_prev_page') && PostsHelper::isComingFromPostPage(request()->session()->get('_previous')) ? 'mt-0' : 'mt-0' }}">
                 @if ($activeFilter !== 'streams')
-                    @include('elements.feed.posts-load-more', ['classes' => 'mb-2'])
-                    <div class="feed-box mt-0 posts-wrapper">
-                        @include('elements.feed.posts-wrapper', ['posts' => $posts])
-                    </div>
+                    
+                    @if (in_array($activeFilter,["library" , "libraryOnDemande"]) )
+                        <div class="feed-box mt-0 posts-wrapper">
+                            @include('elements.feed.post-librairy', ['posts' => $posts])
+                        </div>
+                    @else 
+                        @include('elements.feed.posts-load-more', ['classes' => 'mb-2'])
+                        <div class="feed-box mt-0 posts-wrapper">
+                            @include('elements.feed.posts-wrapper', ['posts' => $posts])
+                        </div>
+                    @endif
                 @else
                     <div class="streams-box mt-4 streams-wrapper mb-4">
                         @include('elements.search.streams-wrapper', [
@@ -800,7 +834,6 @@
         @include('elements.checkout.checkout-box')
         @include('elements.messenger.send-user-message', ['receiver' => $user])
         @include('elements.horizontal-member-card', ['user' => $user])
-
     @else
         @include('elements.modal-login')
     @endif
