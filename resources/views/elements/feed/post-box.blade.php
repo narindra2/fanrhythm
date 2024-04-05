@@ -298,9 +298,9 @@ $Moderation = "\App\Model\Moderation";
 
 
             <div>
-                <a href="#">
-                    <span>{{count($post->reactions)}}</span>
-                    {{trans_choice('likes', count($post->reactions))}}
+                <a href="#" class="">
+                    <span class="post-reactions-label-count">{{count($post->reactions)}}</span>
+                    <span class="post-reactions-label">{{trans_choice('likes', count($post->reactions))}}</span>
                 </a>
 
                 @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&

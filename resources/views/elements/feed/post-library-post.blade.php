@@ -1,11 +1,11 @@
 @foreach ($post->attachments as $attachment)
-    <div class="col-6 col-sm-4 p-0 ">
+    <div class="col-6 col-sm-4 p-0 " data-postId="{{$post->id}}" >
         <div class="pswp-gallery__item">
             @include('elements.feed.post-librairy-media',["attachment" => $attachment])
             <div class="pswp-caption-content">
                 @include('elements.feed.post-librairy-user',["user" => $post->user])
                 @include('elements.feed.post-librairy-text',["post" => $post])
-                <div class="post-footer aff_footer_post">
+                <div class="post-footer aff_footer_post" >
                     <div>
                         <div>
                             {{-- Likes --}}
@@ -69,9 +69,9 @@
             
             
                         <div>
-                            <a href="#">
-                                <span>{{count($post->reactions)}}</span>
-                                {{trans_choice('likes', count($post->reactions))}}
+                            <a href="#" class="">
+                                <span class="post-reactions-label-count">{{count($post->reactions)}}</span>
+                                <span class="post-reactions-label">{{trans_choice('likes', count($post->reactions))}}</span>
                             </a>
             
                             @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&
