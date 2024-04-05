@@ -3,19 +3,9 @@
 @stop
 @if(count($posts))
     <div class="pswp-gallery " id="gallery">
-    <div class="row m-0">
+    <div class="row m-0 posts-wrapper">
         @foreach($posts as $post)
-            @foreach ($post->attachments as $attachment)
-            <div class="col-6 col-sm-4 p-0">
-                <div class="pswp-gallery__item">
-                    @include('elements.feed.post-librairy-media',["attachment" => $attachment])
-                    <div class="pswp-caption-content">
-                        @include('elements.feed.post-librairy-user',["user" => $user])
-                        @include('elements.feed.post-librairy-text',["post" => $post])
-                    </div>
-                </div>
-            </div>
-            @endforeach
+            @include('elements.feed.post-library-post', ["post" => &$post])
         @endforeach
     </div>
 </div>

@@ -2,12 +2,11 @@
 $Moderation = "\App\Model\Moderation";
 @endphp
 
-<div class="aff_post_block post-box" data-postid="{{$post->id}}" @if ($post->moderationStatus ==
-    $Moderation::STATUS_PENDING )
-    style ="opacity: 0.6;"
+<div class="aff_post_block post-box" data-postid="{{$post->id}}" @if ($post->moderationStatus == $Moderation::STATUS_PENDING )
+        style ="opacity: 0.6;"
     @endif
     @if ($post->moderationStatus == $Moderation::STATUS_DECLINED )
-    style ="opacity: 0.8;border: 1px red solid;"
+        style ="opacity: 0.8;border: 1px red solid;"
     @endif
     >
 
@@ -159,8 +158,7 @@ $Moderation = "\App\Model\Moderation";
         <div>
             <div>
                 {{-- Likes --}}
-                @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&
-                $post->user->open_profile))
+                @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&  $post->user->open_profile))
                 <div class="react-button {{PostsHelper::didUserReact($post->reactions) ? 'active' : ''}}"
                     data-toggle="tooltip" data-placement="top" title="{{__('Like')}}"
                     onclick="Post.reactTo('post',{{$post->id}})">
@@ -267,8 +265,11 @@ $Moderation = "\App\Model\Moderation";
                 </div>
                 @else
                 {{-- <div class="send-a-tip disabled" data-toggle="tooltip" data-placement="top" title=""
-                    data-original-title="{{ _('Abonnez-vous à moi') }}" --}} <div class="send-a-tip disabled" @if
-                    (!Auth::check() ) onclick="goToRegister()" @endif>
+                    data-original-title="{{ _('Abonnez-vous à moi') }}" --}}
+                    <div class="send-a-tip disabled" 
+                     @if (!Auth::check() ) 
+                         onclick="goToRegister()" 
+                     @endif>
                     <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"

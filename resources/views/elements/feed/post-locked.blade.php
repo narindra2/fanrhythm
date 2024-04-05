@@ -1,8 +1,8 @@
 <div class="aff_empty_post_wrap">
     @php
         $count = count($post->attachments);
+        $videoCount = $imageCount = $audioCount = $files = 0; $info = [];
         foreach ($post->attachments as $attachment) {
-            $videoCount = $imageCount = $audioCount = $files = 0; $info = [];
             $video = null;
             $attachment_type = AttachmentHelper::getAttachmentType($attachment->type);
             if ($attachment_type == "video") {

@@ -498,13 +498,9 @@ class PostsHelperServiceProvider extends ServiceProvider
 
 
         if ($pageNumber) {
-
             $posts = $posts->paginate(getSetting('feed.feed_posts_per_page'), ['*'], 'page', $pageNumber)->appends(request()->query());
-
         } else {
-
             $posts = $posts->paginate(getSetting('feed.feed_posts_per_page'))->appends(request()->query());
-
         }
 
 
@@ -539,7 +535,7 @@ class PostsHelperServiceProvider extends ServiceProvider
 
             ];
 
-            $postsData = $posts->map(function ($post) use ($hasSub, $ownPosts, $data) {
+            $postsData = $posts->map(function ($post) use ($hasSub, $ownPosts, $data ,$mediaType) {
 
                 if ($ownPosts) {
 
@@ -554,11 +550,11 @@ class PostsHelperServiceProvider extends ServiceProvider
                 $post->setModerationStatus();
 
                 $post->setAttribute('postPage',$data['currentPage']);
-
-                $post = ['id' => $post->id, 'html' => View::make('elements.feed.post-box')->with('post', $post)->render()];
-
-
-
+                if ($mediaType == 'library') {
+                    $post = ['id' => $post->id, 'html' => View::make('elements.feed.post-library-post')->with('post', $post)->render()];
+                }else{
+                    $post = ['id' => $post->id, 'html' => View::make('elements.feed.post-box')->with('post', $post)->render()];
+                }
                 return $post;
 
             });
@@ -688,9 +684,7 @@ class PostsHelperServiceProvider extends ServiceProvider
         }
 
 
-
         if ($filterType == 'media') {
-           
             // Get post has image or video 
             if ($mediaType == 'library') {
                 $type = array_merge(AttachmentServiceProvider::getTypeByExtension("video"),AttachmentServiceProvider::getTypeByExtension("image"))   ;
@@ -705,11 +699,6 @@ class PostsHelperServiceProvider extends ServiceProvider
                 });
             }
         }
-
-        
-        
-
-
 
         if ($filterType == 'search'){
 

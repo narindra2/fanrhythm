@@ -680,7 +680,7 @@
                 @if ($activeFilter !== 'streams')
                     
                     @if (in_array($activeFilter,["library" , "libraryOnDemande"]) )
-                        <div class="feed-box mt-0 posts-wrapper">
+                        <div class="feed-box mt-0 ">
                             @include('elements.feed.post-librairy', ['posts' => $posts])
                         </div>
                     @else 
