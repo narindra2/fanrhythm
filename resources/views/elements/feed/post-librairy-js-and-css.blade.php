@@ -28,6 +28,34 @@
     lightbox.init();
 </script>
 <style>
+  
+  .pswp__dynamic-caption--aside {
+  max-width: 300px;
+  padding: 20px 15px 20px 20px;
+  margin-top: 70px;
+}
+.pswp__dynamic-caption--below {
+  max-width: 700px;
+  padding: 15px 0 0;
+}
+.pswp__dynamic-caption--mobile {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 15px;
+}
+.pswp__custom-caption {
+    background: rgba(75, 150, 75, 0.75);
+    font-size: 16px;
+    color: #fff;
+    width: calc(100% - 32px);
+    max-width: 400px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    position: absolute;
+    left: 50%;
+    bottom: 43%;
+    transform: translateX(-50%);
+    /* margin-top: -16px; */
+}
   .image-item {
     width: 100%;
     height: 150px;
@@ -117,4 +145,5 @@
     color: #fff;
     text-decoration: underline;
   }
+ 
 </style>

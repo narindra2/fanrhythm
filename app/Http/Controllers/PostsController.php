@@ -87,10 +87,12 @@ class PostsController extends Controller
      */
     public function create()
     {
+       
         $canPost = true;
         if(getSetting('site.enforce_user_identity_checks')){
             if(!GenericHelperServiceProvider::isUserVerified()){
                 $canPost = false;
+                return  abort(404);
             }
         }
         Javascript::put([
@@ -115,10 +117,16 @@ class PostsController extends Controller
      */
     public function edit(Request $request)
     {
+
         $postID = $request->route('post_id');
         $post = Post::where('id', $postID)->where('user_id', Auth::user()->id)->with(['attachments'])->first();
         if (! $post) {
             abort(404);
+        }
+        if(getSetting('site.enforce_user_identity_checks')){
+            if(!GenericHelperServiceProvider::isUserVerified()){
+                return  abort(404);
+            }
         }
         Javascript::put([
             'postData' => [
@@ -153,7 +161,6 @@ class PostsController extends Controller
             if (! GenericHelperServiceProvider::isUserVerified() && getSetting('site.enforce_user_identity_checks')) {
                 return response()->json(['success' => false, 'errors' => ['permissions' => __('User not verified. Can not post content.')]], 500);
             }
-
             $type = $request->get('type');
             $postStatus = PostsHelperServiceProvider::getDefaultPostStatus(Auth::user()->id);
 
