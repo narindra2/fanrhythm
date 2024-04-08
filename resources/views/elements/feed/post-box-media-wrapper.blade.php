@@ -11,7 +11,7 @@
                
                 </div>
             @elseif($attachment_type == 'video')
-            <span style="margin-left: 2%;font-size: 13px;"> Video duration : 1min22sec </span>
+            <span style="margin-left: 2%;font-size: 13px;"> Video duration : {{$attachment->videoDuration}} </span>
                 <div class="video-wrapper h-100 w-100 d-flex justify-content-center align-items-center">
                     <video class="video-preview w-100" src="{{$attachment->path}}" controls controlsList="nodownload"></video>
                 </div>
@@ -24,7 +24,7 @@
             @if($attachment_type == 'image')
                 <img src="{{$attachment->path}}" draggable="false" alt="" class="img-fluid rounded-0 w-100">
             @elseif($attachment_type == 'video')
-                <span style="margin-left: 2%;font-size: 13px;"> Video duration : 1min22sec </span>
+                <span style="margin-left: 2%;font-size: 13px;"> Video duration : {{$attachment->videoDuration}} </span>
                 <div class="video-wrapper h-100 w-100 d-flex justify-content-center align-items-center">
                     <video class="video-preview w-100" src="{{$attachment->path}}" controls controlsList="nodownload"></video>
                 </div>

@@ -120,11 +120,11 @@ class Attachment extends Model
 
                  try {
 
-                    $SongPath = storage_path("app/public/$this->filename");
+                    $mediaPath = storage_path("app/public/$this->filename");
 
                     $getID3 = new \getID3;
 
-                    $ThisFileInfo = $getID3->analyze($SongPath);
+                    $ThisFileInfo = $getID3->analyze($mediaPath);
 
                     $string = explode(":",$ThisFileInfo["playtime_string"]);
 

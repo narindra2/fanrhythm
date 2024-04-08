@@ -48,7 +48,7 @@ class GenericHelperServiceProvider extends ServiceProvider
     {
         if (
             (Auth::user()->verification && Auth::user()->verification->status == 'verified') &&
-            Auth::user()->birthdate &&
+            // Auth::user()->birthdate &&
             Auth::user()->email_verified_at
         ) {
             return true;

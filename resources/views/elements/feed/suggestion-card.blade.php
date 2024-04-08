@@ -16,7 +16,9 @@
                 <div>
                     {{$profile->name}}
 
-                    @if($profile->email_verified_at && $profile->birthdate && ($profile->verification &&
+                    @if($profile->email_verified_at 
+                    // && $profile->birthdate 
+                    && ($profile->verification &&
                     $profile->verification->status == 'verified'))
                     <span data-toggle="tooltip" data-placement="top" title="{{__('Verified user')}}">
 
