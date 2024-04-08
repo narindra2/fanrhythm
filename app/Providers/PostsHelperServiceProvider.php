@@ -550,7 +550,7 @@ class PostsHelperServiceProvider extends ServiceProvider
                 $post->setModerationStatus();
 
                 $post->setAttribute('postPage',$data['currentPage']);
-                if ($mediaType == 'library') {
+                if ($mediaType == 'library' || $mediaType ==  'mediaOnDemand') {
                     $post = ['id' => $post->id, 'html' => View::make('elements.feed.post-library-post')->with('post', $post)->render()];
                 }else{
                     $post = ['id' => $post->id, 'html' => View::make('elements.feed.post-box')->with('post', $post)->render()];
