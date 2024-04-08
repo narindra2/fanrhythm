@@ -1,8 +1,9 @@
 <?php
 
-use App\Providers\GenericHelperServiceProvider;
-use App\Providers\InstallerServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use App\Providers\InstallerServiceProvider;
+use App\Providers\GenericHelperServiceProvider;
 
 if (! function_exists('getSetting')) {
     function getSetting($key, $default = null)
@@ -74,4 +75,26 @@ function handledExec($command, $throw_exception = true) {
         }
     }
     return implode("\n", $output);
+}
+
+if (!function_exists('convert_to_real_time_humains')) {
+    function convert_to_real_time_humains($dateTime = "", $format = "d-m-Y", $with_time = true)
+    {
+
+        if (!$dateTime) {
+            return null;
+        }
+        $humains_date = null;
+        $date = Carbon::make($dateTime);
+        if ($date->isToday()) {
+            return $date->diffForHumans();
+        } elseif ($date->isYesterday()) {
+            $humains_date = __("Hier") . ($with_time ? __("à") : "");
+        } elseif ($date->format($format) ==  Carbon::tomorrow()->format($format)) {
+            $humains_date = __("Démain")  . ($with_time ? " à partir"  : "");;
+        } else {
+            return " ". $date->format($format . ($with_time ? " H:i" : ""));
+        }
+        return  $humains_date . " " . ($with_time  ? $date->format("H:i") : "");
+    }
 }

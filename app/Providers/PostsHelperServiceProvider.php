@@ -686,11 +686,17 @@ class PostsHelperServiceProvider extends ServiceProvider
 
         if ($filterType == 'media') {
             // Get post has image or video 
-            if ($mediaType == 'library') {
+            if ($mediaType == 'library' || $mediaType == 'mediaOnDemand' ) {
                 $type = array_merge(AttachmentServiceProvider::getTypeByExtension("video"),AttachmentServiceProvider::getTypeByExtension("image"))   ;
-        $posts->whereHas('attachments', function ($query) use ($type) {
+                $posts->whereHas('attachments', function ($query) use ($type) {
                     $query->whereIn('type', $type);
                 });
+                if($mediaType == 'library' ){
+                    $posts->where("price","0.00");
+                }
+                if ($mediaType == 'mediaOnDemand') {
+                    $posts->where("price",">","0.00");
+                }
             }else{
                 // This guys is not really that optimal but neither bookmarks is heavy accessed
                 $mediaTypes = AttachmentServiceProvider::getTypeByExtension($mediaType);
@@ -1062,10 +1068,17 @@ class PostsHelperServiceProvider extends ServiceProvider
 
     {
 
-        $attachments = Attachment::where('user_id', $userID)->where('post_id', '<>', null)->get();
+        $attachments = Attachment::where('user_id', $userID)->where('post_id', '<>', null);
+        
+        if (request()->get("filter") == 'library') {
+            $attachments->whereRelation("post","price","=","0.00");
+        }
+        if (request()->get("filter") == 'mediaOnDemand') {
+            $attachments->whereRelation("post","price",">","0.00");
+        }
 
+        $attachments = $attachments->get();
         $typeCounts = [
-
             'video' => 0,
 
             'audio' => 0,
@@ -1075,7 +1088,7 @@ class PostsHelperServiceProvider extends ServiceProvider
         ];
 
         foreach ($attachments as $attachment) {
-
+            
             $typeCounts[AttachmentServiceProvider::getAttachmentType($attachment->type)] += 1;
 
         }
@@ -1083,7 +1096,6 @@ class PostsHelperServiceProvider extends ServiceProvider
         $streams = Stream::where('user_id',$userID)->where('is_public',1)->whereIn('status',[Stream::ENDED_STATUS,Stream::IN_PROGRESS_STATUS])->count();
 
         $typeCounts['streams'] = $streams;
-
         return $typeCounts;
 
     }

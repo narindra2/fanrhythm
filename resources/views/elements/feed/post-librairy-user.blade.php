@@ -13,22 +13,27 @@
                     <span>@</span>{{$post->user->username}}
                 </span>
             </div> --}}
+            <div>
+                <span>
+                   {{ convert_to_real_time_humains($post->created_at)}}
+                </span>
+            </div>
         </div>
     </a>
     <div>
         @if(Auth::check() && $post->user_id === Auth::user()->id && $post->status == 0)
-        <span class="aff_pending">
-            {{__('En attente')}}
-        </span>
+            <span class="aff_pending">
+                {{__('En attente')}}
+            </span>
         @endif
         @if(Auth::check() && $post->user_id === Auth::user()->id && $post->price > 0)
-        <span class="aff_ppv">
-            {{ucfirst(__("PPV"))}}
-        </span>
+            <span class="aff_ppv">
+                {{ucfirst(__("PPV"))}}
+            </span>
         @endif
-
+        {{-- <a class="aff_post_date"  href="javascript:void(0)">{{$post->created_at->diffForHumans(null,false,true)}}</a> --}}
         <div  @if(!Auth::check()) onclick="goToRegister()"   @endif class="dropdown {{GenericHelper::getSiteDirection() == 'rtl' ? 'dropright' : 'dropleft'}}">
-            {{-- <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                 aria-expanded="false">
                 <svg width="5px" height="18px" viewBox="0 0 5 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -79,7 +84,7 @@
                 @endif
                 @endif
                 @endif
-            </div> --}}
+            </div>
         </div>
     </div>
 

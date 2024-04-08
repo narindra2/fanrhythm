@@ -223,20 +223,30 @@ var Post = {
      * @param type
      * @param id
      */
-    reactTo: function (type,id) {
+    reactTo: function (type,id , isLibrary= false) {
         let reactElement = null;
         let reactionsCountLabel = null;
         let reactionsLabel = null;
         if(type === 'post'){
-            reactElement = $('*[data-postID="'+id+'"] .post-footer .react-button');
-            reactionsCountLabel = $('*[data-postID="'+id+'"] .post-footer .post-reactions-label-count');
-            reactionsLabel = $('*[data-postID="'+id+'"] .post-footer .post-reactions-label');
+            if (isLibrary) {
+                reactElement = $(".btn-reaction-"+id);
+                reactionsCountLabel = $(".post-reactions-label-count-"+id);
+                reactionsLabel = $(".post-reactions-label-count-"+id);
+                reactionsLabel = $(".post-reactions-label-"+id);
+            } else {
+                reactElement = $('*[data-postID="'+id+'"] .post-footer .react-button');
+                reactionsCountLabel = $('*[data-postID="'+id+'"] .post-footer .post-reactions-label-count');
+                reactionsLabel = $('*[data-postID="'+id+'"] .post-footer .post-reactions-label');
+            }
+           
+
         }
         else{
             reactElement = $('*[data-commentID="'+id+'"] .react-button');
             reactionsCountLabel = $('*[data-commentID="'+id+'"] .comment-reactions-label-count');
             reactionsLabel = $('*[data-commentID="'+id+'"] .comment-reactions-label');
         }
+        console.log(reactElement);
         const didReact = reactElement.hasClass('active');
         if(didReact){
             reactElement.removeClass('active');

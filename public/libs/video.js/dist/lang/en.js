@@ -86,5 +86,7 @@ videojs.addLanguage('en', {
   "{1} is loading.": "{1} is loading.",
   "Exit Picture-in-Picture": "Exit Picture-in-Picture",
   "Picture-in-Picture": "Picture-in-Picture",
-  "No content": "No content"
+  "No content": "No content",
+  "Hier" :"yesterday",
+  "à" :"to"
 });
