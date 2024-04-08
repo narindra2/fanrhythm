@@ -14,6 +14,7 @@
       gallerySelector: '#gallery',
       childSelector: '.pswp-gallery__item',
       tapAction: 'next',
+      bgOpacity: 1,
       // optionaly adjust viewport
       paddingFn: (viewportSize) => {
         return viewportSize.x < 700 ? smallScreenPadding : largeScreenPadding
