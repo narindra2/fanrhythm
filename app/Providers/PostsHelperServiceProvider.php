@@ -1068,34 +1068,49 @@ class PostsHelperServiceProvider extends ServiceProvider
 
     {
 
-        $attachments = Attachment::where('user_id', $userID)->where('post_id', '<>', null);
+        // $attachments = Attachment::where('user_id', $userID)->where('post_id', '<>', null);
         
-        if (request()->get("filter") == 'library') {
-            $attachments->whereRelation("post","price","=","0.00");
-        }
-        if (request()->get("filter") == 'mediaOnDemand') {
-            $attachments->whereRelation("post","price",">","0.00");
-        }
+        // if (request()->get("filter") == 'library') {
+        //     $attachments->whereRelation("post","price","=","0.00");
+        // }
+        // if (request()->get("filter") == 'mediaOnDemand') {
+        //     $attachments->whereRelation("post","price",">","0.00");
+        // }
 
-        $attachments = $attachments->get();
+        // $attachments = $attachments->get();
+        // $typeCounts = [
+        //     'video' => 0,
+
+        //     'audio' => 0,
+
+        //     'image' => 0,
+
+        // ];
+
+        // foreach ($attachments as $attachment) {
+            // $typeCounts[AttachmentServiceProvider::getAttachmentType($attachment->type)] += 1;
+        // }
         $typeCounts = [
-            'video' => 0,
-
+            'all' => 0,
+            'library' => 0,
+            'mediaOnDemand' => 0,
             'audio' => 0,
-
-            'image' => 0,
-
         ];
+        $posts = Post::select("id","price","user_id")->with(["attachments" => function($query){
+            $query->select("id","user_id","post_id")->whereNotNull("post_id");
+        }])->where('user_id', $userID)->get();
 
-        foreach ($attachments as $attachment) {
-            
-            $typeCounts[AttachmentServiceProvider::getAttachmentType($attachment->type)] += 1;
-
+        $typeCounts["all"] = $posts->count();
+        foreach ($posts as $post) {
+            if($post->price == "0.00"){
+                $typeCounts["library"] = $typeCounts["library"] +  $post->attachments->count();
+            }elseif ($post->price != "0.00") {
+                $typeCounts["mediaOnDemand"] = $typeCounts["mediaOnDemand"] + $post->attachments->count();
+            }
         }
-
         $streams = Stream::where('user_id',$userID)->where('is_public',1)->whereIn('status',[Stream::ENDED_STATUS,Stream::IN_PROGRESS_STATUS])->count();
-
         $typeCounts['streams'] = $streams;
+        //  dd($typeCounts);
         return $typeCounts;
 
     }

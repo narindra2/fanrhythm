@@ -4,37 +4,37 @@
     </div>
 @endif
 
-
-@if((Auth::check() && Auth::user()->id !== $post->user_id && $post->price > 0 && !PostsHelper::hasUserUnlockedPost($post->postPurchases)) || (!Auth::check() && $post->price > 0 ))
+@if($notLockedPost)
     <button style="margin: 10px" class="btn btn-primary btn-block to-tooltip {{(!GenericHelper::creatorCanEarnMoney($post->user)) ? 'disabled' : ''}}"
-                    @if(Auth::check())
-                        @if(!GenericHelper::creatorCanEarnMoney($post->user))
-                            data-placement="top"
-                            title="{{__('This creator cannot earn money yet')}}"
-                        @else
-                            data-toggle="modal"
-                            data-target="#checkout-center"
-                            data-type="post-unlock"
-                            data-recipient-id="{{$post->user->id}}"
-                            data-amount="{{$post->price}}"
-                            data-first-name="{{Auth::user()->first_name}}"
-                            data-last-name="{{Auth::user()->last_name}}"
-                            data-billing-address="{{Auth::user()->billing_address}}"
-                            data-country="{{Auth::user()->country}}"
-                            data-city="{{Auth::user()->city}}"
-                            data-state="{{Auth::user()->state}}"
-                            data-postcode="{{Auth::user()->postcode}}"
-                            data-available-credit="{{Auth::user()->wallet->total}}"
-                            data-username="{{$post->user->username}}"
-                            data-name="{{$post->user->name}}"
-                            data-avatar="{{$post->user->avatar}}"
-                            data-post-id="{{$post->id}}"
-                        @endif
-                    @else
-                    data-toggle="modal"
-                    data-target="#login-dialog"
-                    @endif
-            >{{__('Dévérouiller ce contenu pour')}} {{config('app.site.currency_symbol') ?? config('app.site.currency_symbol')}}{{$post->price}}{{config('app.site.currency_symbol') ? '' : ' ' .config('app.site.currency_code')}}</button>
+        @if(Auth::check())
+            @if(!GenericHelper::creatorCanEarnMoney($post->user))
+                data-placement="top"
+                title="{{__('This creator cannot earn money yet')}}"
+            @else
+                data-toggle="modal"
+                data-target="#checkout-center"
+                data-type="post-unlock"
+                data-recipient-id="{{$post->user->id}}"
+                data-amount="{{$post->price}}"
+                data-first-name="{{Auth::user()->first_name}}"
+                data-last-name="{{Auth::user()->last_name}}"
+                data-billing-address="{{Auth::user()->billing_address}}"
+                data-country="{{Auth::user()->country}}"
+                data-city="{{Auth::user()->city}}"
+                data-state="{{Auth::user()->state}}"
+                data-postcode="{{Auth::user()->postcode}}"
+                data-available-credit="{{Auth::user()->wallet->total}}"
+                data-username="{{$post->user->username}}"
+                data-name="{{$post->user->name}}"
+                data-avatar="{{$post->user->avatar}}"
+                data-post-id="{{$post->id}}"
+            @endif
+        @else
+        data-toggle="modal"
+        data-target="#login-dialog"
+        @endif
+    >
+    {{__('Dévérouiller ce contenu pour')}} {{config('app.site.currency_symbol') ?? config('app.site.currency_symbol')}}{{$post->price}}{{config('app.site.currency_symbol') ? '' : ' ' .config('app.site.currency_code')}}</button>
 @else
 <div class="post-footer aff_footer_post" >
     <div>
@@ -97,18 +97,12 @@
             </div>
             @endif
         </div>
-
-
         <div>
             <a href="#" class="">
                 <span class="post-reactions-label-count-{{$post->id}}">{{count($post->reactions)}}</span>
                 <span class="post-reactions-label-{{$post->id}}">{{trans_choice('likes', count($post->reactions))}}</span>
             </a>
-
-            
         </div>
     </div>
 </div>
-    
-    
 @endif

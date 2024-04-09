@@ -58,7 +58,7 @@
                             <p class="card-text">
                                 <ul class="list-unstyled">
                                     <li class="" style="font-size: 14px;" >@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__("Accès complet à ce contenu de créateur")}}</li>
-                                    <li class="" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium']) {{__('Annulez votre abonnement gratuit à tout moment')}}</li>
+                                    <li class="" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium']) {{__('Annulez votre abonnement  à tout moment')}}</li>
                                     <li class="" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__('Discutez avec moi et demandez du contenu exclusif')}}</li>
                                     <li class="" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__('Contenus exclusifs via le chat')}}</li>
                                     <li class="" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__('Découvrez ma bibliothèque média à la demande')}}</li>
@@ -68,7 +68,7 @@
                             <p class="card-text">
                                 <ul class="list-unstyled">
                                     <li class="" style="font-size: 14px;" >@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__("Accès complet à ce contenu de créateur gratuit")}}</li>
-                                    <li class="" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium']) {{__('Annulez votre abonnement gratuit à tout moment')}}</li>
+                                    <li class="" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium']) {{__('Annulez votre abonnement  à tout moment')}}</li>
                                     <li class="" style="font-size: 14px;">@include('elements.icon',['icon'=>'checkmark-sharp','centered'=>false, 'classes' => 'mr-2 text-muted', 'variant'=>'medium'])  {{__('Direct messages and access comments on public posts')}}</li>
                                 </ul>
                             </p>

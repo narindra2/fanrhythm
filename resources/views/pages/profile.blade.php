@@ -607,14 +607,14 @@
                         </a>
                     </div>
                 @endif --}}
-                @if ($filterTypeCounts['image'] > 0 ||  $filterTypeCounts['video'] > 0)
+                @if ($filterTypeCounts['library'] )
                     <div>
                         <a class=" {{ $activeFilter == 'library' ? 'active' : '' }}"
                             href="{{ route('profile', ['username' => $user->username]) . '?filter=library' }}">
                             {{-- {{ __('Photos') }} --}}
                             {{ __('library ') }}
                             <span>
-                                {{ $filterTypeCounts['image'] + $filterTypeCounts['video']  }}  
+                                {{ $filterTypeCounts['library']  }}  
                             </span>
                         </a>
                     </div>
@@ -632,13 +632,13 @@
                     </div>
                 @endif --}}
 
-                @if (1)
+                @if ($filterTypeCounts['library'])
                 <div>
-                    <a class=" {{ $activeFilter == 'video' ? 'active' : '' }}"
+                    <a class=" {{ $activeFilter == 'mediaOnDemand' ? 'active' : '' }}"
                         href="{{ route('profile', ['username' => $user->username]) . '?filter=mediaOnDemand' }}">
                         {{ __('Media on demand ') }}
                         <span>
-                           {{-- count(); --}}
+                           {{ $filterTypeCounts['mediaOnDemand'] }}
                         </span>
                     </a>
                 </div>

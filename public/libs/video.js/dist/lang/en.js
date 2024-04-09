@@ -87,6 +87,6 @@ videojs.addLanguage('en', {
   "Exit Picture-in-Picture": "Exit Picture-in-Picture",
   "Picture-in-Picture": "Picture-in-Picture",
   "No content": "No content",
-  "Hier" :"yesterday",
-  "à" :"to"
+  
+
 });

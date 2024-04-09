@@ -1,6 +1,4 @@
-@php
-    $attachment_type = AttachmentHelper::getAttachmentType($attachment->type);
-@endphp
+
 @if( !(!$isGallery && $attachment_type == 'video'))
     <a href="{{$attachment->path}}" rel="mswp" title="">
 @endif
@@ -11,7 +9,7 @@
                
                 </div>
             @elseif($attachment_type == 'video')
-            <span style="margin-left: 2%;font-size: 13px;"> Video duration : {{$attachment->videoDuration}} </span>
+                <span style="margin-left: 2%;font-size: 13px;"> Video duration : {{$attachment->videoDuration}} </span>
                 <div class="video-wrapper h-100 w-100 d-flex justify-content-center align-items-center">
                     <video class="video-preview w-100" src="{{$attachment->path}}" controls controlsList="nodownload"></video>
                 </div>

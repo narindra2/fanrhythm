@@ -33,6 +33,17 @@
     lightbox.init();
 </script>
 <style>
+  .top-left {
+      position: absolute;
+      top: 3px;
+      left: 8px;
+    }
+  .centered-text {
+      position: absolute;
+      top:90%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
   .pswp {
     position: fixed;
     top: 0;

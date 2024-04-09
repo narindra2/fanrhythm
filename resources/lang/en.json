@@ -31,7 +31,7 @@
     "Voulez-vous vraiment arrêter de suivre cet utilisateur ? Ses publications n'apparaîtront plus dans votre fil d'actualités.": "Are you sure you want to stop following this user? Their posts will no longer appear in your news feed.",
     "Vous pouvez reprendre contact à tout moment.": "You can get back in touch at any time.",
     "Confirmer": "Confirm",
-    "Il reste ": "He's staying",
+    "Il reste ": "Still",
     " jour(s)": "day(s)",
     " heure(s)": " hour(s)",
     "Il semblerait que la page que vous recherchez n'existe pas ou ait été déplacée. Merci de votre compréhension.": "It appears that the page you are looking for does not exist or has been moved. Thank you for your understanding.",
@@ -1067,11 +1067,13 @@
     "Post mis à jour avec succès" : "Post updated successfully",
     "Post supprimé avec succès" : "Post successfully deleted",
     "Accès complet à ce contenu de créateur gratuit" : "Full access to this free creator content",
-    "Annulez votre abonnement gratuit à tout moment": "Cancel your free subscription anytime",
+    "Annulez votre abonnement  à tout moment": "Cancel your  subscription anytime",
     "Messages directs et accès aux commentaires sur les publications publiques":"Direct messages and access comments on public posts",
     "Accès complet à ce contenu de créateur" : "Full access to this creator content",
     "Annulez votre abonnement à tout moment" : "Cancel your subscription anytime",
     "Discutez avec moi et demandez du contenu exclusif" : "Chat with me and ask exclusive contents",
     "Contenus exclusifs via le chat" : "Exclusive contents through chat",
-    "Découvrez ma bibliothèque média à la demande" : "Discover my media on demand library"
+    "Découvrez ma bibliothèque média à la demande" : "Discover my media on demand library",
+    "Hier" :"yesterday",
+    "à" :"to"
 }
