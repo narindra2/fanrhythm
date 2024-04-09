@@ -582,15 +582,20 @@
                     @endif
                 </div>
             @endforeach
-
+                @php
+                        // dd( $posts->total() );
+                @endphp
             <div class="aff_profil_tab">
                 <div>
                     <a class=" {{ $activeFilter == false ? 'active' : '' }}"
                         href="{{ route('profile', ['username' => $user->username]) }}">
                         {{-- {{ __('Toutes') }} --}}
                         {{ __('Posts') }}
-                        <span>
+                        {{-- <span>
                             {{ $posts->total() }}
+                        </span> --}}
+                        <span>
+                            {{ $filterTypeCounts['all'] }}
                         </span>
                     </a>
                 </div>

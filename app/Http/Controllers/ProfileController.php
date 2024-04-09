@@ -78,7 +78,7 @@ class ProfileController extends Controller
         $posts = PostsHelperServiceProvider::getUserPosts($this->user->id, false, $startPage, $postsFilter, $this->hasSub);
         PostsHelperServiceProvider::shouldDeletePaginationCookie($request);
         $posts = $posts->appends($_GET);
-       
+
         $offer = [];
         if ($this->user->offer) {
             $discount = 100 - (($this->user->profile_access_price * 100) / $this->user->offer->old_profile_access_price);
