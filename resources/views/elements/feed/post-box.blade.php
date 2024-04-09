@@ -298,20 +298,20 @@ $Moderation = "\App\Model\Moderation";
 
 
             <div>
-                <a href="#" class="">
+                <a href="javascript:void(0)" class="">
                     <span class="post-reactions-label-count">{{count($post->reactions)}}</span>
                     <span class="post-reactions-label">{{trans_choice('likes', count($post->reactions))}}</span>
                 </a>
 
                 @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&
                 $post->user->open_profile))
-                <a
-                    href="{{Route::currentRouteName() != 'posts.get' ? route('posts.get',['post_id'=>$post->id,'username'=>$post->user->username]) : '#comments'}}">
-                    <span>
-                        {{count($post->comments)}}
-                    </span>
-                    {{trans_choice('comments', count($post->comments))}}
-                </a>
+                    <a
+                        href="{{Route::currentRouteName() != 'posts.get' ? route('posts.get',['post_id'=>$post->id,'username'=>$post->user->username]) : '#comments'}}">
+                        <span>
+                            {{count($post->comments)}}
+                        </span>
+                        {{trans_choice('comments', count($post->comments))}}
+                    </a>
                 @else
                 <a href="#" data-toggle="modal" data-target="#subrcribe-dialog" data-toggle="tooltip"
                     @if(!Auth::check()) onclick="goToRegister()" @endif>

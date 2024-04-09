@@ -1,7 +1,7 @@
 
 @php
     $notLockedPost = (Auth::check() && Auth::user()->id !== $post->user_id && $post->price > 0 && !PostsHelper::hasUserUnlockedPost($post->postPurchases)) 
-    || (!Auth::check() && $post->price > 0 ) ||  (!Auth::check()) || (Auth::check() && !\App\Providers\ListsHelperServiceProvider::isUserFollowing(Auth::id(), $post->user_id))  ;
+    || (!Auth::check() && $post->price > 0 ) ||  (!Auth::check() ) || (Auth::check() && !$post->isSubbed)  ;
     $attachments = $post->attachments;
     $countAttchmt = count($attachments);
 @endphp
@@ -9,7 +9,12 @@
     @php
         $attachment_type = AttachmentHelper::getAttachmentType($attachment->type);
     @endphp
-    <div class="col-6 col-sm-4 p-0 " data-postId="{{$post->id}}" >
+    <div class="col-6 col-sm-4 p-0 " data-postId="{{$post->id}}"
+        @if ( (Auth::check() && !$post->isSubbed)) 
+            data-toggle="modal"
+            data-target="#subrcribe-dialog"  
+        @endif
+        >
         <div class="pswp-gallery__item">
             @include('elements.feed.post-librairy-media',["attachment" => $attachment , "post" => $post])
             <div class="pswp-caption-content" >

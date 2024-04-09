@@ -4,7 +4,7 @@
     </div>
 @endif
 
-@if($notLockedPost)
+@if($notLockedPost && $post->price > 0)
     <button style="margin: 10px" class="btn btn-primary btn-block to-tooltip {{(!GenericHelper::creatorCanEarnMoney($post->user)) ? 'disabled' : ''}}"
         @if(Auth::check())
             @if(!GenericHelper::creatorCanEarnMoney($post->user))
