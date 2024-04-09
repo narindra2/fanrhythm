@@ -1104,13 +1104,12 @@ class PostsHelperServiceProvider extends ServiceProvider
         foreach ($posts as $post) {
             if($post->price == "0.00"){
                 $typeCounts["library"] = $typeCounts["library"] +  $post->attachments->count();
-            }elseif ($post->price != "0.00") {
+            }elseif ($post->price  > 0) {
                 $typeCounts["mediaOnDemand"] = $typeCounts["mediaOnDemand"] + $post->attachments->count();
             }
         }
         $streams = Stream::where('user_id',$userID)->where('is_public',1)->whereIn('status',[Stream::ENDED_STATUS,Stream::IN_PROGRESS_STATUS])->count();
         $typeCounts['streams'] = $streams;
-        //  dd($typeCounts);
         return $typeCounts;
 
     }

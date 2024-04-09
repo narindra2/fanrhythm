@@ -2,7 +2,7 @@
 @if($notLockedPost)
     <a  href="{{asset('/img/no-post.png')}}" data-pswp-width="2000" data-pswp-height="1666" target="_blank">
         <img src="{{asset('/img/no-post.png')}}"  class="image-item"  alt="image" />
-        <div class="top-left " style="color: #1a1919b8;;font-size:12px">
+        <div class="top-left" style="color: #1a1919b8;;font-size:12px">
             @if ($attachment_type =="image")
                 Image
             @endif
@@ -10,17 +10,20 @@
                 Video duration : {{$attachment->videoDuration}} 
             @endif
         </div>
-        <div class="centered-text">
-            <button  class="btn btn-sm btn-primary"  
-                @if(Auth::check())
-                    @if(!GenericHelper::creatorCanEarnMoney($post->user))  data-placement='top' title='{{__("This creator cannot earn money yet")}}' @endif
-                    data-toggle='modal'
-                    data-target='#login-dialog'
-                @endif 
-            >
-            {{config('app.site.currency_symbol') ?? config('app.site.currency_symbol')}}{{$post->price}}{{config('app.site.currency_symbol') ? '' : '' .config('app.site.currency_code')}}
-            </button>
-        </div>
+        @if ($post->price > 0)
+            <div class="centered-text">
+                <button  class="btn btn-sm btn-primary"  
+                    @if(Auth::check())
+                        @if(!GenericHelper::creatorCanEarnMoney($post->user))  data-placement='top' title='{{__("This creator cannot earn money yet")}}' @endif
+                        data-toggle='modal'
+                        data-target='#login-dialog'
+                    @endif 
+                >
+                {{config('app.site.currency_symbol') ?? config('app.site.currency_symbol')}}{{$post->price}}{{config('app.site.currency_symbol') ? '' : '' .config('app.site.currency_code')}}
+                </button>
+            </div>
+        @endif
+        
     </a>
 @else
     @if ($attachment_type =="image")

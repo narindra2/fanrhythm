@@ -637,7 +637,7 @@
                     </div>
                 @endif --}}
 
-                @if ($filterTypeCounts['library'])
+                @if ($filterTypeCounts['mediaOnDemand'])
                 <div>
                     <a class=" {{ $activeFilter == 'mediaOnDemand' ? 'active' : '' }}"
                         href="{{ route('profile', ['username' => $user->username]) . '?filter=mediaOnDemand' }}">
