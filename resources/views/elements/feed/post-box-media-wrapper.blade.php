@@ -1,4 +1,6 @@
-
+@php
+    $attachment_type = AttachmentHelper::getAttachmentType($attachment->type);
+@endphp
 @if( !(!$isGallery && $attachment_type == 'video'))
     <a href="{{$attachment->path}}" rel="mswp" title="">
 @endif
