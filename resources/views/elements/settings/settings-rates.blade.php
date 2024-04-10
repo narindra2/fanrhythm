@@ -64,14 +64,14 @@
         <div class="explication_">
             <p>{{__('Paramétrage des Prix des Abonnements par Mois')}}</p>
             <p>
-                {{__('Lorsque vous définissez le prix des abonnements, veillez à insérer le montant mensuel, et non le montant total pour la durée de l\'abonnement. Ceci vous aidera à créer des remises pour des abonnements plus longue durée. Voici un guide pour vous aider :')}}
+                {{__("Lorsque vous fixez le prix de l'abonnement, veillez à insérer le montant mensuel TVA incluse (19%). La TVA sera déduite de votre portefeuille après le paiement des utilisateurs et des frais de traitement des paiements (7%). Définissez simplement le prix mensuel de chaque tablette. Cela vous aidera à créer des réductions pour les abonnements plus longs :")}}
             </p>
-            <ul>
+            {{-- <ul>
                 <li>{{__('- Pour un abonnement de 1 mois : Insérez 3000 (ceci est le prix pour un mois).')}}</li>
                 <li>{{__('- Pour un abonnement de 3 mois : Insérez 2700 (ceci est le prix pour un mois). Ne multipliez pas par 3, le système le fera automatiquement.')}}</li>
                 <li>{{__('- Pour un abonnement de 6 mois : Insérez 2500 (ceci est le prix pour un mois). Ne multipliez pas par 6, le système le fera automatiquement.')}}</li>
                 <li>{{__('- Pour un abonnement de 12 mois : Insérez 2000 (ceci est le prix pour un mois). Ne multipliez pas par 12, le système le fera automatiquement.')}}</li>
-            </ul>
+            </ul> --}}
             <p><strong>{{__('Date limite :')}}</strong> {{__('Veuillez faire ces changements avant la date limite pour garantir que vos abonnements sont correctement paramétrés.')}}</p>
         </div>
         
@@ -80,7 +80,7 @@
             <div class="row">
                 <div class="col-12">
                     <div>
-                        <label for="name">{{__('1 mois')}}</label>
+                        <label for="name">{{__('1 mois')}}  ({{ __("prix par mois TVA incluse 19%")}})</label>
                         <input class=" {{ $errors->has('profile_access_price') ? 'is-invalid' : '' }}"
                             id="profile_access_price" name="profile_access_price" aria-describedby="emailHelp"
                             value="{{Auth::user()->profile_access_price}}">
@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-12">
                     <div>
-                        <label for="name">{{__('3 mois')}}</label>
+                        <label for="name">{{__('3 mois')}}  ({{ __("prix par mois TVA incluse 19%")}})</label>
                         <input class=" {{ $errors->has('profile_access_price_3_months') ? 'is-invalid' : '' }}"
                             id="profile_access_price" name="profile_access_price_3_months" aria-describedby="emailHelp"
                             value="{{ Auth::user()->profile_access_price_3_months  }}">
@@ -106,7 +106,7 @@
                 </div>
                 <div class="col-12">
                     <div>
-                        <label for="name">{{__('6 mois')}}</label>
+                        <label for="name">{{__('6 mois')}}  ({{ __("prix par mois TVA incluse 19%")}})</label>
                         <input class=" {{ $errors->has('profile_access_price_6_months') ? 'is-invalid' : '' }}"
                             id="profile_access_price" name="profile_access_price_6_months" aria-describedby="emailHelp"
                             value="{{Auth::user()->profile_access_price_6_months}}">
@@ -119,7 +119,7 @@
                 </div>
                 <div class="col-12">
                     <div>
-                        <label for="name">{{__('12 mois')}}</label>
+                        <label for="name">{{__('12 mois')}}  ({{ __("prix par mois TVA incluse 19%")}})</label>
                         <input class=" {{ $errors->has('profile_access_price_12_months') ? 'is-invalid' : '' }}"
                             id="profile_access_price_12_months" name="profile_access_price_12_months"
                             aria-describedby="emailHelp" value="{{Auth::user()->profile_access_price_12_months}}">

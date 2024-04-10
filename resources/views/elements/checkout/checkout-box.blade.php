@@ -69,9 +69,9 @@
                                         aria-label="Username" aria-describedby="amount-label" id="checkout-amount"
                                         type="number" >
                                 </div>
-                                {{-- <label for="#" style="font-size: 12px; font-style: italic;">
-                                   <u>Note</u> : {{__('Le Montant est déjà déduit des frais de transaction.')}}
-                                </label> --}}
+                                <span for="#" id="show-tva-info" class=" mb-2" style="font-size: 14px; font-style: italic; color:#28A0F0">
+                                   <u>Note</u> : {{__('Ce montant comprend 19% de TVA')}}.
+                                </span>
                             </div>
 
                             <div class="invalid-feedback">{{__('Please enter a valid amount.')}}</div>
@@ -205,9 +205,9 @@
                             </div>
                         </div> --}}
 
-                        <div class="aff_mode_de_paiement">
+                        <div class="aff_mode_de_paiement mt-2">
                             <div>
-                             {{__("Séléctionnez votre mode de paiement ci-dessous")}}
+                             {{__("Séléctionnez votre mode de paiement ci-dessous")}} :
                             </div>
                             
                             <div class="find_check">
@@ -252,13 +252,20 @@
                             </div>
                         </div>
                         <div class="payment-error error text-danger text-bold d-none mb-1">
-                            {{__('Please select your payment method')}}</div>
+                            {{__('Please select your payment method')}}
+                        </div>
+                        
 
                         <label for="is_offer" id="label_accept_ui">
                             <input type="checkbox" aria-label="Checkbox for following text input" name="is_offer"
                                 id="is_offer">
                             <span>
                                 {{__("En effectuant votre paiement, vous reconnaissez avoir pris connaissance et accepté les conditions générales de vente. Nous vous encourageons à lire attentivement les termes et conditions avant de procéder au paiement.")}}
+                            </span>
+                        </label>
+
+                        <label >
+                            <span  style="font-size: 12px; color: #e9422e ; letter-spacing: -0.28px;" class="text-bold mb-1" id= "error-payment-messsage">
                             </span>
                         </label>
 

@@ -1074,5 +1074,10 @@
     "Contenus exclusifs via le chat" : "Exclusive contents through chat",
     "Découvrez ma bibliothèque média à la demande" : "Discover my media on demand library",
     "Hier" :"yesterday",
-    "à" :"to"
+    "à" :"to",
+    "prix par mois TVA incluse 19%" : "price per month VAT included 19%",
+    "Lorsque vous fixez le prix de l'abonnement, veillez à insérer le montant mensuel TVA incluse (19%). La TVA sera déduite de votre portefeuille après le paiement des utilisateurs et des frais de traitement des paiements (7%). Définissez simplement le prix mensuel de chaque tablette. Cela vous aidera à créer des réductions pour les abonnements plus longs :" :"When you set the subscription price, make sure to insert the monthly amount with VAT included (19%). The VAT will be deducted to your wallet after the payment of users and payment processor fees (7%). Just set the monthly price in each tablet. This will help you create discounts for longer subscriptions.",
+    "Après réessayez !" :"Then try again !",
+    "Ce montant comprend 19% de TVA": "This amount includes 19% VAT",
+    "Vous n'avez pas assez d'argent pour payer cette transaction. Veuillez recharger votre portefeuille ici :" :"You don't have enough money to pay for this transaction. Please top up your wallet here :"
 }

@@ -1,7 +1,7 @@
 /**
  * Component used for handling checkout dialog actions
  */
-'use strict';
+'use strict';  
 /* global app, trans, trans_choice, launchToast */
 if ( typeof log == "undefined") {
 	const { log } = require("video.js");
@@ -22,6 +22,7 @@ $(function () {
 
 	// Checkout proceed button event listener
 	$('.checkout-continue-btn').on('click', function () {
+		
 		checkout.initPayment();
 	});
 
@@ -44,7 +45,6 @@ $(function () {
 	$('#checkout-center').on('show.bs.modal', function (e) {
 		try {
 			$('#subrcribe-dialog').modal('hide');
-			
 		} catch (error) {
 			
 		}
@@ -179,6 +179,8 @@ $(function () {
 				true,
 				checkout.oneTimePaymentProcessorClasses
 			);
+		}else if(type === "credit"){
+			$("#show-tva-info").addClass('d-none');
 		}
 
 		if (paymentTitle !== '' || paymentDescription !== '') {
@@ -319,7 +321,7 @@ var checkout = {
 		if (!checkout.checkoutAmountValidation()) {
 			return false;
 		}
-
+		
 		let processor = checkout.getSelectedPaymentMethod();
 		if (!processor) {
 			$('.payment-error').removeClass('d-none');
@@ -348,8 +350,13 @@ var checkout = {
 			type: 'POST',
 			data: $('#pp-buyItem').serialize(),
 			url: app.baseUrl + '/payment/initiate/validate',
-			success: function () {
-				callback();
+			success: function (response) {
+				if(!response.succes && response.message ){
+					$("#error-payment-messsage").html(response.message )
+					$('.checkout-continue-btn .spinner-border').addClass('d-none');
+					return;
+				}	
+				// callback();
 			},
 			error: function (result) {
 				$('.checkout-continue-btn .spinner-border').addClass('d-none');
@@ -378,6 +385,7 @@ var checkout = {
 		// Clearing up prev form errors
 		$('.invalid-feedback').remove();
 		$('input').removeClass('is-invalid');
+		$("#error-payment-messsage").html("")
 	},
 
 	/**
@@ -441,11 +449,10 @@ var checkout = {
 		const checkoutAmount = $('#checkout-amount').val();
 		// Apply a tips min-max validation | Rest don't need any constrains
 		if (checkout.paymentData.type == 'tip') {
-			if (
-				checkoutAmount.length > 0 &&
-				checkoutAmount >= app.tipMinAmount &&
-				checkoutAmount <= app.tipMaxAmount
-			) {
+			console.log(checkoutAmount)
+			console.log(app.tipMinAmount)
+			console.log(app.tipMaxAmount)
+			if (checkoutAmount.length > 0 && checkoutAmount >= app.tipMinAmount && checkoutAmount <= app.tipMaxAmount) {
 				$('#checkout-amount').removeClass('is-invalid');
 				$('#paypal-deposit-amount').val(checkoutAmount);
 				if (checkout.paymentData.availableCredit < checkoutAmount) {
@@ -455,6 +462,7 @@ var checkout = {
 			} else {
 				$('#checkout-amount').addClass('is-invalid');
 				return false;
+
 			}
 		}
 		return true;

@@ -72,7 +72,15 @@ class PaymentsController extends Controller
     public function paymentInitiateValidator(CreateTransactionRequest $request)
 
     {
+        $userAvailableAmount = $this->paymentHandler->getLoggedUserAvailableAmount();
 
+        // check if user have enough money to pay with credit for this transaction
+
+        if ($userAvailableAmount < $request->get('amount')) {
+            $walletUrl = '<a href="'.url("/my/settings/wallet").'"> Wallet - Fanrhythm</a>' ;
+            $errorMessage =  __("Vous n'avez pas assez d'argent pour payer cette transaction. Veuillez recharger votre portefeuille ici :") . " $walletUrl" ." ". __("Après réessayez !");
+            return ["success" => false , "message" =>  $errorMessage];
+        }
         return response()->json([
 
             'status' => 200
@@ -198,7 +206,6 @@ class PaymentsController extends Controller
                 if ($userAvailableAmount < $transaction['amount']) {
 
                     $errorMessage = __("You don't have enough money to pay with credit for this transaction. Please try with another payment method");
-
                     return $this->paymentHandler->redirectByTransaction($transaction, $errorMessage);
                 }
             }

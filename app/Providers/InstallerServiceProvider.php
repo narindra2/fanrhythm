@@ -107,7 +107,6 @@ class InstallerServiceProvider extends ServiceProvider
         if (Storage::disk('local')->exists('installed')) {
             return true;
         }
-
         return false;
     }
 
