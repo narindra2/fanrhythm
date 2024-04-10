@@ -30,8 +30,8 @@
                 data-post-id="{{$post->id}}"
             @endif
         @else
-        data-toggle="modal"
-        data-target="#login-dialog"
+            data-toggle="modal"
+            data-target="#login-dialog"
         @endif
     >
     {{__('Dévérouiller ce contenu pour')}} {{config('app.site.currency_symbol') ?? config('app.site.currency_symbol')}}{{$post->price}}{{config('app.site.currency_symbol') ? '' : ' ' .config('app.site.currency_code')}}</button>
@@ -77,9 +77,13 @@
             </div>
             @else
             {{-- <div class="disabled" data-toggle="tooltip" data-placement="top" title=""
-                data-original-title="{{ _('Abonnez-vous à moi') }}" --}} <div class="disabled" data-toggle="modal"
-                data-target="#subrcribe-dialog" data-toggle="tooltip" @if (!Auth::check() ) onclick="goToRegister()"
-                @endif>
+                data-original-title="{{ _('Abonnez-vous à moi') }}" --}} 
+                <div class="disabled" data-toggle="modal" data-target="#subrcribe-dialog"
+                    @if (!Auth::check() )
+                        {{-- onclick="goToRegister()" --}}
+                        data-target="#login-dialog"
+                    @endif
+                >
                 <svg width="21px" height="18px" viewBox="0 0 21 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"

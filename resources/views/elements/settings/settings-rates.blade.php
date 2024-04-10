@@ -96,7 +96,7 @@
                         <label for="name">{{__('3 mois')}}</label>
                         <input class=" {{ $errors->has('profile_access_price_3_months') ? 'is-invalid' : '' }}"
                             id="profile_access_price" name="profile_access_price_3_months" aria-describedby="emailHelp"
-                            value="{{ Auth::user()->profile_access_price_3_months == 5 ? 2000 : Auth::user()->profile_access_price_3_months }}">
+                            value="{{ Auth::user()->profile_access_price_3_months  }}">
                         @if($errors->has('profile_access_price_3_months'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{__($errors->first('profile_access_price_3_months'))}}</strong>

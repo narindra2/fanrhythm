@@ -369,9 +369,8 @@
                             <button class=" btn btn-outline-primary"
                                 onclick="window.location.href='https://web.fanrhythm.com/my/settings/rates'">
                                 <span>{{ __('Subscribe') }} {{ __('for') }}
-                                    {{ trans_choice('months', 3, ['number' => 3]) }}</span>
+                                    {{ trans_choice('months', 3, ['number' => 3]) }} </span>
                                 <span class="d-sm-block">
-                                    <!--{{ Auth::user()->profile_access_price_3_months != 5 ? Auth::user()->profile_access_price_3_months * 3 : 2000 }}-->
                                     {{ Auth::user()->profile_access_price_3_months * 3 }}
                                     {{ $symb }}
                                 </span>

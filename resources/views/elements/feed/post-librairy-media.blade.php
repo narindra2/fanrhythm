@@ -15,6 +15,7 @@
                 <button  class="btn btn-sm btn-primary"  
                     @if(Auth::check())
                         @if(!GenericHelper::creatorCanEarnMoney($post->user))  data-placement='top' title='{{__("This creator cannot earn money yet")}}' @endif
+                    @else
                         data-toggle='modal'
                         data-target='#login-dialog'
                     @endif 
