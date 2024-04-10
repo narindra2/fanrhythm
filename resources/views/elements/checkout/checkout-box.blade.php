@@ -265,7 +265,7 @@
                         </label>
 
                         <label >
-                            <span  style="font-size: 12px; color: #e9422e ; letter-spacing: -0.28px;" class="text-bold mb-1" id= "error-payment-messsage">
+                            <span  style="font-size: 10.5px; color: #e9422e ; letter-spacing: -0.28px;" class="text-bold mb-1" id= "error-payment-messsage">
                             </span>
                         </label>
 

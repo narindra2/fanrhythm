@@ -77,8 +77,8 @@ class PaymentsController extends Controller
         // check if user have enough money to pay with credit for this transaction
 
         if ($userAvailableAmount < $request->get('amount')) {
-            $walletUrl = '<a href="'.url("/my/settings/wallet").'"> Wallet - Fanrhythm</a>' ;
-            $errorMessage =  __("Vous n'avez pas assez d'argent pour payer cette transaction. Veuillez recharger votre portefeuille ici :") . " $walletUrl" ." ". __("Après réessayez !");
+            $walletUrl = '<a style="font-size: 12.7px;" href="'.url("/my/settings/wallet").'"> My wallet. </a>' ;
+            $errorMessage =  __("Vous n'avez pas assez d'argent pour payer cette transaction. Veuillez recharger votre portefeuille ici :") . " $walletUrl" ."<br> ". __("Après réessayez !");
             return ["success" => false , "message" =>  $errorMessage];
         }
         return response()->json([

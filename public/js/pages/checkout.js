@@ -179,9 +179,10 @@ $(function () {
 				true,
 				checkout.oneTimePaymentProcessorClasses
 			);
-		}else if(type === "credit"){
-			$("#show-tva-info").addClass('d-none');
 		}
+		// else if(type === "credit" ){
+		// 	$("#show-tva-info").addClass('d-none');
+		// }
 
 		if (paymentTitle !== '' || paymentDescription !== '') {
 			$('#payment-title').text(paymentTitle);
