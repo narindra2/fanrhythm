@@ -616,7 +616,7 @@
                         <a class=" {{ $activeFilter == 'library' ? 'active' : '' }}"
                             href="{{ route('profile', ['username' => $user->username]) . '?filter=library' }}">
                             {{-- {{ __('Photos') }} --}}
-                            {{ __('library ') }}
+                            {{ __('Library') }}
                             <span>
                                 {{ $filterTypeCounts['library']  }}  
                             </span>
@@ -640,7 +640,7 @@
                 <div>
                     <a class=" {{ $activeFilter == 'mediaOnDemand' ? 'active' : '' }}"
                         href="{{ route('profile', ['username' => $user->username]) . '?filter=mediaOnDemand' }}">
-                        {{ __('Media on demand ') }}
+                        {{ __('Media on demand') }}
                         <span>
                            {{ $filterTypeCounts['mediaOnDemand'] }}
                         </span>

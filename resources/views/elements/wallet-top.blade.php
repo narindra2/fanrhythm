@@ -10,11 +10,29 @@
                     $minChargeWallet = \App\Providers\PaymentsServiceProvider::getDepositMinimumAmount();
                     $suggsChargeWallet = [ $minChargeWallet , 25 , 50 ,100  , 500]
                 @endphp
+                <style>
+                    .wallet-available{
+                        display: block;
+                        max-width: 400px;
+                        border-radius: 6px;
+                        padding:8px 12px 8px 12px;
+                        overflow: hidden;
+                        line-height: 1.4;
+                        text-align: left;
+                        background-color: rgba(0, 0, 0, 0.05);
+                        border: 1px solid #8E8E8
+                    }
+                    
+                </style>
                 <div class="dropdown dropleft">
-                    <div  style=" color: #28A0F0; "class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ __('Solde disponible') }} : {{ number_format(Auth::user()->wallet->total, 2, '.', '') }}
-                        {{ $currencySymbol }}
-                    </div>
+                    <a style="text-transform: none;font-weight: 500;font-size: 14px;padding: 11px;"  class="dropdown-toggle btn btn-primary    " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{-- <div> --}}
+                            {{ __('Solde disponible') }} : {{ number_format(Auth::user()->wallet->total, 2, '.', '') }}
+                            {{ $currencySymbol }}
+                        {{-- </div> --}}
+                     
+                    </a>
+                    
                     <div class="dropdown-menu" style="width: 300px !important;" aria-labelledby="dropdownMenuLink" style="width: 300px !important;" >
                         <ul  class="list-group list-group-flush ">
                             @foreach ($suggsChargeWallet as $amount)
