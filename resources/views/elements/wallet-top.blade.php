@@ -25,18 +25,18 @@
                     
                 </style>
                 <div class="dropdown dropleft">
-                    <a style="text-transform: none;font-weight: 500;font-size: 14px;padding: 11px;"  class="dropdown-toggle btn btn-primary    " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div style="text-transform: none;font-weight: 500;font-size: 14px;padding:  9.5px;"  class="dropdown-toggle btn btn-primary    " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{-- <div> --}}
                             {{ __('Solde disponible') }} : {{ number_format(Auth::user()->wallet->total, 2, '.', '') }}
                             {{ $currencySymbol }}
                         {{-- </div> --}}
                      
-                    </a>
+                    </div>
                     
                     <div class="dropdown-menu" style="width: 300px !important;" aria-labelledby="dropdownMenuLink" style="width: 300px !important;" >
                         <ul  class="list-group list-group-flush ">
                             @foreach ($suggsChargeWallet as $amount)
-                                <li onclick='location.href = "{{ url("/my/settings/wallet?chargeAmount=$amount")}}";' style="background-color: #fff0;  1px solid rgba(0,0,0,.125);" class="list-group-item d-flex justify-content-between align-items-center">{{$currencySymbol}}{{ $amount   }} wallet banlance  <span style="font-size: 15px;padding:6px 9px 2px 9px;" class="badge badge-primary">{{$currencySymbol}}{{ $amount  }}</span></li>
+                                <li onclick='location.href = "{{ url("/my/settings/wallet?chargeAmount=$amount")}}";' style="background-color: #fff0;  1px solid rgba(0,0,0,.125);" class="list-group-item d-flex justify-content-between align-items-center">{{$currencySymbol}}{{ $amount   }} wallet banlance  <span style="font-size: 15px;padding:6px 9px 4px 9px;" class="badge badge-primary">{{$currencySymbol}}{{ $amount  }}</span></li>
                             @endforeach
                         </ul>
                     </div>
