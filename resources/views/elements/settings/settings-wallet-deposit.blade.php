@@ -13,9 +13,11 @@
                     $min = \App\Providers\PaymentsServiceProvider::getDepositMinimumAmount();
                     $max = \App\Providers\PaymentsServiceProvider::getDepositMaximumAmount();
                     $symb = getSetting('payments.currency_symbol');
+                    $chargeAmount =  request()->get("chargeAmount" ,0);
+                    $amount  = $chargeAmount >= $min  ? $chargeAmount  : $min;
                     @endphp
                 <input placeholder='{{" Min $min $symb / Max $max $symb"}}'
-                aria-label="{{__('Username')}}" aria-describedby="amount-label" value="{{ $min  }}" id="deposit-amount" type="number"
+                aria-label="{{__('Username')}}" aria-describedby="amount-label" value="{{  $amount   }}" id="deposit-amount" type="number"
                 min="{{ $min }}" step="5"
                 max="{{ $max  }}">
                
