@@ -419,7 +419,7 @@ class PaymentsController extends Controller
             }
 
             // subtract transaction fees balance
-            $transaction['transaction_fees']  = str_replace([" " ,"," ,"%"],["",".",""], getSetting("payments.transaction_fees")) ;
+            $transaction['transaction_fees']  = str_replace([" " ,"," ],["","."], getSetting("payments.transaction_fees"));
 
             $transaction['amount']  =  $transaction['amount'] - Transaction::getTransactionFees($transaction);
 
