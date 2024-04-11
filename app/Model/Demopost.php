@@ -13,6 +13,8 @@ class Demopost extends Model
      */
     protected $fillable = ['text', 'images'];
 
+
+
     /**
      * Get the images attribute.
      *
@@ -33,5 +35,10 @@ class Demopost extends Model
     public function setImagesAttribute($value)
     {
         $this->attributes['images'] = json_encode($value);
+    }
+
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'user_id');
     }
 }

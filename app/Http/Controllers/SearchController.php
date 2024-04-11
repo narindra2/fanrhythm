@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use JavaScript;
+use App\Model\Demopost;
 use App\Model\UserGender;
-use App\Providers\MembersHelperServiceProvider;
-use App\Providers\PostsHelperServiceProvider;
-use App\Providers\StreamsServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use JavaScript;
+use App\Providers\StreamsServiceProvider;
+use App\Providers\PostsHelperServiceProvider;
+use App\Providers\MembersHelperServiceProvider;
 
 class SearchController extends Controller
 {
@@ -133,6 +134,24 @@ class SearchController extends Controller
                 'searchFilterExpanded' => false
             ];
         }
+        elseif($filters['postsFilter'] == 'videosPres') {
+            $demoposts = Demopost::with(["user:id,name,username,avatar"])->paginate(1)->appends(request()->query());
+            $jsData = [
+                'paginatorConfig' => [
+                    'next_page_url' => str_replace('/search', '/search/demopost', $demoposts->nextPageUrl()),
+                    'prev_page_url' => str_replace('/search', '/search/demopost', $demoposts->previousPageUrl()),
+                    'current_page' => $demoposts->currentPage(),
+                    'total' => $demoposts->total(),
+                    'per_page' => $demoposts->perPage(),
+                    'hasMore' => $demoposts->hasMorePages(),
+                ],
+                'searchType' => 'streams'
+            ];
+            $viewData = [
+                'demoposts' => $demoposts,
+                // 'searchFilterExpanded' => false
+            ];
+        }
         /**
          * Standard posts filters
          */
@@ -163,7 +182,6 @@ class SearchController extends Controller
                 ]
             )
         );
-
         return view('pages.search',
             array_merge($viewData,[
                 'searchTerm' => $filters['searchTerm'],

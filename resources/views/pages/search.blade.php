@@ -12,7 +12,7 @@
 @stop
 
 @section('scripts')
-{!!
+    {!!
 Minify::javascript([
 '/js/PostsPaginator.js',
 '/js/UsersPaginator.js',
@@ -113,16 +113,16 @@ Minify::stylesheet([
                 </a>
             </div>
 
-            <div>
+            {{-- <div>
                 <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?query=&filter=photos">
                     <div>
                         {{__('Photos')}}
                     </div>
                 </a>
-            </div>
+            </div> --}}
 
             <div>
-                <a class="{{ $currentFilter == 'videos' ? 'active' : '' }}" href="/search?query=&filter=videos">
+                <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="/search?query=&filter=videosPres">
                     <div>
                         {{__('Videos')}}
                     </div>
@@ -130,36 +130,31 @@ Minify::stylesheet([
             </div>
         </div>
 
-
-
-
         @include('elements.message-alert',['classes'=>'p-2'])
-
         @if(isset($posts))
-        @include('elements.feed.posts-load-more')
-        <div class="feed-box mt-0 pt-0 posts-wrapper">
-            @include('elements.feed.posts-wrapper',['posts'=>$posts])
-        </div>
-        @include('elements.feed.posts-loading-spinner')
+            @include('elements.feed.posts-load-more')
+            <div class="feed-box mt-0 pt-0 posts-wrapper">
+                @include('elements.feed.posts-wrapper',['posts'=>$posts])
+            </div>
+            @include('elements.feed.posts-loading-spinner')
         @endif
 
         @if(isset($users))
-
-        <div class="aff_search_result_user users-box users-wrapper">
-            @include('elements.search.users-wrapper',['posts'=>$users])
-        </div>
-
-        @include('elements.feed.posts-loading-spinner')
+            <div class="aff_search_result_user users-box users-wrapper">
+                @include('elements.search.users-wrapper',['posts'=>$users])
+            </div>
+            @include('elements.feed.posts-loading-spinner')
         @endif
 
         @if(isset($streams))
-        <div class="streams-box streams-wrapper aff_search_result_user users-box users-wrappe">
-            @include('elements.search.streams-wrapper',['streams'=>$streams])
-        </div>
-        @include('elements.feed.posts-loading-spinner')
+            <div class="streams-box streams-wrapper aff_search_result_user users-box users-wrappe">
+                @include('elements.search.streams-wrapper',['streams'=>$streams])
+            </div>
+            @include('elements.feed.posts-loading-spinner')
         @endif
-
-
+        @if(isset($demoposts))
+            @dd($demoposts)
+        @endif
     </div>
     <div class="aff_droite">
         @include('elements.feed.suggestions-box',['profiles'=>$suggestions,'isMobile' => false])

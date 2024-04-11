@@ -8,7 +8,8 @@
                 @php
                     $currencySymbol = \App\Providers\SettingsServiceProvider::getWebsiteCurrencySymbol();
                     $minChargeWallet = \App\Providers\PaymentsServiceProvider::getDepositMinimumAmount();
-                    $suggsChargeWallet = [ $minChargeWallet , 25 , 50 ,100  , 500]
+                    $maxChargeWallet = \App\Providers\PaymentsServiceProvider::getDepositMaximumAmount();
+                    $suggsChargeWallet = [ $minChargeWallet , 25 , 50 , 75, 100  , 250 , $maxChargeWallet]
                 @endphp
                 <style>
                     .wallet-available{

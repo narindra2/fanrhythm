@@ -77,13 +77,13 @@
                 </a>
             </div>
 
-            <div>
+            {{-- <div>
                 <a class="" href="/search?query=&amp;filter=photos">
                     <div>
                     {{__('Photos')}}
                     </div>
                 </a>
-            </div>
+            </div> --}}
 
             <div>
                 <a class="" href="/search?query=&amp;filter=videos">

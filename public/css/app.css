@@ -69,9 +69,9 @@ body {
 .dark_theme .dropdown-menu {
     background-color: #111;
 }
-/* .dark_theme .dropdown-menu .dropdown-item {
+.dark_theme .dropdown-menu .dropdown-item {
     color: #fff;
-} */
+}
 .dark_theme .react-button>svg:nth-child(1) g {
     stroke: #fff;
 }
