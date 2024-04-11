@@ -347,8 +347,7 @@ $Moderation = "\App\Model\Moderation";
         </div>
 
         @if(Auth::check())
-
-        @include('elements.feed.post-new-comment')
+            @include('elements.feed.post-new-comment')
         @endif
     </div>
     @endif

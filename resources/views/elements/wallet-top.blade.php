@@ -37,7 +37,7 @@
                     <div class="dropdown-menu" style="width: 300px !important;" aria-labelledby="dropdownMenuLink" style="width: 300px !important;" >
                         <ul  class="list-group list-group-flush ">
                             @foreach ($suggsChargeWallet as $amount)
-                                <li onclick='location.href = "{{ url("/my/settings/wallet?chargeAmount=$amount")}}";' style="background-color: #fff0;  1px solid rgba(0,0,0,.125);" class="list-group-item d-flex justify-content-between align-items-center">{{$currencySymbol}}{{ $amount   }} wallet banlance  <span style="font-size: 15px;padding:6px 9px 4px 9px;" class="badge badge-primary">{{$currencySymbol}}{{ $amount  }}</span></li>
+                                <li onclick='location.href = "{{ url("/my/settings/wallet?chargeAmount=$amount")}}";' style="background-color: #fff0;  1px solid rgba(0,0,0,.125);" class="list-group-item d-flex justify-content-between align-items-center">{{$currencySymbol}}{{ $amount   }} wallet balance <span style="font-size: 15px;padding:6px 9px 4px 9px;" class="badge badge-primary">{{$currencySymbol}}{{ $amount  }}</span></li>
                             @endforeach
                         </ul>
                     </div>
