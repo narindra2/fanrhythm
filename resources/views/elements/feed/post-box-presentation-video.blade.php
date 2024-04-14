@@ -1,40 +1,36 @@
-@php
-$Moderation = "\App\Model\Moderation";
-@endphp
-
-<div class="aff_post_block post-box" data-postid="{{$demopost->id}}"  >
+<div class="aff_post_block post-box" data-postid="{{$video->id}}"  >
 
     <div class="aff_header_post">
-        <a href="{{route('profile',['username'=>$demopost->user->username])}}">
-            <img src="{{$demopost->user->avatar}}">
+        <a href="{{route('profile',['username'=>$video->user->username])}}">
+            <img src="{{$video->user->avatar}}">
             <div class="aff_info_name">
                 <div>
                     <span>
-                        {{$demopost->user->name}}
+                        {{$video->user->name}}
                     </span>
                 </div>
                 <div>
                     <span>
-                        <span>@</span>{{$demopost->user->username}}
+                        <span>@</span>{{$video->user->username}}
                     </span>
                 </div>
             </div>
         </a>
         {{-- <div>
-            @if(Auth::check() && $demopost->user_id === Auth::user()->id && $demopost->status == 0)
+            @if(Auth::check() && $video->user_id === Auth::user()->id && $video->status == 0)
             <span class="aff_pending">
                 {{__('En attente')}}
             </span>
             @endif
-            @if(Auth::check() && $demopost->user_id === Auth::user()->id && $demopost->price > 0)
+            @if(Auth::check() && $video->user_id === Auth::user()->id && $video->price > 0)
             <span class="aff_ppv">
                 {{ucfirst(__("PPV"))}}
             </span>
             @endif
 
             <a class="aff_post_date" @if(!Auth::check()) onclick="goToRegister()" @else
-                onclick="PostsPaginator.goToPostPageKeepingNav({{$demopost->id}},{{$demopost->postPage}},'{{route('posts.get',['post_id'=>$demopost->id,'username'=>$demopost->user->username])}}')"
-                @endif href="javascript:void(0)">{{$demopost->created_at->diffForHumans(null,false,true)}}
+                onclick="PostsPaginator.goToPostPageKeepingNav({{$video->id}},{{$video->postPage}},'{{route('posts.get',['post_id'=>$video->id,'username'=>$video->user->username])}}')"
+                @endif href="javascript:void(0)">{{$video->created_at->diffForHumans(null,false,true)}}
             </a>
             <div @if(!Auth::check()) onclick="goToRegister()" @endif
                 class="dropdown {{GenericHelper::getSiteDirection() == 'rtl' ? 'dropright' : 'dropleft'}}">
@@ -63,26 +59,26 @@ $Moderation = "\App\Model\Moderation";
                     @if(Auth::check())
 
                     <a class="dropdown-item" href="javascript:void(0);"
-                        onclick="Lists.showListManagementConfirmation('{{'unfollow'}}', {{$demopost->user->id}});">
+                        onclick="Lists.showListManagementConfirmation('{{'unfollow'}}', {{$video->user->id}});">
                         {{__("Se désabonner")}}
                     </a>
                     <a class="dropdown-item" href="javascript:void(0);"
-                        onclick="Lists.showListManagementConfirmation('{{'block'}}', {{$demopost->user->id}});">
+                        onclick="Lists.showListManagementConfirmation('{{'block'}}', {{$video->user->id}});">
                         {{__("Bloquer")}}
                     </a>
                     <a class="dropdown-item" href="javascript:void(0);"
-                        onclick="Lists.showReportBox({{$demopost->user->id}},{{$demopost->id}});">
+                        onclick="Lists.showReportBox({{$video->user->id}},{{$video->id}});">
                         {{__("Signaler")}}
                     </a>
-                    @if(Auth::check() && Auth::user()->id == $demopost->user->id)
-                    <a class="dropdown-item" href="{{route('posts.edit',['post_id'=>$demopost->id])}}">
+                    @if(Auth::check() && Auth::user()->id == $video->user->id)
+                    <a class="dropdown-item" href="{{route('posts.edit',['post_id'=>$video->id])}}">
                         {{__("Modifier")}}
                     </a>
                     @if(!getSetting('compliance.minimum_posts_deletion_limit') ||
-                    (getSetting('compliance.minimum_posts_deletion_limit') > 0 && count($demopost->user->posts)
+                    (getSetting('compliance.minimum_posts_deletion_limit') > 0 && count($video->user->posts)
                     > getSetting('compliance.minimum_posts_deletion_limit')))
                     <a class="dropdown-item" href="javascript:void(0);"
-                        onclick="Post.confirmPostRemoval({{$demopost->id}});">
+                        onclick="Post.confirmPostRemoval({{$video->id}});">
                         {{__("Supprimer")}}
                     </a>
                     @endif
@@ -93,79 +89,42 @@ $Moderation = "\App\Model\Moderation";
         </div> --}}
 
     </div>
-    {{-- @if($demopost->moderationStatus == $Moderation::STATUS_DECLINED)
+    {{-- @if($video->moderationStatus == $Moderation::STATUS_DECLINED)
     <div class="aff_post_text">
         <span class="text-danger "> * {{ __("Ce post ne respecte pas nos normes de modération et ne peut pas être
             publié") }}</span>
     </div>
     @endif --}}
-    {{-- @if($demopost->moderationStatus == $Moderation::STATUS_PENDING )
+    {{-- @if($video->moderationStatus == $Moderation::STATUS_PENDING )
     <div class="aff_post_text">
         <span class="text-danger "> * {{ __("En attent de validation contenue média") }}</span>
     </div>
     @endif --}}
 
-    {{-- @if (isset($demopost->text))
+    {{-- @if (isset($video->text))
     <div class="aff_post_text">
-        {!! nl2br(e($demopost->text)) !!}
+        {!! nl2br(e($video->text)) !!}
     </div>
     @endif --}}
 
-
-    @if(count($demopost->attachments))
-    <div class="post-media">
-        @if($demopost->isSubbed || (getSetting('profiles.allow_users_enabling_open_profiles') && $demopost->user->open_profile))
-            @if(count($demopost->attachments) > 1)
-                <div class="swiper-container mySwiper pointer-cursor">
-                    <div class="swiper-wrapper">
-                        @foreach($demopost->attachments as $attachment)
-                        <div class="swiper-slide">
-                            @include('elements.feed.post-box-media-wrapper',[
-                            'attachment' => $attachment,
-                            'isGallery' => true,
-                            ])
+                    @php
+                        $images = json_decode($video->images, true);
+                    @endphp
+                    @if (is_array($images))
+                        @foreach ($images as $image)
+                        <div class="post-media">
+                            <video controls class="d-block w-100 mb-2 videocontrol">
+                                <source src='{{ url("storage/public/images/$image")}} ' type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                         @endforeach
-                    </div>
-                    <div class="swiper-button swiper-button-next p-pill-white">
-                        @include('elements.icon',['icon'=>'chevron-forward-outline'])</div>
-                    <div class="swiper-button swiper-button-prev p-pill-white">
-                        @include('elements.icon',['icon'=>'chevron-back-outline'])</div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            @else
-            @include('elements.feed.post-box-media-wrapper',[
-            'attachment' => $demopost->attachments[0],
-            'isGallery' => false,
-            ])
-        @endif
-        @endif
-        @else
-        @include('elements.feed.post-locked',['type'=>'subscription',])
-        @endif
-    </div>
-    @endif
+                    @endif
     <div class="post-footer aff_footer_post">
         <div>
             <div>
-                {{-- Likes --}}
-                @if($demopost->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&  $demopost->user->open_profile))
                 
-                @else
-                
-                @endif
-
-                @if(Auth::check() && $demopost->user->id != Auth::user()->id)
-                
-                @else
-                {{-- <div class="send-a-tip disabled" data-toggle="tooltip" data-placement="top" title=""
-                    data-original-title="{{ _('Abonnez-vous à moi') }}" --}}
-                    
-                @endif
-                @endif
             </div>
         </div>
     </div>
-
-   
 </div>
