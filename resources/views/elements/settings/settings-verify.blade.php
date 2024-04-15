@@ -192,7 +192,7 @@ Auth::user()->verification->status !== 'pending'))
                             </svg>
                         </div>
                         <div>
-                        {{__('Passeport / CIN')}}
+                        {{__('Passeport / CIN + Selfie avec CIN')}}
                         </div>
                     </div>
                     <div>
@@ -284,6 +284,11 @@ Auth::user()->verification->status !== 'pending'))
             <p>
             <img src="{{ asset('img/logo.webp') }}" alt="" style="width: 100px;  height: fit-content; object-fit: contain; margin: auto; display: block; margin-bottom: 20px;"> 
             </p>
+            <div class="progress" style="width:0%;height:3px;background-color:#2e8dcd" id="#progress-bar" >
+                <div class="progress-bar progress-bar-primary" role="progressbar"  data-dz-uploadprogress>
+                    <span id="#progress-text"  class="progress-text" ></span>
+                </div>
+            </div>
                 <div class="verif_body">
                     <div class="dropzone-previews dropzone w-100"></div>
                 </div>

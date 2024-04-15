@@ -643,7 +643,9 @@ class SettingsController extends Controller
      */
     public function saveVerifyRequest(Request $request)
     {
+        // 
         if ($request->session()->get('verifyAssets')) {
+            Auth::user()->load("verification");
             if (!Auth::user()->verification) {
                 UserVerify::create([
                     'user_id' => Auth::user()->id,
@@ -662,18 +664,22 @@ class SettingsController extends Controller
             // Sending out admin email
             $adminEmails = User::where('role_id', 1)->select(['email', 'name'])->get();
             foreach ($adminEmails as $user) {
-                EmailsServiceProvider::sendGenericEmail(
-                    [
-                        'email' => $user->email,
-                        'subject' => __('Action required | New identity check'),
-                        'title' => __('Hello, :name,', ['name' => $user->name]),
-                        'content' => __('There is a new identity check on :siteName that requires your attention.', ['siteName' => getSetting('site.name')]),
-                        'button' => [
-                            'text' => __('Go to admin'),
-                            'url' => route('voyager.dashboard'),
-                        ],
-                    ]
-                );
+                try {
+                    EmailsServiceProvider::sendGenericEmail(
+                        [
+                            'email' => $user->email,
+                            'subject' => __('Action required | New identity check'),
+                            'title' => __('Hello, :name,', ['name' => $user->name]),
+                            'content' => __('There is a new identity check on :siteName that requires your attention.', ['siteName' => getSetting('site.name')]),
+                            'button' => [
+                                'text' => __('Go to admin'),
+                                'url' => route('voyager.dashboard'),
+                            ],
+                        ]
+                    );
+                } catch (\Throwable $th) {
+                   continue;
+                }
             }
 
             $request->session()->forget('verifyAssets');

@@ -85,8 +85,15 @@
                 </a>
             </div> --}}
 
-            <div>
+            {{-- <div>
                 <a class="" href="/search?query=&amp;filter=videos">
+                    <div>
+                    {{__('Videos')}}
+                    </div>
+                </a>
+            </div> --}}
+            <div>
+                <a class="" href="/search?query=&amp;filter=videosPres">
                     <div>
                     {{__('Videos')}}
                     </div>
