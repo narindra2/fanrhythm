@@ -11,6 +11,7 @@ class VerifiedUserController extends Controller
     {
         $verifiedUsers = UserVerify::with('user')
                                    ->where('status', 'verified')
+                                   ->orderBy('id', 'DESC')
                                    ->paginate(8); // Pagination avec 10 éléments par page
         return view('verified_user', compact('verifiedUsers'));
     }

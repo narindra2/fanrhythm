@@ -314,4 +314,3 @@ Route::fallback(function () {
 Route::get('/mise_a_jour_abonnement', 'AbonnementController@miseAJour');
 
 Route::resource('demoposts', 'DemopostController');
-
