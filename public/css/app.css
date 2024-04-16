@@ -68,6 +68,7 @@ body {
 }
 .dark_theme .dropdown-menu {
     background-color: #111;
+    color: #fff;
 }
 .dark_theme .dropdown-menu .dropdown-item {
     color: #fff;
