@@ -107,7 +107,9 @@ class Attachment extends Model
     public function getAttachmentTypeAttribute()
 
     {
-
+        if (env("APP_DEV_LOCAL")) {
+            return "https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/1.svg" ;
+        }
         return AttachmentServiceProvider::getAttachmentType($this->type);
 
     }
@@ -171,7 +173,9 @@ class Attachment extends Model
     public function getPathAttribute()
 
     {   
-
+        if (env("APP_DEV_LOCAL")) {
+            return "https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/1.svg" ;
+        }
         if ( !$this->post_id &&  !$this->message_id && !$this->payment_request_id ) {
 
             /** attachmt avatr */
@@ -183,7 +187,7 @@ class Attachment extends Model
             return GenericHelperServiceProvider::getStorageAvatarPath($this->filename);
 
         }
-        return str_replace('/public',""  ,AttachmentServiceProvider::getFilePathByAttachment($this)) ;
+        // return str_replace('/public',""  ,AttachmentServiceProvider::getFilePathByAttachment($this)) ;
         return AttachmentServiceProvider::getFilePathByAttachment($this);
 
     }
@@ -194,6 +198,10 @@ class Attachment extends Model
 
     {
 
+
+        if (env("APP_DEV_LOCAL")) {
+            return "https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/1.svg" ;
+        } 
         if ($this->message_id) {
 
             $path = '/messenger/images/';

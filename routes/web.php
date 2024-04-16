@@ -295,6 +295,7 @@ Route::get('/pages/{slug}', ['uses' => 'PublicPagesController@getPage', 'as'   =
 Route::get('/search', ['uses' => 'SearchController@index', 'as' => 'search.get']);
 Route::get('/search/posts', ['uses' => 'SearchController@getSearchPosts', 'as' => 'search.posts']);
 Route::get('/search/users', ['uses' => 'SearchController@getUsersSearch', 'as' => 'search.users']);
+Route::get('/search/demopost', ['uses' => 'SearchController@getDemopostSearch', 'as' => 'search.demopost']);
 Route::get('/search/streams', ['uses' => 'SearchController@getStreamsSearch', 'as' => 'search.streams']);
 
 // Public profile

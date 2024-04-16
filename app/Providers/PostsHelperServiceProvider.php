@@ -7,7 +7,7 @@ namespace App\Providers;
 
 
 use App\Model\Attachment;
-
+use App\Model\Demopost;
 use App\Model\Post;
 
 use App\Model\PostComment;
@@ -1281,6 +1281,60 @@ class PostsHelperServiceProvider extends ServiceProvider
         }
 
         return $postStatus;
+
+    }
+    public static function getDepostPost($options){
+
+        $demopost = Demopost::with(["user" => function($user) use ($options){
+            if(isset($options['userId'])){
+                $user->where('user_id', $options['userId']);
+            }
+            if(isset($options['searchTerm'])){
+                $user->where('name', 'like', '%'.$options['searchTerm'].'%');
+            }
+    
+        }]);
+        
+        $showUsername = true;
+        if(isset($options['showUsername']) && $options['showUsername'] == false) $showUsername = false;
+
+        $demopost->latest();
+        if (isset($options['pageNumber'])) {
+            $demopost = $demopost->paginate(9, ['*'], 'page', $options['pageNumber'])->appends(request()->query());
+        } else {
+            $demopost = $demopost->paginate(1)->appends(request()->query());
+        }
+
+        if(!isset($options['encodePostsToHtml'])){
+            $options['encodePostsToHtml'] = false;
+        }
+        if ($options['encodePostsToHtml']) {
+            // Posts encoded as JSON
+            $data = [
+                'total' => $demopost->total(),
+                'currentPage' => $demopost->currentPage(),
+                'last_page' => $demopost->lastPage(),
+                'prev_page_url' => $demopost->previousPageUrl(),
+                'next_page_url' => $demopost->nextPageUrl(),
+                'first_page_url' => $demopost->nextPageUrl(),
+                'hasMore' => $demopost->hasMorePages(),
+            ];
+            $demopostData = $demopost->map(function ($demopost) use ( $data, $options, $showUsername ) {
+                $demopost->setAttribute('postPage',$data['currentPage']);
+                $demopost = ['id' => $demopost->id, 'html' => View::make('elements.feed.post-box-presentation-video')->with('video', $demopost)->with('showLiveIndicators',false)->with('showUsername', $showUsername)->render()];
+                return $demopost;
+            });
+            $data['posts'] = $demopostData;
+        } else {
+            // Collection data posts | To be rendered on the server side
+            $postsCurrentPage = $demopost->currentPage();
+            $demopost->map(function ($user) use ($postsCurrentPage) {
+                $user->setAttribute('postPage',$postsCurrentPage);
+                return $user;
+            });
+            $data = $demopost;
+        }
+        return $data;
 
     }
 

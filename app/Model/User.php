@@ -60,12 +60,18 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
      */
     public function getAvatarAttribute($value)
     {
+        if (env("APP_DEV_LOCAL")) {
+            return "https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/1.svg" ;
+        }
         return str_replace(['/public',"http://127.0.0.1:8000"],["" ,"https://web.fanrhythm.com"] ,GenericHelperServiceProvider::getStorageAvatarPath($value)) ;
         return GenericHelperServiceProvider::getStorageAvatarPath($value);
     }
 
     public function getCoverAttribute($value)
     {
+        if (env("APP_DEV_LOCAL")) {
+            return "https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/1.svg" ;
+        }
         return str_replace(['/public',"http://127.0.0.1:8000"],["" ,"https://web.fanrhythm.com"] ,GenericHelperServiceProvider::getStorageCoverPath($value)) ;
         return GenericHelperServiceProvider::getStorageCoverPath($value);
     }

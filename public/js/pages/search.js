@@ -6,7 +6,8 @@
 
 $(function () {
 
-    if(searchType === 'feed'){
+    if(searchType === 'feed' || searchType === 'videosPres' ){
+        
         if(typeof paginatorConfig !== 'undefined'){
             if((paginatorConfig.total > 0 && paginatorConfig.total > paginatorConfig.per_page) && paginatorConfig.hasMore) {
                 PostsPaginator.initScrollLoad();

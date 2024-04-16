@@ -145,7 +145,8 @@ class SearchController extends Controller
                     'per_page' => $demoposts->perPage(),
                     'hasMore' => $demoposts->hasMorePages(),
                 ],
-                'searchType' => 'streams'
+                'initialPostIDs' => $demoposts->pluck('id')->toArray(),
+                'searchType' => 'feed'
             ];
             $viewData = [
                 'demoposts' => $demoposts,
@@ -194,6 +195,18 @@ class SearchController extends Controller
 
     }
 
+    /**
+     * Gets paginated (public) streams
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getDemopostSearch(Request $request)
+    {
+        $filters = $this->processFilterParams($request);
+        return response()->json(['success'=>true, 'data'=> PostsHelperServiceProvider::getDepostPost(['searchTerm' => $filters['searchTerm'],'encodePostsToHtml'=>true, ])]);
+    }
+
+    
     /**
      * Fetches AJAX paginated (feed search) content
      *

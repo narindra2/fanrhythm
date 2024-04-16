@@ -153,7 +153,8 @@ Minify::stylesheet([
             @include('elements.feed.posts-loading-spinner')
         @endif
         @if(isset($demoposts))
-            <div class="streams-box streams-wrapper aff_search_result_user users-box users-wrappe">
+            @include('elements.feed.posts-load-more')
+            <div class="feed-box mt-0 pt-0 posts-wrapper">
                 @include('elements.search.demoposts-wrapper',['demoposts'=>$demoposts])
             </div>
             @include('elements.feed.posts-loading-spinner')
