@@ -135,7 +135,7 @@ class SearchController extends Controller
             ];
         }
         elseif($filters['postsFilter'] == 'videosPres') {
-            $demoposts = Demopost::with(["user:id,name,username,avatar"])->paginate(1)->appends(request()->query());
+            $demoposts = Demopost::with(["user:id,name,username,avatar"])->paginate(3)->appends(request()->query());
             $jsData = [
                 'paginatorConfig' => [
                     'next_page_url' => str_replace('/search', '/search/demopost', $demoposts->nextPageUrl()),

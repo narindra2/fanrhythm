@@ -1302,10 +1302,11 @@ class PostsHelperServiceProvider extends ServiceProvider
         if(isset($options['showUsername']) && $options['showUsername'] == false) $showUsername = false;
 
         $demopost->latest();
+
         if (isset($options['pageNumber'])) {
             $demopost = $demopost->paginate(9, ['*'], 'page', $options['pageNumber'])->appends(request()->query());
         } else {
-            $demopost = $demopost->paginate(1)->appends(request()->query());
+            $demopost = $demopost->paginate(3)->appends(request()->query());
         }
 
         if(!isset($options['encodePostsToHtml'])){
