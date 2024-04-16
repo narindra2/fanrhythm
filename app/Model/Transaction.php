@@ -130,7 +130,7 @@ class Transaction extends Model
     static function getTransactionFees($transaction)
     {
         $fees = 0;
-        $type = $transaction["payment_provider"] ?? $transaction->payment_provider;
+        $type = $transaction["type"] ?? $transaction->type;
         $transaction_fees = str_replace([" " ,"," ,"%"],["",".",""], ($transaction["transaction_fees"] ?? $transaction->transaction_fees));
         if($type != Self::DEPOSIT_TYPE && $transaction_fees){
             $fees = (($transaction['amount_without_free'] ?? $transaction->amount_without_free)  * (float) $transaction_fees) /100;

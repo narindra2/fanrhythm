@@ -357,7 +357,7 @@ var checkout = {
 					$('.checkout-continue-btn .spinner-border').addClass('d-none');
 					return;
 				}	
-				// callback();
+				callback();
 			},
 			error: function (result) {
 				$('.checkout-continue-btn .spinner-border').addClass('d-none');

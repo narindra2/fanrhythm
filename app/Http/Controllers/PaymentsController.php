@@ -225,7 +225,6 @@ class PaymentsController extends Controller
             }
 
 
-
             if ($transaction['payment_provider'] == Transaction::PAYDUNYA_PROVIDER) {
 
                 $data = (new PaydunyaService)->initializePayment((int) $transaction['amount']);
@@ -417,10 +416,8 @@ class PaymentsController extends Controller
 
                     return $this->paymentHandler->redirectByTransaction($transaction);
             }
-
             // subtract transaction fees balance
             $transaction['transaction_fees']  = str_replace([" " ,"," ],["","."], getSetting("payments.transaction_fees"));
-
             $transaction['amount']  =  $transaction['amount'] - Transaction::getTransactionFees($transaction);
 
             $transaction->save();
