@@ -1,23 +1,28 @@
 @if(count($demoposts))
+    @php
+        $lists = ListsHelper::getUserLists();
+    @endphp
     @foreach($demoposts as $video)
         @include('elements.feed.post-box-presentation-video',['video' => $video])
+        
     @endforeach
 <style>
-
     .aff_droite{
         /* display: none; */
     }
-
     .aff_gauche {
         width: calc(100% - 40px);
     }
+    .aff_footer_post {
+        padding: 0 !important;
+    }
+
+    .aff_header_post {
+        margin-bottom: 3px;
+        padding: 12px !important;
+    }
 </style>
-    @if (Auth::check())
-        @include('elements.lists.list-add-user-dialog', [
-            'user_id' => 1,
-            'lists' => ListsHelper::getUserLists(),
-        ])
-    @endif
+   
 @else
 
 <div class="aff_edit_info_form">

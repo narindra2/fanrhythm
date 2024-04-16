@@ -33,16 +33,16 @@
                 @endif href="javascript:void(0)">{{$video->created_at->diffForHumans(null,false,true)}}
             </a> --}}
            
-              <span class="pointer-cursor" data-toggle="tooltip" data-placement="top" title="{{ __('Add to your lists') }}" onclick="Lists.showListAddModal();">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
-                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-                        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
-                    </svg>
+              <span class="pointer-cursor" style="padding-bottom: 4px;" data-toggle="tooltip" data-placement="top" title="{{ __('Add to your lists') }}" onclick="Lists.showListAddModal({{ $video->user->id }});">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+                  </svg>
             </span>
             <div @if (!Auth::check()) onclick="goToRegister()" @endif class="dropdown {{GenericHelper::getSiteDirection() == 'rtl' ? 'dropright' : 'dropleft'}}">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                     aria-expanded="false">
-                    <svg width="5px" height="18px" viewBox="0 0 5 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    <svg width="5px" height="15px" viewBox="0 0 5 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -127,13 +127,7 @@
         
     </div>
 </div>
-<style>
-    .aff_footer_post {
-        padding: 0 !important;
-    }
+@if (Auth::check())
+    @include('elements.lists.list-add-user-dialog', ['user_id' =>  $video->user->id,'the_user_id' =>  $video->user->id, 'lists' => $lists ])
+@endif
 
-    .aff_header_post {
-        margin-bottom: 3px;
-        padding: 12px !important;
-    }
-</style>

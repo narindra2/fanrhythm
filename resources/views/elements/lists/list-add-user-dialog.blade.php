@@ -1,4 +1,11 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="list-add-user-dialog">
+
+@php
+    $modalId = "";
+    if (isset($the_user_id)) {
+        $modalId  = "-".$the_user_id;
+    }
+@endphp
+<div class="modal fade" tabindex="-1" role="dialog" id='list-add-user-dialog{{ $modalId   }}'>
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -26,7 +33,7 @@
                     @foreach($lists as $list)
                         <div class="form-check aff_user_list_name_add">
                             <div>
-                                <input class="form-check-input input-group-lg pointer-cursor" data-listID="{{$list->id}}" type="checkbox" value="" {{ListsHelper::isMemberList($list->members, $user_id) ? 'checked' : ''}} id="list-{{$list->id}}">
+                                <input class="form-check-input input-group-lg pointer-cursor" data-listID="{{$list->id}}" type="checkbox" value="" {{ListsHelper::isMemberList($list->members, $the_user_id ?? $user_id) ? 'checked' : ''}} id="list-{{$list->id}}">
                                 <label class="pointer-cursor" for="list-{{$list->id}}">
                                     <div>
                                     {{__($list->name)}}
@@ -34,8 +41,6 @@
                                  
                                 </label>
                             </div>
-
-
                             <svg width="7px" height="13px" viewBox="0 0 7 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
                                     <g id="17---Listes" transform="translate(-1117.000000, -217.000000)" stroke="#8E8E8E" stroke-width="2">

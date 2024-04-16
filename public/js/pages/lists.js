@@ -93,15 +93,20 @@ var Lists = {
     /**
      * Shows up list create dialog
      */
-    showListAddModal: function(){
-        $('#list-add-user-dialog').modal('show');
-        Lists.initListsCheckboxes();
+    showListAddModal: function(the_user_id = 0){
+        if (the_user_id) {
+            $('#list-add-user-dialog-'+ the_user_id).modal('show');
+        }else{
+            $('#list-add-user-dialog').modal('show');
+        }
+       
+        Lists.initListsCheckboxes(the_user_id);
     },
 
     /**
      * Initiates list checkboxes ( on profile )
      */
-    initListsCheckboxes: function(){
+    initListsCheckboxes: function(the_user_id = 0){
         let listCheckboxes = $('input[type=checkbox]');
         listCheckboxes.unbind('click');
         listCheckboxes.on('click',function () {
@@ -109,11 +114,9 @@ var Lists = {
             if(!$(this).is(':checked')){
                 type = 'remove';
             }
-            Lists.updateListMember(
-                $(this).data('listid'),
-                profileVars.user_id,
-                type
-            );
+            let user = profileVars.user_id;
+            
+            Lists.updateListMember(  $(this).data('listid'),user,type);
         });
     },
 

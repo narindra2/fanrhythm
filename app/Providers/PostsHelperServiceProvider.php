@@ -6,33 +6,34 @@ namespace App\Providers;
 
 
 
-use App\Model\Attachment;
-use App\Model\Demopost;
-use App\Model\Post;
-
-use App\Model\PostComment;
-
-use App\Model\Stream;
-
-use App\Model\Subscription;
-
-use App\Model\Transaction;
-
-use App\Model\UserList;
+use DB;
+use View;
+use Cookie;
 
 use App\User;
 
 use Carbon\Carbon;
 
-use Cookie;
+use App\Model\Post;
 
-use DB;
+use App\Model\Stream;
+
+use App\Model\Demopost;
+
+use App\Model\UserList;
+
+use App\Model\Attachment;
+
+use App\Model\PostComment;
+
+use App\Model\Transaction;
+
+use App\Model\Subscription;
 
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\ServiceProvider;
-
-use View;
+use App\Providers\ListsHelperServiceProvider;
 
 
 
@@ -1284,14 +1285,16 @@ class PostsHelperServiceProvider extends ServiceProvider
 
     }
     public static function getDepostPost($options){
-
+        $lists = ListsHelperServiceProvider::getUserLists();
         $demopost = Demopost::with(["user" => function($user) use ($options){
+            $user->select("id","name","username","avatar");
             if(isset($options['userId'])){
                 $user->where('user_id', $options['userId']);
             }
             if(isset($options['searchTerm'])){
                 $user->where('name', 'like', '%'.$options['searchTerm'].'%');
             }
+
     
         }]);
         
@@ -1319,9 +1322,15 @@ class PostsHelperServiceProvider extends ServiceProvider
                 'first_page_url' => $demopost->nextPageUrl(),
                 'hasMore' => $demopost->hasMorePages(),
             ];
-            $demopostData = $demopost->map(function ($demopost) use ( $data, $options, $showUsername ) {
+            $demopostData = $demopost->map(function ($demopost) use ( $data, $options,$lists, $showUsername ) {
                 $demopost->setAttribute('postPage',$data['currentPage']);
-                $demopost = ['id' => $demopost->id, 'html' => View::make('elements.feed.post-box-presentation-video')->with('video', $demopost)->with('showLiveIndicators',false)->with('showUsername', $showUsername)->render()];
+                $demopost = ['id' => $demopost->id, 'html' => View::make('elements.feed.post-box-presentation-video')
+                    ->with('video', $demopost)
+                    ->with('lists',$lists)
+                    ->with('user_id',$demopost->user->id)
+                    ->with('the_user_id',$demopost->user->id)
+                    ->with('showLiveIndicators',false)
+                    ->with('showUsername', $showUsername)->render()];
                 return $demopost;
             });
             $data['posts'] = $demopostData;
