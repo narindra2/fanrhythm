@@ -116,8 +116,9 @@
     @if (is_array($images))
         @foreach ($images as $image)
             <div class="post-media">
-                <video autoplay controls  class="d-block w-100 mb-2 videocontrol">
-                     <source src='{{ url("storage/public/images/$image") }} ' type="video/mp4">  Your browser does not support the video tag.
+                <video style="min-height: auto;height: auto; max-height: 500px;" controls class="d-block w-100 mb-2 videocontrol">
+                    <source src='{{ url("storage/public/images/$image") }}' type="video/mp4">  Your browser does not support the video tag.
+                     {{-- <source src='https://web.fanrhythm.com/storage/public/images/171214812817.mp4' type="video/mp4">  Your browser does not support the video tag. --}}
                 </video>
             </div>
         @endforeach

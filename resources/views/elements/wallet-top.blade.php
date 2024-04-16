@@ -48,9 +48,10 @@
     </div>
     <style>
         .wallet-desktop{
+            z-index: 10;
             display: flex;
             justify-content: end;
-            margin-bottom: -110px;
+            margin-bottom: -89px;
             padding: 43px 0;
         }
         .wallet-desktop--with-button {

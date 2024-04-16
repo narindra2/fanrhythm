@@ -1286,7 +1286,7 @@ class PostsHelperServiceProvider extends ServiceProvider
     }
     public static function getDepostPost($options){
         $lists = ListsHelperServiceProvider::getUserLists();
-        $demopost = Demopost::with(["user" => function($user) use ($options){
+        $demoposts = Demopost::with(["user" => function($user) use ($options){
             $user->select("id","name","username","avatar");
             if(isset($options['userId'])){
                 $user->where('user_id', $options['userId']);
@@ -1301,12 +1301,12 @@ class PostsHelperServiceProvider extends ServiceProvider
         $showUsername = true;
         if(isset($options['showUsername']) && $options['showUsername'] == false) $showUsername = false;
 
-        $demopost->latest();
+        $demoposts->latest();
 
         if (isset($options['pageNumber'])) {
-            $demopost = $demopost->paginate(9, ['*'], 'page', $options['pageNumber'])->appends(request()->query());
+            $demoposts = $demoposts->paginate(9, ['*'], 'page', $options['pageNumber'])->appends(request()->query());
         } else {
-            $demopost = $demopost->paginate(3)->appends(request()->query());
+            $demoposts = $demoposts->paginate(3)->appends(request()->query());
         }
 
         if(!isset($options['encodePostsToHtml'])){
@@ -1315,15 +1315,15 @@ class PostsHelperServiceProvider extends ServiceProvider
         if ($options['encodePostsToHtml']) {
             // Posts encoded as JSON
             $data = [
-                'total' => $demopost->total(),
-                'currentPage' => $demopost->currentPage(),
-                'last_page' => $demopost->lastPage(),
-                'prev_page_url' => $demopost->previousPageUrl(),
-                'next_page_url' => $demopost->nextPageUrl(),
-                'first_page_url' => $demopost->nextPageUrl(),
-                'hasMore' => $demopost->hasMorePages(),
+                'total' => $demoposts->total(),
+                'currentPage' => $demoposts->currentPage(),
+                'last_page' => $demoposts->lastPage(),
+                'prev_page_url' => $demoposts->previousPageUrl(),
+                'next_page_url' => $demoposts->nextPageUrl(),
+                'first_page_url' => $demoposts->nextPageUrl(),
+                'hasMore' => $demoposts->hasMorePages(),
             ];
-            $demopostData = $demopost->map(function ($demopost) use ( $data, $options,$lists, $showUsername ) {
+            $demopostsData = $demoposts->map(function ($demopost) use ( $data, $options,$lists, $showUsername ) {
                 $demopost->setAttribute('postPage',$data['currentPage']);
                 $demopost = ['id' => $demopost->id, 'html' => View::make('elements.feed.post-box-presentation-video')
                     ->with('video', $demopost)
@@ -1334,15 +1334,15 @@ class PostsHelperServiceProvider extends ServiceProvider
                     ->with('showUsername', $showUsername)->render()];
                 return $demopost;
             });
-            $data['posts'] = $demopostData;
+            $data['posts'] = $demopostsData;
         } else {
             // Collection data posts | To be rendered on the server side
-            $postsCurrentPage = $demopost->currentPage();
-            $demopost->map(function ($user) use ($postsCurrentPage) {
+            $postsCurrentPage = $demoposts->currentPage();
+            $demoposts->map(function ($user) use ($postsCurrentPage) {
                 $user->setAttribute('postPage',$postsCurrentPage);
                 return $user;
             });
-            $data = $demopost;
+            $data = $demoposts;
         }
         return $data;
 
