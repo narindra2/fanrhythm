@@ -114,9 +114,13 @@ var Lists = {
             if(!$(this).is(':checked')){
                 type = 'remove';
             }
-            let user = profileVars.user_id;
-            
-            Lists.updateListMember(  $(this).data('listid'),user,type);
+            let user = 0;
+            if (the_user_id) {
+                 user = the_user_id;
+            } else {
+                 user = profileVars.user_id;
+            }
+            Lists.updateListMember($(this).data('listid'),user,type);
         });
     },
 
