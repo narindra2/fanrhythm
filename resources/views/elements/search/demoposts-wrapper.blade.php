@@ -24,7 +24,7 @@
         padding: 12px !important;
     }
     .aff_post_block {
-        margin-bottom:  12%;
+        margin-bottom: 19%;
     }
     
 </style>

@@ -25,6 +25,7 @@ class SearchController extends Controller
         'people',
         'photos',
         'videos',
+        'videosPres',
     ];
 
     public function __construct()
@@ -53,23 +54,24 @@ class SearchController extends Controller
         $jsData = $viewData = [];
         $filters = $this->processFilterParams($request);
 
-        // Redirecting to default people filter if user is not logged in buet selected custom filter
-        if(!Auth::check() && $filters['postsFilter'] && $filters['postsFilter'] != 'people') {
-            return redirect(route('search.get'));
+        // // Redirecting to default people filter if user is not logged in buet selected custom filter
+        // if(!Auth::check() && $filters['postsFilter'] && $filters['postsFilter'] != 'people') {
+        //     return redirect(route('search.get'));
+        // }
+
+        $tabCanNotSeenInPublic = ['top','live',"photos"];
+        if(!Auth::check() &&  in_array($request->get("filter"),$tabCanNotSeenInPublic)){
+            return redirect(route('register'));
         }
         
+        if(!Auth::check()){
+            $this->filters =  $filters;
+        }
         // If no filter is selected & user not logged in, default UI to people searcg
         if(!$filters['postsFilter'] && !Auth::check()){
             $filters['postsFilter'] = 'people';
         }
-
-        
-        if(!Auth::check()){
-            $this->filters = ['people'];
-        }
-        if(!Auth::check() &&  $request->get("filter") != 'people'){
-            return redirect(route('register'));
-        }  
+          
         /**
          * People custom filter
          */
@@ -135,7 +137,7 @@ class SearchController extends Controller
             ];
         }
         elseif($filters['postsFilter'] == 'videosPres') {
-            $demoposts = Demopost::with(["user:id,name,username,avatar"])->paginate(3)->appends(request()->query());
+            $demoposts = Demopost::with(["user:id,name,username,avatar"])->orderBy("id","DESC")->paginate(3)->appends(request()->query());
             $jsData = [
                 'paginatorConfig' => [
                     'next_page_url' => str_replace('/search', '/search/demopost', $demoposts->nextPageUrl()),

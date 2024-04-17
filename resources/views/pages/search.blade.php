@@ -115,7 +115,7 @@ Minify::stylesheet([
                 <div>
                     <a class="{{ $currentFilter == 'top' ? 'active' : '' }}" href="/search?query=&filter=top">
                         <div>
-                            {{__('Top')}}
+                            {{__('Posts')}}
                         </div>
                     </a>
                 </div>
@@ -177,6 +177,7 @@ Minify::stylesheet([
         @endif
     </div>
     <div class="aff_droite">
+    @if (Auth::check())
         @include('elements.feed.suggestions-box',['profiles'=>$suggestions,'isMobile' => false])
         @if(getSetting('custom-code-ads.sidebar_ad_spot'))
         <div class="mt-4">
@@ -185,16 +186,8 @@ Minify::stylesheet([
         @endif
 
         @include('elements.checkout.checkout-box')
+        @endif
     </div>
 </div>
-
-{{-- <style>
-    .fp-table {
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-    }
-</style> --}}
 @include('template.searchmobile')
-
 @stop

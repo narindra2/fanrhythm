@@ -89,7 +89,7 @@ class ListsHelperServiceProvider extends ServiceProvider
      */
     public static function getUserLists()
     {
-        $lists = UserList::with(['members', 'members.user', 'members.userPosts'])->where('user_id', Auth::user()->id)->get()->each(function ($item, $key) {
+        $lists = UserList::with(['members', 'members.user', 'members.userPosts'])->where('user_id', Auth::user()->id ?? 0)->get()->each(function ($item, $key) {
             $item->posts_count = 0;
             foreach ($item->members as $member) {
                 $item->posts_count += count($member->userPosts->posts);
