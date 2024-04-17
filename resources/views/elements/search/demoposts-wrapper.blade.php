@@ -2,19 +2,17 @@
     @php
         $lists = ListsHelper::getUserLists();
     @endphp
-    <div id="fullpage">
+    {{-- <div id="fullpage"> --}}
         @foreach($demoposts as $video)
             @include('elements.feed.post-box-presentation-video',['video' => $video])
         @endforeach
-    </div>
+    {{-- </div> --}}
     
 <style>
-    .aff_droite{
-        /* display: none; */
-    }
-    .aff_gauche {
+ 
+    /* .aff_gauche {
         width: calc(100% - 40px);
-    }
+    } */
     .aff_footer_post {
         padding: 0 !important;
     }
@@ -26,6 +24,9 @@
     .aff_post_block {
         margin-bottom: 19%;
     }
+    /* #aff_content{
+        wid
+    } */
     
 </style>
 

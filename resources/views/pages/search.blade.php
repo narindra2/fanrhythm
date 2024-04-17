@@ -128,7 +128,7 @@ Minify::stylesheet([
                     </a>
                 </div>
     
-                <div style="display: none">
+                <div >
                     <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?query=&filter=photos">
                         <div>
                             {{__('Photos')}}
@@ -173,7 +173,7 @@ Minify::stylesheet([
             </div>
 
             <div style="display: none">
-                <a class="" href="/search?query=&amp;filter=photos">
+                <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?query=&filter=photos">
                     <div>
                     {{__('Photos')}}
                     </div>
