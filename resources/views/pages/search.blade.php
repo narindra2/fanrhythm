@@ -31,6 +31,18 @@ Minify::javascript([
 '/js/pages/search.js',
 ])->withFullUrl()
 !!}
+{{-- <script  src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/vendors/easings.min.js" type="text/javascript"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.min.js" type="text/javascript"></script>
+<script>
+     $(document).ready(function() {
+
+        $('#fullpage').fullpage({
+            //options here
+            fixedElements: '#header-fp',
+            scrollOverflow: true
+        });
+    }); --}}
+</script>
 @stop
 
 @section('styles')
@@ -45,88 +57,92 @@ Minify::stylesheet([
 '/css/pages/search.css',
 ])->withFullUrl()
 !!}
+{{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.min.css" /> --}}
 @stop
+
 
 @section('content')
 
 <div id="aff_content">
     <div class="aff_gauche">
-        <p class="aff_title_feed">
-            {{__('Rechercher')}}
-        </p>
-
-        <div id="aff_search">
-            @include('elements.search-box')
-
+        <div id="header-fp" >
+            <p class="aff_title_feed">
+                {{__('Rechercher')}}
+            </p>
+    
+            <div id="aff_search">
+                @include('elements.search-box')
+    
+                @if($activeFilter == 'people')
+                <span class="search-back-button" data-toggle="collapse" href="#colappsableFilters" role="button"
+                    aria-expanded="false" aria-controls="colappsableFilters">
+    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-sliders">
+                        <line x1="4" y1="21" x2="4" y2="14"></line>
+                        <line x1="4" y1="10" x2="4" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12" y2="3"></line>
+                        <line x1="20" y1="21" x2="20" y2="16"></line>
+                        <line x1="20" y1="12" x2="20" y2="3"></line>
+                        <line x1="1" y1="14" x2="7" y2="14"></line>
+                        <line x1="9" y1="8" x2="15" y2="8"></line>
+                        <line x1="17" y1="16" x2="23" y2="16"></line>
+                    </svg>
+                </span>
+                @endif
+            </div>
             @if($activeFilter == 'people')
-            <span class="search-back-button" data-toggle="collapse" href="#colappsableFilters" role="button"
-                aria-expanded="false" aria-controls="colappsableFilters">
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-sliders">
-                    <line x1="4" y1="21" x2="4" y2="14"></line>
-                    <line x1="4" y1="10" x2="4" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="12"></line>
-                    <line x1="12" y1="8" x2="12" y2="3"></line>
-                    <line x1="20" y1="21" x2="20" y2="16"></line>
-                    <line x1="20" y1="12" x2="20" y2="3"></line>
-                    <line x1="1" y1="14" x2="7" y2="14"></line>
-                    <line x1="9" y1="8" x2="15" y2="8"></line>
-                    <line x1="17" y1="16" x2="23" y2="16"></line>
-                </svg>
-            </span>
+            <div class="mobile-search-filter collapse {{$searchFilterExpanded ? 'show' : ''}}" id="colappsableFilters">
+                @include('elements.search.search-filters')
+            </div>
             @endif
-        </div>
-        @if($activeFilter == 'people')
-        <div class="mobile-search-filter collapse {{$searchFilterExpanded ? 'show' : ''}}" id="colappsableFilters">
-            @include('elements.search.search-filters')
-        </div>
-        @endif
-
-        @php
-        $currentFilter = request('filter'); // Obtient le filtre actuel à partir de l'URL
-        @endphp
-
-        <div class="aff_profil_tab">
-            <div>
-                <a class="{{ $currentFilter == 'live' ? 'active' : '' }}" href="/search?query=&filter=live">
-                    <div>
-                        {{__('Live')}}
-                    </div>
-                </a>
-            </div>
-
-            <div>
-                <a class="{{ $currentFilter == 'top' ? 'active' : '' }}" href="/search?query=&filter=top">
-                    <div>
-                        {{__('Top')}}
-                    </div>
-                </a>
-            </div>
-
-            <div>
-                <a class="{{ $currentFilter == null ? 'active' : '' }}" href="/verified_user">
-                    <div>
-                        {{__('People')}}
-                    </div>
-                </a>
-            </div>
-
-            {{-- <div>
-                <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?query=&filter=photos">
-                    <div>
-                        {{__('Photos')}}
-                    </div>
-                </a>
-            </div> --}}
-
-            <div>
-                <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="/search?query=&filter=videosPres">
-                    <div>
-                        {{__('Videos')}}
-                    </div>
-                </a>
+    
+            @php
+            $currentFilter = request('filter'); // Obtient le filtre actuel à partir de l'URL
+            @endphp
+    
+            <div class="aff_profil_tab">
+                <div>
+                    <a class="{{ $currentFilter == 'live' ? 'active' : '' }}" href="/search?query=&filter=live">
+                        <div>
+                            {{__('Live')}}
+                        </div>
+                    </a>
+                </div>
+    
+                <div>
+                    <a class="{{ $currentFilter == 'top' ? 'active' : '' }}" href="/search?query=&filter=top">
+                        <div>
+                            {{__('Top')}}
+                        </div>
+                    </a>
+                </div>
+    
+                <div>
+                    <a class="{{ $currentFilter == null ? 'active' : '' }}" href="/verified_user">
+                        <div>
+                            {{__('People')}}
+                        </div>
+                    </a>
+                </div>
+    
+                {{-- <div>
+                    <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?query=&filter=photos">
+                        <div>
+                            {{__('Photos')}}
+                        </div>
+                    </a>
+                </div> --}}
+    
+                <div>
+                    <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="/search?query=&filter=videosPres">
+                        <div>
+                            {{__('Videos')}}
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -172,7 +188,13 @@ Minify::stylesheet([
     </div>
 </div>
 
-
+{{-- <style>
+    .fp-table {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+</style> --}}
 @include('template.searchmobile')
 
 @stop

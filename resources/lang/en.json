@@ -105,7 +105,7 @@
     "Retour": "Back",
     "Ajouter un commentaire ...": "Add a comment ...",
     "Téléchargez votre vidéo de présentation": "Upload your presentation video", 
-    "Celle-ci sera visible publiquement sur votre profil, offrant à tous une fenêtre unique sur votre personnalité et vos passions.": "This will be publicly visible on your profile, giving everyone a unique window into your personality and passions.",
+    "Celle-ci sera visible publiquement sur votre profil et sur le flux de la plateforme, donnant à chacun un aperçu unique de votre personnalité et de vos passions.": "This will be publicly visible on your profile and on the platform feed, giving everyone a unique insight into your personality and passions.",
     "Choisir un fichier": "Choose a file",
     "Mot de passe oublié": "Forgot password",
     "Login Se connecter": "Log in",
@@ -1079,5 +1079,8 @@
     "Lorsque vous fixez le prix de l'abonnement, veillez à insérer le montant mensuel TVA incluse (19%). La TVA sera déduite de votre portefeuille après le paiement des utilisateurs et des frais de traitement des paiements (7%). Définissez simplement le prix mensuel de chaque tablette. Cela vous aidera à créer des réductions pour les abonnements plus longs :" :"When you set the subscription price, make sure to insert the monthly amount with VAT included (19%). The VAT will be deducted to your wallet after the payment of users and payment processor fees (7%). Just set the monthly price in each tablet. This will help you create discounts for longer subscriptions.",
     "Après réessayez !" :"Then try again !",
     "Ce montant comprend 19% de TVA": "This amount includes 19% VAT",
-    "Vous n'avez pas assez d'argent pour payer cette transaction. Veuillez recharger votre portefeuille ici :" :"You don't have enough money to pay for this transaction. Please top up your wallet here :"
+    "Nous avons envoyé par e-mail votre lien de réinitialisation de mot de passe!" : "Nous avons envoyé par e-mail votre lien de réinitialisation de mot de passe!",
+    "Nous ne pouvons pas trouver un utilisateur avec cette adresse e-mail." : "We cannot find a user with this email address.",
+    "Vous n'avez pas assez d'argent pour payer cette transaction. Veuillez recharger votre portefeuille ici :" :"You don't have enough money to pay for this transaction. Please top up your wallet here :",
+    "Supprimer ma video":"Delete my video"
 }

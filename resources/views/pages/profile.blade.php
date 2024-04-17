@@ -532,7 +532,7 @@
                                     <img src="{{ asset('/img/cc.svg') }}" />
                                 </p>
                                 <h2>{{ __('Téléchargez votre vidéo de présentation') }}</h2>
-                                <p>{{ __('Celle-ci sera visible publiquement sur votre profil, offrant à tous une fenêtre unique sur votre personnalité et vos passions.') }}
+                                <p>{{ __('Celle-ci sera visible publiquement sur votre profil et sur le flux de la plateforme, donnant à chacun un aperçu unique de votre personnalité et de vos passions.') }}
                                 </p>
 
                                 <div id="fake_place_holder_mobile"
@@ -573,8 +573,7 @@
                                 <form action="{{ route('demoposts.destroy', $demopost->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger d-block w-100">Supprimer ma
-                                        video</button>
+                                    <button type="submit" class="btn  btn-danger d-block w-100"> {{ __("Supprimer ma video") }}</button>
                                 </form>
                             @endif
                         @endforeach
@@ -803,7 +802,7 @@
                                 <img src="{{ asset('/img/cc.svg') }}" />
                             </p>
                             <h2>{{ __('Téléchargez votre vidéo de présentation') }}</h2>
-                            <p>{{ __('Celle-ci sera visible publiquement sur votre profil, offrant à tous une fenêtre unique sur votre personnalité et vos passions.') }}
+                            <p>{{ __('Celle-ci sera visible publiquement sur votre profil et sur le flux de la plateforme, donnant à chacun un aperçu unique de votre personnalité et de vos passions.') }}
                             </p>
 
                             <div id="fake_place_holder" onclick="document.getElementById('file_input').click();">

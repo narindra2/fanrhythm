@@ -1301,10 +1301,10 @@ class PostsHelperServiceProvider extends ServiceProvider
         $showUsername = true;
         if(isset($options['showUsername']) && $options['showUsername'] == false) $showUsername = false;
 
-        $demoposts->latest();
+        $demoposts->orderBy("id", "DESC");
 
         if (isset($options['pageNumber'])) {
-            $demoposts = $demoposts->paginate(9, ['*'], 'page', $options['pageNumber'])->appends(request()->query());
+            $demoposts = $demoposts->paginate(3, ['*'], 'page', $options['pageNumber'])->appends(request()->query());
         } else {
             $demoposts = $demoposts->paginate(3)->appends(request()->query());
         }
