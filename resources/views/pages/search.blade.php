@@ -93,7 +93,7 @@ Minify::stylesheet([
                 </span>
                 @endif
             </div>
-            @if($activeFilter == 'people')
+            @if($activeFilter == 'people'  )
             <div class="mobile-search-filter collapse {{$searchFilterExpanded ? 'show' : ''}}" id="colappsableFilters">
                 @include('elements.search.search-filters')
             </div>
@@ -102,8 +102,8 @@ Minify::stylesheet([
             @php
             $currentFilter = request('filter'); // Obtient le filtre actuel à partir de l'URL
             @endphp
-    
-            <div class="aff_profil_tab">
+            {{-- Bug n'effache pas ce ligne --}}
+            <div class="aff_profil_tab" style="display: none">
                 <div>
                     <a class="{{ $currentFilter == 'live' ? 'active' : '' }}" href="/search?query=&filter=live">
                         <div>
@@ -128,13 +128,13 @@ Minify::stylesheet([
                     </a>
                 </div>
     
-                {{-- <div>
+                <div style="display: none">
                     <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?query=&filter=photos">
                         <div>
                             {{__('Photos')}}
                         </div>
                     </a>
-                </div> --}}
+                </div>
     
                 <div>
                     <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="/search?query=&filter=videosPres">
@@ -144,6 +144,51 @@ Minify::stylesheet([
                     </a>
                 </div>
             </div>
+            
+        </div>
+        {{-- fin Bug  --}}
+        <div class="aff_profil_tab">
+            <div>
+                <a class="{{ $currentFilter == 'live' ? 'active' : '' }}" href="/search?query=&filter=live">
+                    <div>
+                    {{__('Live')}}
+                    </div>
+                </a>
+            </div>
+
+            <div>
+                <a class="{{ $currentFilter == 'top' ? 'active' : '' }}" href="/search?query=&filter=top">
+                    <div>
+                    {{__('Posts')}}
+                    </div>
+                </a>
+            </div>
+
+            <div>
+                <a class="{{ $currentFilter == null ? 'active' : '' }}" href="/verified_user">
+                    <div>
+                    {{__('People')}}
+                    </div>
+                </a>
+            </div>
+
+            <div style="display: none">
+                <a class="" href="/search?query=&amp;filter=photos">
+                    <div>
+                    {{__('Photos')}}
+                    </div>
+                </a>
+            </div>
+
+          
+            <div>
+                <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="/search?query=&filter=videosPres">
+                    <div>
+                    {{__('Videos')}}
+                    </div>
+                </a>
+            </div>
+
         </div>
 
         @include('elements.message-alert',['classes'=>'p-2'])
@@ -176,18 +221,18 @@ Minify::stylesheet([
             @include('elements.feed.posts-loading-spinner')
         @endif
     </div>
-    <div class="aff_droite">
     @if (Auth::check())
-        @include('elements.feed.suggestions-box',['profiles'=>$suggestions,'isMobile' => false])
-        @if(getSetting('custom-code-ads.sidebar_ad_spot'))
-        <div class="mt-4">
-            {!! getSetting('custom-code-ads.sidebar_ad_spot') !!}
-        </div>
-        @endif
+        <div class="aff_droite">
+            @include('elements.feed.suggestions-box',['profiles'=>$suggestions,'isMobile' => false])
+            @if(getSetting('custom-code-ads.sidebar_ad_spot'))
+            <div class="mt-4">
+                {!! getSetting('custom-code-ads.sidebar_ad_spot') !!}
+            </div>
+            @endif
 
-        @include('elements.checkout.checkout-box')
-        @endif
-    </div>
+            @include('elements.checkout.checkout-box')
+        </div>
+    @endif
 </div>
 @include('template.searchmobile')
 @stop
