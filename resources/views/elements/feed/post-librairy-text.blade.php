@@ -40,7 +40,9 @@
     <div>
         <div>
             {{-- Likes --}}
-            @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&  $post->user->open_profile))
+            {{-- @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&  $post->user->open_profile)) --}}
+            {{-- All user can like => always true --}}
+            @if(1)
             <div class="react-button btn-reaction-{{$post->id}} {{PostsHelper::didUserReact($post->reactions) ? 'active' : ''}}"
                 data-toggle="tooltip" data-placement="top" title="{{__('Like')}}"
                 onclick="Post.reactTo('post',{{$post->id}},true)">

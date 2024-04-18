@@ -42,8 +42,7 @@ $Moderation = "\App\Model\Moderation";
                 onclick="PostsPaginator.goToPostPageKeepingNav({{$post->id}},{{$post->postPage}},'{{route('posts.get',['post_id'=>$post->id,'username'=>$post->user->username])}}')"
                 @endif href="javascript:void(0)">{{$post->created_at->diffForHumans(null,false,true)}}
             </a>
-            <div @if(!Auth::check()) onclick="goToRegister()" @endif
-                class="dropdown {{GenericHelper::getSiteDirection() == 'rtl' ? 'dropright' : 'dropleft'}}">
+            <div @if(!Auth::check()) onclick="goToRegister()" @endif   class="dropdown {{GenericHelper::getSiteDirection() == 'rtl' ? 'dropright' : 'dropleft'}}">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                     aria-expanded="false">
                     <svg width="5px" height="18px" viewBox="0 0 5 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -158,7 +157,9 @@ $Moderation = "\App\Model\Moderation";
         <div>
             <div>
                 {{-- Likes --}}
-                @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&  $post->user->open_profile))
+                {{-- @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&  $post->user->open_profile)) --}}
+                {{-- All user can like => always true --}}
+                @if(1)
                 <div class="react-button {{PostsHelper::didUserReact($post->reactions) ? 'active' : ''}}"
                     data-toggle="tooltip" data-placement="top" title="{{__('Like')}}"
                     onclick="Post.reactTo('post',{{$post->id}})">

@@ -14,7 +14,7 @@
             data-toggle="modal"
             data-target="#subrcribe-dialog"  
         @endif
-        >
+    >
         <div class="pswp-gallery__item">
             @include('elements.feed.post-librairy-media',["attachment" => $attachment , "post" => $post])
             <div class="pswp-caption-content" >
@@ -23,9 +23,4 @@
             </div>
         </div>
     </div>
-    {{-- @php
-        if ($notLockedPost && $countAttchmt > 1) {
-           break;
-        }
-    @endphp --}}
 @endforeach

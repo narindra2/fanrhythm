@@ -703,10 +703,69 @@
                 @endif
                 @include('elements.feed.posts-loading-spinner')
             </div>
-
+            @if (Auth::check() && Auth::id() != $user->id  && !$hasSub)
+                <nav class="navbar navbar-light justify-content-center fixed-subscr-profile">
+                    <div class="d-flex w-100">
+                        @if (  $user->paid_profile &&  (!getSetting('profiles.allow_users_enabling_open_profiles') || (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
+                        <div class="liste_abonnements  w-100" style="padding: 0;" >
+                            @include('elements.checkout.subscribe-button-30')
+                        </div>
+                    @else
+                        <button class="btn btn-primary btn-block" onclick="Lists.manageFollowsAction('{{ $user->id }}')">
+                            {{ __('Suivre gratuitement') }} 
+                        </button>
+                        
+                    @endif
+                        &nbsp;
+                        <div class=" dropup">
+                            <button type="button" class="btn btn-primary to-tooltip "  style="border-radius: 9px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <svg width="5px" height="18px" viewBox="0 0 5 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <g id="post" transform="translate(-584.000000, -24.000000)" fill="#9E9E9E" stroke="#9E9E9E"
+                                        stroke-width="2.5">
+                                        <g id="date" transform="translate(443.000000, 24.000000)">
+                                            <g id="more-horizontal"
+                                                transform="translate(143.000000, 9.000000) rotate(90.000000) translate(-143.000000, -9.000000) translate(136.000000, 8.000000)">
+                                                <circle id="Oval" cx="7" cy="0.875" r="1"></circle>
+                                                <circle id="Oval" cx="13.125" cy="0.875" r="1"></circle>
+                                                <circle id="Oval" cx="0.875" cy="0.875" r="1"></circle>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                            </button>
+                            <div class="dropdown-menu" style="margin-left: -108px !important;margin-bottom: 5px;">
+                                <a class="dropdown-item" href="javascript:void(0);"onclick="Lists.showReportBox({{$user->id}},0);">
+                                    {{__("Signaler")}}
+                                </a>
+                                <a class="dropdown-item" href="javascript:void(0);" onclick="copieClipboard('{{ route('profile', ['username' => $user->username]) }}' , '#copyUrlUser2')" id="copyUrlUser2" >
+                                    {{ __('Copier le lien de profil') }}
+                                </a>
+                            </div>
+                          </div>
+                    </div>
+                    
+                </nav>
+            @endif
         </div>
-
-
+        <style>
+            .liste_abonnements button {
+                width: 100%;
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: space-between;
+                font-weight: 600;
+                font-size: 12px;
+                letter-spacing: -0.28px;
+                text-transform: none;
+                box-shadow: none !important;
+                border-radius: .5rem !important;
+                padding: .75rem 1.5rem !important; 
+            }
+        </style>
         <div class="aff_droite">
             <p class="aff_title_feed">
                 &nbsp;
@@ -827,8 +886,7 @@
         </div>
 
     </div>
-
-
+    
     @if (Auth::check())
         @include('elements.lists.list-add-user-dialog', [
             'user_id' => $user->id,
