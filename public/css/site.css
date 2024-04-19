@@ -5113,11 +5113,18 @@ input#message-price.form-control {
     height: 10px !important;
     border-top: 1px solid var(--border-default);
 }
+@media screen and (max-width: 769px) {
+    .fixed-subscr-profile{
+        position: sticky;
+        bottom: 12%;
+    }
+}
+
 .hide {
     opacity: 0;
     left: -100%;
     }
-    .show {
+.show {
     opacity: 1;
     left: 0;
  }

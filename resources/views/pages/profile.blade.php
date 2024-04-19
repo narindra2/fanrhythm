@@ -722,7 +722,7 @@
                 <nav id="fixed-subscr-profile"  class=" transition-scroll hide  nav-subsc justify-content-center fixed-subscr-profile">
                     <div class="d-flex w-100">
                         @if (  $user->paid_profile &&  (!getSetting('profiles.allow_users_enabling_open_profiles') || (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
-                        <div class="liste_abonnements  w-100" style="padding: 0;" >
+                        <div class="liste_abonnements_one_bth  w-100" style="padding: 0;" >
                             @include('elements.checkout.subscribe-button-30')
                         </div>
                     @else
@@ -769,7 +769,7 @@
         
         <style>
             
-            .liste_abonnements button {
+            .liste_abonnements_one_bth button {
                 width: 100%;
                 margin-bottom: 10px;
                 display: flex;
