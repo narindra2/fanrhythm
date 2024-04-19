@@ -18,7 +18,7 @@
         }
     @endphp
     @if ($imageCount)
-        <span style="margin-left: 2%;font-size: 13px;margin-top: 6%; position: absolute;">
+        <span style="margin-left: 2%;font-size: 13px;margin-top: 9%; position: absolute;">
            x{{ $imageCount  }} {{ __("image(s)") }} ... 
         </span> 
         <br>
@@ -27,20 +27,20 @@
         @if ($videoCount == 1)
             <span style="margin-left: 2%;font-size: 13px;margin-top: 10%; position: absolute;">01 Video duration : {!! $video->videoDuration !!} </span> <br>
         @else 
-            <span style="margin-left: 2%;font-size: 13px;margin-top: 6%; position: absolute;">
+            <span style="margin-left: 2%;font-size: 13px;margin-top: 9%; position: absolute;">
                 x{{ $videoCount }} {{ __("vidéo(s)") }} ... 
             </span> 
         @endif
     <br>
     @endif
     @if ($audioCount)
-        <span style="margin-left: 2%;font-size: 13px;margin-top: 6%; position: absolute;">
+        <span style="margin-left: 2%;font-size: 13px;margin-top: 9%; position: absolute;">
             x{{ $audioCount  }} {{ __("audio(s)") }} ... 
         </span> 
      <br>
     @endif
     @if ($files)
-        <span style="margin-left: 2%;font-size: 13px;margin-top: 6%; position: absolute;">
+        <span style="margin-left: 2%;font-size: 13px;margin-top: 9%; position: absolute;">
             x{{ $files }} {{ __("autre(s) fichier(s)") }} ... 
         </span> 
      <br>

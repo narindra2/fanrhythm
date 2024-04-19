@@ -31,6 +31,20 @@
             $additionalAssets,
         ),
     )->withFullUrl() !!}
+
+<script>
+    // aff_top_profile
+    var myID = $("#fixed-subscr-profile");
+    var myScrollFunc = function() {
+    var y = window.scrollY;
+        if (y >= 120) {
+            myID.addClass("show").removeClass("hide") 
+        } else {
+            myID.addClass("hide").removeClass("show") 
+        }
+    };
+    window.addEventListener("scroll", myScrollFunc);
+</script>
 @stop
 
 @section('styles')
@@ -704,7 +718,8 @@
                 @include('elements.feed.posts-loading-spinner')
             </div>
             @if (Auth::check() && Auth::id() != $user->id  && !$hasSub)
-                <nav class="navbar navbar-light justify-content-center fixed-subscr-profile">
+            
+                <nav id="fixed-subscr-profile"  class=" transition-scroll hide  nav-subsc justify-content-center fixed-subscr-profile">
                     <div class="d-flex w-100">
                         @if (  $user->paid_profile &&  (!getSetting('profiles.allow_users_enabling_open_profiles') || (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
                         <div class="liste_abonnements  w-100" style="padding: 0;" >
@@ -751,7 +766,9 @@
                 </nav>
             @endif
         </div>
+        
         <style>
+            
             .liste_abonnements button {
                 width: 100%;
                 margin-bottom: 10px;

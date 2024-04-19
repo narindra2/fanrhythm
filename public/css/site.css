@@ -5106,5 +5106,22 @@ input#message-price.form-control {
 
 .fixed-subscr-profile{
     position: sticky;
-    bottom: 3.3%;
+    bottom: 40px;
+}
+.nav-subsc{
+    background: var(--bg-card);
+    z-index: 1033;
+    height: 10px !important;
+    border-top: 1px solid var(--border-default);
+}
+.hide {
+    opacity: 0;
+    left: -100%;
+    }
+    .show {
+    opacity: 1;
+    left: 0;
+ }
+ .transition-scroll {
+    transition: all 1s;
 }
