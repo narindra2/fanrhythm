@@ -42,7 +42,7 @@
             {{-- Likes --}}
             {{-- @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&  $post->user->open_profile)) --}}
             {{-- All user can like => always true --}}
-            @if(1)
+            @if(Auth::check())
             <div class="react-button btn-reaction-{{$post->id}} {{PostsHelper::didUserReact($post->reactions) ? 'active' : ''}}"
                 data-toggle="tooltip" data-placement="top" title="{{__('Like')}}"
                 onclick="Post.reactTo('post',{{$post->id}},true)">
@@ -80,8 +80,10 @@
             @else
             {{-- <div class="disabled" data-toggle="tooltip" data-placement="top" title=""
                 data-original-title="{{ _('Abonnez-vous à moi') }}" --}} 
-                <div class="disabled" data-toggle="modal" data-target="#subrcribe-dialog"
+                <div class="disabled" 
+                {{-- data-toggle="modal" data-target="#subrcribe-dialog" --}}
                     @if (!Auth::check() )
+                        data-toggle="modal"
                         {{-- onclick="goToRegister()" --}}
                         data-target="#login-dialog"
                     @endif

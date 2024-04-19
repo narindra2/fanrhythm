@@ -159,7 +159,7 @@ $Moderation = "\App\Model\Moderation";
                 {{-- Likes --}}
                 {{-- @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&  $post->user->open_profile)) --}}
                 {{-- All user can like => always true --}}
-                @if(1)
+                @if(Auth::check())
                 <div class="react-button {{PostsHelper::didUserReact($post->reactions) ? 'active' : ''}}"
                     data-toggle="tooltip" data-placement="top" title="{{__('Like')}}"
                     onclick="Post.reactTo('post',{{$post->id}})">
@@ -196,8 +196,11 @@ $Moderation = "\App\Model\Moderation";
                 </div>
                 @else
                 {{-- <div class="disabled" data-toggle="tooltip" data-placement="top" title=""
-                    data-original-title="{{ _('Abonnez-vous à moi') }}" --}} <div class="disabled" data-toggle="modal"
-                    data-target="#subrcribe-dialog" data-toggle="tooltip" @if (!Auth::check() ) onclick="goToRegister()"
+                    data-original-title="{{ _('Abonnez-vous à moi') }}" --}} 
+                    <div class="disabled" 
+                    {{-- data-toggle="modal"
+                    data-target="#subrcribe-dialog" data-toggle="tooltip"  --}}
+                    @if (!Auth::check() ) onclick="goToRegister()"
                     @endif>
                     <svg width="21px" height="18px" viewBox="0 0 21 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
