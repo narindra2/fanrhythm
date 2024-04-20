@@ -54,11 +54,7 @@
     lightbox.init();
 </script>
 <style>
-    .container {
-        position: relative;
-        text-align: center;
-        color: white;
-    }
+
 
     .pswp__zoom-level-indicator {
         font-size: 15px;

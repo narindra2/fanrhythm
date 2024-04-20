@@ -9,7 +9,7 @@
         $attchmt_type_info = " Video duration : " .  $attachment->videoDuration;
     }
 @endphp
-<div class="container">
+
     <a  href="{{asset('/img/no-post.png')}}" data-pswp-width="2000" data-pswp-height="1666" target="_blank">
         <img src="{{asset('/img/no-post.png')}}"  class="image-item"  alt="{{$attchmt_type_info}} " />
         <div class="top-left" style="color: #1a1919b8;;font-size:12px">
@@ -31,7 +31,6 @@
         @endif
         
     </a>
-</div>
 @else
     @if ($attachment_type =="image")
         <a  href="{{ $attachment->path }}" data-pswp-width="2500" data-pswp-height="1666"  target="_blank">
