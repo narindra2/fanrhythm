@@ -3769,6 +3769,11 @@ ul.pagination * {
         display: block;
         padding: 10px 0px 10px 20px;
     }
+    .dark_theme .aff_nav_mobile_top>a:nth-child(2) {
+        color: #fff;
+        display: block;
+        padding: 10px 0px 10px 20px;
+    }
 
 
 
@@ -5113,12 +5118,12 @@ input#message-price.form-control {
     height: 10px !important;
     border-top: 1px solid var(--border-default);
 }
-@media screen and (max-width: 769px) {
+/* @media screen and (max-width: 769px) {
     .fixed-subscr-profile{
         position: sticky;
         bottom: 12%;
     }
-}
+} */
 
 .hide {
     opacity: 0;
