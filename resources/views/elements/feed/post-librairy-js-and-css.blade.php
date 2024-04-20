@@ -41,10 +41,10 @@
             order: 9,
             onInit: (el, pswp) => {
                 pswp.on('zoomPanUpdate', (e) => {
-                    // console.log(pswp.currSlide);
-                    console.log(pswp.currSlide.data.alt);
                     if (e.slide === pswp.currSlide) {
-                        el.innerText = pswp.currSlide.data.alt;
+                        if (typeof pswp.currSlide.data.alt !="undefined") {
+                            el.innerText = pswp.currSlide.data.alt;
+                        }
                     }
                 });
             }
@@ -61,7 +61,7 @@
     }
 
     .pswp__zoom-level-indicator {
-        font-size: 11px;
+        font-size: 15px;
         color: #fff;
         padding: 2px 8px;
         border-radius: 4px;
