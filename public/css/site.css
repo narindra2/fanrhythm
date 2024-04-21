@@ -1540,7 +1540,8 @@ div.aff_header_post .dropdown.dropleft .dropdown-toggle {
     padding: 14px;
 }
 
-.react-button,
+.react-button ,
+.bookmark-button,
 .send-a-tip {
     cursor: pointer;
 }
@@ -1560,6 +1561,28 @@ div.aff_header_post .dropdown.dropleft .dropdown-toggle {
 
 .react-button.active>svg:nth-child(2) {
     display: block;
+}
+/* bookmark */
+.bookmark-button>svg:nth-child(1) {
+    display: block;
+}
+
+.bookmark-button>svg:nth-child(2) {
+    display: none;
+}
+
+
+.bookmark-button.active>svg:nth-child(1) {
+    display: none;
+}
+
+.bookmark-button.active>svg:nth-child(2) {
+    display: block;
+    color : #545353;
+}
+.dark_theme .bookmark-button.active>svg:nth-child(2) {
+    display: block;
+    color : #fff
 }
 
 .aff_footer_post>div {

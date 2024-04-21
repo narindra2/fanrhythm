@@ -194,6 +194,7 @@ $Moderation = "\App\Model\Moderation";
                         </g>
                     </svg>
                 </div>
+                
                 @else
                 {{-- <div class="disabled" data-toggle="tooltip" data-placement="top" title=""
                     data-original-title="{{ _('Abonnez-vous à moi') }}" --}} 
@@ -267,6 +268,18 @@ $Moderation = "\App\Model\Moderation";
                         </g>
                     </svg>
                 </div>
+                <div class="bookmark-button {{PostsHelper::didUserReact($post->reactions) ? 'active' : ''}}"
+                    data-toggle="tooltip" data-placement="top" title="{{__('Add to my bookmarks')}}"
+                    onclick="Post.addTobookmark('post',{{$post->id}})">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
+                      </svg>
+
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2"/>
+                      </svg>
+
+                </div>
                 @else
                 {{-- <div class="send-a-tip disabled" data-toggle="tooltip" data-placement="top" title=""
                     data-original-title="{{ _('Abonnez-vous à moi') }}" --}}
@@ -302,13 +315,13 @@ $Moderation = "\App\Model\Moderation";
 
 
             <div>
+                
                 <a href="javascript:void(0)" class="">
                     <span class="post-reactions-label-count">{{count($post->reactions)}}</span>
                     <span class="post-reactions-label">{{trans_choice('likes', count($post->reactions))}}</span>
                 </a>
 
-                @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') &&
-                $post->user->open_profile))
+                @if($post->isSubbed || (Auth::check() && getSetting('profiles.allow_users_enabling_open_profiles') && $post->user->open_profile))
                     <a
                         href="{{Route::currentRouteName() != 'posts.get' ? route('posts.get',['post_id'=>$post->id,'username'=>$post->user->username]) : '#comments'}}">
                         <span>
@@ -316,6 +329,7 @@ $Moderation = "\App\Model\Moderation";
                         </span>
                         {{trans_choice('comments', count($post->comments))}}
                     </a>
+                   
                 @else
                 <a href="#" data-toggle="modal" data-target="#subrcribe-dialog" data-toggle="tooltip"
                     @if(!Auth::check()) onclick="goToRegister()" @endif>

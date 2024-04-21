@@ -131,7 +131,7 @@ Route::group(['middleware' => ['auth','verified','2fa']], function () {
          * (My) Bookmarks
          */
         Route::any('/bookmarks/{type?}', ['uses' => 'BookmarksController@index', 'as'   => 'bookmarks']);
-//        Route::get('/bookmarks/{type}',['uses' => 'BookmarksController@filterBookmarks', 'as'   => 'bookmarks.filter']);
+       Route::get('/bookmarks/{type}',['uses' => 'BookmarksController@filterBookmarks', 'as'   => 'bookmarks.filter']);
 
         /*
          * (My) Lists
