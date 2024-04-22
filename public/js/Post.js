@@ -284,6 +284,47 @@ var Post = {
             }
         });
     },
+    /**
+     * Add  To bookmark
+     * @param type
+     * @param id
+     */
+    addTobookmark: function (postId = 0) {
+        const element = $("#bookmark-button-"+postId);
+        const alreadyInBookmark = element.hasClass('active');
+        let tilte = "";
+        if(alreadyInBookmark){
+            tilte = trans("Add to my bookmarks")
+
+            element.removeClass('active');
+        } else{
+            tilte = trans("Remove in my bookmarks")
+
+            element.addClass('active');
+        }
+        $.ajax({
+            type: 'POST',
+            data: {
+                // '_token' : $('meta[name="csrf-token"]').attr('content'),
+                'post_id': postId
+            },
+            dataType: 'json',
+            url: app.baseUrl+'/my/bookmarks/addOrRemove',
+            success: function (result) {
+                if(result.success){
+                    // element.attr("title",tilte)
+                    element.attr("data-original-title",tilte)
+                    launchToast('success',trans('Success'),result.message);
+                }
+                else{
+                    launchToast('danger',trans('Error'),result.errors[0]);
+                }
+            },
+            error: function (result) {
+                launchToast('danger',trans('Error'),result.message);
+            }
+        });
+    },
 
     /**
      * Appends replied username to comment field

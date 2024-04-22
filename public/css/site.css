@@ -1563,8 +1563,9 @@ div.aff_header_post .dropdown.dropleft .dropdown-toggle {
     display: block;
 }
 /* bookmark */
-.bookmark-button>svg:nth-child(1) {
+.dark_theme .bookmark-button>svg:nth-child(1) {
     display: block;
+    color : #fff
 }
 
 .bookmark-button>svg:nth-child(2) {
@@ -5148,11 +5149,11 @@ input#message-price.form-control {
     }
 } */
 
-.hide {
+.hide-nav-subsc {
     opacity: 0;
     left: -100%;
     }
-.show {
+.show-nav-subsc {
     opacity: 1;
     left: 0;
  }

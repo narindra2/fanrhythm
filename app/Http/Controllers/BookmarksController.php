@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\UserBookmark;
 use App\Providers\AttachmentServiceProvider;
 use App\Providers\PostsHelperServiceProvider;
 use Cookie;
@@ -68,4 +69,24 @@ class BookmarksController extends Controller
             ]);
         }
     }
+    public function addOrRemove(Request $request)
+    {
+        if (!$request->post_id) {
+            return response()->json(['success' => false, 'message' =>  __('Post not found')]);
+        }
+        try {
+            $bookmark =  UserBookmark::where("user_id" , Auth::id())->where("post_id",$request->post_id)->first();
+            if ($bookmark) {
+                $bookmark->delete();
+                return response()->json(['success' => true, 'message' =>  __('Post removed from bookmark.')]);
+            }else{
+                UserBookmark::create(["user_id" => Auth::id() , "post_id" =>  $request->post_id]);
+                return response()->json(['success' => true, 'message' =>  __('Post added from bookmark.')]);
+            }
+        } catch (\Exception $exception) {
+            return response()->json(['success' => false, 'errors' => [__('An internal error has occurred.')], 'message' => $exception->getMessage()]);
+        }
+    }
+
+    
 }

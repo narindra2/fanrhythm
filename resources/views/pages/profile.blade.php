@@ -38,9 +38,9 @@
     var myScrollFunc = function() {
     var y = window.scrollY;
         if (y >= 120) {
-            myID.addClass("show").removeClass("hide") 
+            myID.addClass("show-nav-subsc").removeClass("hide-nav-subsc") 
         } else {
-            myID.addClass("hide").removeClass("show") 
+            myID.addClass("hide-nav-subsc").removeClass("show-nav-subsc") 
         }
     };
     window.addEventListener("scroll", myScrollFunc);
@@ -719,7 +719,7 @@
             </div>
             @if (Auth::check() && Auth::id() != $user->id  && !$hasSub)
             
-                <nav id="fixed-subscr-profile"  class=" transition-scroll hide  nav-subsc justify-content-center fixed-subscr-profile">
+                <nav id="fixed-subscr-profile"  class=" transition-scroll hide-nav-subsc  nav-subsc justify-content-center fixed-subscr-profile">
                     <div class="d-flex w-100">
                         @if (  $user->paid_profile &&  (!getSetting('profiles.allow_users_enabling_open_profiles') || (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
                         <div class="liste_abonnements_one_bth  w-100" style="padding: 0;" >

@@ -221,18 +221,17 @@ Minify::stylesheet([
             @include('elements.feed.posts-loading-spinner')
         @endif
     </div>
-    @if (Auth::check())
-        <div class="aff_droite">
+    <div class="aff_droite">
+        @if (Auth::check())
             @include('elements.feed.suggestions-box',['profiles'=>$suggestions,'isMobile' => false])
             @if(getSetting('custom-code-ads.sidebar_ad_spot'))
-            <div class="mt-4">
-                {!! getSetting('custom-code-ads.sidebar_ad_spot') !!}
-            </div>
+                <div class="mt-4">
+                    {!! getSetting('custom-code-ads.sidebar_ad_spot') !!}
+                </div>
             @endif
-
             @include('elements.checkout.checkout-box')
-        </div>
-    @endif
+        @endif
+    </div>
 </div>
 @include('template.searchmobile')
 @stop

@@ -414,7 +414,7 @@ class PostsHelperServiceProvider extends ServiceProvider
 
     {
 
-        $relations = ['user', 'reactions', 'attachments', 'bookmarks', 'postPurchases'];
+        $relations = ['user', 'reactions', 'attachments', 'bookmarks:user_id,post_id', 'postPurchases'];
 
 
 
