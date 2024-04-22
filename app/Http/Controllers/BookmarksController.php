@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\UserBookmark;
-use App\Providers\AttachmentServiceProvider;
-use App\Providers\PostsHelperServiceProvider;
 use Cookie;
+use JavaScript;
+use App\Model\UserBookmark;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use JavaScript;
+use App\Providers\AttachmentServiceProvider;
+use App\Providers\PostsHelperServiceProvider;
+use App\Providers\MembersHelperServiceProvider;
 
 class BookmarksController extends Controller
 {
@@ -59,7 +60,8 @@ class BookmarksController extends Controller
 
             return view('pages.bookmarks', [
                 'posts' => $posts,
-                'bookmarkTypes' => $this->bookmarkTypes,
+                'suggestions' => MembersHelperServiceProvider::getSuggestedMembers(),
+                'activeFilter' =>$request->get('filter') ,
                 'activeTab' => $request->route('type'),
             ]);
         } else {

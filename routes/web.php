@@ -130,9 +130,10 @@ Route::group(['middleware' => ['auth','verified','2fa']], function () {
         /*
          * (My) Bookmarks
          */
-        Route::post('/bookmarks/addOrRemove',['uses' => 'BookmarksController@addOrRemove', 'as'   => 'bookmarks.addOrRemove']);
-        Route::any('/bookmarks/{type?}', ['uses' => 'BookmarksController@index', 'as'   => 'bookmarks']);
+        Route::get('/bookmarks/list',['uses' => 'BookmarksController@index', 'as'   => 'bookmarks.list']);
         Route::get('/bookmarks/{type}',['uses' => 'BookmarksController@filterBookmarks', 'as'   => 'bookmarks.filter']);
+        Route::post('/bookmarks/addOrRemove',['uses' => 'BookmarksController@addOrRemove', 'as'   => 'bookmarks.addOrRemove']);
+        // Route::any('/bookmarks/{type?}', ['uses' => 'BookmarksController@index', 'as'   => 'bookmarks']);
 
         /*
          * (My) Lists

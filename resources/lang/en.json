@@ -1085,5 +1085,6 @@
     "Vous n'avez pas assez d'argent pour payer cette transaction. Veuillez recharger votre portefeuille ici :" :"You don't have enough money to pay for this transaction. Please top up your wallet here :",
     "Supprimer ma video":"Delete my video",
     "Post removed from bookmark.": "Post removed from bookmark.",
-    "Post added from bookmark.": "Post added from bookmark."
+    "Post added from bookmark.": "Post added from bookmark.",
+    "Mes bookmarks" :"My bookmarks"
 }

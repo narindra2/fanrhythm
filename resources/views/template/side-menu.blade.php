@@ -256,28 +256,12 @@
             </a>
         </li> --}}
         <li>
-            <a href="{{route('my.settings',['type'=>'subscriptions'])}}"
+            <a href="{{ url('/my/bookmarks/list?filter=all')}}"
                 class="{{Route::currentRouteName() == 'my.settings' &&  is_int(strpos(Request::path(),'subscriptions')) ? 'active' : ''}}">
                 <div>
-                    <svg width="31px" height="26px" viewBox="0 0 31 26" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <g id="users-(1)" transform="translate(2.000000, 2.000000)" stroke="#000000"
-                                stroke-width="3">
-                                <path
-                                    d="M19.5555556,22 L19.5555556,19.5555556 C19.5555556,16.8554968 17.3667254,14.6666667 14.6666667,14.6666667 L4.88888889,14.6666667 C2.18883011,14.6666667 0,16.8554968 0,19.5555556 L0,22"
-                                    id="Path"></path>
-                                <circle id="Oval" cx="9.77777778" cy="4.88888889" r="4.88888889"></circle>
-                                <path
-                                    d="M26.8888889,22 L26.8888889,19.5555556 C26.887227,17.3275884 25.379443,15.3825469 23.2222222,14.8255556"
-                                    id="Path"></path>
-                                <path
-                                    d="M18.3333333,0.158888889 C20.4965626,0.712763074 22.0095862,2.66198918 22.0095862,4.895 C22.0095862,7.12801082 20.4965626,9.07723693 18.3333333,9.63111111"
-                                    id="Path"></path>
-                            </g>
-                        </g>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
+                      </svg>
                     {{__('Mes bookmarks')}}
                 </div>
             </a>

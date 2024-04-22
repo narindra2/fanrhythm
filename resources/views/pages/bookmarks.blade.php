@@ -1,73 +1,108 @@
 @extends('layouts.user-no-nav')
 
 @section('page_title', __('Bookmarks'))
+@section('share_url', route('home'))
+@section('share_title', getSetting('site.name') . ' - ' . getSetting('site.slogan'))
+@section('share_description', getSetting('site.description'))
+@section('share_type', 'article')
+@section('share_img', GenericHelper::getOGMetaImage())
 
-@section('styles')
-    {!!
-        Minify::stylesheet([
-            '/libs/swiper/swiper-bundle.min.css',
-            '/libs/photoswipe/dist/photoswipe.css',
-            '/libs/photoswipe/dist/default-skin/default-skin.css',
-            '/css/pages/bookmarks.css',
-            '/css/posts/post.css',
-            '/css/pages/checkout.css'
-         ])->withFullUrl()
-    !!}
+@section('meta')
+<meta name="robots" content="noindex">
 @stop
 
 @section('scripts')
     {!!
-        Minify::javascript([
-            '/js/pages/checkout.js',
-            '/js/PostsPaginator.js',
-            '/js/CommentsPaginator.js',
-            '/js/Post.js',
-             '/js/pages/lists.js',
-            '/js/pages/bookmarks.js',
-            '/libs/swiper/swiper-bundle.min.js',
-            '/js/plugins/media/photoswipe.js',
-            '/libs/photoswipe/dist/photoswipe-ui-default.min.js',
-            '/libs/@joeattardi/emoji-button/dist/index.js',
-            '/js/plugins/media/mediaswipe.js',
-            '/js/plugins/media/mediaswipe-loader.js',
-         ])->withFullUrl()
-    !!}
+Minify::javascript([
+'/js/PostsPaginator.js',
+'/js/UsersPaginator.js',
+'/js/StreamsPaginator.js',
+'/js/CommentsPaginator.js',
+'/js/Post.js',
+'/js/SuggestionsSlider.js',
+'/js/pages/lists.js',
+'/js/pages/checkout.js',
+'/libs/swiper/swiper-bundle.min.js',
+'/js/plugins/media/photoswipe.js',
+'/libs/photoswipe/dist/photoswipe-ui-default.min.js',
+'/libs/@joeattardi/emoji-button/dist/index.js',
+'/js/plugins/media/mediaswipe.js',
+'/js/plugins/media/mediaswipe-loader.js',
+'/js/pages/search.js',
+])->withFullUrl()
+!!}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.3.0/dist/photoswipe.css">
+</script>
+@stop
+
+@section('styles')
+{!!
+Minify::stylesheet([
+'/libs/swiper/swiper-bundle.min.css',
+'/libs/photoswipe/dist/photoswipe.css',
+'/css/pages/checkout.css',
+'/libs/photoswipe/dist/default-skin/default-skin.css',
+'/css/pages/feed.css',
+'/css/posts/post.css',
+'/css/pages/search.css',
+])->withFullUrl()
+!!}
 @stop
 
 @section('content')
-    <div class="">
-        <div class="row">
 
-            <div class="col-12 col-md-6 col-lg-3 mb-3 settings-menu pr-0">
-                <div class="bookmarks-menu-wrapper">
-                    <div class="mt-3 ml-3">
-                        <h5 class="text-bold {{(Cookie::get('app_theme') == null ? (getSetting('site.default_user_theme') == 'dark' ? '' : 'text-dark-r') : (Cookie::get('app_theme') == 'dark' ? '' : 'text-dark-r'))}}">{{__('Bookmarks')}}</h5>
+<div id="aff_content">
+    <div class="aff_gauche">
+        <div id="header-fp" >
+            <p class="aff_title_feed">
+                {{__('My bookmarks')}}
+            </p>
+           
+            @php
+                $currentFilter = request('filter'); // Obtient le filtre actuel à partir de l'URL
+            @endphp
+            
+        </div>
+        <div class="aff_profil_tab">
+           
+            <div >
+                <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="{{url('/my/bookmarks/list?filter=all')}}">
+                    <div>
+                    {{__('All')}}
                     </div>
-                    <hr class="mb-0">
-                    <div class="d-lg-block bookmarks-nav">
-                        <div class="d-none d-md-block">
-                            @include('elements.bookmarks.bookmarks-menu',['variant' => 'desktop'])
-                        </div>
-                        <div class="bookmarks-menu-mobile d-block d-md-none mt-3">
-                            @include('elements.bookmarks.bookmarks-menu',['variant' => 'mobile'])
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-9 mb-5 mb-lg-0 min-vh-100 border-left border-right settings-content pl-md-0 pr-md-0">
-                <div class="px-2 px-md-3">
-                    @if(isset($filterType))
-                        {{$filterType}}
-                    @endif
-                </div>
-                @include('elements.feed.posts-load-more')
-                <div class="feed-box mt-0  pt-4 posts-wrapper">
-                    @include('elements.feed.posts-wrapper',['posts'=>$posts])
-                </div>
-                @include('elements.feed.posts-loading-spinner')
+          
+            <div>
+                <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="{{url('/my/bookmarks/list?filter=mediaOnDemade')}}">
+                    <div>
+                    {{__('Videos')}}
+                    </div>
+                </a>
             </div>
-            @include('elements.checkout.checkout-box')
+
+        </div>
+        <div class="justify-content-center align-items-center {{ Cookie::get('app_feed_prev_page') && PostsHelper::isComingFromPostPage(request()->session()->get('_previous')) ? 'mt-0' : 'mt-0' }}">
+            @include('elements.message-alert',['classes'=>'p-2'])
+            @if (in_array($activeFilter, ['mediaOnDemade', 'all']))
+                <div class="feed-box mt-0 ">
+                    @include('elements.feed.post-librairy', ['posts' => $posts])
+                </div>
+            @endif
         </div>
     </div>
+    <div class="aff_droite">
+        @if (Auth::check())
+            @include('elements.feed.suggestions-box',['profiles'=>$suggestions,'isMobile' => false])
+            @if(getSetting('custom-code-ads.sidebar_ad_spot'))
+                <div class="mt-4">
+                    {!! getSetting('custom-code-ads.sidebar_ad_spot') !!}
+                </div>
+            @endif
+            @include('elements.checkout.checkout-box')
+        @endif
+    </div>
+</div>
+@include('template.searchmobile')
 @stop

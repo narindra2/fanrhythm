@@ -32,19 +32,19 @@
         ),
     )->withFullUrl() !!}
 
-<script>
-    // aff_top_profile
-    var myID = $("#fixed-subscr-profile");
-    var myScrollFunc = function() {
-    var y = window.scrollY;
-        if (y >= 120) {
-            myID.addClass("show-nav-subsc").removeClass("hide-nav-subsc") 
-        } else {
-            myID.addClass("hide-nav-subsc").removeClass("show-nav-subsc") 
-        }
-    };
-    window.addEventListener("scroll", myScrollFunc);
-</script>
+    <script>
+        // aff_top_profile
+        var myID = $("#fixed-subscr-profile");
+        var myScrollFunc = function() {
+            var y = window.scrollY;
+            if (y >= 120) {
+                myID.addClass("show-nav-subsc").removeClass("hide-nav-subsc")
+            } else {
+                myID.addClass("hide-nav-subsc").removeClass("show-nav-subsc")
+            }
+        };
+        window.addEventListener("scroll", myScrollFunc);
+    </script>
 @stop
 
 @section('styles')
@@ -60,7 +60,7 @@
         '/css/posts/post.css',
     ])->withFullUrl() !!}
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.3.0/dist/photoswipe.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.3.0/dist/photoswipe.css">
 @stop
 
 @section('meta')
@@ -209,17 +209,12 @@
                                 </span>
                             @endif
 
-
-                            @if (
-                                $user->paid_profile &&
-                                    (!getSetting('profiles.allow_users_enabling_open_profiles') ||
-                                        (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
+                            @if ($user->paid_profile && (!getSetting('profiles.allow_users_enabling_open_profiles') ||(getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
                                 @if ((!Auth::check() || Auth::user()->id !== $user->id) && !$hasSub)
                                 @endif
                             @elseif(!Auth::check() || (Auth::check() && Auth::user()->id !== $user->id))
                                 @if (Auth::check())
                                     <button onclick="Lists.manageFollowsAction('{{ $user->id }}')">
-
                                         @if ($hasSub || $viewerHasChatAccess)
                                             {{ __('Ne plus suivre') }}
                                         @else
@@ -229,8 +224,7 @@
 
                                     </button>
                                 @else
-                                    <button data-toggle="modal" data-target="#login-dialog" data-original-title=""
-                                        title="" {{-- onclick="window.location.href='/login'"  --}}>
+                                    <button data-toggle="modal" data-target="#login-dialog" data-original-title=""  title="" {{-- onclick="window.location.href='/login'"  --}}>
                                         {{ __('Suivre gratuitement') }}
                                     </button>
                                 @endif
@@ -325,27 +319,9 @@
 
 
                 @if (!Auth::check() || Auth::user()->id !== $user->id)
-
                     @if (Auth::check())
                         @if ($hasSub || $viewerHasChatAccess)
-                        @else
                         @endif
-                    @endif
-
-                    @if (
-                        $user->paid_profile &&
-                            (!getSetting('profiles.allow_users_enabling_open_profiles') ||
-                                (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
-                        @if ((!Auth::check() || Auth::user()->id !== $user->id) && !$hasSub)
-                        @endif
-                    @elseif(!Auth::check() || (Auth::check() && Auth::user()->id !== $user->id))
-                        @if (Auth::check())
-                            @if ($hasSub || $viewerHasChatAccess)
-                            @else
-                            @endif
-                        @else
-                        @endif
-
                     @endif
                 @else
                     @php
@@ -418,16 +394,13 @@
                 {{-- Message alert --}}
 
                 @include('elements.message-alert', ['classes' => ''])
-                @if (
-                    $user->paid_profile &&
-                        (!getSetting('profiles.allow_users_enabling_open_profiles') ||
-                            (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
+                @if ($user->paid_profile && (!getSetting('profiles.allow_users_enabling_open_profiles') || (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
+                    @if (0)
 
-                    @if ($user->profile_access_price_3_months * 3 == 15)
                     @else
                         <div class="liste_abonnements">
                             @if ($user->paid_profile)
-                                @if ($user->offer && $user->id !== (Auth::check() ? Auth::id() : 0 ))
+                                @if ($user->offer && $user->id !== (Auth::check() ? Auth::id() : 0))
                                     @php
                                         $expiresAt = $user->offer->expires_at;
                                         $now = \Carbon\Carbon::now();
@@ -499,45 +472,18 @@
 
                     @endif
 
-                    @if ((!Auth::check() || Auth::user()->id !== $user->id) && !$hasSub)
-                    @endif
+                   
                 @elseif(!Auth::check() || (Auth::check() && Auth::user()->id !== $user->id))
+                
                 @endif
-
-
-
             </div>
 
 
             <div class="responsive-add-video">
                 @if (!Auth::check() || Auth::user()->id !== $user->id)
-
-                    @if (Auth::check())
-                        @if ($hasSub || $viewerHasChatAccess)
-                        @else
-                        @endif
-                    @endif
-
-                    @if (
-                        $user->paid_profile &&
-                            (!getSetting('profiles.allow_users_enabling_open_profiles') ||
-                                (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
-                        @if ((!Auth::check() || Auth::user()->id !== $user->id) && !$hasSub)
-                        @endif
-                    @elseif(!Auth::check() || (Auth::check() && Auth::user()->id !== $user->id))
-                        @if (Auth::check())
-                            @if ($hasSub || $viewerHasChatAccess)
-                            @else
-                            @endif
-                        @else
-                        @endif
-
-                    @endif
+                    
                 @else
-                    @if (
-                        $user->email_verified_at &&
-                            ($user->verification && $user->verification->status == 'verified') &&
-                            count($demoposts) <= 2)
+                    @if (  $user->email_verified_at &&($user->verification && $user->verification->status == 'verified') &&  count($demoposts) <= 2)
                         <div class="post_video_form">
                             <form action="{{ route('demoposts.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -587,16 +533,17 @@
                                 <form action="{{ route('demoposts.destroy', $demopost->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn  btn-danger d-block w-100"> {{ __("Supprimer ma video") }}</button>
+                                    <button type="submit" class="btn  btn-danger d-block w-100">
+                                        {{ __('Supprimer ma video') }}</button>
                                 </form>
                             @endif
                         @endforeach
                     @endif
                 </div>
             @endforeach
-                @php
-                        // dd( $posts->total() );
-                @endphp
+            @php
+                // dd( $posts->total() );
+            @endphp
             <div class="aff_profil_tab">
                 <div>
                     <a class=" {{ $activeFilter == false ? 'active' : '' }}"
@@ -612,7 +559,7 @@
                     </a>
                 </div>
 
-                {{-- @if ($filterTypeCounts['image'] > 0 )
+                {{-- @if ($filterTypeCounts['image'] > 0)
                     <div>
                         <a class=" {{ $activeFilter == 'image' ? 'active' : '' }}"
                             href="{{ route('profile', ['username' => $user->username]) . '?filter=library' }}">
@@ -624,14 +571,14 @@
                         </a>
                     </div>
                 @endif --}}
-                @if ($filterTypeCounts['library'] )
+                @if ($filterTypeCounts['library'])
                     <div>
                         <a class=" {{ $activeFilter == 'library' ? 'active' : '' }}"
                             href="{{ route('profile', ['username' => $user->username]) . '?filter=library' }}">
                             {{-- {{ __('Photos') }} --}}
                             {{ __('Library') }}
                             <span>
-                                {{ $filterTypeCounts['library']  }}  
+                                {{ $filterTypeCounts['library'] }}
                             </span>
                         </a>
                     </div>
@@ -650,16 +597,16 @@
                 @endif --}}
 
                 @if ($filterTypeCounts['mediaOnDemand'])
-                <div>
-                    <a class=" {{ $activeFilter == 'mediaOnDemand' ? 'active' : '' }}"
-                        href="{{ route('profile', ['username' => $user->username]) . '?filter=mediaOnDemand' }}">
-                        {{ __('Media on demand') }}
-                        <span>
-                           {{ $filterTypeCounts['mediaOnDemand'] }}
-                        </span>
-                    </a>
-                </div>
-            @endif
+                    <div>
+                        <a class=" {{ $activeFilter == 'mediaOnDemand' ? 'active' : '' }}"
+                            href="{{ route('profile', ['username' => $user->username]) . '?filter=mediaOnDemand' }}">
+                            {{ __('Media on demand') }}
+                            <span>
+                                {{ $filterTypeCounts['mediaOnDemand'] }}
+                            </span>
+                        </a>
+                    </div>
+                @endif
 
                 @if ($filterTypeCounts['audio'] > 0)
                     <div>
@@ -692,15 +639,13 @@
 
 
 
-            <div
-                class="justify-content-center align-items-center {{ Cookie::get('app_feed_prev_page') && PostsHelper::isComingFromPostPage(request()->session()->get('_previous')) ? 'mt-0' : 'mt-0' }}">
+            <div class="justify-content-center align-items-center {{ Cookie::get('app_feed_prev_page') && PostsHelper::isComingFromPostPage(request()->session()->get('_previous')) ? 'mt-0' : 'mt-0' }}">
                 @if ($activeFilter !== 'streams')
-                    
-                    @if (in_array($activeFilter,["library" , "mediaOnDemand"]) )
+                    @if (in_array($activeFilter, ['library', 'mediaOnDemand']))
                         <div class="feed-box mt-0 ">
                             @include('elements.feed.post-librairy', ['posts' => $posts])
                         </div>
-                    @else 
+                    @else
                         @include('elements.feed.posts-load-more', ['classes' => 'mb-2'])
                         <div class="feed-box mt-0 posts-wrapper">
                             @include('elements.feed.posts-wrapper', ['posts' => $posts])
@@ -717,58 +662,62 @@
                 @endif
                 @include('elements.feed.posts-loading-spinner')
             </div>
-            @if (Auth::check() && Auth::id() != $user->id  && !$hasSub)
-            
-                <nav id="fixed-subscr-profile"  class=" transition-scroll hide-nav-subsc  nav-subsc justify-content-center fixed-subscr-profile">
+            @if (Auth::check() && Auth::id() != $user->id && !$hasSub)
+
+                <nav id="fixed-subscr-profile"
+                    class=" transition-scroll hide-nav-subsc  nav-subsc justify-content-center fixed-subscr-profile">
                     <div class="d-flex w-100">
-                        @if (  $user->paid_profile &&  (!getSetting('profiles.allow_users_enabling_open_profiles') || (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
-                        <div class="liste_abonnements_one_bth  w-100" style="padding: 0;" >
-                            @include('elements.checkout.subscribe-button-30')
-                        </div>
-                    @else
-                        <button class="btn btn-primary btn-block" onclick="Lists.manageFollowsAction('{{ $user->id }}')">
-                            {{ __('Suivre gratuitement') }} 
-                        </button>
-                        
-                    @endif
+                        @if ($user->paid_profile &&  (!getSetting('profiles.allow_users_enabling_open_profiles') || (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
+                            <div class="liste_abonnements_one_bth  w-100" style="padding: 0;">
+                                @include('elements.checkout.subscribe-button-30')
+                            </div>
+                        @else
+                            <button class="btn btn-primary btn-block"
+                                onclick="Lists.manageFollowsAction('{{ $user->id }}')">
+                                {{ __('Suivre gratuitement') }}
+                            </button>
+                        @endif
                         &nbsp;
                         <div class=" dropup">
-                            <button type="button" class="btn btn-primary to-tooltip "  style="border-radius: 9px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <svg width="5px" height="18px" viewBox="0 0 5 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <g id="post" transform="translate(-584.000000, -24.000000)" fill="#9E9E9E" stroke="#9E9E9E"
-                                        stroke-width="2.5">
-                                        <g id="date" transform="translate(443.000000, 24.000000)">
-                                            <g id="more-horizontal"
-                                                transform="translate(143.000000, 9.000000) rotate(90.000000) translate(-143.000000, -9.000000) translate(136.000000, 8.000000)">
-                                                <circle id="Oval" cx="7" cy="0.875" r="1"></circle>
-                                                <circle id="Oval" cx="13.125" cy="0.875" r="1"></circle>
-                                                <circle id="Oval" cx="0.875" cy="0.875" r="1"></circle>
+                            <button type="button" class="btn btn-primary to-tooltip " style="border-radius: 9px;"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <svg width="5px" height="18px" viewBox="0 0 5 18" version="1.1"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g id="Symbols" stroke="none" stroke-width="1" fill="none"
+                                        fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                        <g id="post" transform="translate(-584.000000, -24.000000)" fill="#9E9E9E"
+                                            stroke="#9E9E9E" stroke-width="2.5">
+                                            <g id="date" transform="translate(443.000000, 24.000000)">
+                                                <g id="more-horizontal"
+                                                    transform="translate(143.000000, 9.000000) rotate(90.000000) translate(-143.000000, -9.000000) translate(136.000000, 8.000000)">
+                                                    <circle id="Oval" cx="7" cy="0.875" r="1"></circle>
+                                                    <circle id="Oval" cx="13.125" cy="0.875" r="1"></circle>
+                                                    <circle id="Oval" cx="0.875" cy="0.875" r="1"></circle>
+                                                </g>
                                             </g>
                                         </g>
                                     </g>
-                                </g>
-                            </svg>
+                                </svg>
                             </button>
                             <div class="dropdown-menu" style="margin-left: -108px !important;margin-bottom: 5px;">
-                                <a class="dropdown-item" href="javascript:void(0);"onclick="Lists.showReportBox({{$user->id}},0);">
-                                    {{__("Signaler")}}
+                                <a class="dropdown-item"
+                                    href="javascript:void(0);"onclick="Lists.showReportBox({{ $user->id }},0);">
+                                    {{ __('Signaler') }}
                                 </a>
-                                <a class="dropdown-item" href="javascript:void(0);" onclick="copieClipboard('{{ route('profile', ['username' => $user->username]) }}' , '#copyUrlUser2')" id="copyUrlUser2" >
+                                <a class="dropdown-item" href="javascript:void(0);"
+                                    onclick="copieClipboard('{{ route('profile', ['username' => $user->username]) }}' , '#copyUrlUser2')"
+                                    id="copyUrlUser2">
                                     {{ __('Copier le lien de profil') }}
                                 </a>
                             </div>
-                          </div>
+                        </div>
                     </div>
-                    
+
                 </nav>
             @endif
         </div>
-        
+
         <style>
-            
             .liste_abonnements_one_bth button {
                 width: 100%;
                 margin-bottom: 10px;
@@ -780,7 +729,7 @@
                 text-transform: none;
                 box-shadow: none !important;
                 border-radius: .5rem !important;
-                padding: .75rem 1.5rem !important; 
+                padding: .75rem 1.5rem !important;
             }
         </style>
         <div class="aff_droite">
@@ -832,8 +781,8 @@
                                 <form action="{{ route('demoposts.destroy', $demopost->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger d-block w-100">Supprimer ma
-                                        video</button>
+                                    <button type="submit"
+                                        class="btn btn-danger d-block w-100">{{ __('Supprimer ma video') }}</button>
                                 </form>
                             @endif
                         @endforeach
@@ -903,7 +852,7 @@
         </div>
 
     </div>
-    
+
     @if (Auth::check())
         @include('elements.lists.list-add-user-dialog', [
             'user_id' => $user->id,
@@ -917,5 +866,5 @@
     @endif
 
     @include('elements.profile.qr-code-dialog')
-   
+
 @stop

@@ -2,7 +2,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.3.0/dist/photoswipe.css">
 @stop
 @if(count($posts))
-    <div class="pswp-gallery " id="gallery">
+    {{-- <div class="pswp-gallery" id="gallery"> --}}
+    <div  id="gallery">
         <div class="row m-0 posts-wrapper">
             @foreach($posts as $post)
                 @include('elements.feed.post-library-post', ["post" => &$post])

@@ -31,17 +31,6 @@ Minify::javascript([
 '/js/pages/search.js',
 ])->withFullUrl()
 !!}
-{{-- <script  src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/vendors/easings.min.js" type="text/javascript"></script>
-<script  src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.min.js" type="text/javascript"></script>
-<script>
-     $(document).ready(function() {
-
-        $('#fullpage').fullpage({
-            //options here
-            fixedElements: '#header-fp',
-            scrollOverflow: true
-        });
-    }); --}}
 </script>
 @stop
 
@@ -57,9 +46,7 @@ Minify::stylesheet([
 '/css/pages/search.css',
 ])->withFullUrl()
 !!}
-{{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.min.css" /> --}}
 @stop
-
 
 @section('content')
 

@@ -298,7 +298,7 @@ var Post = {
 
             element.removeClass('active');
         } else{
-            tilte = trans("Remove in my bookmarks")
+            tilte = trans("Remove from my bookmarks")
 
             element.addClass('active');
         }
