@@ -103,18 +103,18 @@
         </div>
 
         <div class="row pt-2">
-            @foreach ($verifiedUsers as $userVerify)
-            @if ($userVerify->status == 'verified' && $userVerify->user)
+            @foreach ($usersVerified as $user)
+            {{-- @if ($userVerify->status == 'verified' && $user) --}}
             <div class="col-sm-12">
                 <div class="aff_search_user_list user-search-box-item user-search-box-item_change_color"
-                    style="background: url('{{ $userVerify->user->cover ?? 'chemin_par_defaut_pour_cover' }}'); background-size:cover; background-repeat:no-repeat; background-position:center">
-                    <a href="/{{ $userVerify->user->username ?? 'Username Non Disponible' }}">
+                    style="background: url('{{ $user->cover ?? 'chemin_par_defaut_pour_cover' }}'); background-size:cover; background-repeat:no-repeat; background-position:center">
+                    <a href="/{{ $user->username ?? 'Username Non Disponible' }}">
 
-                        <img src="{{ $userVerify->user->avatar ?? 'chemin_par_defaut_pour_avatar' }}" alt="avatar" />
+                        <img src="{{ $user->avatar ?? 'chemin_par_defaut_pour_avatar' }}" alt="avatar" />
                         <div class="aff_info_name">
                             <div>
                                 <span>
-                                    {{ $userVerify->user->name ?? 'Nom Non Disponible' }}
+                                    {{ $user->name ?? 'Nom non Disponible' }}
 
                                     <span data-toggle="tooltip" data-placement="top" title="{{__('Verified user')}}">
                                         <svg style="fill: #59b8f7; height: 16px;" viewBox="0 0 22 22"
@@ -131,21 +131,21 @@
                             </div>
                             <div>
                                 <span>
-                                    <span>@</span>{{ $userVerify->user->username ?? 'Username Non Disponible' }}
+                                    <span>@</span>{{ $user->username ?? 'Username non Disponible' }}
                                 </span>
                             </div>
                         </div>
                     </a>
 
-                    <a href="/{{ $userVerify->user->username ?? 'Username Non Disponible' }}">
+                    <a href="{{url("/$user->username")}}">
                         {{ __("Voir le profil") }}
                     </a>
                 </div>
             </div>
-            @endif
+            {{-- @endif --}}
             @endforeach
             
-            {{ $verifiedUsers->links() }}
+            {{ $usersVerified->links() }}
         </div>
     </div>
     <div class="aff_droite">
