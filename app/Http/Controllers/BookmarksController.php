@@ -39,10 +39,21 @@ class BookmarksController extends Controller
         header('Pragma: no-cache'); // HTTP 1.0.
         header('Expires: 0 '); // Proxies.
 
-        $type = AttachmentServiceProvider::getActualTypeByBookmarkCategory($request->route('type'));
+        // $type = AttachmentServiceProvider::getActualTypeByBookmarkCategory($request->route('type'));
 
         $startPage = PostsHelperServiceProvider::getFeedStartPage(PostsHelperServiceProvider::getPrevPage($request));
-        $posts = PostsHelperServiceProvider::getUserBookmarks(Auth::user()->id, false, $startPage, $type);
+        $mediaType ="";
+        $filterBookmark = $request->get('filter'); 
+        if (!in_array($filterBookmark, ["all","mediaOnDemand"])) {
+            $mediaType = "library";
+        }else {
+            if ($filterBookmark == "all") {
+                $mediaType = "library";
+            }else {
+                $mediaType  = $filterBookmark;
+            }
+        }
+        $posts = PostsHelperServiceProvider::getUserBookmarks(Auth::user()->id, false, $startPage, $mediaType);
         PostsHelperServiceProvider::shouldDeletePaginationCookie($request);
 
         if ($request->method() == 'GET') {
@@ -67,7 +78,7 @@ class BookmarksController extends Controller
         } else {
             return response()->json([
                 'success'=>true,
-                'data'=>PostsHelperServiceProvider::getUserBookmarks(Auth::user()->id, true, false, $type),
+                'data'=>PostsHelperServiceProvider::getUserBookmarks(Auth::user()->id, true, false, $mediaType),
             ]);
         }
     }
@@ -89,6 +100,4 @@ class BookmarksController extends Controller
             return response()->json(['success' => false, 'errors' => [__('An internal error has occurred.')], 'message' => $exception->getMessage()]);
         }
     }
-
-    
 }

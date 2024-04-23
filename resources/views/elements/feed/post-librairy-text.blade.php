@@ -81,7 +81,7 @@
                     @php
                         $isPostBookmarked = PostsHelper::isPostBookmarked($post->bookmarks);
                     @endphp
-                    <div class="bookmark-button {{ $isPostBookmarked  ? 'active' : ''}}"
+                    <div class="bookmark-button {{ $isPostBookmarked  ? 'active' : ''}} bookmark-button-{{ $post->id }}"
                         id="bookmark-button-{{ $post->id }}"  data-toggle="tooltip" data-placement="top" data-original-title="{{  $isPostBookmarked ? __("Remove from my bookmarks") : __('Add to my bookmarks')}}"
                         onclick="Post.addTobookmark({{$post->id}})">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">

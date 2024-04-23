@@ -10,6 +10,8 @@ class UserVerify extends Model
     public const REJECTED_STATUS = 'rejected';
     public const APPROVED_STATUS = 'verified';
 
+    public const MIN_NB_POST_TO_BE_VISIBLE = 10;
+ 
     /**
      * The attributes that are mass assignable.
      *

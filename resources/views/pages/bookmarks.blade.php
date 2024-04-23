@@ -15,19 +15,19 @@
     {!!
 Minify::javascript([
 '/js/PostsPaginator.js',
-'/js/UsersPaginator.js',
-'/js/StreamsPaginator.js',
-'/js/CommentsPaginator.js',
+// '/js/UsersPaginator.js',
+// '/js/StreamsPaginator.js',
+// '/js/CommentsPaginator.js',
 '/js/Post.js',
 '/js/SuggestionsSlider.js',
 '/js/pages/lists.js',
 '/js/pages/checkout.js',
-'/libs/swiper/swiper-bundle.min.js',
-'/js/plugins/media/photoswipe.js',
-'/libs/photoswipe/dist/photoswipe-ui-default.min.js',
-'/libs/@joeattardi/emoji-button/dist/index.js',
-'/js/plugins/media/mediaswipe.js',
-'/js/plugins/media/mediaswipe-loader.js',
+// '/libs/swiper/swiper-bundle.min.js',
+// '/js/plugins/media/photoswipe.js',
+// '/libs/photoswipe/dist/photoswipe-ui-default.min.js',
+// '/libs/@joeattardi/emoji-button/dist/index.js',
+// '/js/plugins/media/mediaswipe.js',
+// '/js/plugins/media/mediaswipe-loader.js',
 '/js/pages/search.js',
 ])->withFullUrl()
 !!}
@@ -38,13 +38,13 @@ Minify::javascript([
 @section('styles')
 {!!
 Minify::stylesheet([
-'/libs/swiper/swiper-bundle.min.css',
-'/libs/photoswipe/dist/photoswipe.css',
+// '/libs/swiper/swiper-bundle.min.css',
+// '/libs/photoswipe/dist/photoswipe.css',
 '/css/pages/checkout.css',
 '/libs/photoswipe/dist/default-skin/default-skin.css',
 '/css/pages/feed.css',
 '/css/posts/post.css',
-'/css/pages/search.css',
+// '/css/pages/search.css',
 ])->withFullUrl()
 !!}
 @stop
@@ -66,7 +66,7 @@ Minify::stylesheet([
         <div class="aff_profil_tab">
            
             <div >
-                <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="{{url('/my/bookmarks/list?filter=all')}}">
+                <a class="{{ $currentFilter == 'all' ? 'active' : '' }}" href="{{url('/my/bookmarks/list?filter=all')}}">
                     <div>
                     {{__('All')}}
                     </div>
@@ -75,9 +75,9 @@ Minify::stylesheet([
 
           
             <div>
-                <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="{{url('/my/bookmarks/list?filter=mediaOnDemade')}}">
+                <a class="{{ $currentFilter == 'mediaOnDemand' ? 'active' : '' }}" href="{{url('/my/bookmarks/list?filter=mediaOnDemand')}}">
                     <div>
-                    {{__('Videos')}}
+                    {{__('Media on demande')}}
                     </div>
                 </a>
             </div>
@@ -85,7 +85,7 @@ Minify::stylesheet([
         </div>
         <div class="justify-content-center align-items-center {{ Cookie::get('app_feed_prev_page') && PostsHelper::isComingFromPostPage(request()->session()->get('_previous')) ? 'mt-0' : 'mt-0' }}">
             @include('elements.message-alert',['classes'=>'p-2'])
-            @if (in_array($activeFilter, ['mediaOnDemade', 'all']))
+            @if (in_array($activeFilter, ['mediaOnDemand', 'all']))
                 <div class="feed-box mt-0 ">
                     @include('elements.feed.post-librairy', ['posts' => $posts])
                 </div>

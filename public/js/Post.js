@@ -291,16 +291,17 @@ var Post = {
      */
     addTobookmark: function (postId = 0) {
         const element = $("#bookmark-button-"+postId);
+        const elementClass = $(".bookmark-button-"+postId);
         const alreadyInBookmark = element.hasClass('active');
         let tilte = "";
         if(alreadyInBookmark){
             tilte = trans("Add to my bookmarks")
 
-            element.removeClass('active');
+            elementClass.removeClass('active');
         } else{
             tilte = trans("Remove from my bookmarks")
 
-            element.addClass('active');
+            elementClass.addClass('active');
         }
         $.ajax({
             type: 'POST',

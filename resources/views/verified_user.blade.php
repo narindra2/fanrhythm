@@ -144,7 +144,7 @@
             </div>
             @endif
             @endforeach
-
+            
             {{ $verifiedUsers->links() }}
         </div>
     </div>
