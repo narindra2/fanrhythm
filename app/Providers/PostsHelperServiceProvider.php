@@ -386,7 +386,7 @@ class PostsHelperServiceProvider extends ServiceProvider
 
     {
 
-        return self::getFilteredPosts($userID, $encodePostsToHtml, $pageNumber, $mediaType, false, $hasSub, true);
+        return self::getFilteredPosts($userID, $encodePostsToHtml, $pageNumber, $mediaType, false, $hasSub, true ,true);
 
     }
 
@@ -415,7 +415,6 @@ class PostsHelperServiceProvider extends ServiceProvider
     {
 
         $relations = ['user', 'reactions', 'attachments', 'bookmarks:user_id,post_id', 'postPurchases'];
-
 
 
         // Fetching basic posts information

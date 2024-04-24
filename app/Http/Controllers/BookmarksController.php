@@ -59,7 +59,7 @@ class BookmarksController extends Controller
         if ($request->method() == 'GET') {
             JavaScript::put([
                 'paginatorConfig' => [
-                    'next_page_url' =>$posts->nextPageUrl(),
+                    'next_page_url' => $posts->nextPageUrl(),
                     'prev_page_url' => $posts->previousPageUrl(),
                     'current_page' => $posts->currentPage(),
                     'total' => $posts->total(),
@@ -68,10 +68,9 @@ class BookmarksController extends Controller
                 ],
                 'initialPostIDs' => $posts->pluck('id')->toArray(),
             ]);
-
             return view('pages.bookmarks', [
                 'posts' => $posts,
-                'suggestions' => MembersHelperServiceProvider::getSuggestedMembers(),
+                'suggestions' => MembersHelperServiceProvider::getSuggestedMembers()->take(5),
                 'activeFilter' =>$request->get('filter') ,
                 'activeTab' => $request->route('type'),
             ]);

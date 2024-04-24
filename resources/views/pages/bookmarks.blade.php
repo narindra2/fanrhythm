@@ -15,19 +15,19 @@
     {!!
 Minify::javascript([
 '/js/PostsPaginator.js',
-// '/js/UsersPaginator.js',
-// '/js/StreamsPaginator.js',
-// '/js/CommentsPaginator.js',
+'/js/UsersPaginator.js',
+'/js/StreamsPaginator.js',
+'/js/CommentsPaginator.js',
 '/js/Post.js',
 '/js/SuggestionsSlider.js',
 '/js/pages/lists.js',
 '/js/pages/checkout.js',
-// '/libs/swiper/swiper-bundle.min.js',
-// '/js/plugins/media/photoswipe.js',
-// '/libs/photoswipe/dist/photoswipe-ui-default.min.js',
-// '/libs/@joeattardi/emoji-button/dist/index.js',
-// '/js/plugins/media/mediaswipe.js',
-// '/js/plugins/media/mediaswipe-loader.js',
+'/libs/swiper/swiper-bundle.min.js',
+'/js/plugins/media/photoswipe.js',
+'/libs/photoswipe/dist/photoswipe-ui-default.min.js',
+'/libs/@joeattardi/emoji-button/dist/index.js',
+'/js/plugins/media/mediaswipe.js',
+'/js/plugins/media/mediaswipe-loader.js',
 '/js/pages/search.js',
 ])->withFullUrl()
 !!}
@@ -88,7 +88,7 @@ Minify::stylesheet([
             <div>
                 <a class="{{ $currentFilter == 'mediaOnDemand' ? 'active' : '' }}" href="{{url('/my/bookmarks/list?filter=mediaOnDemand')}}">
                     <div>
-                    {{__('Media on demande')}}
+                    {{__('Media on Demand')}}
                     </div>
                 </a>
             </div>

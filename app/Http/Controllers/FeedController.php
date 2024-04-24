@@ -80,7 +80,6 @@ class FeedController extends Controller
         return response()->json(['success'=>true, 'data'=>PostsHelperServiceProvider::getFeedPosts(Auth::user()->id, true)]);
     }
 
-
     /**
      * Returns lists of suggested members.
      *
