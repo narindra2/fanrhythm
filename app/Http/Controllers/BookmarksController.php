@@ -56,8 +56,8 @@ class BookmarksController extends Controller
         $posts = PostsHelperServiceProvider::getUserBookmarks(Auth::user()->id, false, $startPage, $mediaType);
         PostsHelperServiceProvider::shouldDeletePaginationCookie($request);
 
-        if ($request->method() == 'GET') {
-            JavaScript::put([
+        if (!$request->ajax()) {
+            $jsData = [
                 'paginatorConfig' => [
                     'next_page_url' => $posts->nextPageUrl(),
                     'prev_page_url' => $posts->previousPageUrl(),
@@ -67,10 +67,20 @@ class BookmarksController extends Controller
                     'hasMore' => $posts->hasMorePages(),
                 ],
                 'initialPostIDs' => $posts->pluck('id')->toArray(),
-            ]);
+                'searchType' => 'feed'
+            ];
+            JavaScript::put(
+                array_merge($jsData,
+                    [
+                        'sliderConfig' => [
+                            'autoslide'=> getSetting('feed.feed_suggestions_autoplay') ? true : false,
+                        ]
+                    ]
+                )
+            );
             return view('pages.bookmarks', [
                 'posts' => $posts,
-                'suggestions' => MembersHelperServiceProvider::getSuggestedMembers()->take(5),
+                'suggestions' => MembersHelperServiceProvider::getSuggestedMembers()->take(4),
                 'activeFilter' =>$request->get('filter') ,
                 'activeTab' => $request->route('type'),
             ]);
@@ -90,10 +100,10 @@ class BookmarksController extends Controller
             $bookmark =  UserBookmark::where("user_id" , Auth::id())->where("post_id",$request->post_id)->first();
             if ($bookmark) {
                 $bookmark->delete();
-                return response()->json(['success' => true, 'message' =>  __('Post removed from bookmark.')]);
+                return response()->json(['success' => true, 'message' =>  __('Post retirer dans bookmark.')]);
             }else{
                 UserBookmark::create(["user_id" => Auth::id() , "post_id" =>  $request->post_id]);
-                return response()->json(['success' => true, 'message' =>  __('Post added to bookmark.')]);
+                return response()->json(['success' => true, 'message' =>  __('Post ajouter aux  bookmarks.')]);
             }
         } catch (\Exception $exception) {
             return response()->json(['success' => false, 'errors' => [__('An internal error has occurred.')], 'message' => $exception->getMessage()]);

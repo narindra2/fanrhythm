@@ -95,17 +95,18 @@ Minify::stylesheet([
 
         </div>
         @if (count($posts))
-        <div class="justify-content-center align-items-center {{ Cookie::get('app_feed_prev_page') && PostsHelper::isComingFromPostPage(request()->session()->get('_previous')) ? 'mt-0' : 'mt-0' }}">
-            @include('elements.message-alert',['classes'=>'p-2'])
-            @if (in_array($activeFilter, ['mediaOnDemand', 'all']))
-                <div class="feed-box mt-0 ">
-                    @include('elements.feed.post-librairy', ['posts' => $posts])
-                </div>
-            @endif
-        </div>
+            <div class="justify-content-center align-items-center {{ Cookie::get('app_feed_prev_page') && PostsHelper::isComingFromPostPage(request()->session()->get('_previous')) ? 'mt-0' : 'mt-0' }}">
+                @include('elements.message-alert',['classes'=>'p-2'])
+                @if (in_array($activeFilter, ['mediaOnDemand', 'all']))
+                    <div class="feed-box mt-0 ">
+                        @include('elements.feed.post-librairy', ['posts' => $posts])
+                    </div>
+                @endif
+            </div>
+            @include('elements.feed.posts-loading-spinner')
         @else 
             <div class="justify-content-center align-items-center {{ Cookie::get('app_feed_prev_page') && PostsHelper::isComingFromPostPage(request()->session()->get('_previous')) ? 'mt-0' : 'mt-0' }}">
-               <p class="text-center">{{ __("No boomarks found") }} </p>
+               <p class="text-center">{{ __("Bookmrks vide.") }} </p>
             </div>
         @endif
        

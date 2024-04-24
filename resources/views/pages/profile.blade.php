@@ -642,7 +642,7 @@
             <div class="justify-content-center align-items-center {{ Cookie::get('app_feed_prev_page') && PostsHelper::isComingFromPostPage(request()->session()->get('_previous')) ? 'mt-0' : 'mt-0' }}">
                 @if ($activeFilter !== 'streams')
                     @if (in_array($activeFilter, ['library', 'mediaOnDemand']))
-                        <div class="feed-box mt-0 ">
+                        <div class="feed-box mt-0  ">
                             @include('elements.feed.post-librairy', ['posts' => $posts])
                         </div>
                     @else

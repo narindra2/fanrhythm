@@ -1086,5 +1086,10 @@
     "Supprimer ma video":"Delete my video",
     "Post removed from bookmark.": "Post removed from bookmark.",
     "Post added from bookmark.": "Post added from bookmark.",
-    "Mes bookmarks" :"My bookmarks"
+    "Mes bookmarks" :"My bookmarks",
+    "Retirer aux bookmarks." : "Remove from my bookmarks.",
+    "Ajouter aux bookmarks." : "Add to my bookmarks.",
+    "Bookmrks vide." : "Empty boomarks.",
+    "Post retirer dans bookmarks.": "Post removed from bookmark.",
+    "Post ajouter aux  bookmarks.": "Post removed from bookmark."
 }
