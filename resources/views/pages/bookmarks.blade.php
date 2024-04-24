@@ -64,7 +64,13 @@ Minify::stylesheet([
             
         </div>
         <div class="aff_profil_tab">
-           
+            <div style="display: none">
+                <a class="" href="/search?query=&amp;filter=top">
+                    <div>
+                    {{__('Top')}}
+                    </div>
+                </a>
+            </div>
             <div >
                 <a class="{{ $currentFilter == 'all' ? 'active' : '' }}" href="{{url('/my/bookmarks/list?filter=all')}}">
                     <div>
@@ -72,8 +78,13 @@ Minify::stylesheet([
                     </div>
                 </a>
             </div>
-
-          
+            <div style="display: none">
+                <a class="" href="/search?query=&amp;filter=photos">
+                    <div>
+                    {{__('Photos')}}
+                    </div>
+                </a>
+            </div>
             <div>
                 <a class="{{ $currentFilter == 'mediaOnDemand' ? 'active' : '' }}" href="{{url('/my/bookmarks/list?filter=mediaOnDemand')}}">
                     <div>
@@ -83,6 +94,7 @@ Minify::stylesheet([
             </div>
 
         </div>
+        @if (count($posts))
         <div class="justify-content-center align-items-center {{ Cookie::get('app_feed_prev_page') && PostsHelper::isComingFromPostPage(request()->session()->get('_previous')) ? 'mt-0' : 'mt-0' }}">
             @include('elements.message-alert',['classes'=>'p-2'])
             @if (in_array($activeFilter, ['mediaOnDemand', 'all']))
@@ -91,6 +103,13 @@ Minify::stylesheet([
                 </div>
             @endif
         </div>
+        @else 
+            <div class="justify-content-center align-items-center {{ Cookie::get('app_feed_prev_page') && PostsHelper::isComingFromPostPage(request()->session()->get('_previous')) ? 'mt-0' : 'mt-0' }}">
+               <p class="text-center">{{ __("No boomarks found") }} </p>
+            </div>
+        @endif
+       
+        
     </div>
     <div class="aff_droite">
         @if (Auth::check())
