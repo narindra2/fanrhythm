@@ -13,8 +13,9 @@ class VerifiedUserController extends Controller
     public function index(Request $request)
     {
         $usersVerified =  User::whereHas('verification' ,function($verification){ $verification->where('status',"=" ,'verified');});
-        if (UserVerify::MIN_NB_POST_TO_BE_VISIBLE) {
-            $usersVerified->has('posts', '>=', UserVerify::MIN_NB_POST_TO_BE_VISIBLE);
+        $min_post = getSetting("feed.min_nb_post_to_be_user_visble" ,UserVerify::MIN_NB_POST_TO_BE_VISIBLE)  ;
+        if ($min_post) {
+            $usersVerified->has('posts', '>=',  $min_post);
         }
         $usersVerified = $usersVerified->orderBy('id', 'DESC')->paginate(8);
         PostsHelperServiceProvider::shouldDeletePaginationCookie($request);

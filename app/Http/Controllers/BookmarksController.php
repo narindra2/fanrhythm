@@ -94,7 +94,7 @@ class BookmarksController extends Controller
                 return response()->json(['success' => true, 'message' =>  __('Post removed from bookmark.')]);
             }else{
                 UserBookmark::create(["user_id" => Auth::id() , "post_id" =>  $request->post_id]);
-                return response()->json(['success' => true, 'message' =>  __('Post added from bookmark.')]);
+                return response()->json(['success' => true, 'message' =>  __('Post added to bookmark.')]);
             }
         } catch (\Exception $exception) {
             return response()->json(['success' => false, 'errors' => [__('An internal error has occurred.')], 'message' => $exception->getMessage()]);
