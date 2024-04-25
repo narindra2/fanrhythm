@@ -612,7 +612,6 @@ class SettingsController extends Controller
 
         return response()->json(['success' => true, 'assetSrc' => $filePath]);
     }
-
     /**
      * Delete ID checks assets.
      *
