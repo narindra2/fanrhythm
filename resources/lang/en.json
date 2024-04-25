@@ -1084,12 +1084,10 @@
     "Nous ne pouvons pas trouver un utilisateur avec cette adresse e-mail." : "We cannot find a user with this email address.",
     "Vous n'avez pas assez d'argent pour payer cette transaction. Veuillez recharger votre portefeuille ici :" :"You don't have enough money to pay for this transaction. Please top up your wallet here :",
     "Supprimer ma video":"Delete my video",
-    "Post removed from bookmark.": "Post removed from bookmark.",
-    "Post added from bookmark.": "Post added from bookmark.",
     "Mes bookmarks" :"My bookmarks",
     "Retirer aux bookmarks." : "Remove from my bookmarks.",
     "Ajouter aux bookmarks." : "Add to my bookmarks.",
     "Bookmrks vide." : "Empty boomarks.",
-    "Post retirer dans bookmarks.": "Post removed from bookmark.",
-    "Post ajouter aux  bookmarks.": "Post removed from bookmark."
+    "Post retirer dans bookmarks.": "Post removed from my bookmark.",
+    "Post ajouter aux bookmarks.": "Post added to bookmark."
 }

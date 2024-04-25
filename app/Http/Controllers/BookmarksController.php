@@ -100,10 +100,10 @@ class BookmarksController extends Controller
             $bookmark =  UserBookmark::where("user_id" , Auth::id())->where("post_id",$request->post_id)->first();
             if ($bookmark) {
                 $bookmark->delete();
-                return response()->json(['success' => true, 'message' =>  __('Post retirer dans bookmark.')]);
+                return response()->json(['success' => true, 'message' =>  __('Post retirer dans bookmarks.')]);
             }else{
                 UserBookmark::create(["user_id" => Auth::id() , "post_id" =>  $request->post_id]);
-                return response()->json(['success' => true, 'message' =>  __('Post ajouter aux  bookmarks.')]);
+                return response()->json(['success' => true, 'message' =>  __('Post ajouter aux bookmarks.')]);
             }
         } catch (\Exception $exception) {
             return response()->json(['success' => false, 'errors' => [__('An internal error has occurred.')], 'message' => $exception->getMessage()]);

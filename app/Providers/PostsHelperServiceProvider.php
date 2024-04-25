@@ -495,20 +495,20 @@ class PostsHelperServiceProvider extends ServiceProvider
 
         $posts = self::filterPosts($posts, $userID, 'order',false,$sortOrder);
 
-
-
-        if ($pageNumber) {
-            $posts = $posts->paginate(getSetting('feed.feed_posts_per_page'), ['*'], 'page', $pageNumber)->appends(request()->query());
-        } else {
-            $posts = $posts->paginate(getSetting('feed.feed_posts_per_page'))->appends(request()->query());
+        if ($mediaType == 'library' || $mediaType ==  'mediaOnDemand') {
+            $paginate = 12;
+        }else{
+            $paginate = getSetting('feed.feed_posts_per_page');
         }
 
-
+        if ($pageNumber) {
+            $posts = $posts->paginate( $paginate, ['*'], 'page', $pageNumber)->appends(request()->query());
+        } else {
+            $posts = $posts->paginate( $paginate)->appends(request()->query());
+        }
 
         if(Auth::check() && Auth::user()->role_id === 1){
-
             $hasSub = true;
-
         }
 
 
