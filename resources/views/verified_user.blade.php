@@ -112,9 +112,8 @@
                         <img src="{{ $user->avatar ?? 'chemin_par_defaut_pour_avatar' }}" alt="avatar" />
                         <div class="aff_info_name">
                             <div>
-                                <span>
-                                    {{ $user->name ?? 'Nom non Disponible' }}
-
+                                <span> {{ $user->name ?? 'Nom non Disponible' }} 
+                                   
                                     <span data-toggle="tooltip" data-placement="top" title="{{__('Verified user')}}">
                                         <svg style="fill: #59b8f7; height: 16px;" viewBox="0 0 22 22"
                                             aria-label="Compte certifié" role="img" data-testid="icon-verified">
@@ -125,20 +124,33 @@
                                             </g>
                                         </svg>
                                     </span>
-
+                                    
                                 </span>
                             </div>
-                            <div>
-                                <span>
-                                    <span>@</span>{{ $user->username ?? 'Username non Disponible' }}
-                                </span>
-                            </div>
+                                <div>
+                                    <span>
+                                        @if ($user->paid_profile &&  (!getSetting('profiles.allow_users_enabling_open_profiles') || (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
+                                            {{$user->profile_access_price}}{{config('app.site.currency_symbol') ?? config('app.site.currency_symbol')}}/ {{ __("month") }}
+                                        @else
+                                            {{ __('Compte gratuit') }}
+                                        @endif
+                                    </span>
+                                </div>
                         </div>
                     </a>
 
                     <a href="{{url("/$user->username")}}">
                         {{ __("Voir le profil") }}
                     </a>
+                    {{-- @if (Auth::check())
+                    <a  href="{{url("/$user->username")}}" class="subscription-montant">
+                        @if ($user->paid_profile &&  (!getSetting('profiles.allow_users_enabling_open_profiles') || (getSetting('profiles.allow_users_enabling_open_profiles') && !$user->open_profile)))
+                            {{$user->profile_access_price}}{{config('app.site.currency_symbol') ?? config('app.site.currency_symbol')}}/ {{ __("month") }}
+                        @else
+                            {{ __('Compte gratuit') }}
+                        @endif
+                        </a>
+                    @endif --}}
                 </div>
             </div>
             {{-- @endif --}}
@@ -152,5 +164,28 @@
     </div>
 
 </div>
+<style>
+        
+.subscription-montant {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    /* background-image: linear-gradient(93deg, #59B8F7 39%, #28A0F0 79%);
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 12px; */
+    color: var(--color-base);
+    letter-spacing: -0.28px;
+    text-align: center;
+    padding: 6px 12px;
+    z-index: 10;
+    min-width: 14%;
+    cursor: pointer;
+}
+/* .subscription-montant:hover {
+    background: #fff !important;
+    color: #32a0f0 !important;
+} */
+</style>
 @include('template.searchmobile')
 @stop

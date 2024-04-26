@@ -12,7 +12,7 @@ class VerifiedUserController extends Controller
 {
     public function index(Request $request)
     {
-        $usersVerified =  User::select("id", "username","name","avatar","cover")->whereHas('verification' ,function($verification){ $verification->where('status',"=" ,'verified');});
+        $usersVerified =  User::select("id", "username","name","avatar","cover","paid_profile","profile_access_price")->whereHas('verification' ,function($verification){ $verification->where('status',"=" ,'verified');});
         $min_post = getSetting("feed.min_nb_post_to_be_user_visble" ,UserVerify::MIN_NB_POST_TO_BE_VISIBLE)  ;
         if ($min_post) {
             $usersVerified->has('posts', '>=',  $min_post);

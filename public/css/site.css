@@ -5142,19 +5142,19 @@ input#message-price.form-control {
     height: 10px !important;
     border-top: 1px solid var(--border-default);
 }
-/* @media screen and (max-width: 769px) {
+@media screen and (max-width: 1151px) {
     .fixed-subscr-profile{
         position: sticky;
-        bottom: 12%;
+        bottom: 91px;
     }
-} */
+}
 
 .hide-nav-subsc {
-    opacity: 0;
+    display: none;
     left: -100%;
     }
 .show-nav-subsc {
-    opacity: 1;
+    display: block;
     left: 0;
  }
  .transition-scroll {
