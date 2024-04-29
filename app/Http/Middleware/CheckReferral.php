@@ -16,7 +16,6 @@ class CheckReferral
      */
     public function handle($request, Closure $next)
     {
-
         if($request->hasCookie('referral') || $request->hasCookie('referral_code_type_user')) {
            
             return $next($request);

@@ -13,6 +13,7 @@ $Moderation = "\App\Model\Moderation";
     <div class="aff_header_post">
         <a href="{{route('profile',['username'=>$post->user->username])}}">
             <img src="{{$post->user->avatar}}">
+            {!! $post->user->getUserStatusHtml() !!}
             <div class="aff_info_name">
                 <div>
                     <span>

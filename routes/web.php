@@ -5,6 +5,8 @@ use App\Model\Attachment;
 use App\Model\Moderation;
 use App\Services\Medoro\DoPayment;
 use App\AttachementModerationResult;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use App\Model\AttachmentModerationResult;
 /*
 |--------------------------------------------------------------------------
@@ -81,9 +83,10 @@ Route::get('/settings/privacy/countries', ['uses' => 'SettingsController@getCoun
  * (User) Protected routes
  */
 Route::group(['middleware' => ['auth','verified','2fa']], function () {
+    
+   
     // Settings panel routes
     Route::group(['prefix' => 'my', 'as' => 'my.'], function () {
-
         /*
          * (My) Settings
          */
@@ -240,6 +243,9 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('device-verify/reset', ['uses' => 'TwoFAController@resend', 'as' => '2fa.resend']);
     Route::delete('device-verify/delete', ['uses' => 'TwoFAController@deleteDevice', 'as' => '2fa.delete']);
 });
+
+
+Route::post('/set-user-online-but-not-actif', ['uses' => 'GenericController@setUserNotActifButOnline']);
 
 Route::any('beacon/{type}', [
     'as'   => 'beacon.send',

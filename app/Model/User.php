@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
@@ -132,6 +133,33 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
     public function isAdmin()
     {
         return $this->role_id === 1;
+    }
+    public function getUserStatus()
+    {
+        
+        if (Cache::get("user-is-online-$this->id")) {
+            return "online";
+        }else if(Cache::get("user-is-offline-$this->id")){
+            return "offline";
+        }else if(Cache::get("user-is-online-but-not-actif-$this->id")){
+            return "not-actif";
+        }else {
+            return "offline";
+        }
+    }
+    public function getUserStatusHtml()
+    {
+        $status = $this->getUserStatus();
+        if ( $status == "online") {
+           return  '<div class="user-status-circle-online"></div>';
+        }else if( $status == "offline"){
+            return  '<div class="user-status-circle-offline"></div>';
+
+        }else if( $status == "not-actif"){
+            return  '<div class="user-status-circle-not-actif"></div>';
+        }else{
+            return  '<div class="user-status-circle-offline"></div>';
+        }
     }
 
     /*

@@ -3,7 +3,6 @@
 <head>
     @include('template.google-tag-js')
     @include('template.head')
-   
 </head>
 <body class="{{request()->cookie('app_theme') ==='light' ? 'light_theme' : 'dark_theme'}}">
 <div class="w-100">

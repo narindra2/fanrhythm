@@ -19,6 +19,9 @@ use App\Observers\WithdrawalsObserver;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,6 +42,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
+        view()->composer('*', function ($view) 
+        {
+            if (Auth::check()) {
+                $auth_id = Auth::id();
+                /** Remove deconnexion user   */
+                Cache::forget('user-is-offline-' . $auth_id);
+                Cache::forget('user-is-offline-at-' . $auth_id);
+                Cache::forget('user-is-online-but-not-actif-' . $auth_id);
+                  /** Set  connexion statu user   */
+                $expiresAt = now()->addMinutes(5);
+                Cache::put('user-is-online-' . $auth_id, true, $expiresAt);
+            }
+        }); 
         if (! InstallerServiceProvider::checkIfInstalled()) {
             return false;
         }

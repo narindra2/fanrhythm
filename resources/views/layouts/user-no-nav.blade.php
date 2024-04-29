@@ -35,12 +35,15 @@
     @endif
     {{-- @include('template.footer-compact',['compact'=>true]) --}}
     @include('template.jsVars')
+ 
     @include('template.jsAssets',['additionalJs' => [
     '/libs/jquery-backstretch/jquery.backstretch.min.js',
     '/libs/wow.js/dist/wow.min.js',
     '/libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js',
     '/js/SideMenu.js'
     ]])
+    @include('template.check-status-user')
+
 <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
 @include('template.cdn2-adtng')
 </body>

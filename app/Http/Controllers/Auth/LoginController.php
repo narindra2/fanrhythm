@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Session;
+use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use App\Providers\AuthServiceProvider;
 use App\Providers\RouteServiceProvider;
-use App\User;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use Session;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -110,5 +111,15 @@ class LoginController extends Controller
         return redirect(route('feed'));
 
     }
-
+    public function logout(Request $request) {
+        $auth_id = Auth::id();
+        Cache::forget('user-is-online-' . $auth_id);
+        Cache::forget('user-is-online-but-not-actif-' . $auth_id);
+        Cache::put('user-is-offline-' . $auth_id, true);
+        Cache::put('user-is-offline-at-' . $auth_id, now());
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+      }
 }
