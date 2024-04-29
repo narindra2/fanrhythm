@@ -5165,8 +5165,6 @@ input#message-price.form-control {
     height: 12px;
     border-radius: 50%;
     background-color: #18d963;
-    /* bottom: 12px; */
-    /* right: 30px; */
     margin-left: 32px;
     margin-top: 25px;
     position: absolute;
@@ -5177,8 +5175,6 @@ input#message-price.form-control {
     border-radius: 50%;
     background-color:   #18d963;
     border: 3px solid white;
-    /* bottom: 12px; */
-    /* right: 30px; */
     margin-left: 32px;
     margin-top: 25px;
     position: absolute;
@@ -5189,8 +5185,6 @@ input#message-price.form-control {
     border-radius: 50%;
     background-color:rgb(255, 186, 0);
     border: 2px solid white;
-    /* bottom: 12px; */
-    /* right: 30px; */
     margin-left: 31px;
     margin-top: 22px;
     position: absolute;
