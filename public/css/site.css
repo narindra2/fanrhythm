@@ -5165,8 +5165,8 @@ input#message-price.form-control {
     width: 12px !important;
     height: 12px !important;
     border-radius: 50% !important;
-    margin-left: 32px !important;
-    margin-top: 26px !important;
+    margin-left: 29px !important;
+    margin-top: 28px  !important;
     position: absolute !important;
 }
 .user-status-circle-not-actif{
@@ -5175,8 +5175,8 @@ input#message-price.form-control {
     height: 12px !important;
     border-radius: 50% !important;
     border: 3px solid white !important;
-    margin-left: 32px !important;
-    margin-top: 26px !important;
+     margin-left: 29px !important;
+    margin-top: 28px  !important;
     position: absolute !important;
 }
 .user-status-circle-offline{
@@ -5185,7 +5185,7 @@ input#message-price.form-control {
     height: 12px !important;
     border-radius: 50% !important;
     border: 1px solid white !important;
-    margin-left: 31px !important;
-    margin-top: 26px !important;
+    margin-left: 29px !important;
+    margin-top: 28px  !important;
     position: absolute !important;
 }
