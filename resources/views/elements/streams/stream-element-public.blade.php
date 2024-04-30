@@ -52,6 +52,7 @@
 
         <div class="text-live_h d-flex">
             <img src="{{$stream->user->avatar}}" alt="" class="avatar_streamed">
+            {!! $stream->user->getUserStatusHtml() !!}
             <div>
                 <div class="text_live">
                     @if($showLiveIndicators && $stream->status == 'in-progress')

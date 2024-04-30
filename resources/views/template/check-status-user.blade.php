@@ -1,5 +1,5 @@
 {{-- @section('scripts') --}}
-    {{-- @if (auth()->check()) --}}
+    @if (auth()->check())
         <script>
             $(document).ready(function () {
             function setUserNotActifButOnline() {
@@ -25,5 +25,5 @@
             }, 2*60*1000); // 2 minutes
             });
         </script>
-    {{-- @endif --}}
+    @endif
 {{-- @endsection --}}

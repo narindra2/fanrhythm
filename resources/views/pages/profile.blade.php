@@ -102,6 +102,7 @@
                 <div class="aff_avatar">
                     <div>
                         <img src="{{ $user->avatar }}" class="rounded-circle">
+                        {!! $user->getUserStatusHtml("105px") !!}
                         <div class="aff_info_name">
                             <div class="d-flex">
                                 <span>{{ $user->name }}

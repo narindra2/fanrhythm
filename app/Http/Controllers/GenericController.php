@@ -472,7 +472,7 @@ class GenericController extends Controller
             Cache::forget('user-is-online-' .  $user_id);
             Cache::forget('user-is-offline-' .  $user_id);
             Cache::forget('user-is-offline-at-' .  $user_id);
-            Cache::put('user-is-online-but-not-actif-' . $user_id, now()->addMinutes(2));
+            Cache::put('user-is-online-but-not-actif-' . $user_id, true ,now()->addMinutes(2));
             return ["success" => true ];
         } catch (\Throwable $th) {
             return ["success" => true ];

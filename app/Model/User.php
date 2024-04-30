@@ -134,9 +134,12 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
     {
         return $this->role_id === 1;
     }
+    /** Real status user */
     public function getUserStatus()
     {
-        
+        if (!Auth::check()) {
+            return "unknow";
+        }
         if (Cache::get("user-is-online-$this->id")) {
             return "online";
         }else if(Cache::get("user-is-offline-$this->id")){
@@ -147,19 +150,39 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
             return "offline";
         }
     }
-    public function getUserStatusHtml()
+      /**  Status user info bull  */
+    public function getUserStatusHtml($more_margin_left = "" , $more_margin_top ='')
     {
         $status = $this->getUserStatus();
+        if ($status == "unknow") {
+            return "";
+        }
+        $style_custom = "";
+        if ($more_margin_left ) {
+            $more_margin_left = "margin-left: $more_margin_left !important; ";
+        }
+        if ($more_margin_top ) {
+            $more_margin_top = "margin-top: $more_margin_top !important;";
+        }
+        if ($more_margin_left ||  $more_margin_top ) {
+            $style_custom = "style=' $more_margin_left   $more_margin_top'";
+        }
+
+        
         if ( $status == "online") {
-           return  '<div class="user-status-circle-online"></div>';
+           return  "<div  $style_custom  class='user-status-circle-online'></div>";
         }else if( $status == "offline"){
-            return  '<div class="user-status-circle-offline"></div>';
+            return  "<div $style_custom  class='user-status-circle-offline'></div>";
 
         }else if( $status == "not-actif"){
-            return  '<div class="user-status-circle-not-actif"></div>';
+            return  "<div  $style_custom  class='user-status-circle-not-actif'></div>";
         }else{
-            return  '<div class="user-status-circle-offline"></div>';
+            return  "<div  $style_custom  class='user-status-circle-offline'></div>";
         }
+    }
+    public function getUserStatusHtmlAttribute()
+    {
+        return $this->getUserStatusHtml();
     }
 
     /*

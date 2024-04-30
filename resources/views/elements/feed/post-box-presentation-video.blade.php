@@ -2,6 +2,7 @@
     <div class="aff_header_post">
         <a href="{{ route('profile', ['username' => $video->user->username]) }}">
             <img src="{{ $video->user->avatar }}">
+            {!! $video->user->getUserStatusHtml() !!}
             <div class="aff_info_name">
                 <div>
                     <span>

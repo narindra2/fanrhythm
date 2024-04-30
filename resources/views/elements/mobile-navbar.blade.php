@@ -43,10 +43,11 @@
             class="open-menu">
            
             @if(Auth::check())
-                    <img src="{{Auth::user()->avatar}}" class="rounded-circle user-avatar w-32">
-                    @else
-                    @include('elements.icon',['icon'=>'person-circle','variant'=>'large'])
-                    @endif
+                <img src="{{Auth::user()->avatar}}" class="rounded-circle user-avatar w-32">
+                {!! Auth::user()->getUserStatusHtml() !!}
+              @else
+                @include('elements.icon',['icon'=>'person-circle','variant'=>'large'])
+            @endif
 
         </a>
 

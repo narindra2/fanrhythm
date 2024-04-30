@@ -228,8 +228,6 @@ Route::group(['middleware' => ['auth','verified','2fa']], function () {
         Route::get('/{id}', ['uses' => 'InvoicesController@index', 'as'   => 'get']);
     });
 
-   
-
     // Ai routes
     Route::group(['prefix' => 'suggestions', 'as' => 'suggestions.'], function () {
         Route::post('/generate', ['uses' => 'AiController@generateSuggestion', 'as'   => 'generate']);

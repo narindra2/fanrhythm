@@ -43,7 +43,6 @@
     '/js/SideMenu.js'
     ]])
     @include('template.check-status-user')
-
 <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
 @include('template.cdn2-adtng')
 </body>

@@ -3,6 +3,7 @@
         <a href="{{route('profile',['username'=>$profile->username])}}">
 
             <img src="{{$profile->avatar}}" />
+            {!! $profile->getUserStatusHtml() !!}
             <div class="aff_info_name">
                 <div>
                     <span>

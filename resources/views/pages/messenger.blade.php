@@ -259,6 +259,7 @@ Minify::javascript([
                         width: 100%;"></div>
 
                         <img src="{{Auth::user()->avatar}}" alt="">
+                        {{-- {!! Auth::user()->getUserStatusHtml() !!} --}}
                         <form class="message-form w-100">
                             <div class="input-group messageBoxInput-wrapper">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
