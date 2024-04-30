@@ -164,6 +164,7 @@ class MessengerController extends Controller
             }
 
             $contact->senderAvatar = GenericHelperServiceProvider::getStorageAvatarPath($contact->senderAvatar);
+            $contact->userContactStatusHtml = getUserStatusHtmlHelper("38px","33px",$contact->contactID) ;
             $contact->receiverAvatar = GenericHelperServiceProvider::getStorageAvatarPath($contact->receiverAvatar);
         }
 

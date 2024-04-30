@@ -264,9 +264,7 @@ Minify::javascript([
                             <div class="input-group messageBoxInput-wrapper">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="receiverID" id="receiverID" value="">
-                                <textarea name="message" class="messageBoxInput dropzone"
-                                    placeholder="{{__('Saisissez votre message … ')}}"
-                                    onkeyup="messenger.textAreaAdjust(this)"></textarea>
+                                <textarea name="message" class="messageBoxInput dropzone"  placeholder="{{__('Saisissez votre message … ')}}"  onkeyup="messenger.textAreaAdjust(this)"></textarea>
                             </div>
                         </form>
 

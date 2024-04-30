@@ -445,7 +445,6 @@ class GenericController extends Controller
             $license = InstallerServiceProvider::gld($licenseCode);
 
 
-
             if (isset($license->error)) {
 
                 return response()->json(['success' => false, 'error' => $license->error],500);

@@ -5161,7 +5161,7 @@ input#message-price.form-control {
     transition: all 1s;
 }
 .user-status-circle-online{
-    background-color: #18d963 !important ;
+    background-color: #17df64 !important ;
     width: 12px !important;
     height: 12px !important;
     border-radius: 50% !important;
@@ -5170,7 +5170,7 @@ input#message-price.form-control {
     position: absolute !important;
 }
 .user-status-circle-not-actif{
-    background-color:   #18d963 !important;
+    background-color:   #17df64 !important;
     width: 12px !important;
     height: 12px !important;
     border-radius: 50% !important;
@@ -5180,11 +5180,11 @@ input#message-price.form-control {
     position: absolute !important;
 }
 .user-status-circle-offline{
-    background-color:rgb(255, 186, 0) !important;
+    background-color:rgba(255, 115, 0, 0.89) !important;
     width: 12px !important;
     height: 12px !important;
     border-radius: 50% !important;
-    border: 2px solid white !important;
+    border: 1px solid white !important;
     margin-left: 31px !important;
     margin-top: 26px !important;
     position: absolute !important;

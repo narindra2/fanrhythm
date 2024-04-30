@@ -110,7 +110,7 @@
                     <a href="/{{ $user->username ?? 'Username Non Disponible' }}">
 
                         <img src="{{ $user->avatar ?? 'chemin_par_defaut_pour_avatar' }}" alt="avatar" />
-                        {!! $user->getUserStatusHtml() !!}
+                        {!! $user->getUserStatusHtml("58px") !!}
                         <div class="aff_info_name">
                             <div>
                                 <span> {{ $user->name ?? 'Nom non Disponible' }} 
@@ -187,7 +187,7 @@
     background: #fff !important;
     color: #32a0f0 !important;
 } */
-
+/* 
 .user-status-circle-online{
     background-color: #18d963 !important ;
     width: 12px !important;
@@ -216,7 +216,7 @@
     margin-left:  57px  !important;
     margin-top: 22px !important;
     position: absolute !important;
-}
+} */
 </style>
 @include('template.searchmobile')
 @stop

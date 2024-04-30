@@ -8,10 +8,11 @@
             <a href="{{ route('profile', ['username' => $notification->fromUser->username]) }}"> 
                 <img src="{{ $notification->fromUser->avatar }}" alt="{{ $notification->fromUser->username }}"> 
             </a>
-            {!! $notification->fromUser->getUserStatusHtml("40px" ,"35px ") !!}
+            {!! $notification->fromUser->getUserStatusHtml("40px" ,"35px") !!}
         @else
             <a href="{{ route('profile', ['username' => $notification->fromUser->username]) }}"> <img
                     src="{{ \App\Providers\GenericHelperServiceProvider::getStorageAvatarPath(null) }}" alt="Avatar">
+                    {!! $notification->fromUser->getUserStatusHtml("40px" ,"35px") !!}
             </a>
         @endif
 

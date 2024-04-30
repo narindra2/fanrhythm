@@ -1,6 +1,8 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Providers\InstallerServiceProvider;
 use App\Providers\GenericHelperServiceProvider;
@@ -96,5 +98,52 @@ if (!function_exists('convert_to_real_time_humains')) {
             return " ". $date->format($format . ($with_time ? " H:i" : ""));
         }
         return  $humains_date . " " . ($with_time  ? $date->format("H:i") : "");
+    }
+}
+if (!function_exists('getUserStatusHelper')) {
+    function getUserStatusHelper($user_id = 0)
+    {
+        if (!Auth::check() || !$user_id) {
+            return "unknow"; 
+        }
+        if (Cache::get("user-is-online-$user_id")) {
+            return "online";
+        }else if(Cache::get("user-is-offline-$user_id")){
+            return "offline";
+        }else if(Cache::get("user-is-online-but-not-actif-$user_id")){
+            return "not-actif";
+        }else {
+            return "offline";
+        }
+       
+    }
+}
+if (!function_exists('getUserStatusHtmlHelper')) {
+    function getUserStatusHtmlHelper($more_margin_left = "" , $more_margin_top ='' , $user_id = 0)
+    {
+        $status = getUserStatusHelper($user_id);
+        if ($status == "unknow") {
+            return "";
+        }
+        $style_custom = "";
+        if ($more_margin_left) {
+            $more_margin_left = "margin-left: $more_margin_left !important; ";
+        }
+        if ($more_margin_top ) {
+            $more_margin_top = "margin-top: $more_margin_top !important;";
+        }
+        if ($more_margin_left ||  $more_margin_top ) {
+            $style_custom = "style=' $more_margin_left   $more_margin_top'";
+        }
+        if ( $status == "online") {
+           return  "<span  $style_custom  class='user-status-circle-online'></span>";
+        }else if( $status == "offline"){
+            return  "<span $style_custom  class='user-status-circle-offline'></span>";
+
+        }else if( $status == "not-actif"){
+            return  "<span  $style_custom  class='user-status-circle-not-actif'></span>";
+        }else{
+            return  "<span  $style_custom  class='user-status-circle-offline'></span>";
+        }
     }
 }

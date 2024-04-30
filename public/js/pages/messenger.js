@@ -851,7 +851,9 @@ function contactElement(contact){
             </div>
         </div>
         <div></div> 
+        ${contact.userContactStatusHtml}
       </div>
+    
     `;
 }
 
