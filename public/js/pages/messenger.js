@@ -476,7 +476,7 @@ var messenger = {
      * @param el
      */
     textAreaAdjust: function(el) {
-        el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight)+"px" : "40px";
+        // el.style.height = (el.scrollHeight > el.clientHeight) ? (el.scrollHeight)+"px" : "40px";
     },
 
     /**

@@ -113,10 +113,6 @@ Minify::javascript([
                     </div>
                 </div>
                 <span  class="text-danger d-none "  style="font-size: 14px;" id="attachementBreackModerationRulesMessage">{{ __("Le fichier que vous avez sélectionné ne respecte pas nos normes de modération et ne peut pas être téléchargé") }}</span>
-                @if (Auth::id() == "2155" || Auth::id() =="25" )
-                 <!--France server-->
-                    <!--<input type="file" class="filepond" id="filepond" name="file" /> -->
-                @endif
                 <div id="aff_create_adds">
                     <div>
                         {{__('Ajouter à votre publication')}}

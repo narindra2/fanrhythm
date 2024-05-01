@@ -174,6 +174,7 @@ Minify::javascript([
                     display: none;
                 }
                 .scrollable-list{
+                    position: absolute;
                     margin-bottom: 55px;
                     overflow: scroll;
                     height: -webkit-fill-available;
@@ -181,7 +182,7 @@ Minify::javascript([
                     scrollbar-width: none;  /* Firefox */
                 }
                 </style>
-                <div class="conversations-list scrollable-list">
+                <div class="conversations-list scrollable-list" >
                     @if($lastContactID == false)
                     
                     @else
@@ -264,7 +265,7 @@ Minify::javascript([
                             <div class="input-group messageBoxInput-wrapper">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="receiverID" id="receiverID" value="">
-                                <textarea name="message" class="messageBoxInput dropzone"  placeholder="{{__('Saisissez votre message … ')}}"  onkeyup="messenger.textAreaAdjust(this)"></textarea>
+                                <textarea style="overflow: scroll;" name="message" class="messageBoxInput dropzone"  placeholder="{{__('Saisissez votre message … ')}}"  onkeyup="messenger.textAreaAdjust(this)"></textarea>
                             </div>
                         </form>
 
