@@ -180,14 +180,17 @@
                     {{ __('Language') }}
                 </a>
                 <ul class="list-unstyled collapse" id="otherSections" style="">
-
                     <li>
                         <a class="scroll-link d-flex align-items-center"
-                            href="{{ url("/language/en") }}">English</a>
+                            href="{{ url("/language/en") }}">{{ __("Anglais")}}</a>
                     </li>
                     <li>
                         <a class="scroll-link d-flex align-items-center"
-                            href="{{ url("/language/fr") }}">Français</a>
+                            href="{{ url("/language/fr") }}">{{ __("Français")}} </a>
+                    </li>
+                    <li>
+                        <a class="scroll-link d-flex align-items-center"
+                            href="{{ url("/language/esp") }}">Español </a>
                     </li>
 
                 </ul>
