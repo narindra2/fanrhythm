@@ -142,7 +142,7 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
       /**  Status user info bull  */
     public function getUserStatusHtml($more_margin_left ='' , $more_margin_top ='')
     {
-        return getUserStatusHtmlHelper($more_margin_left  , $more_margin_top,$this->id);
+        return getUserStatusHtmlHelper($more_margin_left  , $more_margin_top, $this->id);
     }
 
     /*

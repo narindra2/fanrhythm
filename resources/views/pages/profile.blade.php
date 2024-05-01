@@ -98,14 +98,16 @@
                 <div class="aff_cover">
                     <img src="{{ $user->cover }}">
                 </div>
-
+                {!! $user->getUserStatusHtml("120px","33px") !!}
                 <div class="aff_avatar">
                     <div>
                         <img src="{{ $user->avatar }}" class="rounded-circle">
-                        {!! $user->getUserStatusHtml("105px") !!}
+                       
                         <div class="aff_info_name">
+
                             <div class="d-flex">
-                                <span>{{ $user->name }}
+                                <span>
+                                    {{ $user->name }}
                                     @if ($user->email_verified_at && ($user->verification && $user->verification->status == 'verified'))
                                         <span data-toggle="tooltip" data-placement="top" title="{{ __('Verified user') }}">
                                             <svg style="fill: #59b8f7; height: 16px;" viewBox="0 0 22 22"
