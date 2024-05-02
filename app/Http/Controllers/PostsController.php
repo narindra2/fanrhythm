@@ -163,13 +163,14 @@ class PostsController extends Controller
             }
             $type = $request->get('type');
             $postStatus = PostsHelperServiceProvider::getDefaultPostStatus(Auth::user()->id);
-
+            $price  =  $request->isPublic ? 0 :  $request->get('price');
             if ($type == 'create') {
                 $postID = Post::create([
                     'user_id' => $request->user()->id,
                     'text' => $request->get('text'),
-                    'price' => $request->get('price'),
+                    'price' => $price,
                     'status' => $postStatus,
+                    'is_public' => $request->isPublic ? 1 : 0,
                 ])->id;
             } elseif ($type == 'update') {
                 $postID = $request->get('id');
@@ -177,7 +178,7 @@ class PostsController extends Controller
                 if ($post) {
                     $post->update([
                         'text' => $request->get('text'),
-                        'price' => $request->get('price'),
+                        'price' => $price,
                     ]);
                     $postID = $post->id;
                 } else {

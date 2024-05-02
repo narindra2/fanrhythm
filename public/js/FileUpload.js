@@ -35,7 +35,7 @@ var FileUpload = {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            clickable:['.file-upload-button'],
+            clickable:['.file-upload-button', '.file-upload-button-public-post'],
             previewsContainer: ".dropzone-previews",
             maxFilesize: 600, // MB
             addRemoveLinks: true,
@@ -118,7 +118,6 @@ var FileUpload = {
             // elProgressText.textContent = progress + "%";
             if (progress == 100) {
                 setTimeout(() => {
-                    
                     elProgress.style.width =  "0%";
                     // elProgressText.textContent =  "0%";
                 }, 200); 

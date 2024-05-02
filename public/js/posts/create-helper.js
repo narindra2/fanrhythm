@@ -5,6 +5,12 @@
 /* global app, Post, user, FileUpload, updateButtonState, launchToast, trans, redirect, trans_choice, mediaSettings, passesMinMaxPPVContentCreationLimits */
 
 $(function () {
+    $(".file-upload-button-public-post").on("click", function(){
+        PostCreate.isPublic  = true;
+    });
+    $(".file-upload-button").on("click", function(){
+        PostCreate.isPublic  = false;
+    });
     $("#post-price").keypress(function(e) {
         if(e.which === 13) {
             PostCreate.savePostPrice();
@@ -17,7 +23,7 @@ var PostCreate = {
     postPrice : 0,
     isSavingRedirect: false,
     postNotifications: false,
-
+    isPublic : false,
     /**
      * Toggles post notification state
      */
@@ -161,7 +167,8 @@ var PostCreate = {
             'attachments': FileUpload.attachaments,
             'text': $('#dropzone-uploader').val(),
             'price': PostCreate.postPrice,
-            'postNotifications' : PostCreate.postNotifications
+            'postNotifications' : PostCreate.postNotifications,
+            "isPublic"  : PostCreate.isPublic,
         };
         if(type === 'create'){
             data.type = 'create';

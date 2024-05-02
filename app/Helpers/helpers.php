@@ -136,14 +136,14 @@ if (!function_exists('getUserStatusHtmlHelper')) {
             $style_custom = "style=' $more_margin_left   $more_margin_top'";
         }
         if ( $status == "online") {
-           return  "<div  $style_custom  class='user-status-circle-online'></div>";
+           return  "<span  $style_custom  class='user-status-circle-online'></span>";
         }else if( $status == "offline"){
-            return  "<div $style_custom  class='user-status-circle-offline'></div>";
+            return  "<span $style_custom  class='user-status-circle-offline'></span>";
 
         }else if( $status == "not-actif"){
-            return  "<div  $style_custom  class='user-status-circle-not-actif'></div>";
+            return  "<span  $style_custom  class='user-status-circle-not-actif'></span>";
         }else{
-            return  "<div  $style_custom  class='user-status-circle-offline'></div>";
+            return  "<span  $style_custom  class='user-status-circle-offline'></span>";
         }
     }
 }
