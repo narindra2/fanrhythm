@@ -62,9 +62,9 @@
             </div>
 
             <div>
-                <a class="" href="/search?query=&amp;filter=top">
+                <a class="" href="/search?query=&amp;filter=public">
                     <div>
-                    {{__('Top')}}
+                    {{__('Posts')}}
                     </div>
                 </a>
             </div>

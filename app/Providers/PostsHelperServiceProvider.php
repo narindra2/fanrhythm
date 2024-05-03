@@ -332,11 +332,8 @@ class PostsHelperServiceProvider extends ServiceProvider
      */
 
     public static function getFeedPosts($userID, $encodePostsToHtml = false, $pageNumber = false, $mediaType = false, $sortOrder = false, $searchTerm = '')
-
     {
-
         return self::getFilteredPosts($userID, $encodePostsToHtml, $pageNumber, $mediaType, false, false, false, $sortOrder, $searchTerm);
-
     }
 
 
@@ -410,91 +407,55 @@ class PostsHelperServiceProvider extends ServiceProvider
 
      */
 
-    public static function getFilteredPosts($userID, $encodePostsToHtml, $pageNumber, $mediaType, $ownPosts, $hasSub, $bookMarksOnly, $sortOrder = false, $searchTerm = '')
-
-    {
-
+    public static function getFilteredPosts($userID, $encodePostsToHtml, $pageNumber, $mediaType, $ownPosts, $hasSub, $bookMarksOnly, $sortOrder = false, $searchTerm = ''){
         $relations = ['user', 'reactions', 'attachments', 'bookmarks:user_id,post_id', 'postPurchases'];
-
-
         // Fetching basic posts information
-
-        $posts = Post::withCount('tips')
-
-            ->with($relations);
-
-
-
+        $posts = Post::withCount('tips')->with($relations);
+        
         // Using moderation
-
-        if (!Auth::check() || (Auth::check() && Auth::id() != $userID ) || !$ownPosts) {
-
+        if (!Auth::check() || (Auth::check() && Auth::id() != $userID && $userID ) || !$ownPosts) {
             $posts->whereAllAttachementsApproved();
-
         }
-
-        // For profile page
-
+       
+        // For profile page post
         if ($ownPosts) {
-
             $posts->where('user_id', $userID);
-
-        }
-
-        // For bookmarks page
-
-        elseif ($bookMarksOnly) {
-
+        }elseif ($bookMarksOnly) {
+            // For bookmarks page
             $posts = self::filterPosts($posts, $userID, 'bookmarks');
-
             $posts = self::filterPosts($posts, $userID, 'blocked');
-
+        }else {
+            
+            if (request()->get("filter") == "public") {
+                // For public page
+                if(Auth::check()){
+                    $blockedUsers = ListsHelperServiceProvider::getListMembers(Auth::user()->lists->firstWhere('type', 'blocked')->id);
+                    $posts->whereNotIn('posts.user_id', $blockedUsers);
+                }
+                $posts->where('is_public', 1);
+            }else{
+                // For feed page
+                $posts = self::filterPosts($posts, $userID, 'all');
+            }
         }
-
-        // For feed page
-
-        else {
-
-            $posts = self::filterPosts($posts, $userID, 'all');
-
-        }
-
-
-
+        
+        // Filtering valid status
         if (!$ownPosts) {
-
-            // Filtering valid status
-
             $posts->where('status', Post::APPROVED_STATUS);
-
         }
-
-
-
+        
         // Media type filters
-
         if ($mediaType) {
-
             $posts = self::filterPosts($posts, $userID, 'media', $mediaType);
-
         }
-
-
-
+        
         // Filtering the search term
-
         if($searchTerm){
-
             $posts = self::filterPosts($posts, $userID, 'search',false,false,$searchTerm);
-
         }
-
-
-
+        
         // Processing sorting
-
         $posts = self::filterPosts($posts, $userID, 'order',false,$sortOrder);
-
         if ($mediaType == 'library' || $mediaType ==  'mediaOnDemand') {
             $paginate = 12;
         }else{
@@ -511,44 +472,24 @@ class PostsHelperServiceProvider extends ServiceProvider
             $hasSub = true;
         }
 
-
-
+        // Posts encoded as JSON
         if ($encodePostsToHtml) {
-
-            // Posts encoded as JSON
-
             $data = [
-
                 'total' => $posts->total(),
-
                 'currentPage' => $posts->currentPage(),
-
                 'last_page' => $posts->lastPage(),
-
                 'prev_page_url' => $posts->previousPageUrl(),
-
                 'next_page_url' => $posts->nextPageUrl(),
-
                 'first_page_url' => $posts->nextPageUrl(),
-
                 'hasMore' => $posts->hasMorePages(),
-
             ];
-
             $postsData = $posts->map(function ($post) use ($hasSub, $ownPosts, $data ,$mediaType) {
-
                 if ($ownPosts) {
-
                     $post->setAttribute('isSubbed', $hasSub);
-
                 } else {
-
                     $post->setAttribute('isSubbed', true);
-
                 }
-
                 $post->setModerationStatus();
-
                 $post->setAttribute('postPage',$data['currentPage']);
                 if ($mediaType == 'library' || $mediaType ==  'mediaOnDemand') {
                     $post = ['id' => $post->id, 'html' => View::make('elements.feed.post-library-post')->with('post', $post)->render()];
@@ -556,51 +497,26 @@ class PostsHelperServiceProvider extends ServiceProvider
                     $post = ['id' => $post->id, 'html' => View::make('elements.feed.post-box')->with('post', $post)->render()];
                 }
                 return $post;
-
             });
-
             $data['posts'] = $postsData;
-
         } else {
-
             // Collection data posts | To be rendered on the server side
-
             $postsCurrentPage = $posts->currentPage();
-
             $posts->map(function ($post) use ($hasSub, $ownPosts, $postsCurrentPage) {
-
                 if ($ownPosts) {
-
                     $post->hasSub = $hasSub;
-
                     $post->setAttribute('isSubbed', $hasSub);
-
                 } else {
-
                     $post->setAttribute('isSubbed', true);
-
                 }
-
                 $post->setModerationStatus();
-
                 $post->setAttribute('postPage',$postsCurrentPage);
-
                 return $post;
-
             });
-
             $data = $posts;
-
         }
-
-
-
         return $data;
-
     }
-
-
-
     /**
 
      * Filters out posts using fast, join based queries.
@@ -618,72 +534,37 @@ class PostsHelperServiceProvider extends ServiceProvider
      */
 
     public static function filterPosts($posts, $userID, $filterType, $mediaType = false, $sortOrder = false, $searchTerm = '')
-
     {
-
-        if ($filterType == 'followers' || $filterType == 'all') {
-
+        if ( $filterType == 'followers' || $filterType == 'all') {
             // Followers only
-
             $posts->join('user_list_members as following', function ($join) use ($userID) {
-
                 $join->on('following.user_id', '=', 'posts.user_id');
-
                 $join->on('following.list_id', '=', DB::raw(Auth::user()->lists->firstWhere('type', 'followers')->id));
-
             });
-
         }
-
-
-
         if ($filterType == 'blocked' || $filterType == 'all') {
-
             // Blocked users
-
             $blockedUsers = ListsHelperServiceProvider::getListMembers(Auth::user()->lists->firstWhere('type', 'blocked')->id);
-
             $posts->whereNotIn('posts.user_id', $blockedUsers);
-
         }
-
-
-
         if ($filterType == 'subs' || $filterType == 'all') {
-
             if($filterType == 'all'){
-
                 $userIds = array_merge(self::getUserActiveSubs($userID), self::getFreeFollowingProfiles($userID));
-
                 $posts->whereIn('posts.user_id', $userIds);
 
             } else {
-
                 // Subs only
-
                 $activeSubs = self::getUserActiveSubs($userID);
-
                 $posts->whereIn('posts.user_id', $activeSubs);
-
             }
 
         }
-
-
-
         if ($filterType == 'bookmarks') {
-
             $posts->join('user_bookmarks', function ($join) use ($userID) {
-
                 $join->on('user_bookmarks.post_id', '=', 'posts.id');
-
                 $join->on('user_bookmarks.user_id', '=', DB::raw($userID));
-
             });
-
         }
-
-
         if ($filterType == 'media') {
             // Get post has image or video 
             if ($mediaType == 'library' || $mediaType == 'mediaOnDemand' ) {
@@ -705,67 +586,33 @@ class PostsHelperServiceProvider extends ServiceProvider
                 });
             }
         }
-
         if ($filterType == 'search'){
-
-            $posts->where(
-
-                function($query) use ($searchTerm){
-
+            $posts->where(function($query) use ($searchTerm){
                     $query->where('text', 'like', '%'.$searchTerm.'%')
-
                         ->orWhereHas('user', function($q) use ($searchTerm) {
-
                             $q->where('username', 'like', '%'.$searchTerm.'%');
-
                             $q->orWhere('name', 'like', '%'.$searchTerm.'%');
-
                         });
-
                 }
-
             );
-
         }
-
-
 
         if ($filterType == 'order'){
-
             if($sortOrder){
-
                 if($sortOrder == 'top'){
-
                     $relationsCount = ['reactions','comments'];
-
                     $posts->withCount($relationsCount);
-
                     $posts->orderBy('comments_count','DESC');
-
                     $posts->orderBy('reactions_count','DESC');
-
-                }
-
-                elseif($sortOrder =='latest'){
-
+                }elseif($sortOrder =='latest'){
                     $posts->orderBy('created_at','DESC');
-
                 }
-
             }
-
             else{
-
                 $posts->orderBy('created_at','DESC');
-
             }
-
         }
-
-
-
         return $posts;
-
     }
 
 

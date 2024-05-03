@@ -93,22 +93,25 @@ class AttachmentController extends Controller
             $attachment->moderation_status = Moderation::STATUS_APPROVED;
             $moderation_status_setting= getSetting("moderations.moderation_status") ;
             // $path = "https://web.fanrhythm.com/storage/users/cover/a69b06b137774f4dbbc6e6c0e7ae1911.jpg"; //This a exemaple a image content porn 90.99 of degree
-            if ($type  == "image" ) {
-                $settingsRules = Moderation::getDegreeOfCats($settingsCatsModerationOn); // this will return ex:  ["porn" => 98 , "nudity" => 90]
-                $result = Moderation::verifieModerationInImage($path, $settingsRules, $attachment);
-                if (!Moderation::isRespectTheModeration($result) && $moderation_status_setting == "1") {
-                    $attachment->moderation_status = Moderation::STATUS_DECLINED;
-                    $isInModeration = false;
-                } 
-            }
-            if ($type == "video") {
-                dispatch(function () use ($path, $attachment, $settingsCatsModerationOn) {
-                    Moderation::launchVerificationVideo($path, $attachment->id, $settingsCatsModerationOn);
-                })->afterResponse();
-                if ($moderation_status_setting == "1") {
-                    $attachment->moderation_status = Moderation::STATUS_PENDING;
+            if (0) {
+                if ($type  == "image" ) {
+                    $settingsRules = Moderation::getDegreeOfCats($settingsCatsModerationOn); // this will return ex:  ["porn" => 98 , "nudity" => 90]
+                    $result = Moderation::verifieModerationInImage($path, $settingsRules, $attachment);
+                    if (!Moderation::isRespectTheModeration($result) && $moderation_status_setting == "1") {
+                        $attachment->moderation_status = Moderation::STATUS_DECLINED;
+                        $isInModeration = false;
+                    } 
+                }
+                if ($type == "video") {
+                    dispatch(function () use ($path, $attachment, $settingsCatsModerationOn) {
+                        Moderation::launchVerificationVideo($path, $attachment->id, $settingsCatsModerationOn);
+                    })->afterResponse();
+                    if ($moderation_status_setting == "1") {
+                        $attachment->moderation_status = Moderation::STATUS_PENDING;
+                    }
                 }
             }
+            
         } catch (\Exception $exception) {
             return response()->json(['success' => false, 'errors' => [$exception->getMessage()]], 500);
         }

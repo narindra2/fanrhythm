@@ -143,8 +143,15 @@ Minify::stylesheet([
                 </a>
             </div>
 
-            <div>
+            {{-- <div>
                 <a class="{{ $currentFilter == 'top' ? 'active' : '' }}" href="/search?query=&filter=top">
+                    <div>
+                    {{__('Posts')}}
+                    </div>
+                </a>
+            </div> --}}
+            <div>
+                <a class="{{ $currentFilter == 'public' ? 'active' : '' }}" href="/search?filter=public">
                     <div>
                     {{__('Posts')}}
                     </div>

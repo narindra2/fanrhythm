@@ -1,9 +1,17 @@
 
 @php
-    $notLockedPost = (Auth::check() && Auth::user()->id !== $post->user_id && $post->price > 0 && !PostsHelper::hasUserUnlockedPost($post->postPurchases)) 
-    || (!Auth::check() && $post->price > 0 ) ||  (!Auth::check() ) || (Auth::check() && !$post->isSubbed)  ;
+    /** Post public is visible for all user or user not connected */
+    if ($post->is_public) {
+        $notLockedPost = false;
+    }else{
+        $notLockedPost = (Auth::check() && Auth::user()->id !== $post->user_id && $post->price > 0 && !PostsHelper::hasUserUnlockedPost($post->postPurchases)) 
+        || (!Auth::check() && $post->price > 0 ) 
+        ||  (!Auth::check() ) 
+        || (Auth::check() && !$post->isSubbed);
+    }
     $attachments = $post->attachments;
     $countAttchmt = count($attachments);
+
 @endphp
 @foreach ($attachments as $attachment)
     @php
@@ -16,7 +24,7 @@
         @endif
     >
         <div class="pswp-gallery__item">
-            @include('elements.feed.post-librairy-media',["attachment" => $attachment , "post" => $post])
+            @include('elements.feed.post-librairy-media',["attachment" => $attachment , "post" => $post ,"notLockedPost" => &$notLockedPost  ])
             <div class="pswp-caption-content" >
                 @include('elements.feed.post-librairy-user',["user" => $post->user])
                 @include('elements.feed.post-librairy-text',["post" => $post])

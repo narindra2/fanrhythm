@@ -46,13 +46,6 @@
             <video width="960" class="pswp__video image-item" src="{{ $attachment->path }}" controls></video>
         </a>
      @endif
-     {{-- @if($attachment_type == 'audio')
-        <a  href="{{ $attachment->path }}" data-pswp-width="2500" data-pswp-height="1666"  target="_blank">
-            <div class="video-wrapper h-100 w-100 d-flex justify-content-center align-items-center">
-                <audio class="video-preview w-75" src="{{$attachment->path}}" controls controlsList="nodownload"></audio>
-            </div>
-        </a>
-    @endif --}}
     @if(Auth::check() && $post->user->id == Auth::id() && $post->price >0 )
         <span   class="btn btn-sm btn-block  btn-primary">
         {{config('app.site.currency_symbol') ?? config('app.site.currency_symbol')}}{{$post->price}}{{config('app.site.currency_symbol') ? '' : '' .config('app.site.currency_code')}}

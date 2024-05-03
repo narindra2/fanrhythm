@@ -58,7 +58,7 @@ class SearchController extends Controller
         //     return redirect(route('search.get'));
         // }
 
-        $tabCanNotSeenInPublic = ['top','live',"photos"];
+        $tabCanNotSeenInPublic = ['top','live',"photos","public"];
         if(!Auth::check() &&  in_array($request->get("filter"),$tabCanNotSeenInPublic)){
             return redirect(route('register'));
         }
@@ -153,6 +153,25 @@ class SearchController extends Controller
                 'demoposts' => $demoposts,
                 // 'searchFilterExpanded' => false
             ];
+        }
+        elseif($filters['postsFilter'] == 'public') {
+           
+            $startPage = PostsHelperServiceProvider::getFeedStartPage(PostsHelperServiceProvider::getPrevPage($request));
+            $posts = PostsHelperServiceProvider::getFeedPosts(Auth::user()->id, false, $startPage, $filters['mediaType'], $filters['sortOrder'], $filters['searchTerm']);
+            PostsHelperServiceProvider::shouldDeletePaginationCookie($request);
+            $jsData = [
+                'paginatorConfig' => [
+                    'next_page_url' => str_replace('/search', '/search/posts', $posts->nextPageUrl()),
+                    'prev_page_url' => str_replace('/search', '/search/posts', $posts->previousPageUrl()),
+                    'current_page' => $posts->currentPage(),
+                    'total' => $posts->total(),
+                    'per_page' => $posts->perPage(),
+                    'hasMore' => $posts->hasMorePages(),
+                ],
+                'initialPostIDs' => $posts->pluck('id')->toArray(),
+                'searchType' => 'feed'
+            ];
+            $viewData = ['posts' => $posts];
         }
         /**
          * Standard posts filters
