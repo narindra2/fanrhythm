@@ -426,7 +426,7 @@ class PostsHelperServiceProvider extends ServiceProvider
             $posts = self::filterPosts($posts, $userID, 'blocked');
         }else {
             
-            if (request()->get("filter") == "public") {
+            if ( in_array(request()->get("filter"),["library","public"]) ) {
                 // For public page
                 if(Auth::check()){
                     $blockedUsers = ListsHelperServiceProvider::getListMembers(Auth::user()->lists->firstWhere('type', 'blocked')->id);
@@ -456,12 +456,11 @@ class PostsHelperServiceProvider extends ServiceProvider
         
         // Processing sorting
         $posts = self::filterPosts($posts, $userID, 'order',false,$sortOrder);
-        if ($mediaType == 'library' || $mediaType ==  'mediaOnDemand') {
-            $paginate = 12;
+        if (in_array($mediaType, ['library','mediaOnDemand']) || request()->get("filter") == "public") {
+            $paginate = 11;
         }else{
             $paginate = getSetting('feed.feed_posts_per_page');
         }
-
         if ($pageNumber) {
             $posts = $posts->paginate( $paginate, ['*'], 'page', $pageNumber)->appends(request()->query());
         } else {
@@ -491,11 +490,15 @@ class PostsHelperServiceProvider extends ServiceProvider
                 }
                 $post->setModerationStatus();
                 $post->setAttribute('postPage',$data['currentPage']);
-                if ($mediaType == 'library' || $mediaType ==  'mediaOnDemand') {
+                if(in_array($mediaType, ['library','mediaOnDemand']) ) {
                     $post = ['id' => $post->id, 'html' => View::make('elements.feed.post-library-post')->with('post', $post)->render()];
-                }else{
-                    $post = ['id' => $post->id, 'html' => View::make('elements.feed.post-box')->with('post', $post)->render()];
+                    return $post;
                 }
+                if (request()->get("filter") == "public") {
+                    $post = ['id' => $post->id, 'html' => View::make('elements.feed.posts-public')->with('post', $post)->render()];
+                    return $post;
+                }
+                $post = ['id' => $post->id, 'html' => View::make('elements.feed.post-box')->with('post', $post)->render()];
                 return $post;
             });
             $data['posts'] = $postsData;
@@ -1140,7 +1143,6 @@ class PostsHelperServiceProvider extends ServiceProvider
             if(isset($options['searchTerm'])){
                 $user->where('name', 'like', '%'.$options['searchTerm'].'%');
             }
-
     
         }]);
         

@@ -1093,5 +1093,15 @@
     "mois" : "month",
     "Compte gratuit" : "Free account",
     "Anglais" : "English",
-    "Français" : "French"
-}
+    "Français" : "French",
+
+
+    "Créer un post du type"  : "Create a post like",
+    "Ajouter prix"  : "Add price",
+    "Créer un post du type public"  : "Create a post like public",
+    "Le nombre maximun de post type publique est atteinte."  : "The maximum number of public post types has been reached.",
+    "Ces posts apparaîtront sur le mur public de la plateforme."  : "These posts will appear on the platform's public wall.",
+    "Vous en avez %n  post public (max %n)" : "You have % public posts (max %n)",
+    "+ ajouter un nouveau post public." : "+ add new  public post."
+
+  }

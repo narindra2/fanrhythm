@@ -54,7 +54,7 @@
                 
         <div class="aff_profil_tab">
             <div>
-                <a class="" href="/search?query=&amp;filter=live">
+                <a class="" href="/search?filter=live">
                     <div>
                     {{__('Live')}}
                     </div>
@@ -62,7 +62,7 @@
             </div>
 
             <div>
-                <a class="" href="/search?query=&amp;filter=public">
+                <a class="" href="/search?filter=public">
                     <div>
                     {{__('Posts')}}
                     </div>
@@ -78,7 +78,7 @@
             </div>
 
             <div style="display: none">
-                <a class="" href="/search?query=&amp;filter=photos">
+                <a class="" href="/search?filter=photos">
                     <div>
                     {{__('Photos')}}
                     </div>
@@ -86,14 +86,14 @@
             </div>
 
             {{-- <div>
-                <a class="" href="/search?query=&amp;filter=videos">
+                <a class="" href="/search?filter=videos">
                     <div>
                     {{__('Videos')}}
                     </div>
                 </a>
             </div> --}}
             <div>
-                <a class="" href="/search?query=&amp;filter=videosPres">
+                <a class="" href="/search?filter=videosPres">
                     <div>
                     {{__('Videos')}}
                     </div>

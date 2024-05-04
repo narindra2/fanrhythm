@@ -92,7 +92,7 @@ Minify::stylesheet([
             {{-- Bug n'effache pas ce ligne --}}
             <div class="aff_profil_tab" style="display: none">
                 <div>
-                    <a class="{{ $currentFilter == 'live' ? 'active' : '' }}" href="/search?query=&filter=live">
+                    <a class="{{ $currentFilter == 'live' ? 'active' : '' }}" href="/search?filter=live">
                         <div>
                             {{__('Live')}}
                         </div>
@@ -100,7 +100,7 @@ Minify::stylesheet([
                 </div>
     
                 <div>
-                    <a class="{{ $currentFilter == 'top' ? 'active' : '' }}" href="/search?query=&filter=top">
+                    <a class="{{ $currentFilter == 'top' ? 'active' : '' }}" href="/search?filter=top">
                         <div>
                             {{__('Posts')}}
                         </div>
@@ -116,7 +116,7 @@ Minify::stylesheet([
                 </div>
     
                 <div >
-                    <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?query=&filter=photos">
+                    <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?filter=photos">
                         <div>
                             {{__('Photos')}}
                         </div>
@@ -124,7 +124,7 @@ Minify::stylesheet([
                 </div>
     
                 <div>
-                    <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="/search?query=&filter=videosPres">
+                    <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="/search?filter=videosPres">
                         <div>
                             {{__('Videos')}}
                         </div>
@@ -136,7 +136,7 @@ Minify::stylesheet([
         {{-- fin Bug  --}}
         <div class="aff_profil_tab">
             <div>
-                <a class="{{ $currentFilter == 'live' ? 'active' : '' }}" href="/search?query=&filter=live">
+                <a class="{{ $currentFilter == 'live' ? 'active' : '' }}" href="/search?filter=live">
                     <div>
                     {{__('Live')}}
                     </div>
@@ -144,7 +144,7 @@ Minify::stylesheet([
             </div>
 
             {{-- <div>
-                <a class="{{ $currentFilter == 'top' ? 'active' : '' }}" href="/search?query=&filter=top">
+                <a class="{{ $currentFilter == 'top' ? 'active' : '' }}" href="/search?filter=top">
                     <div>
                     {{__('Posts')}}
                     </div>
@@ -167,7 +167,7 @@ Minify::stylesheet([
             </div>
 
             <div style="display: none">
-                <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?query=&filter=photos">
+                <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?filter=photos">
                     <div>
                     {{__('Photos')}}
                     </div>
@@ -176,7 +176,7 @@ Minify::stylesheet([
 
           
             <div>
-                <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="/search?query=&filter=videosPres">
+                <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="/search?filter=videosPres">
                     <div>
                     {{__('Videos')}}
                     </div>
@@ -184,13 +184,24 @@ Minify::stylesheet([
             </div>
 
         </div>
-
         @include('elements.message-alert',['classes'=>'p-2'])
+
         @if(isset($posts))
             @include('elements.feed.posts-load-more')
             <div class="feed-box mt-0 pt-0 posts-wrapper">
                 @include('elements.feed.posts-wrapper',['posts'=>$posts])
             </div>
+            @include('elements.feed.posts-loading-spinner')
+        @endif
+        @if(isset($postsPublic))
+            @include('elements.feed.posts-load-more')
+                <div class="feed-box mt-0 pt-0 ">
+                    <div class="row posts-wrapper ">
+                        @foreach ($postsPublic as $post)
+                            @include('elements.feed.posts-public',['post'=>$post])
+                        @endforeach
+                    </div>
+                </div>
             @include('elements.feed.posts-loading-spinner')
         @endif
 
@@ -207,6 +218,7 @@ Minify::stylesheet([
             </div>
             @include('elements.feed.posts-loading-spinner')
         @endif
+
         @if(isset($demoposts))
             @include('elements.feed.posts-load-more')
             <div class="feed-box mt-0 pt-0 posts-wrapper">

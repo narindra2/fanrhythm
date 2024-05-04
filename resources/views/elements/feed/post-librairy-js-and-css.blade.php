@@ -219,13 +219,10 @@
         width: 100%;
         background: rgba(0, 0, 0, 0.5);
         padding: 10px 15px;
-
         right: 0;
         bottom: 0;
-
-        /* override styles that were set via JS.
-    as they interfere with size measurement */
-        /* top: auto !important; */
+        /* override styles that were set via JS. as they interfere with size measurement */
+        top: auto !important;
         left: 0 !important;
         margin-top: 137%;
     }

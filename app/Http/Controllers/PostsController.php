@@ -87,7 +87,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-       
+        
         $canPost = true;
         if(getSetting('site.enforce_user_identity_checks')){
             if(!GenericHelperServiceProvider::isUserVerified()){
@@ -105,8 +105,8 @@ class PostsController extends Controller
                 'max_post_description_size' => (int)getSetting('feed.min_post_description')
             ],
         ]);
-
-        return view('pages.create', []);
+        $countPostPublic = Post::where("user_id", Auth::id())->where("is_public",1)->count();
+        return view('pages.create', ["countPostPublic" => $countPostPublic  ? $countPostPublic : 0 , "maxPostPublic" => Post::MAX_NB_PUBLIC_POST]);
     }
 
     /**
@@ -161,16 +161,27 @@ class PostsController extends Controller
             if (! GenericHelperServiceProvider::isUserVerified() && getSetting('site.enforce_user_identity_checks')) {
                 return response()->json(['success' => false, 'errors' => ['permissions' => __('User not verified. Can not post content.')]], 500);
             }
+            $isPublic = $request->isPublic == "true";
+            if ( $isPublic) {
+                $countPostPublic = Post::where("user_id", Auth::id())->where("is_public", 1)->count();
+                dd($isPublic);
+                if ( $countPostPublic >=  Post::MAX_NB_PUBLIC_POST ) {
+                    return response()->json(['success' => false,  'message' => __('Le nombre maximun de post type publique est atteinte.')], 500);
+                }
+            }
+            
+            
+
             $type = $request->get('type');
             $postStatus = PostsHelperServiceProvider::getDefaultPostStatus(Auth::user()->id);
-            $price  =  $request->isPublic ? 0 :  $request->get('price');
+            $price  = $isPublic ? 0 :  $request->get('price');
             if ($type == 'create') {
                 $postID = Post::create([
                     'user_id' => $request->user()->id,
                     'text' => $request->get('text'),
                     'price' => $price,
                     'status' => $postStatus,
-                    'is_public' => $request->isPublic ? 1 : 0,
+                    'is_public' => $isPublic ? 1 : 0,
                 ])->id;
             } elseif ($type == 'update') {
                 $postID = $request->get('id');

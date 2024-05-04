@@ -13,6 +13,8 @@ class Post extends Model
     const APPROVED_STATUS = 1;
     const DISAPPROVED_STATUS = 2;
 
+    const MAX_NB_PUBLIC_POST = 10;
+
 
     /**
      * The attributes that are mass assignable.

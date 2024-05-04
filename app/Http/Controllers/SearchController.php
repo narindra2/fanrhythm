@@ -171,7 +171,7 @@ class SearchController extends Controller
                 'initialPostIDs' => $posts->pluck('id')->toArray(),
                 'searchType' => 'feed'
             ];
-            $viewData = ['posts' => $posts];
+            $viewData = ['postsPublic' => $posts];
         }
         /**
          * Standard posts filters
