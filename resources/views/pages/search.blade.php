@@ -198,7 +198,7 @@ Minify::stylesheet([
                 <div class="feed-box mt-0 pt-0 ">
                     <div class="row posts-wrapper ">
                         @foreach ($postsPublic as $post)
-                            @include('elements.feed.posts-public',['post'=>$post])
+                            @include('elements.feed.posts-public',['post'=> $post])
                         @endforeach
                     </div>
                 </div>

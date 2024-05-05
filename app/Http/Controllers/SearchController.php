@@ -58,7 +58,7 @@ class SearchController extends Controller
         //     return redirect(route('search.get'));
         // }
 
-        $tabCanNotSeenInPublic = ['top','live',"photos","public"];
+        $tabCanNotSeenInPublic = ['top','live',"photos"];
         if(!Auth::check() &&  in_array($request->get("filter"),$tabCanNotSeenInPublic)){
             return redirect(route('register'));
         }
@@ -157,8 +157,8 @@ class SearchController extends Controller
         elseif($filters['postsFilter'] == 'public') {
            
             $startPage = PostsHelperServiceProvider::getFeedStartPage(PostsHelperServiceProvider::getPrevPage($request));
-            $posts = PostsHelperServiceProvider::getFeedPosts(Auth::user()->id, false, $startPage, $filters['mediaType'], $filters['sortOrder'], $filters['searchTerm']);
-            PostsHelperServiceProvider::shouldDeletePaginationCookie($request);
+            $posts = PostsHelperServiceProvider::getFeedPosts(Auth::id() ?? 0, false, $startPage, $filters['mediaType'], $filters['sortOrder'], $filters['searchTerm']);
+            // PostsHelperServiceProvider::shouldDeletePaginationCookie($request);
             $jsData = [
                 'paginatorConfig' => [
                     'next_page_url' => str_replace('/search', '/search/posts', $posts->nextPageUrl()),

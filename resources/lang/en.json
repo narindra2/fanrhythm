@@ -1102,6 +1102,7 @@
     "Le nombre maximun de post type publique est atteinte."  : "The maximum number of public post types has been reached.",
     "Ces posts apparaîtront sur le mur public de la plateforme."  : "These posts will appear on the platform's public wall.",
     "Vous en avez %n  post public (max %n)" : "You have % public posts (max %n)",
-    "+ ajouter un nouveau post public." : "+ add new  public post."
+    "+ ajouter un nouveau post public." : "+ add new  public post.",
+    "modifier le post public." : "edit public post."
 
   }

@@ -21,13 +21,14 @@
         <div class="aff_gauche">
             @include('elements.uploaded-file-preview-template')
             @include('elements.post-price-setup', ['postPrice' => isset($post) ? $post->price : 0])
-            @include('elements.post-public-modal-info', ['countPostPublic' => isset($countPostPublic) ? $countPostPublic : 0 , "maxPostPublic" => $maxPostPublic])
+            @if (!isset($post) || (isset($post) && $post->is_public)  )
+                @include('elements.post-public-modal-info', ['countPostPublic' => isset($countPostPublic) ? $countPostPublic : 0 , "maxPostPublic" => $maxPostPublic])
+            @endif
             @include('elements.attachments-uploading-dialog')
             <p class="aff_title_feed">
                 {{ Route::currentRouteName() == 'posts.create' ? __('Créer une publication') : __('Modifier ma publication') }}
             </p>
-
-            @if (!PostsHelper::getDefaultPostStatus(Auth::user()->id))
+            @if (!PostsHelper::getDefaultPostStatus(Auth::id()))
                 <div class="pl-3 pr-3 pt-3">
                     @include('elements.pending-posts-warning-box')
                 </div>
@@ -127,7 +128,7 @@
 
                         <div>
 
-                            <span class=" file-upload-button {{ isset($post) && $post->is_public ? 'd-none' : '' }} {{ !GenericHelper::isUserVerified() && getSetting('site.enforce_user_identity_checks') ? 'disabled' : '' }}">
+                            <span class=" file-upload-button {{ (isset($post) && $post->is_public) ? 'd-none' : '' }} {{ !GenericHelper::isUserVerified() && getSetting('site.enforce_user_identity_checks') ? 'disabled' : '' }}">
                                
                                 <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -150,7 +151,7 @@
                                 <span class="">{{ __('Souscription') }}</span>
                             </span>
                             <span
-                                class="post-price-button  {{ isset($post) && $post->is_public ? 'd-none' : '' }} {{ !GenericHelper::isUserVerified() && getSetting('site.enforce_user_identity_checks') ? 'disabled' : '' }}"
+                                class="post-price-button  {{ (isset($post) && $post->is_public) ? 'd-none' : '' }} {{ !GenericHelper::isUserVerified() && getSetting('site.enforce_user_identity_checks') ? 'disabled' : '' }}"
                                 onclick="{{ !GenericHelper::isUserVerified() && getSetting('site.enforce_user_identity_checks') ? '' : 'PostCreate.showSetPricePostDialog()' }}">
                                 <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -176,7 +177,7 @@
                             </span>
 
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            @if (($countPostPublic < $maxPostPublic ) || isset($post->id))
+                            @if (isset($post->id) ||  ($countPostPublic < $maxPostPublic ) )
                             <span class=" post-public" data-toggle="modal" data-target="#post-set-public" >
                                 [
                                 <svg style="margin-right: 10px; margin-left: 10px;" xmlns="http://www.w3.org/2000/svg"

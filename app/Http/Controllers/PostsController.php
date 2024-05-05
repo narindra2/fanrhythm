@@ -105,7 +105,8 @@ class PostsController extends Controller
                 'max_post_description_size' => (int)getSetting('feed.min_post_description')
             ],
         ]);
-        $countPostPublic = Post::where("user_id", Auth::id())->where("is_public",1)->count();
+        // $countPostPublic = Post::where("user_id", Auth::id())->where("is_public",1)->count();
+        $countPostPublic = Attachment::where("user_id", Auth::id())->whereRelation("post","is_public",1)->count();
         return view('pages.create', ["countPostPublic" => $countPostPublic  ? $countPostPublic : 0 , "maxPostPublic" => Post::MAX_NB_PUBLIC_POST]);
     }
 
@@ -143,9 +144,12 @@ class PostsController extends Controller
                 'max_post_description_size' => (int)getSetting('feed.min_post_description')
             ],
         ]);
-
+         // $countPostPublic = Post::where("user_id", Auth::id())->where("is_public",1)->count();
+         $countPostPublic = Attachment::where("user_id", Auth::id())->whereRelation("post","is_public",1)->count();
         return view('pages.create', [
             'post' => $post,
+            "countPostPublic" => $countPostPublic  ? $countPostPublic : 0,
+            "maxPostPublic" => Post::MAX_NB_PUBLIC_POST
         ]);
     }
 
