@@ -30,21 +30,24 @@ class EmailsServiceProvider extends ServiceProvider
 
     public static function sendGenericEmail($options = [])
     {
-        Mail::to($options['email'])->send(new GenericEmail(
-            [
-                'subject' => $options['subject'],
-                'mailTitle' => $options['title'],
-                'mailContent' => $options['content'],
-                'mailQuote' => (isset($options['quote']) ? $options['quote'] : null),
-                'replyTo' => (isset($options['replyTo']) ? $options['replyTo'] : null),
-                'button' => [
-                    'color' => 'primary',
-                    'text' => $options['button']['text'],
-                    'url' => $options['button']['url'],
-                ],
-            ]
-        ));
-
+        try {
+            Mail::to($options['email'])->send(new GenericEmail(
+                [
+                    'subject' => $options['subject'],
+                    'mailTitle' => $options['title'],
+                    'mailContent' => $options['content'],
+                    'mailQuote' => (isset($options['quote']) ? $options['quote'] : null),
+                    'replyTo' => (isset($options['replyTo']) ? $options['replyTo'] : null),
+                    'button' => [
+                        'color' => 'primary',
+                        'text' => $options['button']['text'],
+                        'url' => $options['button']['url'],
+                    ],
+                ]
+            ));
+        } catch (\Throwable $th) {
+            return true; // on s'enfouit de l'erreur de send mail, les utilisateurs mettent des emails bordel
+        }
         return true;
     }
 }
