@@ -117,13 +117,13 @@ Minify::stylesheet([
     
                 
     
-                {{-- <div >
+                <div >
                     <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?filter=photos">
                         <div>
                             {{__('Photos')}}
                         </div>
                     </a>
-                </div> --}}
+                </div>
     
                 <div>
                     <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="/search?filter=videosPres">
@@ -160,18 +160,18 @@ Minify::stylesheet([
                 </a>
             </div>
 
-            <div>
-                <a class="{{ $currentFilter == 'public' ? 'active' : '' }}" href="/search?filter=public">
+            <div style="display: none">
+                <a class="{{ $currentFilter == 'public' ? 'active' : '' }}" href=" /search?filter=photos">
                     <div>
-                    {{__('Wall')}}
+                    {{__('Photos')}}
                     </div>
                 </a>
             </div>
 
-            <div style="display: none">
-                <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?filter=photos">
+            <div style="">
+                <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?filter=public">
                     <div>
-                    {{__('Photos')}}
+                        {{__('Wall')}}
                     </div>
                 </a>
             </div>

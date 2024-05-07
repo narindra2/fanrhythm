@@ -103,24 +103,13 @@
                     </div>
                 @endif
                 <div>
-                    <div class="w-100">
-                        <textarea id="dropzone-uploader" name="input-text" class="w-100" spellcheck="false"
-                            placeholder="{{ __('Créer une nouvelle publication sur Fanrhythm ... ') }}"
-                            value="{{ isset($post) ? $post->text : '' }}" oninput="autoGrow(this)"></textarea>
-                        <span class="invalid-feedback" role="alert">
-                            <strong
-                                class="post-invalid-feedback">{{ __('Your post must contain more than 10 characters.') }}</strong>
-                        </span>
-
-                    </div>
                     <div class="dropzone-previews dropzone w-100 p-0"></div>
                     <div class="progress" style="width:0%;height:3px;background-color:#2e8dcd" id="#progress-bar">
                         <div class="progress-bar progress-bar-primary" role="progressbar" data-dz-uploadprogress>
                             <span id="#progress-text" class="progress-text"></span>
                         </div>
                     </div>
-                    <span class="text-danger d-none " style="font-size: 14px;"
-                        id="attachementBreackModerationRulesMessage">{{ __('Le fichier que vous avez sélectionné ne respecte pas nos normes de modération et ne peut pas être téléchargé') }}</span>
+                    <span class="text-danger d-none " style="font-size: 14px;"  id="attachementBreackModerationRulesMessage">{{ __('Le fichier que vous avez sélectionné ne respecte pas nos normes de modération et ne peut pas être téléchargé') }}</span>
                     <div id="aff_create_adds">
                         <div>
                             {{ __('Créer un post du type') }} ...
@@ -193,9 +182,19 @@
                            
                            
                         </div>
+                        
 
                     </div>
+                    <div class="w-100 mt-5">
+                        <textarea id="dropzone-uploader" name="input-text" class="w-100" spellcheck="false"
+                            placeholder="{{ __('Créer une nouvelle publication sur Fanrhythm ... ') }}"
+                            value="{{ isset($post) ? $post->text : '' }}" oninput="autoGrow(this)"></textarea>
+                        <span class="invalid-feedback" role="alert">
+                            <strong
+                                class="post-invalid-feedback">{{ __('Your post must contain more than 10 characters.') }}</strong>
+                        </span>
 
+                    </div>
 
 
                     @if (!GenericHelper::isUserVerified() && getSetting('site.enforce_user_identity_checks'))

@@ -1488,7 +1488,7 @@ div.aff_header_post .dropdown.dropleft .dropdown-toggle {
 
 .aff_header_post {
     margin-bottom: 0px;
-    padding: 14px;
+    padding: 13px;
 }
 
 .aff_header_post .aff_ppv,
@@ -1808,7 +1808,8 @@ div.aff_header_post .dropdown.dropleft .dropdown-toggle {
 }
 
 .aff_create_post div#aff_user {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+    margin-bottom: 0px;
 }
 
 .aff_create_post textarea {

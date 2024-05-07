@@ -74,8 +74,8 @@
         </li>
 
         <li>
-            <a href="/verified_user"
-                class="{{Route::currentRouteName() == 'search.get' ? 'active' : ''}}">
+            <a href="{{url('/search?filter=public')}}"
+                class="{{url()->full() == url('/search?filter=public') ? 'active' : ''}}">
                 <div>
                     <svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
