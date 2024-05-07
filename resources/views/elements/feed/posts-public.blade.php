@@ -1,6 +1,6 @@
 
 @foreach ($post->attachments as $attachement)
-    <div class="col-6 col-sm-4 ">
+    <div class="col-6 col-sm-4" style="padding-right: 0;padding-left: 0;">
         <div class="gallery">
             <a href="{{route('profile',['username'=>$post->user->username])}}">
                 <img src="{{$attachement->path}}" class="image-item" alt="image">
