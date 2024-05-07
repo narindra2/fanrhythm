@@ -135,6 +135,7 @@ class PostsController extends Controller
                 'text' => $post->text,
                 'attachments' => $post->attachments,
                 'price' => $post->price,
+                'isPublic' => $post->is_public,
             ],
             'mediaSettings' => [
                 'allowed_file_extensions' => '.'.str_replace(',', ',.', AttachmentServiceProvider::filterExtensions('videosFallback')),
@@ -168,7 +169,6 @@ class PostsController extends Controller
             $isPublic = $request->isPublic == "true";
             if ( $isPublic) {
                 $countPostPublic = Post::where("user_id", Auth::id())->where("is_public", 1)->count();
-                dd($isPublic);
                 if ( $countPostPublic >=  Post::MAX_NB_PUBLIC_POST ) {
                     return response()->json(['success' => false,  'message' => __('Le nombre maximun de post type publique est atteinte.')], 500);
                 }

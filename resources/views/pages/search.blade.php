@@ -98,15 +98,7 @@ Minify::stylesheet([
                         </div>
                     </a>
                 </div>
-    
-                <div>
-                    <a class="{{ $currentFilter == 'top' ? 'active' : '' }}" href="/search?filter=top">
-                        <div>
-                            {{__('Posts')}}
-                        </div>
-                    </a>
-                </div>
-    
+
                 <div>
                     <a class="{{ $currentFilter == null ? 'active' : '' }}" href="/verified_user">
                         <div>
@@ -115,13 +107,23 @@ Minify::stylesheet([
                     </a>
                 </div>
     
-                <div >
+                <div>
+                    <a class="{{ $currentFilter == 'top' ? 'active' : '' }}" href="/search?filter=top">
+                        <div>
+                            {{__('Wall')}}
+                        </div>
+                    </a>
+                </div>
+    
+                
+    
+                {{-- <div >
                     <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?filter=photos">
                         <div>
                             {{__('Photos')}}
                         </div>
                     </a>
-                </div>
+                </div> --}}
     
                 <div>
                     <a class="{{ $currentFilter == 'videosPres' ? 'active' : '' }}" href="/search?filter=videosPres">
@@ -151,17 +153,17 @@ Minify::stylesheet([
                 </a>
             </div> --}}
             <div>
-                <a class="{{ $currentFilter == 'public' ? 'active' : '' }}" href="/search?filter=public">
+                <a class="{{ $currentFilter == null ? 'active' : '' }}" href="/verified_user">
                     <div>
-                    {{__('Posts')}}
+                    {{__('People')}}
                     </div>
                 </a>
             </div>
 
             <div>
-                <a class="{{ $currentFilter == null ? 'active' : '' }}" href="/verified_user">
+                <a class="{{ $currentFilter == 'public' ? 'active' : '' }}" href="/search?filter=public">
                     <div>
-                    {{__('People')}}
+                    {{__('Wall')}}
                     </div>
                 </a>
             </div>
@@ -195,12 +197,10 @@ Minify::stylesheet([
         @endif
         @if(isset($postsPublic))
             @include('elements.feed.posts-load-more')
-                <div class="feed-box mt-0 pt-0 ">
-                    <div class="row posts-wrapper ">
-                        @foreach ($postsPublic as $post)
-                            @include('elements.feed.posts-public',['post'=> $post])
-                        @endforeach
-                    </div>
+                <div class="feed-box mt-0 pt-0  posts-wrapper row ">
+                    @foreach ($postsPublic as $post)
+                        @include('elements.feed.posts-public',['post'=> $post])
+                    @endforeach
                 </div>
             @include('elements.feed.posts-loading-spinner')
         @endif

@@ -29,7 +29,7 @@
                 </span>
 
                 <input type="text" aria-label="Text input with dropdown button"
-                    placeholder="{{__('Rechercher par pseudo , hashtag ou autres … ')}}" name="query" value="">
+                    placeholder="{{__('Explorer par pseudo , hashtag ou autres … ')}}" name="query" value="">
                 <input type="hidden" name="filter" value="people">
             </form>
 
@@ -61,14 +61,7 @@
                 </a>
             </div>
 
-            <div>
-                <a class="" href="/search?filter=public">
-                    <div>
-                    {{__('Posts')}}
-                    </div>
-                </a>
-            </div>
-
+            
             <div>
                 <a class="active" href="/verified_user">
                     <div>
@@ -76,6 +69,15 @@
                     </div>
                 </a>
             </div>
+
+            <div>
+                <a class="" href="/search?filter=public">
+                    <div>
+                    {{__('Wall')}}
+                    </div>
+                </a>
+            </div>
+
 
             <div style="display: none">
                 <a class="" href="/search?filter=photos">

@@ -9,11 +9,15 @@
             </div>
             <div class="modal-body">
                 <p>{{__('Ces posts apparaîtront sur le mur public de la plateforme.')}} </p>
-                @if ((isset($post) && $post->is_public))
-                    <p>{{ sprintf('Vous en avez %d  post public (max %d)',$countPostPublic ,$maxPostPublic) }}  <a  class="file-upload-button-public-post" data-dismiss="modal" href="#" > {{__("modifier le post public.")}}</a></p> 
-                @else
-                    <p>{{ sprintf('Vous en avez %d  post public (max %d)',$countPostPublic ,$maxPostPublic) }}  <a  class="file-upload-button-public-post" data-dismiss="modal" href="#" > {{__("+ ajouter un nouveau post public.")}}</a></p> 
-                @endif
+                <p>{{ __('Vous en avez :countPostPublic post public (max :maxPostPublic)' ,["countPostPublic" => $countPostPublic , "maxPostPublic" =>$maxPostPublic]) }} 
+                    <a  class="file-upload-button-public-post" data-dismiss="modal" href="#" >
+                        @if ((isset($post) && $post->is_public))
+                            {{__("modifier le post public.")}}
+                        @else
+                            {{__("+ ajouter un nouveau post public.")}}
+                        @endif
+                    </a>
+                </p> 
                
             </div>
             {{-- <div class="modal-footer text-right">

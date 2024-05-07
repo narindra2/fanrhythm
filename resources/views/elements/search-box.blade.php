@@ -16,7 +16,7 @@
     </span>
 
     <input type="text"  aria-label="Text input with dropdown button"
-        placeholder="{{__("Rechercher par pseudo , hashtag ou autres … ")}}" name="query" value="{{isset($searchTerm) && $searchTerm ? $searchTerm : ''}}">
+        placeholder="{{__("Explorer par pseudo , hashtag ou autres … ")}}" name="query" value="{{isset($searchTerm) && $searchTerm ? $searchTerm : ''}}">
     <input type="hidden" name="filter"
         value="{{isset($activeFilter) && $activeFilter !== false ? $activeFilter : 'top'}}" />
 

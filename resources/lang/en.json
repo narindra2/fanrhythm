@@ -847,7 +847,7 @@
     "Publier": "Create post",
     "Toutes" : "All",
     "Se désabonner" : "Unsubscribe",
-    "Rechercher par pseudo , hashtag ou autres … " : "Research by name, hashtag, nickname, other" ,
+    "Explorer par pseudo , hashtag ou autres … " : "Explore by name, hashtag, nickname, other" ,
     "Bloquer": "Block",
     "Signaler": "Report",
     "Modifier": "Edit",
@@ -1101,7 +1101,7 @@
     "Créer un post du type public"  : "Create a post like public",
     "Le nombre maximun de post type publique est atteinte."  : "The maximum number of public post types has been reached.",
     "Ces posts apparaîtront sur le mur public de la plateforme."  : "These posts will appear on the platform's public wall.",
-    "Vous en avez %n  post public (max %n)" : "You have % public posts (max %n)",
+    "Vous en avez :countPostPublic post public (max :maxPostPublic)" : "You have :countPostPublic public posts (max :maxPostPublic)",
     "+ ajouter un nouveau post public." : "+ add new  public post.",
     "modifier le post public." : "edit public post."
 
