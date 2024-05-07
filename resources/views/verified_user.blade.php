@@ -4,7 +4,7 @@
 <div id="aff_content">
     <div class="aff_gauche">
         <p class="aff_title_feed">
-            {{__('Rechercher')}}
+            {{__('Explorer')}}
         </p>
 
         <div id="aff_search">

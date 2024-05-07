@@ -1104,5 +1104,4 @@
     "Vous en avez :countPostPublic post public (max :maxPostPublic)" : "You have :countPostPublic public posts (max :maxPostPublic)",
     "+ ajouter un nouveau post public." : "+ add new  public post.",
     "modifier le post public." : "edit public post."
-
   }

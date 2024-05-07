@@ -9,7 +9,7 @@
     <div class="aff_header_post">
         <a href="{{ route('profile', ['username' => $post->user->username]) }}">
             <img src="{{ $post->user->avatar }}">
-            {!! $post->user->getUserStatusHtml() !!}
+            {!! $post->user->getUserStatusHtml("31px") !!}
             <div class="aff_info_name">
                 <div>
                     <span>

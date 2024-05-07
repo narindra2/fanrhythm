@@ -54,7 +54,7 @@ Minify::stylesheet([
     <div class="aff_gauche">
         <div id="header-fp" >
             <p class="aff_title_feed">
-                {{__('Rechercher')}}
+                {{__('Explorer')}}
             </p>
     
             <div id="aff_search">

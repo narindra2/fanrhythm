@@ -8,9 +8,9 @@
             padding-top: 0px;
         }
 
-        #aff_content>div.aff_gauche>p {
+        /* #aff_content>div.aff_gauche>p {
             display: none;
-        }
+        } */
 
         .aff_profil_tab div a {
             font-size: 0;

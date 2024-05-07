@@ -51,103 +51,7 @@ Minify::javascript([
         <p class="aff_title_feed aff_title_message">
             Messages
         </p>
-        <style>
-            body {
-                overflow: hidden;
-            }
-
-            @media screen and (max-width: 1150px){
-                #aff_main {
-                    width: 100%;
-                    padding-left: 0px;
-                    max-width: 100%;
-                    margin: auto;
-                }
-            }
-
-            @media screen and (max-width: 768px){
-                #aff_main {
-                    padding-left: 0px;
-                    padding-right: 0px;
-                    max-width: 100%;
-                }
-
-                div#aff_mobile_nav {
-                    display: none;
-                }
-
-
-                #aff_message_box {
-                    height: calc(100vh - 140px);
-                }
-                .conversation-writeup.aff_write_message {
-                    position: fixed;
-                    left: 0;
-                    bottom: 30px;
-                }
-
-                #aff_message_box>div:nth-child(1)>span{
-                    bottom: auto;
-                    top: -1px;
-                }
-
-                #aff_message_box>div:nth-child(1) {
-                    padding-top: 80px;
-                }
-
-                body{
-                    overflow: scroll;
-                }
-
-                .aff_write_message>div>img{
-                    display: none!important;
-                }
-
-                .text_foc .input-group-append.z-index-3.d-flex.align-items-center.justify-content-center,
-                .text_foc  button.messenger-button.mx-2.to-tooltip,
-                .text_foc  button.messenger-button.attach-file.file-upload-button.to-tooltip.dz-clickable  {
-                    display: none!important;
-                }
-
-                textarea.messageBoxInput.dropzone{
-                    /* height: 50px!important; */
-
-                    line-height: 1.5;
-                    overflow:scroll;
-                }
-
-             
-
-                textarea.messageBoxInput.dropzone {
-                    line-height: 2;
-                    padding-right: 31px!important;
-                    margin-top: 6px;
-                     margin-bottom: 6px;
-                }
-
-                .text_foc textarea.messageBoxInput.dropzone{
-                    padding-right: 0px!important;
-                    line-height: 1.5;
-                    margin-top: 10px;
-                    margin-bottom: 0px;
-                }
-
-                .aff_write_message>div,
-                .aff_write_message{
-                    height: auto;
-                }
-
-                .dropzone-previews.dropzone.dz-started {
-                    position: fixed!important;
-                    left: 0!important;
-                    margin-left: 0px!important;
-                    bottom: 6px;
-                    border-top: 0px solid #eee !important;
-                }
-
-              
-            }
-        </style>
+       
 
         <div id="aff_message_box">
             <div>
@@ -418,3 +322,163 @@ Minify::javascript([
 'actionFunction' => 'messenger.deleteMessage();',
 ])
 @stop
+
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    @media screen and (max-width: 1150px){
+        #aff_main {
+            width: 100%;
+            padding-left: 0px;
+            max-width: 100%;
+            margin: auto;
+        }
+    }
+
+
+            .user-status-circle-online{
+            background-color: #17df64 !important ;
+            width: 12px !important;
+            height: 12px !important;
+            border-radius: 50% !important;
+            margin-left: 39px !important;
+            margin-top: 34px !important;
+            position: absolute !important;
+            
+        }
+        .user-status-circle-not-actif{
+            background-color:   #17df64 !important;
+            width: 12px !important;
+            height: 12px !important;
+            border-radius: 50% !important;
+            border: 3px solid white !important;
+            margin-left: 39px !important;
+            margin-top: 34px !important;
+            position: absolute !important;
+        }
+        .user-status-circle-offline{
+            background-color:rgba(255, 115, 0, 0.89) !important;
+            width: 12px !important;
+            height: 12px !important;
+            border-radius: 50% !important;
+            border: 1px solid white !important;
+            margin-left: 39px !important;
+            margin-top: 34px !important;
+            position: absolute !important;
+        } 
+
+    @media screen and (max-width: 768px){
+        #aff_main {
+            padding-left: 0px;
+            padding-right: 0px;
+            max-width: 100%;
+        }
+
+        div#aff_mobile_nav {
+            display: none;
+        }
+
+
+        #aff_message_box {
+            height: calc(100vh - 140px);
+        }
+        .conversation-writeup.aff_write_message {
+            position: fixed;
+            left: 0;
+            bottom: 30px;
+        }
+
+        #aff_message_box>div:nth-child(1)>span{
+            bottom: auto;
+            top: -1px;
+        }
+
+        #aff_message_box>div:nth-child(1) {
+            padding-top: 80px;
+        }
+
+        body{
+            overflow: scroll;
+        }
+
+        .aff_write_message>div>img{
+            display: none!important;
+        }
+
+        .text_foc .input-group-append.z-index-3.d-flex.align-items-center.justify-content-center,
+        .text_foc  button.messenger-button.mx-2.to-tooltip,
+        .text_foc  button.messenger-button.attach-file.file-upload-button.to-tooltip.dz-clickable  {
+            display: none!important;
+        }
+
+        textarea.messageBoxInput.dropzone{
+            /* height: 50px!important; */
+
+            line-height: 1.5;
+            overflow:scroll;
+        }
+
+     
+
+        textarea.messageBoxInput.dropzone {
+            line-height: 2;
+            padding-right: 31px!important;
+            margin-top: 6px;
+             margin-bottom: 6px;
+        }
+
+        .text_foc textarea.messageBoxInput.dropzone{
+            padding-right: 0px!important;
+            line-height: 1.5;
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+
+        .aff_write_message>div,
+        .aff_write_message{
+            height: auto;
+        }
+
+        .dropzone-previews.dropzone.dz-started {
+            position: fixed!important;
+            left: 0!important;
+            margin-left: 0px!important;
+            bottom: 6px;
+            border-top: 0px solid #eee !important;
+        }
+
+
+        .user-status-circle-online{
+            background-color: #17df64 !important ;
+            width: 12px !important;
+            height: 12px !important;
+            border-radius: 50% !important;
+            margin-left: 31px !important;
+            margin-top: 31px !important;
+            position: absolute !important;
+            
+        }
+        .user-status-circle-not-actif{
+            background-color:   #17df64 !important;
+            width: 12px !important;
+            height: 12px !important;
+            border-radius: 50% !important;
+            border: 3px solid white !important;
+            margin-left: 31px !important;
+            margin-top: 31px !important;
+            position: absolute !important;
+        }
+        .user-status-circle-offline{
+            background-color:rgba(255, 115, 0, 0.89) !important;
+            width: 12px !important;
+            height: 12px !important;
+            border-radius: 50% !important;
+            border: 1px solid white !important;
+            margin-left: 31px !important;
+            margin-top: 31px !important;
+            position: absolute !important;
+        }
+    }
+</style>
