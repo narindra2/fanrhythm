@@ -169,7 +169,7 @@ Minify::stylesheet([
             </div>
 
             <div style="">
-                <a class="{{ $currentFilter == 'photos' ? 'active' : '' }}" href="/search?filter=public">
+                <a class="{{ $currentFilter == 'public' ? 'active' : '' }}" href="/search?filter=public">
                     <div>
                         {{__('Wall')}}
                     </div>
@@ -197,7 +197,7 @@ Minify::stylesheet([
         @endif
         @if(isset($postsPublic))
             @include('elements.feed.posts-load-more')
-                <div class="feed-box mt-0 pt-0  posts-wrapper row ">
+                <div class="feed-box mt-0 pt-0  posts-wrapper row m-0">
                     @foreach ($postsPublic as $post)
                         @include('elements.feed.posts-public',['post'=> $post])
                     @endforeach

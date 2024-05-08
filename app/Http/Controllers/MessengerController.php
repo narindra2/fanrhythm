@@ -167,7 +167,6 @@ class MessengerController extends Controller
             $contact->userContactStatusHtml = getUserStatusHtmlHelper("","",$contact->contactID) ;
             $contact->receiverAvatar = GenericHelperServiceProvider::getStorageAvatarPath($contact->receiverAvatar);
         }
-
         // Removing blocked contacts
         $contacts = array_filter($contacts, function ($contact){
             if(!self::hasUserBlocked($contact->contactID, Auth::user()->id)){

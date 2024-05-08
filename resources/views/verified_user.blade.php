@@ -70,8 +70,8 @@
                 </a>
             </div>
 
-            <div>
-                <a class="" href="/search?filter=public">
+            <div style="display: none">
+                <a   href="/search?filter=public">
                     <div>
                     {{__('Wall')}}
                     </div>
@@ -79,10 +79,10 @@
             </div>
 
 
-            <div style="display: none">
-                <a class="" href="/search?filter=photos">
+            <div style="">
+                <a class="" href="/search?filter=public">
                     <div>
-                    {{__('Photos')}}
+                    {{__('Wall')}}
                     </div>
                 </a>
             </div>
@@ -189,36 +189,7 @@
     background: #fff !important;
     color: #32a0f0 !important;
 } */
-/* 
-.user-status-circle-online{
-    background-color: #18d963 !important ;
-    width: 12px !important;
-    height: 12px !important;
-    border-radius: 50% !important;
-    margin-left: 57px  !important;
-    margin-top: 25px !important;
-    position: absolute !important;
-}
-.user-status-circle-not-actif{
-    background-color:   #18d963 !important;
-    width: 12px !important;
-    height: 12px !important;
-    border-radius: 50% !important;
-    border: 3px solid white !important;
-    margin-left: 57px  !important;
-    margin-top: 25px !important;
-    position: absolute !important;
-}
-.user-status-circle-offline{
-    background-color:rgb(255, 186, 0) !important;
-    width: 12px !important;
-    height: 12px !important;
-    border-radius: 50% !important;
-    border: 2px solid white !important;
-    margin-left:  57px  !important;
-    margin-top: 22px !important;
-    position: absolute !important;
-} */
+
 </style>
 @include('template.searchmobile')
 @stop
