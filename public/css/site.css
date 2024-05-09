@@ -4951,7 +4951,7 @@ div#aff_verif_2 > div {
 
 .instruction {
     background: transparent!important;
-    color: #000;
+    /* color: #000; */
     padding-top: 40px;
 }
 

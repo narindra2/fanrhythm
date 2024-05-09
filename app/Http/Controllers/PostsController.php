@@ -89,11 +89,11 @@ class PostsController extends Controller
     {
         
         $canPost = true;
+        if(!GenericHelperServiceProvider::isUserVerified()){
+            return  abort(404);
+        }
         if(getSetting('site.enforce_user_identity_checks')){
-            if(!GenericHelperServiceProvider::isUserVerified()){
-                $canPost = false;
-                return  abort(404);
-            }
+            $canPost = false;
         }
         Javascript::put([
             'isAllowedToPost' => $canPost,

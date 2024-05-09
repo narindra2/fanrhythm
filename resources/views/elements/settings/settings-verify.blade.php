@@ -257,7 +257,7 @@ Auth::user()->verification->status !== 'pending'))
             <h3>{{__('Vérification de compte')}}</h3>
             <p>{{__('Suivez ces instructions pour vérifier votre compte :')}}</p>
 
-            <div class="instruc">
+            {{-- <div class="instruc">
                 <h4>{{__('1- Document d\'identité')}}</h4>
                 <p>{{__('Disposez de votre passeport ou carte d\'identité valide.')}}</p>
             </div>
@@ -266,16 +266,26 @@ Auth::user()->verification->status !== 'pending'))
                 <h4>{{__('2 - Photo du document')}}</h4>
                 <p>{{__('Prenez une photo claire de votre document d\'identité, en vous assurant que toutes les informations sont lisibles.')}}</p>
             </div>
-
+            
             <div class="instruc">
                 <h4>{{__('3 - Selfie avec le document')}}</h4>
                 <p>{{__('Prenez un selfie en tenant votre document d\'identité à côté de votre visage, les deux doivent être clairement visibles.')}}</p>
             </div>
 
             <p>{{__('Après l\'envoi, la validation de votre compte de créateur est en cours. Le processus peut prendre jusqu\'à 48h (horaires ouvrés). Merci de votre patience.')}}</p>
-
-            <p>{{__('L\'équipe Afrifan vous remercie pour votre coopération. En cas de besoin, n\'hésitez pas à nous contacter.')}}</p>
             
+            <p>{{__('L\'équipe Afrifan vous remercie pour votre coopération. En cas de besoin, n\'hésitez pas à nous contacter.')}}</p>
+            --}}
+            
+            <div class="instruc mb-3">
+                <h3>{{__('1) Téléchargez votre identifiant')}}</h3>
+            </div>
+            <div class="instruc mb-3">
+                <h3>{{__("2) Téléchargez votre selfie avec une pièce d'identité à la main")}}</h3>
+            </div>
+            <p class=" mb-5" > {{__("Les deux documents sont obligatoires et doivent être clairs pour devenir créateur.")}}</p>
+            <p>{{__("Après la soumission, le processus peut prendre jusqu'à 48 heures (heures ouvrables).")}}</p>
+
            
         </div>
         </div>
@@ -292,6 +302,14 @@ Auth::user()->verification->status !== 'pending'))
                 <div class="verif_body">
                     <div class="dropzone-previews dropzone w-100"></div>
                 </div>
+                 <div class="row mt-2">
+                    <div class="col-md-6 p-1">
+                        <a href="#" class="btn btn-primary btn-block upload-ID"  style="text-transform: unset !important;">+ {{ __("Passeport ou carte d'identité.")}}</a>
+                    </div>
+                    <div class="col-md-6 p-1">
+                        <a href="#" class="btn btn-primary btn-block upload-selfi" style="text-transform: unset !important;"> + {{ __("Selfie avec pièce d'identité.")}}</a>
+                    </div>
+                 </div>
                 <br>
                 <input class="custom-control-input @error('terms') is-invalid @enderror" id="tosAgree" type="checkbox"
                     name="terms" value="1" placeholder="{{ __('Terms and Conditions') }}">
@@ -305,11 +323,12 @@ Auth::user()->verification->status !== 'pending'))
                         {{ __('et') }} <a
                             href="/privacy/">{{ __('la politique de confidentialité.') }}</a></span>
                         <p>{{__("En devenant créateur, vous serez soumis aux règles qui s'appliquent à « l'utilisateur créatif » selon les termes et conditions de ce site Web.")}}</p>
-                        <p>{{__("Veuillez noter que les conditions et accords de services de la plateforme Fanrhythm ainsi que les directives de la communauté Fanrhytm sont tous deux des accords juridiques contraignants entre vous et A.M. Hébergement Cloud Services Limited.")}}</p>
+                        <p style="font-size: 13px">{{__("Veuillez noter que les conditions et accords de services de la plateforme Fanrhythm ainsi que les directives de la communauté Fanrhytm sont tous deux des accords juridiques contraignants entre vous et A.M. Hébergement Cloud Services Limited.")}}</p>
                 </label>
                 <br>
                 <div class="verif_footer">
-                    <button>
+                    {{-- <button id="send-ID-and-selfi"> --}}
+                    <button >
                     <h4>{{__('Envoyer')}}</h4>
                     </button>
                 </div>

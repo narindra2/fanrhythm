@@ -1103,5 +1103,12 @@
     "Ces posts apparaîtront sur le mur public de la plateforme."  : "These posts will appear on the platform's public wall.",
     "Vous en avez :countPostPublic post public (max :maxPostPublic)" : "You have :countPostPublic public posts (max :maxPostPublic)",
     "+ ajouter un nouveau post public." : "+ add new  public post.",
-    "modifier le post public." : "edit public post."
+    "modifier le post public." : "edit public post.",
+    "Passeport ou carte d'identité." : "Upload passport or ID card.",
+    "Selfie avec pièce d'identité." : "Upload your selfie with ID.",
+    "Après la soumission, le processus peut prendre jusqu'à 48 heures (heures ouvrables)." :"After submission, the process can take up to 48 hours (business hours).",
+    "Cliquer un par un les bouttons ci-dessous pour selectionnner les differents documents demandés" :"Click the buttons below one by one to select the different documents requested",
+    "Les deux documents sont obligatoires et doivent être clairs pour devenir créateur." :" Both documents are mandatory and should be clear to become a creator.",
+    "1) Téléchargez votre identifiant":"1) Upload your ID",
+    "2) Téléchargez votre selfie avec une pièce d'identité à la main":"2) Upload your selfie with ID in your hand"
   }

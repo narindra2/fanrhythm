@@ -19,6 +19,7 @@ var VerifySettings = {
      * Instantiates the media uploader
      */
     initUploader:function () {
+        $("#send-ID-and-selfi").addClass("d-none");
         let selector = '.dropzone';
         VerifySettings.myDropzone = new window.Dropzone(selector, {
             url: app.baseUrl + '/my/settings/verify/upload',
@@ -27,26 +28,36 @@ var VerifySettings = {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            // clickable:[`${selector} .upload-button`],
+            clickable:[".upload-ID" ,".upload-selfi"],
             maxFilesize: mediaSettings.max_file_upload_size, // MB
             addRemoveLinks: true,
             dictRemoveFile: "x",
             acceptedFiles: mediaSettings.allowed_file_extensions,
-            dictDefaultMessage: trans("Drop files here to upload"),
+            // dictDefaultMessage: trans("Drop files here to upload"),
+            dictDefaultMessage: trans("Cliquer un par un les bouttons ci-dessous pour selectionnner les differents documents demandés"),
             autoDiscover: false,
             previewsContainer: ".dropzone-previews",
             autoProcessQueue: true,
             parallelUploads: 1,
+            // init: function () {
+            //     if (VerifySettings.uploadedFiles.length >= 2) { 
+            //         $("#send-ID-and-selfi").removeClass("d-none")
+            //     }
+            // }
         });
         VerifySettings.myDropzone.on("addedfile", file => {
             FileUpload.updatePreviewElement(file, true);
         });
         VerifySettings.myDropzone.on("success", (file, response) => {
             VerifySettings.uploadedFiles.push(response.assetSrc);
+            // if ( VerifySettings.uploadedFiles.length >= 2) { 
+            //     $("#send-ID-and-selfi").removeClass("d-none")
+            // }
             file.upload.assetSrc = response.assetSrc;
         });
         VerifySettings.myDropzone.on("removedfile", function(file) {
             VerifySettings.removeAsset(file.upload.assetSrc);
+
         });
         VerifySettings.myDropzone.on("error", (file, errorMessage) => {
             if(typeof errorMessage.errors !== 'undefined'){
@@ -80,6 +91,7 @@ var VerifySettings = {
             },
             url: app.baseUrl + '/my/settings/verify/upload/delete',
             success: function () {
+                
                 launchToast('success',trans('Success'),trans('Attachment removed.'));
             },
             error: function () {
