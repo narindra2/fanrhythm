@@ -180,9 +180,11 @@ class PaymentsController extends Controller
 
 
             if (in_array($transaction['payment_provider'], [Transaction::STRIPE_PROVIDER, Transaction::OXXO_PROVIDER])) {
-
+                /** Not using redirect page */
+                if (1) {
+                    return $this->paymentHandler->doPaymentwithStripe($transaction);
+                }
                 $redirectLink = $this->paymentHandler->generateStripeSessionByTransaction($transaction);
-
                 // if we cannot fetch a redirect link it means stripe session generation process failed
 
                 if ($redirectLink == null) {

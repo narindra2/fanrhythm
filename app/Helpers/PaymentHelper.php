@@ -830,6 +830,36 @@ class PaymentHelper
             NotificationServiceProvider::createNewTipNotification($transaction);
         }
     }
+    public function doPaymentwithStripe($transaction)
+    {
+        try {
+            \Stripe\Stripe::setApiKey(getSetting('payments.stripe_secret_key'));
+            // \Stripe\Stripe::setApiKey("sk_test_51P9AXwP8MnwHFGfAXfBRQm1pz9i0Jd5yslZ4PW1E7fIM2IAM2HeViebiGbgfCU81SpK6mN7rouXqgqLlMWD2dQSd00qozHc9lY");
+            $auth_user = Auth::user()->load(["billingsCardActive","wallet"]);
+            $walletData = ['total' => $auth_user->wallet->total + $transaction->amount];
+            $transaction['status'] = Transaction::APPROVED_STATUS;
+            $charge = \Stripe\Charge::create([
+                'customer' => $auth_user->billingsCardActive->customerStripe["id"],
+                'amount' => $transaction->amount * 100,
+                'currency' => config('app.site.currency_code'),
+                "description" => "Deposit wallet :  $transaction->amount " .config('app.site.currency_code')
+            ]);
+            /** Payment oK */
+            if ($charge["status"] === "succeeded") {
+                $transaction->save();
+                $auth_user->wallet->update($walletData);
+                return ["success" => true , "message" => __('Payment succeeded'),"walletTotal" => $walletData["total"] ];
+            }else{
+                /**Error */
+                $transaction['status'] = Transaction::DECLINED_STATUS;
+                $transaction->save();
+                return ["success" => false , "message" => $charge["failure_message"] ];
+
+            }
+        } catch (\Exception $exception) {
+            return ["success" =>false , "message" => $exception->getMessage() ];
+        }
+    }
 
     public function generateStripeSessionByTransaction(Transaction $transaction)
     {

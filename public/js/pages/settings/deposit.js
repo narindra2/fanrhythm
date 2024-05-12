@@ -61,7 +61,11 @@ var DepositSettings = {
                 }
             }
             DepositSettings.updateDepositForm();
-            $(".payment-button").trigger("click");
+            if (DepositSettings.provider === "stripe") {
+                DepositSettings.stripePaymentWithoutActualizePage();
+            }else {
+                $(".payment-button").trigger("click");
+            }
         } else {
             $(".payment-error").removeClass("d-none");
         }
@@ -128,6 +132,28 @@ var DepositSettings = {
                 manualDetails.addClass("d-none");
             }
         }
+    },
+    stripePaymentWithoutActualizePage: function () {
+        $.ajax({
+            type: "POST",
+            data: {
+                amount: DepositSettings.amount,
+                transaction_type: "deposit",
+                provider: "stripe",
+            },
+            url: app.baseUrl + "/payment/initiate",
+            success: function (response) {
+                if(response.success){
+                    launchToast( "success", trans("Success"), response.message);
+                    $("#wallet-total").text(response.walletTotal);
+                }else{
+                    launchToast( "danger", trans("Error"), response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                launchToast("danger",trans("Error"),xhr.responseText);
+            },
+        });
     },
 
     /**

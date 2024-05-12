@@ -1,7 +1,7 @@
 
-<p>
+<h6 id="cards-list" style="margin-left: 32px;">
     {{ __('Liste des cartes') }}
-</p>
+</h6>
 <div class=" ">
     <div class="row">
         <div class="col-4">
@@ -9,7 +9,7 @@
 
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-5">
             <div>
                 <button class=" btn btn-primary  btn_aff " data-placement="top" data-toggle="modal" data-target="#add-cart"
                     data-toggle="modal"> + {{ __('Ajouter une carte') }}</button>
@@ -22,7 +22,7 @@
         </div>
     </div>
 </div>
-<div class="" style="width: 80% ; padding:6px 2px 10px 136px">
+<div class="list-cards" >
     <div class="aff_suggest_thumbs">
         @foreach ($billingsCard as $card)
         <div class="aff_search_user_list">
@@ -35,16 +35,16 @@
                             </span>
                         @endif
                         <div>
-                            <span>{{ __('Numero de la carte') }} :   {{  Str::mask($card->card_number, 'X', 0, 12)  }}</span>
+                            <span>{{ __('Numero de la carte') }} :   {{  "XXXXXXXXXXXX" .$card->cardStripe["last4"]   }}</span>
                         </div>
 
                     </div>   
                 <div>
-                    <span>{{ __("Date d'expiration") }} : {{ $card->expired_date }} </span> <br>
-                    <span>CVV :  {{ $card->cvv }}  </span>
+                    <span>{{ __("Date d'expiration") }} : {{ $card->cardStripe["exp_month"]  }}/ {{ $card->cardStripe["exp_year"]  }} </span> <br>
+                    <span>  {{ $card->cardStripe["brand"]  }}  </span>
                 </div>
             </div>
-            <a href="javascript:void(0)" class="{{ !$card->status ? 'activeThisCard' : '' }}" data-card_id ="{{ $card->id }}" 
+            <a href="javascript:void(0)" class="{{ !$card->status ? 'activeThisCard ' : 'btn btn-success' }}" data-card_id ="{{ $card->id }}" 
                 @if (!$card->status)
                     data-toggle="tooltip" data-placement="top" title="{{__('Activée cette carte')}}"
                 @endif
@@ -59,6 +59,7 @@
     </div>
 
 </div>
+
 
 
 <div class="row checkout-dialog" id="mmchecktout_ve">
@@ -98,106 +99,44 @@
                             <form id="billing-agreement-form">
                                 <div class="tab-content">
                                     <p style="padding : 14px 2px"> {{ __('Informations sur la carte de crédit') }}</p>
-                                    <div id="" class="tab-pane fade show active aff_show_form_ui">
+                                    <div  class="tab-pane  mb-2 fade show active aff_show_form_ui">
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12">
                                                 <div>
                                                     <label for="namecard">
                                                         {{ __('Nom de la carte') }}
                                                     </label>
-                                                    <input type="text" name="card_name" placeholder="..."
+                                                    <input type="text" name="card_name" autocomplete="off" placeholder="Ex: My card"
                                                         onchange="cardForm.validateFieldRequired();" required
                                                         class=" uifield required ">
                                                 </div>
                                             </div>
-                                            <hr style="display: block ;">
-                                            <div class="col-md-12 col-sm-12">
-                                                <div>
-                                                    <label for="car_number">
-                                                        {{ __('Numero de la carte') }}
-                                                    </label>
-                                                    <input type="text" name="card_number" id="card_number" placeholder="Ex : 4012000000020014" 
-                                                        onchange="cardForm.validateFieldRequired();" required    maxlength="16"  
-                                                        class=" uifield  required">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div>
-                                                    <label for="expired_date">
-                                                        {{ __("Date d'expiration") }}
-                                                    </label>
-                                                    <input type="text" name="expired_date" id="expired_date"  placeholder="MM/YY"
-                                                        onchange="cardForm.validateFieldRequired();" required  
-                                                        class=" uifield   required">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div>
-                                                    <label for="cvv">
-                                                        CVV
-                                                    </label>
-                                                    <input type="text" name="cvv"  placeholder="123" id="cvv"  maxlength="4"
-                                                        onchange="cardForm.validateFieldRequired();" required 
-                                                        class=" uifield  required">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div>
-                                                    <label for="firstName">
-                                                        {{ __('Nom') }}
-                                                    </label>
-                                                    <input type="text" name="BillingName"
-                                                        onchange="cardForm.validateFieldRequired(this);" required
-                                                        class=" uifield required">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div>
-                                                    <label for="lastName">
-                                                        {{ __('Prénom') }}
-                                                    </label>
-                                                    <input type="text" name="BillinglastName"
-                                                    onchange="cardForm.validateFieldRequired(this)" required
-                                                        class=" uifield required-last_name">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 col-sm-12">
-                                                <div>
-                                                    <label for="phoneNumber">
-                                                        {{ __('Telephone') }}
-                                                    </label>
-                                                    <input type="text" name="billingPhone"
-                                                    onchange="cardForm.validateFieldRequired(this)" required
-                                                        class=" uifield required-phone">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 col-sm-12">
-                                                <div>
-                                                    <label for="billingAddress">
-                                                        {{ __('Adresse complète') }}
-                                                    </label>
-                                                    <input type="text" name="billingAddress" id="billingAddress" onchange="cardForm.validateFieldRequired(this)"  class=" w-100 uifield required-billing_address" required />
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="col-12">
-                                                <label for="active_card" id="active_card">
-                                                    <input type="checkbox" id="active_card" name="active_card" value="active">
-                                                    <span>
-                                                        {{ __("Activée pour les dépôts de crédit. Vous pouvez effectuer des dépôts sur cette carte à partir de maintenant.") }}
-                                                    </span>
-                                                </label>
-                                            </div>
+                                             
                                         </div>
                                     </div>
+                                    <div  id="card-element" class="form-control  form-control-lg" style='border-radius: 6px'>
+                                        <!-- a Stripe Element will be inserted here. -->
+                                    </div>
+                                    <span  id="card-errors" class="payment-errors  mt-2 mb-2" style="color: red; font-size: 13px; "></span>
+
+                                    <div class="col-12 mt-3" style="margin-left: -10px;">
+                                        <label for="active_card" id="active_card">
+                                            <input type="checkbox" id="active_card" name="active_card" value="active">
+                                            <span>
+                                                {{ __("Activée pour les dépôts de crédit. Vous pouvez effectuer des dépôts sur cette carte à partir de maintenant.") }}
+                                            </span>
+                                        </label>
+                                    </div>
+                                    
+
                                     <div id="billing-error" class="billing-agreement-error error text-danger d-none"> {{ __('Please complete all billing details') }}</div>
                                     <div id="saveError" class="billing-agreement-error error text-danger d-none"> </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary card-save">{{ __('Save') }}
-                                <div class="spinner-border spinner-border-sm ml-2 d-none" role="status">
+                        <div class="modal-footer mt-3" style="justify-content: end;">
+                            <button type="submit" id="card-save" class="btn btn-primary card-save">{{ __('Save') }}
+                                <div id="loading-saving-card" class="spinner-border spinner-border-sm ml-2 d-none" role="status">
                                     <span class="sr-only">{{ __('Loading...') }}</span>
                                 </div>
                             </button>
@@ -208,9 +147,21 @@
         </div>
     </div>
 
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
         .rajout_infos {
             font-size: 10px;
         }
+        
+        .list-cards{
+                width: 80% ; 
+                padding:6px 2px 10px 136px;
+            }
+        @media screen and (max-width: 768px) {
+            .list-cards{
+                width: auto; 
+                padding:0px;
+            }
+        }
+        
     </style>
-

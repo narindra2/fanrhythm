@@ -235,5 +235,9 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
     {
         return $this->hasMany('App\Model\UserBillignCard')->orderBy('status', 'desc')->latest();
     }
+    public function billingsCardActive()
+    {
+        return $this->hasOne('App\Model\UserBillignCard')->where('status', 1);
+    }
 
 }

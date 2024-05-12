@@ -106,7 +106,7 @@ class SettingsController extends Controller
                 $activeWalletTab = $request->get('active');
                 $data['activeTab'] = $activeWalletTab != null ? $activeWalletTab : 'deposit';
                 Auth::user()->load(["billingsCard"]);
-                // dd(Auth::user()->billingsCard);
+                // dd(Auth::user()->billingsCard[0]->cardStripe);
                 $data['billingsCard'] = Auth::user()->billingsCard;
                 break;
             case 'subscriptions':
@@ -698,14 +698,27 @@ class SettingsController extends Controller
             return response()->json(['success' => false, 'message' => __('Could not fetch countries list.'), 'error' => $exception->getMessage()]);
         }
     }
-    public  function saveCardBillingUser(AddUserBillingsCardRequest $request)
+    // public  function saveCardBillingUser(AddUserBillingsCardRequest $request)
+    public  function saveCardBillingUser(Request $request)
     {
         try {
-            $auth_id = Auth::id();
-            $data = $request->validated() + ["user_id" => $auth_id];
+            $auth = Auth::user();
+            $stripeTokenCard = $request->stripeToken;
+            \Stripe\Stripe::setApiKey(getSetting('payments.stripe_secret_key'));
+            $customer = \Stripe\Customer::create([
+                'email' => $auth->email,
+                'source' => $stripeTokenCard["id"],
+            ]);
+            $data = [
+                "name_card" => $request->name_card,
+                "user_id" => $auth->id ,
+                "customer_info" => json_encode($customer),
+                "card_info" => json_encode($stripeTokenCard["card"] ), // save card info 
+            ];
             if ($request->active_card == "active") {
                 $data["status"] =  1;
-                UserBillignCard::where("user_id", $auth_id)->update(["status" => 0]);
+                /** Make other card not active*/
+                UserBillignCard::where("user_id", $auth->id )->update(["status" => 0]);
             }
             UserBillignCard::create($data);
             return response()->json(['success' => true]);

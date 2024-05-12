@@ -28,7 +28,7 @@
                 <div class="dropdown dropleft">
                     <div style="text-transform: none;font-weight: 500;font-size: 14px;padding:  9.5px;"  class="dropdown-toggle btn btn-primary    " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{-- <div> --}}
-                            {{ __('Solde disponible') }} : {{ number_format(Auth::user()->wallet->total, 2, '.', '') }}
+                            {{ __('Solde disponible') }} : <span id="wallet-total" >{{ number_format(Auth::user()->wallet->total, 2, '.', '') }}</span> 
                             {{ $currencySymbol }}
                         {{-- </div> --}}
                      

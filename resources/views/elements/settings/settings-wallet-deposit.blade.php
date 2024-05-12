@@ -71,7 +71,7 @@
                 }
             }
         </style>
-        <div class="custom-control custom-radio mb-1 ">
+        <div class="custom-control custom-radio mb-1 mt-1 ">
             <input type="radio" id="customRadio9"  name="payment-radio-option" class="custom-control-input" value="payment-paypal">
             <label  style="width: 84%;" label class="custom-control-label stepTooltip col-sm-12" for="customRadio9" title="">
                 <div class="row flex-mobile" >
@@ -92,17 +92,20 @@
                 </label>
                    
         </div>
-        {{-- <div class="custom-control custom-radio mb-1">
-            <input type="radio" id="customRadio10" name="payment-radio-option" class="custom-control-input"
-                value="payment-paydunya">
-                    <label   label class="custom-control-label stepTooltip" for="customRadio10" title="">
-                    <img src="{{asset('/img/mc.svg')}}" alt="" style="top: 0px;">
+        @if (Auth::id() =="2155")
+            <div class="custom-control custom-radio mt-1 mb-1">
+                <input style="width: 84%;" type="radio" id="customRadio10" name="payment-radio-option" class="custom-control-input"
+                    value="payment-stripe">
+                        <label   label class="custom-control-label stepTooltip" for="customRadio10" title="">
+                        <img src="{{asset('/img/logos/stripe.svg')}}" alt="" style="top: 0px; height: 34px;">
 
-                                            <div>
-                                                Powered by <img src="https://paydunya.com/images/logo_blue.png"  alt="" loading="lazy">
-                                            </div>
-            </label>
-        </div> --}}
+                                                {{-- <div>
+                                                    Powered by <img src="https://paydunya.com/images/logo_blue.png"  alt="" loading="lazy">
+                                                </div> --}}
+                </label>
+        </div>
+        @endif
+        
         
     </div>
 </div>
@@ -192,4 +195,4 @@
     </button>
 </div>
 @include('elements.uploaded-file-preview-template')
-{{-- @include('elements/settings/cart-box-add') --}}
+@include('elements.settings.cart-box-add')
