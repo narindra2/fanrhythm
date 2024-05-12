@@ -21,11 +21,10 @@ class UserBillignCard extends Model
 
 
     public $table = "user_billings_card";
-
+    
 
 
     protected $fillable = [
-
         "name_card",
         "user_id",
         "customer_info",
@@ -36,6 +35,7 @@ class UserBillignCard extends Model
     protected $appends = [
         "customerStripe",
         "cardStripe",
+        "cardIcon",
     ]; 
     public function getCustomerStripeAttribute(){
         if( $this->customer_info){
@@ -48,6 +48,20 @@ class UserBillignCard extends Model
             return json_decode($this->card_info,true);
         }
         return [];
+    } 
+    public function getCardIconAttribute(){
+        if( $this->card_info){
+             $iconCard = [
+                "visa"=> asset('img/mc.svg'),
+                "mastercard"=> asset('img/mc.svg')
+            ];
+            try {
+                return  $iconCard[strtolower($this->cardStripe["brand"])] ;
+            } catch (\Throwable $th) {
+              return null;
+            }
+        }
+        return null;
     } 
 
 }

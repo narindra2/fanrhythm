@@ -834,7 +834,6 @@ class PaymentHelper
     {
         try {
             \Stripe\Stripe::setApiKey(getSetting('payments.stripe_secret_key'));
-            // \Stripe\Stripe::setApiKey("sk_test_51P9AXwP8MnwHFGfAXfBRQm1pz9i0Jd5yslZ4PW1E7fIM2IAM2HeViebiGbgfCU81SpK6mN7rouXqgqLlMWD2dQSd00qozHc9lY");
             $auth_user = Auth::user()->load(["billingsCardActive","wallet"]);
             $walletData = ['total' => $auth_user->wallet->total + $transaction->amount];
             $transaction['status'] = Transaction::APPROVED_STATUS;

@@ -11,8 +11,7 @@
         </div>
         <div class="col-5">
             <div>
-                <button class=" btn btn-primary  btn_aff " data-placement="top" data-toggle="modal" data-target="#add-cart"
-                    data-toggle="modal"> + {{ __('Ajouter une carte') }}</button>
+                <button class=" btn btn-primary  btn_aff " data-placement="top" data-toggle="modal" data-target="#add-cart"  data-toggle="modal"> + {{ __('Ajouter une carte') }}</button>
             </div>
         </div>
         <div class="col-4">
@@ -106,7 +105,7 @@
                                                     <label for="namecard">
                                                         {{ __('Nom de la carte') }}
                                                     </label>
-                                                    <input type="text" name="card_name" autocomplete="off" placeholder="Ex: My card"
+                                                    <input type="text" name="card_name" autocomplete="off" placeholder="Ex : My-card"
                                                         onchange="cardForm.validateFieldRequired();" required
                                                         class=" uifield required ">
                                                 </div>

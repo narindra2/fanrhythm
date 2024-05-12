@@ -2,7 +2,7 @@
 
 
 $(function () {
-  const stripe = Stripe(stripeConfig.stripePublicID);
+  const stripe = Stripe(stripeConfig.stripePublicID,{ locale: stripeConfig.langConfig} );
   var elements = stripe.elements();
   var style = {
     base: {
@@ -40,6 +40,7 @@ $(function () {
 
   $(".activeThisCard").on("click", function () {
     let cartId = $(this).data("card_id")
+    $(this).text(trans("En cours ..."))
     if (cartId) {
       $.ajax({
         type: "POST",

@@ -7,7 +7,7 @@ use JavaScript;
 use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 use App\Model\Country;
-use App\Model\UserBillignCard;
+use App\Model\Attachment;
 use App\Model\Moderation;
 use App\Model\UserDevice;
 use App\Model\UserGender;
@@ -17,7 +17,9 @@ use App\Model\CreatorOffer;
 use App\Model\Subscription;
 use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
+use App\Model\UserBillignCard;
 use App\Model\ReferralCodeUsage;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +36,6 @@ use App\Http\Requests\VerifyProfileAssetsRequest;
 use App\Http\Requests\UpdateUserFlagSettingsRequest;
 use App\Http\Requests\UpdateUserRatesSettingsRequest;
 use App\Http\Requests\UpdateUserProfileSettingsRequest;
-use App\Model\Attachment;
 
 class SettingsController extends Controller
 {
@@ -101,6 +102,7 @@ class SettingsController extends Controller
                 JavaScript::put([
                     'stripeConfig' => [
                         'stripePublicID' => getSetting('payments.stripe_public_key'),
+                        'langConfig' => App::getLocale(),
                     ],
                 ]);
                 $activeWalletTab = $request->get('active');
@@ -703,6 +705,7 @@ class SettingsController extends Controller
     {
         try {
             $auth = Auth::user();
+            $auth->load(["billingsCard"]);
             $stripeTokenCard = $request->stripeToken;
             \Stripe\Stripe::setApiKey(getSetting('payments.stripe_secret_key'));
             $customer = \Stripe\Customer::create([
@@ -715,7 +718,7 @@ class SettingsController extends Controller
                 "customer_info" => json_encode($customer),
                 "card_info" => json_encode($stripeTokenCard["card"] ), // save card info 
             ];
-            if ($request->active_card == "active") {
+            if ($request->active_card == "active" || !$auth->billingsCard) {
                 $data["status"] =  1;
                 /** Make other card not active*/
                 UserBillignCard::where("user_id", $auth->id )->update(["status" => 0]);

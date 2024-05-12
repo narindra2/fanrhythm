@@ -1110,5 +1110,8 @@
     "Cliquer un par un les bouttons ci-dessous pour selectionnner les differents documents demandés" :"Click the buttons below one by one to select the different documents requested",
     "Les deux documents sont obligatoires et doivent être clairs pour devenir créateur." :" Both documents are mandatory and should be clear to become a creator.",
     "1) Téléchargez votre identifiant":"1) Upload your ID",
-    "2) Téléchargez votre selfie avec une pièce d'identité à la main":"2) Upload your selfie with ID in your hand"
+    "2) Téléchargez votre selfie avec une pièce d'identité à la main":"2) Upload your selfie with ID in your hand",
+    "Vous n' avez pas de carte":"You don't have a card",
+    "En cours ..." : "Processing ..."
+
   }

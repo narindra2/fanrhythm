@@ -51,10 +51,11 @@ class JavascriptVariables
         JavaScript::put(['app'=>$jsData]);
 
         if (Auth::check()) {
+            $auth = Auth::user();
             JavaScript::put([
                 'user' => [
-                    'username' => Auth::user()->username,
-                    'user_id' => Auth::user()->id,
+                    'username' => $auth->username,
+                    'user_id' => $auth->id,
                 ],
                 'socketsDriver' => getSetting('websockets.driver'),
                 'pusher' => [

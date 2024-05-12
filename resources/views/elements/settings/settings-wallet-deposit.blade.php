@@ -46,32 +46,8 @@
         </div> --}}
         <style>
 
-          
-            .display-none-mobile {
-                display: block;
-            }
-
-            @media screen and (max-width: 769px) {
-                .display-none-mobile  {
-                    display: none !important; 
-                }
-                .flex-mobile {
-                    display: flex !important;
-                    flex-direction: row;
-                    flex-wrap: nowrap;
-                }
-                .aff_edit_paiement_ui .custom-control {
-                    max-width: 100% !important;
-                }
-                .payment-method.virgo___{
-                    display: inherit !important;
-                }
-                .aff_edit_paiement_ui .custom-control .flex-mobile .col-sm-2{
-                    text-align: center;
-                }
-            }
         </style>
-        <div class="custom-control custom-radio mb-1 mt-1 ">
+        <div class="custom-control custom-radio mb-1 mt-2 ">
             <input type="radio" id="customRadio9"  name="payment-radio-option" class="custom-control-input" value="payment-paypal">
             <label  style="width: 84%;" label class="custom-control-label stepTooltip col-sm-12" for="customRadio9" title="">
                 <div class="row flex-mobile" >
@@ -92,57 +68,33 @@
                 </label>
                    
         </div>
-        @if (Auth::id() =="2155")
-            <div class="custom-control custom-radio mt-1 mb-1">
-                <input style="width: 84%;" type="radio" id="customRadio10" name="payment-radio-option" class="custom-control-input"
-                    value="payment-stripe">
-                        <label   label class="custom-control-label stepTooltip" for="customRadio10" title="">
-                        <img src="{{asset('/img/logos/stripe.svg')}}" alt="" style="top: 0px; height: 34px;">
+            @php
+                $activeCardUser =  $billingsCard->firstWhere("status", 1);
+            @endphp
+                @if( $activeCardUser)
+                    <div class="custom-control custom-radio mt-2 mb-1">
+                        <input type="radio" id="customRadio10" name="payment-radio-option" class="custom-control-input" value="payment-stripe">
+                        <label   style="width: 84%;"  label class="custom-control-label stepTooltip" for="customRadio10" title="">
+                            @if ($activeCardUser->cardIcon)
+                                <img  class="display-none-mobile " style="height: 15px" src="{{$activeCardUser->cardIcon }}" alt="" style="top: 0px; height: 34px;">
+                            @endif
+                            <div  style="font-size: 13px;">
+                                {{-- Powered by <img src="https://paydunya.com/images/logo_blue.png"  alt="" loading="lazy"> --}}
+                                {{ $activeCardUser->name_card }}
+                            </div>
+                        </label>
+                    </div>
 
-                                                {{-- <div>
-                                                    Powered by <img src="https://paydunya.com/images/logo_blue.png"  alt="" loading="lazy">
-                                                </div> --}}
-                </label>
-        </div>
-        @endif
-        
-        
+                @else 
+                <div class="custom-control custom-radio mt-2 mb-1">
+                    <label  data-placement="top" data-toggle="modal" data-target="#add-cart"     data-toggle="modal"  style="width: 84%;"  label class="custom-control-label stepTooltip" for="customRadio10" title="">
+                       <span data-toggle="tooltip" data-placement="top" title="{{ __("Vous n' avez pas de carte") }} "  >  + {{ __('Ajouter une carte') }} </span>
+                    </label>
+                </div>
+                @endif
+     
     </div>
 </div>
-
-<style>
-   #aff_content > div > div > div:nth-child(3) > div.aff_edit_info_form > div > div.aff_edit_paiement_ui > div > div > label > img{
-        height: 15px;
-        width: auto!important;
-        position: relative;
-        top: 8px;
-    }
-
-    #aff_content > div > div > div:nth-child(3) > div.aff_edit_info_form > div > div.aff_edit_paiement_ui > div > div > label > div{
-        font-size: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 3px;
-    width: 100%;
-    }
-
-    #aff_content > div > div > div:nth-child(3) > div.aff_edit_info_form > div > div.aff_edit_paiement_ui > div > div > label > div img{
-        height: 5px;
-    width: auto!important;
-    margin-left: 3px;
-    }
-
-    .aff_edit_paiement_ui>div>div {
-    flex: 0 0 50%;
-    max-width: 50%;
-}
-
-.aff_edit_paiement_ui>div>div>label {
-    flex-wrap: wrap;
-}
-</style>
-
 <div class="aff_edit_user">
     <div class="row">
         <div class="col-12">
@@ -196,3 +148,59 @@
 </div>
 @include('elements.uploaded-file-preview-template')
 @include('elements.settings.cart-box-add')
+
+<style>
+    .display-none-mobile {
+                display: block;
+            }
+
+            @media screen and (max-width: 769px) {
+                .display-none-mobile  {
+                    display: none !important; 
+                }
+                .flex-mobile {
+                    display: flex !important;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                }
+                .aff_edit_paiement_ui .custom-control {
+                    max-width: 100% !important;
+                }
+                .payment-method.virgo___{
+                    display: inherit !important;
+                }
+                .aff_edit_paiement_ui .custom-control .flex-mobile .col-sm-2{
+                    text-align: center;
+                }
+            }
+   #aff_content > div > div > div:nth-child(3) > div.aff_edit_info_form > div > div.aff_edit_paiement_ui > div > div > label > img{
+        height: 15px;
+        width: auto!important;
+        position: relative;
+        top: 8px;
+    }
+
+    #aff_content > div > div > div:nth-child(3) > div.aff_edit_info_form > div > div.aff_edit_paiement_ui > div > div > label > div{
+        font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3px;
+    width: 100%;
+    }
+
+    #aff_content > div > div > div:nth-child(3) > div.aff_edit_info_form > div > div.aff_edit_paiement_ui > div > div > label > div img{
+        height: 5px;
+    width: auto!important;
+    margin-left: 3px;
+    }
+
+    .aff_edit_paiement_ui>div>div {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.aff_edit_paiement_ui>div>div>label {
+    flex-wrap: wrap;
+}
+</style>
