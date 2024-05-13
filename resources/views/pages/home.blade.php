@@ -51,34 +51,6 @@
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-6 col-md-7">
-                    <!--<h1 class="mb-4">-->
-                        
-                    <!--    @if((Auth::check() && Auth::user()->settings['locale'] === 'en') || request()->cookie('app_locale') === 'en')-->
-                    <!--        <span class="text-primary">-->
-                    <!--            {{ __('Social Exclusif') }}-->
-                    <!--        <br>-->
-                    <!--        </span>-->
-                    <!--        <span class="mb-4">-->
-                    <!--            {{ __('Réseau') }}-->
-                    <!--        </span>-->
-                    <!--    @else-->
-                    <!--        <span class="mb-4">-->
-                    <!--            {{ __('Réseau') }}-->
-                    <!--        </span>-->
-                    <!--        <span class="text-primary">-->
-                    <!--            {{ __('Social Exclusif') }}-->
-                    <!--        <br>-->
-                    <!--        </span>-->
-                    <!--    @endif-->
-
-                        
-                    <!--</h1>-->
-                    <!--<p class="mb-2">-->
-                    <!--    {{ __("Nous connectons les créateurs de contenu du monde et les fans") }}.-->
-                    <!--</p>-->
-                    <!--<p class="mb-4" style="margin-top: 10px">-->
-                    <!--    {{ __('Inscris-toi avant la fin du mois et obtiens 85% des gains le premier mois') }}.-->
-                    <!--</p>-->
                     <h1 class="mb-4">
 
                         <span class="text-primary">
@@ -93,7 +65,7 @@
                         {{ __('Inscris-toi avant la fin du mois et obtiens 85% des gains le premier mois') }}.
                     </p>
 
-                    <ul class="list-inline">
+                    <ul class="list-inline mb-2">
                         <li class="list-inline-item">
                             <a class="afri_btn btn-primary" href="{{ route('register') }}">
                                 {{ __('Créer un compte') }}
@@ -119,8 +91,45 @@
                                 {{ __('Se connecter') }}
                             </a>
                         </li>
+                            <style>
+                                .communities-imgs{
+                                    object-fit: fill;
+                                    width: 50px;
+                                    height: 30px !important;
+                                    margin: 8px 3px 1px 3px;
+                                }
+                                .communities{
+                                    margin-top:35px ;
+                                    font-size: 14px;
+                                    width: max-content;
+                                    display: flex;
+                                }
+                                @media (max-width: 768px) {
+                                    .communities{
+                                        margin-top: 8px;
+                                        font-size: 14px;
+                                        display: block;
+                                    }
+                                    .communities-imgs {
+                                        object-fit: fill;
+                                        width: 84px;
+                                        height: 45px !important;
+                                        margin: 0px 3px 1px 3px;
+                                    }
+                                }
+                            </style>
+                            <div class="mb-4 communities" >
+                                <p>{{ __('Our platform is open to all communities like LGBT, models, AI models, etc...') }}.</p>
+                                <div style="display: flex; ">
+                                    <img src="{{ asset('/img/fanrhythm/lgbt.jpg') }}" class="communities-imgs"/>
+                                    <img src="{{ asset('/img/fanrhythm/ai.jpg') }}" class="communities-imgs" />
+                                    <img src="{{ asset('/img/fanrhythm/bitcoin.png') }}" class="communities-imgs" />
+                                    <img src="{{ asset('/img/fanrhythm/gaming.png') }}" class="communities-imgs" />
+                                </div>
+                            </div>
                     </ul>
                 </div>
+                
                 <div class="col-md-5">
                     <img src="{{ asset('/img/fanrhythm/home_1.webp') }}" class="img-fluid" width="120%;"/>
                 </div>
