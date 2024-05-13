@@ -1008,7 +1008,7 @@
     "Telephone" : "Phone",
     "Adresse" : "Address",
     "Adresse complète" : "Full Address",
-    "Activé(e)" : "Enabled",
+    "Activé(e)" : "Used card",
     "Desactivé(e)" : "Disabled",
     "Activée cette carte" : "Activate this card",
     "Carte activée" : "Card activated",
@@ -1112,6 +1112,7 @@
     "1) Téléchargez votre identifiant":"1) Upload your ID",
     "2) Téléchargez votre selfie avec une pièce d'identité à la main":"2) Upload your selfie with ID in your hand",
     "Vous n' avez pas de carte":"You don't have a card",
-    "En cours ..." : "Processing ..."
-
+    "En cours ..." : "Processing ...",
+    "Payer par carte" : "Pay by card",
+    "Votre carte n'est pas encore enregistrée, veuillez ajouter une carte ci-dessous":"Your card is not registered yet, please add a card below"
   }

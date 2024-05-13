@@ -445,7 +445,8 @@ Minify::javascript([
             position: fixed!important;
             left: 0!important;
             margin-left: 0px!important;
-            bottom: 6px;
+            /* bottom: 6px; */
+            bottom: 96px !important;
             border-top: 0px solid #eee !important;
         }
 

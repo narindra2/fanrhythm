@@ -79,18 +79,18 @@
                                 <img  class="display-none-mobile " style="height: 15px" src="{{$activeCardUser->cardIcon }}" alt="" style="top: 0px; height: 34px;">
                             @endif
                             <div  style="font-size: 13px;">
+                                {{ __('Payer par carte') }} : {{ $activeCardUser->name_card }}
                                 {{-- Powered by <img src="https://paydunya.com/images/logo_blue.png"  alt="" loading="lazy"> --}}
-                                {{ $activeCardUser->name_card }}
                             </div>
                         </label>
                     </div>
 
                 @else 
-                <div class="custom-control custom-radio mt-2 mb-1">
-                    <label  data-placement="top" data-toggle="modal" data-target="#add-cart"     data-toggle="modal"  style="width: 84%;"  label class="custom-control-label stepTooltip" for="customRadio10" title="">
-                       <span data-toggle="tooltip" data-placement="top" title="{{ __("Vous n' avez pas de carte") }} "  >  + {{ __('Ajouter une carte') }} </span>
-                    </label>
-                </div>
+                    <div class="custom-control custom-radio mt-2 mb-1">
+                        <label  data-placement="top" data-toggle="modal" data-target="#add-cart"     data-toggle="modal"  style="width: 84%;"  label class="custom-control-label stepTooltip" for="customRadio10" title="">
+                        <span data-toggle="tooltip" data-placement="top" title="{{ __("Votre carte n'est pas encore enregistrée, veuillez ajouter une carte ci-dessous") }} "  >  + {{ __('Pay by card') }} </span>
+                        </label>
+                    </div>
                 @endif
      
     </div>

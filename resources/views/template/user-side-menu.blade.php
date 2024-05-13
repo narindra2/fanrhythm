@@ -64,14 +64,14 @@
                     @endif
                     
                 @endif
-                <li
+                {{-- <li
                     class="{{ url()->current() == url('my/settings/wallet')  ? 'active' : '' }}">
                     <a href="{{route('my.settings',['type'=> "wallet"])}}">
                         <span id="reglage-setting-wallet" class="aff_reglage_icons"></span>
                         {{ __('Wallet et paiement') }}
 
                     </a>
-                </li>
+                </li> --}}
             @endif
 
 

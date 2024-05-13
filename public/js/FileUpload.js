@@ -19,13 +19,17 @@ var FileUpload = {
      * @param selector
      * @param url
      */
-    initDropZone:function (selector,url, isChunkUpload = false) {
+    initDropZone:function (selector,url, isChunkUpload = false,clickableBtn = null) {
 
         // Prepping chunk uploads, if enabled by admin
         let chunkSize = 1024;
         if(isChunkUpload){
             chunkSize = mediaSettings.upload_chunk_size * 1000000;
             url = url.replace('/upload/','/uploadChunked/');
+        }
+        let clickable = ['.file-upload-button-public-post','.file-upload-button'];
+        if(clickableBtn){
+            clickable = clickableBtn;
         }
 
         FileUpload.myDropzone = new Dropzone(selector, {
@@ -35,7 +39,7 @@ var FileUpload = {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            clickable:['.file-upload-button', '.file-upload-button-public-post'],
+            clickable: clickable,
             previewsContainer: ".dropzone-previews",
             maxFilesize: 600, // MB
             addRemoveLinks: true,

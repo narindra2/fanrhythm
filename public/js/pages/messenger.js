@@ -21,7 +21,7 @@ $(function () {
         if(messengerVars.lastContactID !== false && messengerVars.lastContactID !== 0){
             messenger.fetchConversation(messengerVars.lastContactID);
         }
-        FileUpload.initDropZone('.dropzone','/attachment/upload/message');
+        FileUpload.initDropZone('.dropzone','/attachment/upload/message',false,['.file-upload-button']);
         messenger.initSelectizeUserList();
     }
 
