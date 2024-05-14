@@ -91,53 +91,21 @@
                                 {{ __('Se connecter') }}
                             </a>
                         </li>
-                            <style>
-                                .communities-imgs{
-                                    object-fit: fill;
-                                    width: 50px;
-                                    height: 30px !important;
-                                    margin: 8px 3px 1px 3px;
-                                }
-                                .communities{
-                                    margin-top:35px ;
-                                    font-size: 14px;
-                                    width: max-content;
-                                    display: flex;
-                                }
-                                @media (max-width: 768px) {
-                                    .communities{
-                                        margin-top: 8px;
-                                        font-size: 14px;
-                                        display: block;
-                                    }
-                                    .communities-imgs {
-                                        object-fit: fill;
-                                        width: 84px;
-                                        height: 45px !important;
-                                        margin: 0px 3px 1px 3px;
-                                    }
-                                }
-                            </style>
-                            <div class="mb-4 communities" >
-                                <p>{{ __('Our platform is open to all communities like LGBT, models, AI models, etc...') }}.</p>
-                                <div style="display: flex; ">
-                                    <img src="{{ asset('/img/fanrhythm/lgbt.jpg') }}" class="communities-imgs"/>
-                                    <img src="{{ asset('/img/fanrhythm/ai.jpg') }}" class="communities-imgs" />
-                                    <img src="{{ asset('/img/fanrhythm/bitcoin.png') }}" class="communities-imgs" />
-                                    <img src="{{ asset('/img/fanrhythm/gaming.png') }}" class="communities-imgs" />
-                                </div>
+                            <p style="" class="mb-1 mt-2 communities">{{ __("Notre plateforme est heureuse d'accueillir toutes les communautés : LGBTQIA, mannequins, modèles IA, etc...") }}.</p>
+                            <div style="display: flex; ">
+                                <img src="{{ asset('/img/fanrhythm/lgbt.jpg') }}" class="communities-imgs"/>
+                                <img src="{{ asset('/img/fanrhythm/model-ia.jpeg') }}" class="communities-imgs" />
+                                <img src="{{ asset('/img/fanrhythm/bitcoin.png') }}" class="communities-imgs" />
+                                <img src="{{ asset('/img/fanrhythm/gaming.png') }}" class="communities-imgs" />
                             </div>
                     </ul>
                 </div>
-                
                 <div class="col-md-5">
                     <img src="{{ asset('/img/fanrhythm/home_1.webp') }}" class="img-fluid" width="120%;"/>
                 </div>
             </div>
         </div>
     </div>
-
-
     <div id="home_4">
         <div class="container">
             <div class="row justify-content-around align-items-center">

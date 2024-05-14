@@ -5199,3 +5199,27 @@ input#message-price.form-control {
     margin-top: 28px  ;
     position: absolute !important;
 }
+
+.communities-imgs{
+    object-fit: fill;
+    width: 50px;
+    height: 30px !important;
+    margin: 8px 3px 1px 3px;
+}
+.communities{
+    width: 649px !important ;  
+    max-width: max-content !important;
+}
+@media (max-width: 999px) {
+    .communities{
+        font-size: 14px;
+        width: 100% !important;
+        max-width: max-content !important;
+    }
+    .communities-imgs {
+        object-fit: fill;
+        width: 66px;
+        height: 37px !important;
+        margin: 0px 3px 1px 3px;
+    }
+}
