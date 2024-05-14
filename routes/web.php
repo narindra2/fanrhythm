@@ -1,13 +1,13 @@
 <?php
 
 use App\User;
-use App\Model\Attachment;
-use App\Model\Moderation;
-use App\Services\Medoro\DoPayment;
-use App\AttachementModerationResult;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
-use App\Model\AttachmentModerationResult;
+use RKFL\Api\Client\Options;
+use RKFL\Api\Client\Rocketfuel;
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -321,3 +321,33 @@ Route::fallback(function () {
 Route::get('/mise_a_jour_abonnement', 'AbonnementController@miseAJour');
 
 Route::resource('demoposts', 'DemopostController');
+
+
+
+Route::get('/rocketfuel/checkout', function () {
+    $options = new Options(
+        [
+            'environment' => 'sandbox',
+            'merchant_id' => 'e6d38cff-f59d-47e8-a029-6adfed22dee4',
+            'password' => 'ENfr0108',
+            'email' => 'mariani.alexis1@gmail.com',
+            'merchant_public_key' => ""
+        ]
+    );
+    $rocketfuel = new RocketFuel($options);
+    $payload = [
+        'amount' => '100',
+        'cart' => [
+            [
+                'id' => '1',
+                'name' => 'test',
+                'price' => '100',
+                'quantity' => '1'
+            ]
+        ],
+        'currency' => 'USD',
+        'order' => '001'
+    ];
+$response = $rocketfuel->service()->getUUID($payload);
+dd($response);
+});
