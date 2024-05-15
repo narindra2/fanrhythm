@@ -4640,6 +4640,7 @@ textarea#bio {
         list-style: none;
         padding: 0px;
         margin-bottom: 0px;
+        /* padding-left: 0px; */
     }
 
     .is_mobile_menu ul li a {

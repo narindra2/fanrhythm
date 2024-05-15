@@ -3,7 +3,7 @@
         <div class="row justify-content-between">
             <div class="col-auto pl-0">
                 <a class="navbar-brand" href="{{ route('home') }}">
-                     <img src="{{asset('img/logo.webp')}}" alt="">
+                    <img src="{{asset('img/logo.webp')}}" alt="">
                 </a>
             </div>
             <div class="col-auto">
@@ -15,7 +15,7 @@
                     </div>
                 </a>
 
-                
+
                 @if(Auth::check())
 
                 @endif
@@ -26,32 +26,32 @@
                     <li class="list-inline-item">
                         @include('elements.changeTheme.button')
                     </li>
-                     @if(getSetting('site.allow_language_switch'))
+                    @if(getSetting('site.allow_language_switch'))
                     <li class="list-inline-item">
-                        <a href="#otherSections" data-toggle="collapse" aria-expanded="false"
-                            class="dropdown-toggle" role="button" aria-controls="otherSections">
+                        <a href="#otherSections" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                            role="button" aria-controls="otherSections">
                             {{__('Language')}}
                         </a>
                         <ul class="list-unstyled collapse" id="otherSections" style="">
 
                             <li>
-                                <a class="scroll-link d-flex align-items-center"
-                                    href="{{ url("/language/en") }}">{{ __("Anglais")}}</a>
+                                <a class="scroll-link d-flex align-items-center" href="{{ url("/language/en") }}">{{
+                                    __("Anglais")}}</a>
                             </li>
                             <li>
-                                <a class="scroll-link d-flex align-items-center"
-                                    href="{{ url("/language/fr") }}">{{ __("Français")}}</a>
+                                <a class="scroll-link d-flex align-items-center" href="{{ url("/language/fr") }}">{{
+                                    __("Français")}}</a>
                             </li>
                             <li>
-                                <a class="scroll-link d-flex align-items-center"
-                                    href="{{ url("/language/esp") }}">Español</a>
+                                <a class="scroll-link d-flex align-items-center" href="{{ url("/language/esp")
+                                    }}">Español</a>
                             </li>
 
                         </ul>
 
                     </li>
                     @endif
-                    
+
                     <li class="list-inline-item">
                         <a class="link_register" href="{{ route('login') }}">
                             {{ __('Se connecter') }}
@@ -72,25 +72,25 @@
                     <li class="list-inline-item">
                         @include('elements.changeTheme.button')
                     </li>
-                @if(getSetting('site.allow_language_switch'))
+                    @if(getSetting('site.allow_language_switch'))
                     <li class="list-inline-item">
-                        <a href="#otherSections" data-toggle="collapse" aria-expanded="false"
-                            class="dropdown-toggle" role="button" aria-controls="otherSections">
+                        <a href="#otherSections" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                            role="button" aria-controls="otherSections">
                             {{__('Language')}}
                         </a>
                         <ul class="list-unstyled collapse" id="otherSections" style="">
 
                             <li>
-                                <a class="scroll-link d-flex align-items-center"
-                                    href="{{ url("/language/en") }}">{{ __("Anglais")}}</a>
+                                <a class="scroll-link d-flex align-items-center" href="{{ url("/language/en") }}">{{
+                                    __("Anglais")}}</a>
                             </li>
                             <li>
-                                <a class="scroll-link d-flex align-items-center"
-                                    href="{{ url("/language/fr") }}">{{ __("Français")}}</a>
+                                <a class="scroll-link d-flex align-items-center" href="{{ url("/language/fr") }}">{{
+                                    __("Français")}}</a>
                             </li>
                             <li>
-                                <a class="scroll-link d-flex align-items-center"
-                                    href="{{ url("/language/esp") }}">Español</a>
+                                <a class="scroll-link d-flex align-items-center" href="{{ url("/language/esp")
+                                    }}">Español</a>
                             </li>
                         </ul>
 
@@ -105,7 +105,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('feed')}}">
-                               {{__("Fil d'actualité")}}
+                                {{__("Fil d'actualité")}}
                             </a>
                             <a class="dropdown-item" href="{{route('my.settings')}}">
                                 {{__("Reglages")}}
@@ -132,25 +132,34 @@
 </div>
 
 <div class="is_mobile_menu">
-    @guest
     <ul>
 
-    <li>
         <li>
-            <a class="scroll-link d-flex align-items-center"
-                href="{{ url("/language/en") }}">{{ __("Anglais")}}</a>
-        </li>
-        <li>
-            <a class="scroll-link d-flex align-items-center"
-                href="{{ url("/language/fr") }}">{{ __("Français")}}</a>
-        </li>
-        <li>
-            <a class="scroll-link d-flex align-items-center"
-                href="{{ url("/language/esp") }}">Español</a>
+            <a href="#otherSections" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle right"
+                role="button" aria-controls="otherSections">
+                {{__('Language')}}
+            </a>
+            <ul class="list-unstyled collapse" id="otherSections" style="">
+
+                <li>
+                    <a class="scroll-link d-flex align-items-center" href="{{ url("/language/en") }}">{{
+                        __("Anglais")}}</a>
+                </li>
+                <li>
+                    <a class="scroll-link d-flex align-items-center" href="{{ url("/language/fr") }}">{{
+                        __("Français")}}</a>
+                </li>
+                <li>
+                    <a class="scroll-link d-flex align-items-center" href="{{ url("/language/esp") }}">Español</a>
+                </li>
+
+            </ul>
+
         </li>
 
 
 
+        @guest
         <li>
             <a href="{{ route('login') }}">
                 {{ __('Se connecter') }}
@@ -167,22 +176,23 @@
     @else
 
     <ul>
+
         <li>
             <a href="{{route('feed')}}">
                 {{__("Fil d'actualité")}}
             </a>
         </li>
         <li>
-        <a  href="{{route('profile',['username'=>Auth::user()->username])}}">
-            {{__("Mon profil")}}
-        </a>
+            <a href="{{route('profile',['username'=>Auth::user()->username])}}">
+                {{__("Mon profil")}}
+            </a>
         </li>
 
         <li>
-        <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-              {{__("Se déconnecter")}}
-        </a>
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                {{__("Se déconnecter")}}
+            </a>
         </li>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf

@@ -244,10 +244,18 @@ class SettingsController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator);
         }
+        $AI_genders = [3];
+        if(in_array($request->get('gender'),$AI_genders)){
+            $name = "AI_".$request->get('name');
+            $username = "AI_". $request->get('username');
+        }else{
+            $name = str_replace("AI_" , "" ,$request->get('name'));
+            $username =str_replace("AI_" , "" ,$request->get('username')); 
+        }
         $user = Auth::user();
         $user->update([
-            'name' => $request->get('name'),
-            'username' => $request->get('username'),
+            'name' =>  $name,
+            'username' =>  $username,
             'bio' => $request->get('bio'),
             'location' => $request->get('location'),
             'website' => $request->get('website'),
