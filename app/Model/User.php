@@ -69,7 +69,7 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
     public function getAvatarOriginalAttribute($value)
     {
         $orginal = str_replace("users/avatar/","users/avatar/original-",$this->avatar);
-        if (is_file($orginal)) {
+        if ( @getimagesize($orginal) ) {
             return $orginal ;
         } else {
             return $this->avatar;
