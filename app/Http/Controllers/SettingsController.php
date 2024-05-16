@@ -463,7 +463,6 @@ class SettingsController extends Controller
             $s3 = Storage::disk(config('filesystems.defaultFilesystemDriver'));
             $fileId = Uuid::uuid4()->getHex();
             $filePath = $directory . '/' . $fileId . '.' . $file->guessClientExtension();
-
             $img = Image::make($file);
             if ($type == 'cover') {
                 $coverWidth = 599;
@@ -492,6 +491,7 @@ class SettingsController extends Controller
                     }
                 }
                 $img->fit($avatarWidth, $avatarHeight)->orientate();
+                $file->storeAs($directory,"original-".$fileId . '.' . $file->guessClientExtension(), 'public');
                 $data = ['avatar' => $filePath];
             }
             // Resizing the asset
@@ -499,7 +499,7 @@ class SettingsController extends Controller
            
             // Saving to disk
             $s3->put($filePath, $img, 'public');
-           
+           /** Moderation  */
             do {
                 $fileId = Uuid::uuid4()->getHex();
             } while (Attachment::query()->where('id', $fileId)->first() != null);
@@ -518,6 +518,7 @@ class SettingsController extends Controller
                 $attchment->update(["moderation_status" => Moderation::STATUS_DECLINED]);
                 return response()->json(['success' => false, "isInModeration" => false]);
             }
+             /** End moderation  */
              // Saving to user db
             Auth()->user()->update($data);
         } catch (\Exception $exception) {
