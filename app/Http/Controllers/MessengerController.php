@@ -157,22 +157,29 @@ class MessengerController extends Controller
                 #'.($limit != '0' ? "LIMIT 0,$limit" : '').'
             ';
         $contacts = DB::select($query, [$userID, $userID]);
-
+        $i = 0;       
         foreach ($contacts as $contact) {
-            if($contact->messageDate){
-                $contact->created_at = Carbon::createFromTimeStamp(strtotime($contact->messageDate))->diffForHumans(null, true, true);
+            // Removing blocked contacts and have not access
+            if(self::hasUserBlocked($contact->contactID, Auth::user()->id) || !self::checkMessengerAccess(Auth::user()->id,$contact->contactID)){
+                unset($contacts[$i]);
+            }else{
+                if($contact->messageDate){
+                    $contact->created_at = Carbon::createFromTimeStamp(strtotime($contact->messageDate))->diffForHumans(null, true, true);
+                }
+                $contact->senderAvatar = GenericHelperServiceProvider::getStorageAvatarPath($contact->senderAvatar);
+                $contact->userContactStatusHtml = getUserStatusHtmlHelper("","",$contact->contactID) ;
+                $contact->receiverAvatar = GenericHelperServiceProvider::getStorageAvatarPath($contact->receiverAvatar);
             }
-
-            $contact->senderAvatar = GenericHelperServiceProvider::getStorageAvatarPath($contact->senderAvatar);
-            $contact->userContactStatusHtml = getUserStatusHtmlHelper("","",$contact->contactID) ;
-            $contact->receiverAvatar = GenericHelperServiceProvider::getStorageAvatarPath($contact->receiverAvatar);
+            $i++;
         }
-        // Removing blocked contacts
-        $contacts = array_filter($contacts, function ($contact){
-            if(!self::hasUserBlocked($contact->contactID, Auth::user()->id)){
-                return $contact;
-            }
-        });
+        // $contacts = array_filter($contacts, function ($contact){
+        //     if(!self::hasUserBlocked($contact->contactID, Auth::user()->id)){
+        //         if(!self::checkMessengerAccess($contact->contactID,$contact->contactID)){
+        //             return $contact;
+        //         }
+        //     }
+            
+        // });
         $contacts = array_values($contacts);
 
         if ($limit) {
@@ -198,9 +205,11 @@ class MessengerController extends Controller
         $receiverID = $request->route('userID');
 
         // Checking access
+       
         if(!self::checkMessengerAccess($senderID,$receiverID)){
             return response()->json(['success' => false, 'errors' => [__('Not authorized')], 'message'=> __('Not authorized')], 403);
         }
+        
 
         if(self::hasUserBlocked($receiverID, $senderID)){
             return response()->json(['success' => false, 'errors' => [__('This user has blocked you')], 'message'=> __('This user has blocked you')], 403);
@@ -572,7 +581,7 @@ class MessengerController extends Controller
             if (PostsHelperServiceProvider::hasActiveSub($viewerUser->id, $contactUser->id)) {
                 return true;
             }
-            if ($viewerUser->id === $contactUser) {
+            if ($viewerUser->id === $contactUser->id) {
                 return true;
             }
 
