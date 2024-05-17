@@ -496,7 +496,6 @@ class SettingsController extends Controller
             }
             // Resizing the asset
             $img->encode('jpg', 100);
-           
             // Saving to disk
             $s3->put($filePath, $img, 'public');
            /** Moderation  */
