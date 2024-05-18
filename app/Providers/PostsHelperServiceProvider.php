@@ -281,36 +281,14 @@ class PostsHelperServiceProvider extends ServiceProvider
 
     {
 
-        $hasSub = Subscription::where('sender_user_id', $sender_id)
+        $hasSub = Subscription::where('sender_user_id', $sender_id)->where('recipient_user_id', $recipient_id)->where(function ($query) {
+                $query->where('status', 'completed')->orwhere([['status', '=', 'canceled'], ['expires_at', '>', Carbon::now()->toDateTimeString()]]);
 
-            ->where('recipient_user_id', $recipient_id)
-
-            ->where(function ($query) {
-
-                $query->where('status', 'completed')
-
-                    ->orwhere([
-
-                        ['status', '=', 'canceled'],
-
-                        ['expires_at', '>', Carbon::now()->toDateTimeString()],
-
-                    ]);
-
-            })
-
-            ->count();
-
+            })->count();
         if ($hasSub > 0) {
-
             return true;
-
         }
-
-
-
         return false;
-
     }
 
 

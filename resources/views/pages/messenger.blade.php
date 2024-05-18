@@ -198,62 +198,58 @@ Minify::javascript([
                                             </g>
                                         </svg>
                                     </span>
-                        <div
-                            class="messenger-buttons-wrapper d-flex {{!GenericHelper::creatorCanEarnMoney(Auth::user()) ? 'pl-2' : ''}}">
-                            @if(GenericHelper::creatorCanEarnMoney(Auth::user()))
-                            <button class=" messenger-button mx-2 to-tooltip" data-placement="top"
-                                title="{{__('Message price')}}" onClick="messenger.showSetPriceDialog()">
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <span class="message-price-lock">
+                        <div class="messenger-buttons-wrapper d-flex {{!GenericHelper::creatorCanEarnMoney(Auth::user()) ? 'pl-2' : ''}}">
+                            @if(GenericHelper::creatorCanEarnMoney(Auth::user()) && Auth::user()->isAverifiedUser())
+                                <button class=" messenger-button mx-2 to-tooltip" data-placement="top"
+                                    title="{{__('Message price')}}" onClick="messenger.showSetPriceDialog()">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <span class="message-price-lock">
 
-                                        <svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                                            <g id="Page-1" stroke="none" stroke-width="1" fill="none"
-                                                fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-                                                <g id="Message---Discussion"
-                                                    transform="translate(-1468.000000, -812.000000)" stroke="#000000">
-                                                    <g id="Group-3" transform="translate(851.000000, 741.000000)">
-                                                        <g id="unlock-(2)" transform="translate(618.000000, 72.000000)">
-                                                            <rect id="Rectangle" x="0" y="6.30204416" width="12.596655"
-                                                                height="7.69795584" rx="2"></rect>
-                                                            <path
-                                                                d="M2.79925487,6.30204416 L2.79925487,3.50278749 C2.79745002,1.70512899 4.15811545,0.198577666 5.94667365,0.0179152218 C7.73523185,-0.162747222 9.36969169,1.04126619 9.72741693,2.80297332"
-                                                                id="Path"></path>
+                                            <svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                                                    fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                                    <g id="Message---Discussion"
+                                                        transform="translate(-1468.000000, -812.000000)" stroke="#000000">
+                                                        <g id="Group-3" transform="translate(851.000000, 741.000000)">
+                                                            <g id="unlock-(2)" transform="translate(618.000000, 72.000000)">
+                                                                <rect id="Rectangle" x="0" y="6.30204416" width="12.596655"
+                                                                    height="7.69795584" rx="2"></rect>
+                                                                <path
+                                                                    d="M2.79925487,6.30204416 L2.79925487,3.50278749 C2.79745002,1.70512899 4.15811545,0.198577666 5.94667365,0.0179152218 C7.73523185,-0.162747222 9.36969169,1.04126619 9.72741693,2.80297332"
+                                                                    id="Path"></path>
+                                                            </g>
                                                         </g>
                                                     </g>
                                                 </g>
-                                            </g>
-                                        </svg>
-                                    </span>
-                                    <span class="message-price-close d-none">
-
-
-                                        <svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                                            <g id="Page-1" stroke="none" stroke-width="1" fill="none"
-                                                fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-                                                <g id="Message---Discussion"
-                                                    transform="translate(-1370.000000, -822.000000)" stroke="#000000">
-                                                    <g id="Group-3" transform="translate(851.000000, 741.000000)">
-                                                        <g id="lock" transform="translate(520.000000, 82.000000)">
-                                                            <rect id="Rectangle" x="0" y="6.3" width="12.6" height="7.7"
-                                                                rx="2"></rect>
-                                                            <path
-                                                                d="M2.8,6.3 L2.8,3.5 C2.8,1.56700338 4.36700338,6.21724894e-16 6.3,6.21724894e-16 C8.23299662,6.21724894e-16 9.8,1.56700338 9.8,3.5 L9.8,6.3"
-                                                                id="Path"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="message-price-close d-none">
+                                            <svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                                                    fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                                                    <g id="Message---Discussion"
+                                                        transform="translate(-1370.000000, -822.000000)" stroke="#000000">
+                                                        <g id="Group-3" transform="translate(851.000000, 741.000000)">
+                                                            <g id="lock" transform="translate(520.000000, 82.000000)">
+                                                                <rect id="Rectangle" x="0" y="6.3" width="12.6" height="7.7"
+                                                                    rx="2"></rect>
+                                                                <path
+                                                                    d="M2.8,6.3 L2.8,3.5 C2.8,1.56700338 4.36700338,6.21724894e-16 6.3,6.21724894e-16 C8.23299662,6.21724894e-16 9.8,1.56700338 9.8,3.5 L9.8,6.3"
+                                                                    id="Path"></path>
+                                                            </g>
                                                         </g>
                                                     </g>
                                                 </g>
-                                            </g>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </button>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </button>
                             @endif
                         </div>
-
                         <div class="messenger-buttons-wrapper d-flex">
                             <button class="messenger-button attach-file  file-upload-button to-tooltip"
                                 data-placement="top" title="{{__('Attach file')}}">
