@@ -134,7 +134,7 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
         if (isset($this->verification)) {
             return  $this->email_verified_at && ($this->verification && $this->verification->status == 'verified');
         }else{
-            return $this->email_verified_at && ($this->verification()->where("status", "=" , 'verified')->count());
+            return $this->email_verified_at && ($this->verification()->where("status", "=" , 'verified')->first());
         }
     }
     public function isAdmin()

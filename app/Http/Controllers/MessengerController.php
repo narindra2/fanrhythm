@@ -158,7 +158,7 @@ class MessengerController extends Controller
         $contacts = DB::select($query, [$userID, $userID]);
         $i = 0;       
         foreach ($contacts as $contact) {
-            // Removing blocked contacts and have not access
+            // Removing blocked contacts and have not access , after set data
             if(self::hasUserBlocked($contact->contactID, Auth::user()->id) || !self::checkMessengerAccess(Auth::user()->id,$contact->contactID)){
                 unset($contacts[$i]);
             }else{
