@@ -150,7 +150,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://js.stripe.com/v3/"></script>
     <style>
         .rajout_infos {

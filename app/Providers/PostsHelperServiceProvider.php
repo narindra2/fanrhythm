@@ -278,9 +278,7 @@ class PostsHelperServiceProvider extends ServiceProvider
      */
 
     public static function hasActiveSub($sender_id, $recipient_id)
-
     {
-
         $hasSub = Subscription::where('sender_user_id', $sender_id)
 
             ->where('recipient_user_id', $recipient_id)
@@ -297,20 +295,13 @@ class PostsHelperServiceProvider extends ServiceProvider
 
                     ]);
 
-            })
-
-            ->count();
-
+            })->count();
         if ($hasSub > 0) {
 
             return true;
 
         }
-
-
-
         return false;
-
     }
 
 

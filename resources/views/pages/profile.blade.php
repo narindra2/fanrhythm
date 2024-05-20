@@ -26,7 +26,7 @@
                 '/js/plugins/media/mediaswipe-loader.js',
                 '/js/LoginModal.js',
                 '/js/pages/messenger.js',
-                '/js/pages/card-box.js',
+                // '/js/pages/card-box.js',
             ],
             $additionalAssets,
         ),

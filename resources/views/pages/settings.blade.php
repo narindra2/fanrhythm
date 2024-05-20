@@ -18,7 +18,7 @@
         <script src="{{asset('/libs/simplemde/dist/simplemde.min.js')}}"></script>
     @endif
     
-    
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 @stop
 
@@ -38,6 +38,7 @@
     @if(getSetting('profiles.allow_profile_bio_markdown'))
         <link href="{{asset('/libs/simplemde/dist/simplemde.min.css')}}" rel="stylesheet">
     @endif
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @stop
 
 @section('content')

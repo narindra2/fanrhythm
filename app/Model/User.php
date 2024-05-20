@@ -233,6 +233,10 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
     {
         return $this->hasOne('App\Model\CreatorOffer');
     }
+    public function userKnow()
+    {
+        return $this->hasOne('App\Model\Userknow');
+    }
 
     public function demoposts()
     {

@@ -5,6 +5,7 @@
 /* global app, paginatorConfig, initialPostIDs, PostsPaginator, Post, getCookie, QRCode, StreamsPaginator, postsFilter */
 
 $(function () {
+    
     if(typeof paginatorConfig !== 'undefined'){
         if((paginatorConfig.total > 0 && paginatorConfig.total > paginatorConfig.per_page) && paginatorConfig.hasMore) {
             PostsPaginator.initScrollLoad();

@@ -5,6 +5,18 @@
 /* global app, mediaSettings, launchToast, SimpleMDE, bioConfig, AiSuggestions */
 
 $(function () {
+    $('#spoken-language').val( ($('#spoken-language').attr("data-default-value")).split(","));
+    $('#categories').val( ($('#categories').attr("data-default-value")).split(","));
+
+    $('#spoken-language').select2({
+        multiple:true,
+        placeholder: trans("Langue parlé"),
+    });
+    $('#categories').select2({
+        multiple:true,
+        placeholder: trans("Categorie"),
+    });
+
     ProfileSettings.initUploader('avatar');
     ProfileSettings.initUploader('cover');
 

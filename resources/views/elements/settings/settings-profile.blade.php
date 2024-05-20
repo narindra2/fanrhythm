@@ -1,5 +1,7 @@
 @if(!Auth::user()->email_verified_at) @include('elements.resend-verification-email-box') @endif
-
+@php
+    Auth::user()->load(["userKnow"]);
+@endphp
 @if(getSetting('ai.open_ai_enabled'))
 @include('elements.suggest-description')
 @endif
@@ -161,6 +163,38 @@
                 </div>
             </div>
            
+            <div class="col-md-12">
+                <div>
+                    <label for="spoken-language" >{{__('Spoken language')}}</label>
+                    <select  id="spoken-language" name="spoken_languages[]" data-default-value = "{{ Auth::user()->userKnow->spoken_languages ?? '' }}">
+                        <option value="0" disabled>Spoken language</option>
+                        @foreach ($spokenlanguage as $language)
+                            <option value="{{$language}}" >{{ $language }}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('website'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$errors->first('website')}}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div>
+                    <label for="categories" >{{__('Categorie')}}</label>
+                    <select  id="categories" name="categories[]" data-default-value = "{{ Auth::user()->userKnow->categories ?? '' }}" >
+                        <option value="0" disabled>Categorie</option>
+                        @foreach ($categories as $cat)
+                            <option value="{{$cat}}" >{{ $cat }}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('website'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$errors->first('website')}}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
             <div class="col-md-12">
                 <div>
                     <label for="website" value="{{Auth::user()->website}}">{{__('Lien externe')}}</label>

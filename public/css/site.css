@@ -1594,6 +1594,13 @@ div.aff_header_post .dropdown.dropleft .dropdown-toggle {
     display: block;
     color : #fff
 }
+.dark_theme select option {
+    margin: 40px;
+    background: #444 !important;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    border: 4px;
+}
 
 .aff_footer_post>div {
     display: flex;
@@ -5222,5 +5229,148 @@ input#message-price.form-control {
         width: 66px;
         height: 37px !important;
         margin: 0px 3px 1px 3px;
+    }
+}
+.dark_theme select option {
+    margin: 40px;
+    background: var(--bg-card) !important;
+color: #fff;
+    text-shadow: 0 1px 0 var(--bg-card);;
+    border: 4px;
+}
+/* .dark_theme .select2-search { background-color: #444 ; } */
+.dark_theme .select2-results { background-color: #444 ; }
+.dark_theme .select2-container--default .select2-selection--single {
+    background-color: var(--bg-card);
+    border-radius: 4px;
+    border: 0px;
+    /* border-bottom: 1px solid #444; */
+}
+.dark_theme .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: white;
+    line-height: 28px;
+}
+.dark_theme .select2-container .select2-selection--multiple .select2-selection__rendered {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  
+}
+
+.dark_theme .select2-container--default .select2-selection--multiple {
+    cursor: text;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    position: relative;
+}
+.dark_theme .select2-container--default .select2-selection--multiple {
+    background-color: transparent;
+    border: 0px solid #aaa;
+    border-radius: 4px;
+    cursor: text;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    position: relative;
+}
+.dark_theme .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: transparent;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-right: 3px;
+    margin-top: 20px;
+    padding: 0;
+    padding-left: 20px;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+    white-space: nowrap;
+}
+.dark_theme .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    background-color: transparent;
+    border: none;
+    border-right: 1px solid #aaa;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    color: #999;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0 4px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.dark_theme .select2-container .select2-selection--multiple {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    height: max-content;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.dark_theme .select2-container .select2-search--inline .select2-search__field {
+    box-sizing: border-box;
+    border: none;
+    font-size: 100%;
+    margin-top: 32px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    padding: 0;
+    max-width: 100%;
+    resize: none;
+    height: 18px;
+    vertical-align: bottom;
+    font-family: sans-serif;
+    overflow: hidden;
+    word-break: keep-all;
+}
+
+
+@media (max-width: 768px) {
+    .dark_theme .select2-container .select2-selection--multiple .select2-selection__rendered {
+        display: block;
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+    }
+    .dark_theme .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: transparent;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        box-sizing: border-box;
+        display: inline-block;
+        margin-right: 3px;
+        margin-top: 11px;
+        padding: 0;
+        padding-left: 20px;
+        position: relative;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: bottom;
+        white-space: nowrap;
+    }
+    .dark_theme .select2-container .select2-search--inline .select2-search__field {
+        box-sizing: border-box;
+        border: none;
+        font-size: 100%;
+        margin-top: 23px;
+        margin-left: 5px;
+        margin-bottom: 10px;
+
+        /* padding: 0; */
+        max-width: 100%;
+        resize: none;
+        height: 18px;
+        
+        vertical-align: bottom;
+        font-family: sans-serif;
+        overflow: hidden;
+        word-break: keep-all;
     }
 }

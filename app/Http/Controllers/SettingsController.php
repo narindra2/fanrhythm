@@ -36,6 +36,7 @@ use App\Http\Requests\VerifyProfileAssetsRequest;
 use App\Http\Requests\UpdateUserFlagSettingsRequest;
 use App\Http\Requests\UpdateUserRatesSettingsRequest;
 use App\Http\Requests\UpdateUserProfileSettingsRequest;
+use App\Model\Userknow;
 
 class SettingsController extends Controller
 {
@@ -178,6 +179,8 @@ class SettingsController extends Controller
                 ]);
                 $data['genders'] = UserGender::all();
                 $data['minBirthDate'] = Carbon::now()->subYear(18)->format('Y-m-d');
+                $data['spokenlanguage'] = collect(getSpokenlanguage())->sortBy("");
+                $data['categories'] = ["Model", "Influenseuse"];
                 break;
             case 'referrals':
                 if (getSetting('referrals.enabled')) {
@@ -263,7 +266,12 @@ class SettingsController extends Controller
             'gender_id' => $request->get('gender'),
             'gender_pronoun' => $request->get('pronoun'),
         ]);
-
+        Userknow::updateOrCreate(['user_id'   => $user->id],
+            [
+                "categories" => collect($request->categories)->implode(","),
+                "spoken_languages" => collect($request->spoken_languages)->implode(",")
+            ]
+        );
         return back()->with('success', __('Settings saved.'));
     }
 
@@ -326,10 +334,7 @@ class SettingsController extends Controller
                 $trimmedRules[$key] = $rule;
             }
         }
-
         $request->validate($trimmedRules);
-        
-       
         $user->update([
             "automatic_message_for_new_subscriber" => $request->get('automatic_message_for_new_subscriber'),
             'profile_access_price' => $request->get('profile_access_price'),
@@ -337,7 +342,6 @@ class SettingsController extends Controller
             'profile_access_price_12_months' => $request->get('profile_access_price_12_months'),
             'profile_access_price_3_months' => $request->get('profile_access_price_3_months'),
         ]);
-
         return back()->with('success', __('Settings saved.'));
     }
 

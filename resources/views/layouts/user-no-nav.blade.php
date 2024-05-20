@@ -8,7 +8,6 @@
     '/libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css',
     '/css/side-menu.css',
     ]])
-<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 
 </head>
 <body class="{{request()->cookie('app_theme') ==='light' ? 'light_theme' : 'dark_theme'}}">
@@ -43,7 +42,6 @@
     '/js/SideMenu.js'
     ]])
     @include('template.check-status-user')
-<script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
 @include('template.cdn2-adtng')
 </body>
 
