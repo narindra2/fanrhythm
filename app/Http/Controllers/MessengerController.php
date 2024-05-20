@@ -90,7 +90,6 @@ class MessengerController extends Controller
             'lastContactID' => $lastContactID,
             'unseenMessages' => $unseenMessages,
         ];
-
         return view('pages.messenger', $data);
     }
 
