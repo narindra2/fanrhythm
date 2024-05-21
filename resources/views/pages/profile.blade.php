@@ -236,6 +236,23 @@
                         </div>
                     </div>
                     <div>
+                        @if ($user->userKnow && $user->userKnow->spoken_languages)
+                            <div  style="" class="pointer-cursor spoken-language-list" data-toggle="tooltip" data-placement="top" title="{{ __('Langue parlée de :') . ' ' . $user->name }} ">
+                                <span style=" margin: 10px;  font-size: 12px; ">{{  $user->userKnow->spoken_languages }}</span>
+                            </div>  
+                            <style>
+                                .spoken-language-list {
+                                    width: max-content; 
+                                    margin: 4px;
+                                }
+                                .dark_theme .spoken-language-list {
+                                    width: max-content; 
+                                    color: white;  
+                                    margin: 4px;
+                                }
+                            </style>
+                        @endif
+                        
                         @if (!Auth::check() || Auth::user()->id !== $user->id)
 
                             @if (Auth::check())
@@ -250,7 +267,9 @@
                                         <path
                                             d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
                                     </svg>
+
                                 </span>
+                               
 
                                 <span class="to-tooltip"
                                     @if (!Auth::user()->email_verified_at && getSetting('site.enforce_email_validation')) data-placement="top"

@@ -5,16 +5,21 @@
 /* global app, mediaSettings, launchToast, SimpleMDE, bioConfig, AiSuggestions */
 
 $(function () {
-    $('#spoken-language').val( ($('#spoken-language').attr("data-default-value")).split(","));
-    $('#categories').val( ($('#categories').attr("data-default-value")).split(","));
-
+    console.log(maxNbSpokenLanguage);
+    $('#spoken-language').val( ($('#spoken-language').attr("data-default-value")).split(",")).trigger("change");
+    $('#categories').val( ($('#categories').attr("data-default-value")).split(",")).trigger("change");
+    console.log(langConfig);
     $('#spoken-language').select2({
         multiple:true,
-        placeholder: trans("Langue parlé"),
+        language: langConfig,
+        maximumSelectionLength: maxNbSpokenLanguage,
+        placeholder: trans("Choississez votre langue parlés"),
     });
     $('#categories').select2({
         multiple:true,
-        placeholder: trans("Categorie"),
+        language: langConfig,
+        maximumSelectionLength: maxNbSpokenLanguage,
+        placeholder: trans("Choississez votre categorie"),
     });
 
     ProfileSettings.initUploader('avatar');

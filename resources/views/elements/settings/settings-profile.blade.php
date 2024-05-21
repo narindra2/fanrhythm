@@ -165,9 +165,9 @@
            
             <div class="col-md-12">
                 <div>
-                    <label for="spoken-language" >{{__('Spoken language')}}</label>
-                    <select  id="spoken-language" name="spoken_languages[]" data-default-value = "{{ Auth::user()->userKnow->spoken_languages ?? '' }}">
-                        <option value="0" disabled>Spoken language</option>
+                    <label for="spoken-language" >{{__('Votre vangues parlées')}}</label>
+                    <select multiple id="spoken-language" name="spoken_languages[]" data-default-value = "{{ Auth::user()->userKnow->spoken_languages ?? '' }}" >
+                        <option value="0" disabled>{{__('Liste des langues parlées')}}</option>
                         @foreach ($spokenlanguage as $language)
                             <option value="{{$language}}" >{{ $language }}</option>
                         @endforeach
@@ -181,9 +181,9 @@
             </div>
             <div class="col-md-12">
                 <div>
-                    <label for="categories" >{{__('Categorie')}}</label>
-                    <select  id="categories" name="categories[]" data-default-value = "{{ Auth::user()->userKnow->categories ?? '' }}" >
-                        <option value="0" disabled>Categorie</option>
+                    <label for="categories" >{{__('Categories')}}</label>
+                    <select multiple id="categories" name="categories[]" data-default-value = "{{ Auth::user()->userKnow->categories ?? '' }}"  >
+                        <option value="0" disabled>{{__('Categories')}}</option>
                         @foreach ($categories as $cat)
                             <option value="{{$cat}}" >{{ $cat }}</option>
                         @endforeach

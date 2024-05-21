@@ -17,9 +17,9 @@
     @if(getSetting('profiles.allow_profile_bio_markdown'))
         <script src="{{asset('/libs/simplemde/dist/simplemde.min.js')}}"></script>
     @endif
-    
+    {{-- Select2 JS --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/i18n/{{ App::getLocale() ?? "en" }}.js"></script>
 @stop
 
 @section('styles')

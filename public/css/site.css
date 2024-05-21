@@ -5330,6 +5330,12 @@ color: #fff;
     word-break: keep-all;
 }
 
+.dark_theme  .select2-results__option {
+    color: white;
+    padding: 6px;
+    user-select: none;
+    -webkit-user-select: none;
+}
 
 @media (max-width: 768px) {
     .dark_theme .select2-container .select2-selection--multiple .select2-selection__rendered {
@@ -5372,5 +5378,6 @@ color: #fff;
         font-family: sans-serif;
         overflow: hidden;
         word-break: keep-all;
+
     }
 }

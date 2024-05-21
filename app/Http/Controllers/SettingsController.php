@@ -172,6 +172,8 @@ class SettingsController extends Controller
             case null:
             case 'profile':
                 JavaScript::put([
+                    "maxNbSpokenLanguage" => Userknow::MAX_NB_LANGUAGE,
+                    'langConfig' => App::getLocale(),
                     'bioConfig' => [
                         'allow_profile_bio_markdown' => getSetting('profiles.allow_profile_bio_markdown'),
                         'allow_profile_bio_markdown_links' => getSetting('profiles.allow_profile_bio_markdown_links'),
@@ -180,7 +182,7 @@ class SettingsController extends Controller
                 $data['genders'] = UserGender::all();
                 $data['minBirthDate'] = Carbon::now()->subYear(18)->format('Y-m-d');
                 $data['spokenlanguage'] = collect(getSpokenlanguage())->sortBy("");
-                $data['categories'] = ["Model", "Influenseuse"];
+                $data['categories'] = ["Model", "Influenseuse","Artiste"];
                 break;
             case 'referrals':
                 if (getSetting('referrals.enabled')) {
@@ -268,11 +270,12 @@ class SettingsController extends Controller
         ]);
         Userknow::updateOrCreate(['user_id'   => $user->id],
             [
-                "categories" => collect($request->categories)->implode(","),
-                "spoken_languages" => collect($request->spoken_languages)->implode(",")
+                "categories" => collect($request->categories)->take(Userknow::MAX_NB_LANGUAGE)->implode(","),
+                "spoken_languages" => collect($request->spoken_languages)->take(Userknow::MAX_NB_LANGUAGE)->implode(",")
             ]
         );
-        return back()->with('success', __('Settings saved.'));
+        // return back()->with('success', __('Settings saved.'));
+       return redirect(route("profile",["username" => $user->username]))->with('success', __('Settings saved.'));
     }
 
     private function validateUsername($username)

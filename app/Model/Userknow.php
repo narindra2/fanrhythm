@@ -8,6 +8,7 @@ class Userknow extends Model
 {
     protected $table = "user_knows";
     public $timestamps = false;
+    Const MAX_NB_LANGUAGE = 3;
 
     protected $fillable = [
         "user_id",

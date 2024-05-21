@@ -66,7 +66,7 @@ class ProfileController extends Controller
         catch (\Exception $e){
             // Log error, fail silently
         }
-
+        $this->user->load("userKnow");
         $data['showLoginDialog'] = false;
         $errors = session()->get('errors', app(ViewErrorBag::class));
         if ($errors->getBag('default')->has('email') || $errors->getBag('default')->has('name') || $errors->getBag('default')->has('password')) {
