@@ -182,7 +182,7 @@ class SettingsController extends Controller
                 $data['genders'] = UserGender::all();
                 $data['minBirthDate'] = Carbon::now()->subYear(18)->format('Y-m-d');
                 $data['spokenlanguage'] = collect(getSpokenlanguage())->sortBy("");
-                $data['categories'] = ["Model", "Influenseuse","Artiste"];
+                $data['categories'] = [__("Model"), __("Influenceur(se)"), __("Artiste")];
                 break;
             case 'referrals':
                 if (getSetting('referrals.enabled')) {

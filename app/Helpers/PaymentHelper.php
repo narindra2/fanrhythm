@@ -886,7 +886,6 @@ class PaymentHelper
                         'interval_count' => PaymentsServiceProvider::getSubscriptionMonthlyIntervalByTransactionType($transactionType),
                     ],
                 ]);
-
                 $stripeLineItems = [
                     'price' => $price->id,
                     'quantity' => 1,

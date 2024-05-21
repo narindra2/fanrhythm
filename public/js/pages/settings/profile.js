@@ -8,7 +8,6 @@ $(function () {
     console.log(maxNbSpokenLanguage);
     $('#spoken-language').val( ($('#spoken-language').attr("data-default-value")).split(",")).trigger("change");
     $('#categories').val( ($('#categories').attr("data-default-value")).split(",")).trigger("change");
-    console.log(langConfig);
     $('#spoken-language').select2({
         multiple:true,
         language: langConfig,
