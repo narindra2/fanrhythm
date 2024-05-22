@@ -190,7 +190,6 @@
                     }
                 }
             </style>
-
             <div class="aff_top_profile">
                 <div class="aff_cover">
                     <img src="{{ $user->cover }}">
@@ -243,9 +242,8 @@
                                     return __($language); 
                                 })->implode(",");
                             @endphp
-
                             <div  style="" class="pointer-cursor spoken-language-list" data-toggle="tooltip" data-placement="top" title="{{ __('Langue parlée de :') . ' ' . $user->name }} ">
-                                <span style=" margin: 10px;  font-size: 12px; ">{{  $user->userKnow->spoken_languages }}</span>
+                                <span style=" margin: 10px;  font-size: 12px; ">{{   $spoken_languages_translated }}</span>
                             </div>  
                             <style>
                                 .spoken-language-list {

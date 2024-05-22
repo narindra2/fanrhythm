@@ -43,7 +43,7 @@
                                     __("Français")}}</a>
                             </li>
                             <li>
-                                <a class="scroll-link d-flex align-items-center" href="{{ url("/language/esp")
+                                <a class="scroll-link d-flex align-items-center" href="{{ url("/language/es")
                                     }}">Español</a>
                             </li>
 
@@ -89,7 +89,7 @@
                                     __("Français")}}</a>
                             </li>
                             <li>
-                                <a class="scroll-link d-flex align-items-center" href="{{ url("/language/esp")
+                                <a class="scroll-link d-flex align-items-center" href="{{ url("/language/es")
                                     }}">Español</a>
                             </li>
                         </ul>
@@ -150,7 +150,7 @@
                         __("Français")}}</a>
                 </li>
                 <li>
-                    <a class="scroll-link d-flex align-items-center" href="{{ url("/language/esp") }}">Español</a>
+                    <a class="scroll-link d-flex align-items-center" href="{{ url("/language/es") }}">Español</a>
                 </li>
 
             </ul>
