@@ -169,7 +169,7 @@
                     <select multiple id="spoken-language" name="spoken_languages[]" data-default-value = "{{ Auth::user()->userKnow->spoken_languages ?? '' }}" >
                         <option value="0" disabled>{{__('Liste des langues parlées')}}</option>
                         @foreach ($spokenlanguage as $language)
-                            <option value="{{$language}}" >{{ $language }}</option>
+                            <option value="{{$language}}" >{{ __($language) }}</option>
                         @endforeach
                     </select>
                     @if($errors->has('website'))

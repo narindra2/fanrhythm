@@ -237,6 +237,13 @@
                     </div>
                     <div>
                         @if ($user->userKnow && $user->userKnow->spoken_languages)
+                            @php
+                                /** Tranlate one by one user spoken languages */
+                                $spoken_languages_translated = collect(explode(",", $user->userKnow->spoken_languages))->map(function ( $language ) {
+                                    return __($language); 
+                                })->implode(",");
+                            @endphp
+
                             <div  style="" class="pointer-cursor spoken-language-list" data-toggle="tooltip" data-placement="top" title="{{ __('Langue parlée de :') . ' ' . $user->name }} ">
                                 <span style=" margin: 10px;  font-size: 12px; ">{{  $user->userKnow->spoken_languages }}</span>
                             </div>  

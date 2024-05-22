@@ -1092,8 +1092,7 @@
     "Post ajouter aux bookmarks.": "Post added to my bookmark.",
     "mois" : "month",
     "Compte gratuit" : "Free account",
-    "Anglais" : "English",
-    "Français" : "French",
+   
 
 
     "Créer un post du type"  : "Create a post like",
@@ -1123,5 +1122,31 @@
     "Liste des langues parlées" : "List of languages ​​spoken",
     "Langue parlée de :" : "Spoken language of :",
     "Artiste" : "Artist",
-    "Influenceur(se)" : "Influencer"
+    "Influenceur(se)" : "Influencer",
+    "Anglais" : "English",
+    "Français" : "French",
+    "Espagnol": "Spanish",
+    "Arabe": "Arabic",
+    "Chinois": "Chinese",
+    "Japonais": "Japanese",
+    "Hindi": "Hindi",
+    "Russe": "Russian",
+    "Allemand": "German",
+    "Bengali": "Bengali",
+    "Portugais": "Portuguese",
+    "Javanais": "Javanese",
+    "Italien": "Italian",
+    "Telugu": "Telugu",
+    "Marathi": "Marathi",
+    "Ourdou": "Urdu",
+    "Tamoul": "Tamil",
+    "Vietnamien": "Vietnamese",
+    "Coréen": "Korean",
+    "Haoussa": "Hausa",
+    "Gujarati": "Gujarati",
+    "Malais": "Malay",
+    "Pachto": "Pashto",
+    "Tagalog": "Tagalog",
+    "Oriya": "Oriya",
+    "Malayalam": "Malayalam"
   }
