@@ -149,35 +149,17 @@ class PaymentsController extends Controller
             $transaction['phone'] = $request->get('phone');
 
             $errorMessage = __('Something went wrong with this transaction. Please try again');
-
-
-
             $transaction['amount_without_free']  = $transaction['amount'];
-
-
-
             $recipientUser = User::query()->where('id', $transaction['recipient_user_id'])->first();
-
             if ($transaction['amount'] <= 0 || (!$recipientUser && $transactionType !== Transaction::DEPOSIT_TYPE)) {
-
                 return $this->paymentHandler->redirectByTransaction($transaction, $errorMessage);
             }
-
-
-
             if (!$this->paymentHandler->validateTransaction($transaction, $recipientUser)) {
-
                 return $this->paymentHandler->redirectByTransaction($transaction, $errorMessage);
             }
-
-
-
             if ($transaction['payment_provider'] == Transaction::PAYPAL_PROVIDER) {
-
                 $this->paymentHandler->initiatePaypalContext();
             }
-
-
 
             if (in_array($transaction['payment_provider'], [Transaction::STRIPE_PROVIDER, Transaction::OXXO_PROVIDER])) {
                 /** Not using redirect page */
@@ -337,6 +319,8 @@ class PaymentsController extends Controller
                     } elseif ($transaction['payment_provider'] == Transaction::COINBASE_PROVIDER) {
 
                         $redirectLink = $this->paymentHandler->generateCoinBaseTransaction($transaction);
+                    }elseif($transaction['payment_provider'] == Transaction::ROCKETFUEL_PROVIDER){
+                        $redirectLink = $this->paymentHandler->generateRocketfuelTransaction($transaction);
                     } elseif ($transaction['payment_provider'] == Transaction::NOWPAYMENTS_PROVIDER) {
 
                         $redirectLink = $this->paymentHandler->generateNowPaymentsTransaction($transaction);
@@ -350,7 +334,6 @@ class PaymentsController extends Controller
 
                         $this->paymentHandler->generateDigitalVirgoDepositTransaction($transaction);
                     } elseif ($transaction['payment_provider'] == Transaction::PAYDUNYA_PROVIDER) {
-
                         $this->paymentHandler->generatePaydunyaDepositTransaction($transaction);
                     }
 
@@ -379,21 +362,12 @@ class PaymentsController extends Controller
                         );
                     }
 
-
-
                     if (PostsHelperServiceProvider::hasActiveSub($transaction['sender_user_id'], $transaction['recipient_user_id'])) {
-
                         $errorMessage = __('You already have an active subscription for this user.');
-
-
-
                         return $this->paymentHandler->redirectByTransaction($transaction, $errorMessage);
                     }
 
-
-
                     if ($transaction['payment_provider'] == Transaction::PAYPAL_PROVIDER) {
-
                         $redirectLink = $this->paymentHandler->generatePaypalSubscriptionByTransaction($transaction);
                     } elseif ($transaction['payment_provider'] == Transaction::STRIPE_PROVIDER) {
 

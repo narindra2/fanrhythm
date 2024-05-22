@@ -2588,9 +2588,9 @@ div.aff_verif_notification>div:nth-child(1)>p:nth-child(2) {
     padding: 0px 5px;
 }
 
-.aff_edit_paiement_ui>div>div:nth-child(4) {
+/* .aff_edit_paiement_ui>div>div:nth-child(4) {
     display: none;
-}
+} */
 
 .aff_edit_paiement_ui>div>div>label {
     border-radius: 8px;

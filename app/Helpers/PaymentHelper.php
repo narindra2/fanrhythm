@@ -56,6 +56,8 @@ use Stripe\StripeClient;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Yabacon\Paystack;
 use Yabacon\Paystack\Exception\ApiException;
+use RKFL\Api\Client\Options;
+use RKFL\Api\Client\Rocketfuel;
 
 class PaymentHelper
 {
@@ -371,7 +373,48 @@ class PaymentHelper
         }
         return $redirect_url;
     }
-
+     /**
+     * Generate a Rocketfuel  url.
+     *
+     * @return string
+     */
+    public function generateRocketfuelTransaction($transaction) {
+        $options = new Options(
+            [
+                'environment' => 'sandbox',
+                'email' => 'mariani.alexis1@gmail.com',
+                'password' => 'EN.fr0108?a?a',
+                'merchant_id' => '2f82b974-0dcd-468d-af9a-5a1f5f012a64',
+                'client_id' => '63626d4d82bb9f5e5fdf2d30d7418da30d414e27b7b192d63f8e72f2239f0c06',
+                'client_secret' => 'b80d34588f8340d88d8ebb536b0317a9',
+                'merchant_public_key' => "-----BEGIN PUBLIC KEY-----
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlRfEfkbx8BdVfn1VCvfz
+    O9AR9Rdpyl/jdTYYk+b99oMw1lXOBXBbPNdkOtd9hpov6oPB8iFThAenSQIovw4X
+    b5jSEN+wdWZdqzsFVkQ9BjAzVlLglDDYkcD/9hqcQSySpXDLW9IVErTCe04AUeV8
+    EVM8nTaH6cl6Vc1xSCdXBHSkyID6NzQXkMfVrBItFG8YiDLemyATWTZKiDYHggau
+    Jrj4QYh/JLzLrGjg6P/JfcgrdMWUXMh0WFXIrIgjrGsUeRQMfuHaVM0QAWJohOHP
+    2USNExDNiaMvJ6qSiCpedkpryx6TnDuqZCmSPr19jQgeeojYopgqjT44ZLXxrRoC
+    OwIDAQAB
+    -----END PUBLIC KEY-----"
+            ]
+        );
+        $rocketfuel = new RocketFuel($options);
+        $payload = [
+            'amount' => $transaction['amount'],
+            'cart' => [
+                [
+                    'id' => "cart-" . time(),
+                    'name' => 'test',
+                    'price' => $transaction['amount'],
+                    'quantity' => '1'
+                ]
+            ],
+            'currency' => 'USD',
+            'order' =>"test-" .Transaction::latest()->first()->id
+        ];
+        $response = $rocketfuel->service()->getUUID($payload);
+        dd($response);
+    }
     /**
      * Generate a paypal web experience profile.
      *

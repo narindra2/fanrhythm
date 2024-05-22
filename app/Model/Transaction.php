@@ -38,6 +38,8 @@ class Transaction extends Model
     const PAYSTACK_PROVIDER = 'paystack';
     const OXXO_PROVIDER = 'oxxo';
     const PAYDUNYA_PROVIDER = 'paydunya';
+    const ROCKETFUEL_PROVIDER = 'rocketfuel';
+
 
     const COINBASE_API_BASE_PATH = 'https://api.commerce.coinbase.com';
     const NOWPAYMENTS_API_BASE_PATH = 'https://api.nowpayments.io/v1/';

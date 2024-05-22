@@ -108,6 +108,9 @@ var DepositSettings = {
                 case "payment-paydunya":
                     DepositSettings.provider = "paydunya";
                     break;
+                case "payment-rocketfuel":
+                    DepositSettings.provider = "rocketfuel";
+                    break;
                 case "payment-credit":
                     DepositSettings.provider = "credit";
                     break;
