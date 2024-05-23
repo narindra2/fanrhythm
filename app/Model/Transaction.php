@@ -52,6 +52,7 @@ class Transaction extends Model
         self::CCBILL_PROVIDER,
         self::PAYSTACK_PROVIDER,
         self::OXXO_PROVIDER,
+        self::ROCKETFUEL_PROVIDER
     ];
     const PENDING_PAYMENT_PROCESSORS = [
         self::COINBASE_PROVIDER,

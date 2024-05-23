@@ -77,9 +77,9 @@ class PaymentsController extends Controller
         // check if user have enough money to pay with credit for this transaction
 
         if ($userAvailableAmount < $request->get('amount')) {
-            $walletUrl = '<a style="font-size: 12.7px;" href="'.url("/my/settings/wallet").'"> My wallet. </a>' ;
-            $errorMessage =  __("Vous n'avez pas assez d'argent pour payer cette transaction. Veuillez recharger votre portefeuille ici :") . " $walletUrl" ."<br> ". __("Après réessayez !");
-            return ["success" => false , "message" =>  $errorMessage];
+            $walletUrl = '<a style="font-size: 12.7px;" href="' . url("/my/settings/wallet") . '"> My wallet. </a>';
+            $errorMessage =  __("Vous n'avez pas assez d'argent pour payer cette transaction. Veuillez recharger votre portefeuille ici :") . " $walletUrl" . "<br> " . __("Après réessayez !");
+            return ["success" => false, "message" =>  $errorMessage];
         }
         return response()->json([
 
@@ -319,7 +319,7 @@ class PaymentsController extends Controller
                     } elseif ($transaction['payment_provider'] == Transaction::COINBASE_PROVIDER) {
 
                         $redirectLink = $this->paymentHandler->generateCoinBaseTransaction($transaction);
-                    }elseif($transaction['payment_provider'] == Transaction::ROCKETFUEL_PROVIDER){
+                    } elseif ($transaction['payment_provider'] == Transaction::ROCKETFUEL_PROVIDER) {
                         $redirectLink = $this->paymentHandler->generateRocketfuelTransaction($transaction);
                     } elseif ($transaction['payment_provider'] == Transaction::NOWPAYMENTS_PROVIDER) {
 
@@ -393,7 +393,7 @@ class PaymentsController extends Controller
                     return $this->paymentHandler->redirectByTransaction($transaction);
             }
             // subtract transaction fees balance
-            $transaction['transaction_fees']  = str_replace([" " ,"," ],["","."], getSetting("payments.transaction_fees"));
+            $transaction['transaction_fees']  = str_replace([" ", ","], ["", "."], getSetting("payments.transaction_fees"));
             $transaction['amount']  =  $transaction['amount'] - Transaction::getTransactionFees($transaction);
 
             $transaction->save();
@@ -463,21 +463,12 @@ class PaymentsController extends Controller
         } catch (\Exception $exception) {
 
             throw $exception;
-
-            // return Redirect::route('feed')
-
-            //     ->with('error', __('Payment failed.'));
-
+            // return Redirect::route('feed') ->with('error', __('Payment failed.'));
         }
 
-
-
         // Url generated successfully
-
         if (isset($redirectLink) && in_array($transaction['payment_provider'], Transaction::ALLOWED_PAYMENT_PROVIDERS)) {
-
             // redirect on payment provider checkout page
-
             return Redirect::away($redirectLink);
         }
 
@@ -1679,5 +1670,19 @@ class PaymentsController extends Controller
 
 
         http_response_code(200);
+    }
+
+    /**
+
+     * @param Request $request
+
+     * @return void
+
+     */
+    public function callbackPaymentFromRocketFuel(Request $request){
+        dump("Debug response callback vennant du RocketFuel ici ");
+        dump($_GET);
+        dump($_POST);
+        dd($request->all());
     }
 }

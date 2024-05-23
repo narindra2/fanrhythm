@@ -323,7 +323,7 @@ class PaymentHelper
 
     public function initiateOneTimePaypalTransaction(Transaction $transaction)
     {
-       
+
         // $this->initiatePaypalContext();
         // Item info
         $payer = new Payer();
@@ -373,12 +373,13 @@ class PaymentHelper
         }
         return $redirect_url;
     }
-     /**
+    /**
      * Generate a Rocketfuel  url.
      *
      * @return string
      */
-    public function generateRocketfuelTransaction($transaction) {
+    public function generateRocketfuelTransaction($transaction)
+    {
         $options = new Options(
             [
                 'environment' => 'sandbox',
@@ -410,10 +411,15 @@ class PaymentHelper
                 ]
             ],
             'currency' => 'USD',
-            'order' =>"test-" .Transaction::latest()->first()->id
+            'order' => "test-" . Transaction::latest()->first()->id
         ];
-        $response = $rocketfuel->service()->getUUID($payload);
-        dd($response);
+        try {
+            $response = $rocketfuel->service()->getUUID($payload);
+            $redirect_url = $response["result"]["url"];
+            return $redirect_url;
+        } catch (\Exception $ex) {
+            Log::error('Payments Rocketfuel failure paylod : ' . $ex->getMessage());
+        }
     }
     /**
      * Generate a paypal web experience profile.
@@ -817,10 +823,10 @@ class PaymentHelper
     public function deductMoneyFromUserWalletForCreditTransaction($transaction, $userWallet)
     {
         if ($userWallet != null) {
-             /** add Fees on amount  deduction */
-             $totalMotantToDeduct = $transaction->amount_without_free;
+            /** add Fees on amount  deduction */
+            $totalMotantToDeduct = $transaction->amount_without_free;
             $userWallet->update([
-                'total' => $userWallet->total - $totalMotantToDeduct ,
+                'total' => $userWallet->total - $totalMotantToDeduct,
             ]);
         }
     }
@@ -877,29 +883,28 @@ class PaymentHelper
     {
         try {
             \Stripe\Stripe::setApiKey(getSetting('payments.stripe_secret_key'));
-            $auth_user = Auth::user()->load(["billingsCardActive","wallet"]);
+            $auth_user = Auth::user()->load(["billingsCardActive", "wallet"]);
             $walletData = ['total' => $auth_user->wallet->total + $transaction->amount];
             $transaction['status'] = Transaction::APPROVED_STATUS;
             $charge = \Stripe\Charge::create([
                 'customer' => $auth_user->billingsCardActive->customerStripe["id"],
                 'amount' => $transaction->amount * 100,
                 'currency' => config('app.site.currency_code'),
-                "description" => "Deposit wallet :  $transaction->amount " .config('app.site.currency_code')
+                "description" => "Deposit wallet :  $transaction->amount " . config('app.site.currency_code')
             ]);
             /** Payment oK */
             if ($charge["status"] === "succeeded") {
                 $transaction->save();
                 $auth_user->wallet->update($walletData);
-                return ["success" => true , "message" => __('Payment succeeded'),"walletTotal" => $walletData["total"] ];
-            }else{
+                return ["success" => true, "message" => __('Payment succeeded'), "walletTotal" => $walletData["total"]];
+            } else {
                 /**Error */
                 $transaction['status'] = Transaction::DECLINED_STATUS;
                 $transaction->save();
-                return ["success" => false , "message" => $charge["failure_message"] ];
-
+                return ["success" => false, "message" => $charge["failure_message"]];
             }
         } catch (\Exception $exception) {
-            return ["success" =>false , "message" => $exception->getMessage() ];
+            return ["success" => false, "message" => $exception->getMessage()];
         }
     }
 

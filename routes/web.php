@@ -324,6 +324,7 @@ Route::resource('demoposts', 'DemopostController');
 
 
 
+
 Route::get('/rocketfuel/checkout', function () {
     $options = new Options(
         [

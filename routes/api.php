@@ -37,3 +37,7 @@ Route::prefix("/paydunya")->group(function () {
 /** Webpurify callback Return Capture data response */ 
 Route::get("/webpurify", [WebpurifyController::class, 'callbackReturnCapture']);
 Route::post("/webpurify", [WebpurifyController::class, 'callbackReturnCapture']);
+
+/** Rocketfuel callback Return Capture data response */ 
+Route::get('/rocketfuel/callback-payment/capture-response', 'PaymentsController@callbackPaymentFromRocketFuel');
+Route::post('/rocketfuel/callback-payment/capture-response', 'PaymentsController@callbackPaymentFromRocketFuel');

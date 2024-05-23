@@ -7,6 +7,7 @@ use JavaScript;
 use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 use App\Model\Country;
+use App\Model\Userknow;
 use App\Model\Attachment;
 use App\Model\Moderation;
 use App\Model\UserDevice;
@@ -27,6 +28,7 @@ use Intervention\Image\Facades\Image;
 use App\Providers\AuthServiceProvider;
 use Illuminate\Support\Facades\Storage;
 use App\Providers\EmailsServiceProvider;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUploadRequest;
 use App\Providers\AttachmentServiceProvider;
 use App\Providers\GenericHelperServiceProvider;
@@ -36,7 +38,6 @@ use App\Http\Requests\VerifyProfileAssetsRequest;
 use App\Http\Requests\UpdateUserFlagSettingsRequest;
 use App\Http\Requests\UpdateUserRatesSettingsRequest;
 use App\Http\Requests\UpdateUserProfileSettingsRequest;
-use App\Model\Userknow;
 
 class SettingsController extends Controller
 {
@@ -275,7 +276,7 @@ class SettingsController extends Controller
             ]
         );
         // return back()->with('success', __('Settings saved.'));
-       return redirect(route("profile",["username" => $user->username]))->with('success', __('Settings saved.'));
+        return Redirect::route('profile',["username" => $user->username])->with('success', __('Settings saved.'));
     }
 
     private function validateUsername($username)
