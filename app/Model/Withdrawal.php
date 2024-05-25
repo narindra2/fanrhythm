@@ -18,7 +18,7 @@ class Withdrawal extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'amount', 'status', 'message', 'processed', 'payment_identifier', 'payment_method', 'fee'
+        'user_id' ,'amountToBePaid','amount', 'status', 'message', 'processed', 'payment_identifier', 'payment_method', 'fee'
     ];
 
     /**
@@ -36,6 +36,14 @@ class Withdrawal extends Model
      */
     protected $casts = [
     ];
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $appends = [
+        "amountToBePaid"
+    ];
 
     /*
      * Relationships
@@ -44,5 +52,10 @@ class Withdrawal extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
+    }
+    public function getAmountToBePaidAttribute()
+    {   
+        // $this->setAttribute("amountToBePaid" ,$this->amount - $this->fee);
+        return $this->amount - $this->fee;
     }
 }
