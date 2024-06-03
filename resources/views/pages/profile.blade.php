@@ -53,7 +53,7 @@
             modalImg.src = this.alt;
             // captionText.innerHTML = this.alt;
         }
-        var span = document.getElementsByClassName("close")[0];
+        var span = document.getElementsByClassName("close-avatar")[0];
         span.onclick = function() {
             modal.style.display = "none";
         }
@@ -78,7 +78,7 @@
         cursor: pointer;
         transition: 0.3s;
         }
-        .modal {
+        .modal-avatar {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
@@ -123,8 +123,8 @@
         to {transform:scale(1)}
     }
 
-    /* The Close Button */
-    .close {
+    /* The Close-avatar Button */
+    .close-avatar {
     position: absolute;
     top: 15px;
     right: 35px;
@@ -134,8 +134,8 @@
     transition: 0.3s;
     }
 
-    .close:hover,
-    .close:focus {
+    .close-avatar:hover,
+    .close-avatar:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
@@ -146,9 +146,9 @@
         .modal-content {
             width: 100%;
         }
-        .close {
+        .close-avatar {
             position: absolute;
-            top: 53px;
+            top: 54px;
             right: 7px;
             color: #f1f1f1;
             font-size: 40px;
@@ -200,8 +200,8 @@
                         {{-- <img src="{{ $user->avatar }}" class="rounded-circle"> --}}
                         <img id="myImage" src="{{ $user->avatar }}"   alt="{{ $user->avatarOriginal }}" class="rounded-circle" >
                         
-                        <div id="myModal" class="modal">
-                            <span class="close">&times;</span>
+                        <div id="myModal" class="modal-avatar">
+                            <span class="close-avatar">&times;</span>
                             <img class="modal-content" id="image-in-modal">
                             <div id="caption"></div>
                         </div>
@@ -240,7 +240,10 @@
                                 /** Tranlate one by one user spoken languages */
                                 $spoken_languages_translated = collect(explode(",", $user->userKnow->spoken_languages))->map(function ( $language ) {
                                     return __($language); 
-                                })->implode(",");
+                                })->implode(", ");
+                               
+
+
                             @endphp
                             <div  style="" class="pointer-cursor spoken-language-list" data-toggle="tooltip" data-placement="top" title="{{ __('Langue parlée de :') . ' ' . $user->name }} ">
                                 <span style=" margin: 10px;  font-size: 12px; ">{{   $spoken_languages_translated }}</span>
@@ -413,11 +416,33 @@
                         @else
                         @endif
                     </div>
-                    @if ($user->website)
-                        <a href="{{ $user->website }}" target="_blank" rel="nofollow" class="text-primary">
-                            {{ str_replace(['https://', 'http://', 'www.'], '', $user->website) }}
-                        </a>
-                    @endif
+                    <div class ="row">
+                        <div class="col-md-6">
+                            @if ($user->website)
+                                <a href="{{ $user->website }}" target="_blank" rel="nofollow" class="text-primary">
+                                    {{ str_replace(['https://', 'http://', 'www.'], '', $user->website) }}
+                                </a>
+                            @endif
+                        </div>
+                        <div class="col-md-6 text-end">
+                            @if ($user->userKnow && $user->userKnow->categories)
+                                @php
+                                    /** Tranlate one by one user spoken languages */
+                                    $cats_translated = collect(explode(",", $user->userKnow->categories))->map(function ( $categorie ) {
+                                    return __($categorie); 
+                                    })->implode(", ");
+
+                                @endphp
+                                <span href="#" style="  font-size: 12px; " class="pointer-cursor spoken-language-list">
+                                    {{ $cats_translated}}
+                                </span>
+                             @endif
+                        </div>
+                    </div>
+                 
+                   
+
+
 
 
                 </div>
@@ -476,7 +501,7 @@
                                 @endif
                             @endif
                             <button class="btn btn-primary"
-                                onclick="window.location.href='https://web.fanrhythm.com/my/settings/rates'">
+                                onclick="window.location.href='http://afrifan.com/my/settings/rates'">
                                 <span>{{ __('Subscribe') }} {{ __('for') }}
                                     {{ trans_choice('days', 30, ['number' => 30]) }}</span>
                                 <span class="d-sm-block">
@@ -486,7 +511,7 @@
                             </button>
 
                             <button class=" btn btn-outline-primary"
-                                onclick="window.location.href='https://web.fanrhythm.com/my/settings/rates'">
+                                onclick="window.location.href='http://afrifan.com/my/settings/rates'">
                                 <span>{{ __('Subscribe') }} {{ __('for') }}
                                     {{ trans_choice('months', 3, ['number' => 3]) }} </span>
                                 <span class="d-sm-block">
@@ -496,7 +521,7 @@
                             </button>
 
                             <button class=" btn btn-outline-primary"
-                                onclick="window.location.href='https://web.fanrhythm.com/my/settings/rates'">
+                                onclick="window.location.href='http://afrifan.com/my/settings/rates'">
                                 <span>{{ __('Subscribe') }} {{ __('for') }}
                                     {{ trans_choice('months', 6, ['number' => 6]) }}</span>
                                 <span class="d-sm-block">
@@ -506,7 +531,7 @@
                             </button>
 
                             <button class=" btn btn-outline-primary"
-                                onclick="window.location.href='https://web.fanrhythm.com/my/settings/rates'">
+                                onclick="window.location.href='http://afrifan.com/my/settings/rates'">
                                 <span>{{ __('Subscribe') }} {{ __('for') }}
                                     {{ trans_choice('months', 12, ['number' => 12]) }}</span>
                                 <span class="d-sm-block">
@@ -653,7 +678,7 @@
                     @if (is_array($images))
                         @foreach ($images as $image)
                             <video controls class="d-block w-100 mb-2 videocontrol">
-                                <source src="https://web.fanrhythm.com/storage/public/images/{{ $image }}"
+                                <source src="http://afrifan.com/storage/public/images/{{ $image }}"
                                     type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -901,7 +926,7 @@
                     @if (is_array($images))
                         @foreach ($images as $image)
                             <video controls class="d-block w-100 mb-2 videocontrol">
-                                <source src="https://web.fanrhythm.com/storage/public/images/{{ $image }}"
+                                <source src="http://afrifan.com/storage/public/images/{{ $image }}"
                                     type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
