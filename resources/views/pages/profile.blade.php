@@ -53,7 +53,7 @@
             modalImg.src = this.alt;
             // captionText.innerHTML = this.alt;
         }
-        var span = document.getElementsByClassName("close")[0];
+        var span = document.getElementsByClassName("close-avatar")[0];
         span.onclick = function() {
             modal.style.display = "none";
         }
@@ -78,7 +78,7 @@
         cursor: pointer;
         transition: 0.3s;
         }
-        .modal {
+        .modal-avatar {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
@@ -123,8 +123,8 @@
         to {transform:scale(1)}
     }
 
-    /* The Close Button */
-    .close {
+    /* The Close-avatar Button */
+    .close-avatar {
     position: absolute;
     top: 15px;
     right: 35px;
@@ -134,8 +134,8 @@
     transition: 0.3s;
     }
 
-    .close:hover,
-    .close:focus {
+    .close-avatar:hover,
+    .close-avatar:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
@@ -146,7 +146,7 @@
         .modal-content {
             width: 100%;
         }
-        .close {
+        .close-avatar {
             position: absolute;
             top: 53px;
             right: 7px;
@@ -200,8 +200,8 @@
                         {{-- <img src="{{ $user->avatar }}" class="rounded-circle"> --}}
                         <img id="myImage" src="{{ $user->avatar }}"   alt="{{ $user->avatarOriginal }}" class="rounded-circle" >
                         
-                        <div id="myModal" class="modal">
-                            <span class="close">&times;</span>
+                        <div id="myModal" class="modal-avatar">
+                            <span class="close-avatar">&times;</span>
                             <img class="modal-content" id="image-in-modal">
                             <div id="caption"></div>
                         </div>
@@ -476,7 +476,7 @@
                                 @endif
                             @endif
                             <button class="btn btn-primary"
-                                onclick="window.location.href='https://web.fanrhythm.com/my/settings/rates'">
+                                onclick="window.location.href='http://afrifan.com/my/settings/rates'">
                                 <span>{{ __('Subscribe') }} {{ __('for') }}
                                     {{ trans_choice('days', 30, ['number' => 30]) }}</span>
                                 <span class="d-sm-block">
@@ -486,7 +486,7 @@
                             </button>
 
                             <button class=" btn btn-outline-primary"
-                                onclick="window.location.href='https://web.fanrhythm.com/my/settings/rates'">
+                                onclick="window.location.href='http://afrifan.com/my/settings/rates'">
                                 <span>{{ __('Subscribe') }} {{ __('for') }}
                                     {{ trans_choice('months', 3, ['number' => 3]) }} </span>
                                 <span class="d-sm-block">
@@ -496,7 +496,7 @@
                             </button>
 
                             <button class=" btn btn-outline-primary"
-                                onclick="window.location.href='https://web.fanrhythm.com/my/settings/rates'">
+                                onclick="window.location.href='http://afrifan.com/my/settings/rates'">
                                 <span>{{ __('Subscribe') }} {{ __('for') }}
                                     {{ trans_choice('months', 6, ['number' => 6]) }}</span>
                                 <span class="d-sm-block">
@@ -506,7 +506,7 @@
                             </button>
 
                             <button class=" btn btn-outline-primary"
-                                onclick="window.location.href='https://web.fanrhythm.com/my/settings/rates'">
+                                onclick="window.location.href='http://afrifan.com/my/settings/rates'">
                                 <span>{{ __('Subscribe') }} {{ __('for') }}
                                     {{ trans_choice('months', 12, ['number' => 12]) }}</span>
                                 <span class="d-sm-block">
@@ -653,7 +653,7 @@
                     @if (is_array($images))
                         @foreach ($images as $image)
                             <video controls class="d-block w-100 mb-2 videocontrol">
-                                <source src="https://web.fanrhythm.com/storage/public/images/{{ $image }}"
+                                <source src='{{url("storage/public/images/$image")}}'
                                     type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -901,7 +901,7 @@
                     @if (is_array($images))
                         @foreach ($images as $image)
                             <video controls class="d-block w-100 mb-2 videocontrol">
-                                <source src="https://web.fanrhythm.com/storage/public/images/{{ $image }}"
+                                <source src='{{url("storage/public/images/$image")}}'
                                     type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>

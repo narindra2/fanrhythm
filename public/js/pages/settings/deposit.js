@@ -35,7 +35,7 @@ $(function () {
  */
 var DepositSettings = {
     stripe: null,
-    paymentProvider: null,
+    provider: null,
     amount: $("#deposit-amount").val(),
     myDropzone: null,
     uploadedFiles: [],
