@@ -83,8 +83,6 @@ Route::get('/settings/privacy/countries', ['uses' => 'SettingsController@getCoun
  * (User) Protected routes
  */
 Route::group(['middleware' => ['auth','verified','2fa']], function () {
-    
-   
     // Settings panel routes
     Route::group(['prefix' => 'my', 'as' => 'my.'], function () {
         /*

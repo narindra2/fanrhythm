@@ -148,7 +148,7 @@
         }
         .close-avatar {
             position: absolute;
-            top: 53px;
+            top: 54px;
             right: 7px;
             color: #f1f1f1;
             font-size: 40px;
@@ -240,7 +240,10 @@
                                 /** Tranlate one by one user spoken languages */
                                 $spoken_languages_translated = collect(explode(",", $user->userKnow->spoken_languages))->map(function ( $language ) {
                                     return __($language); 
-                                })->implode(",");
+                                })->implode(", ");
+                               
+
+
                             @endphp
                             <div  style="" class="pointer-cursor spoken-language-list" data-toggle="tooltip" data-placement="top" title="{{ __('Langue parlée de :') . ' ' . $user->name }} ">
                                 <span style=" margin: 10px;  font-size: 12px; ">{{   $spoken_languages_translated }}</span>
@@ -413,11 +416,33 @@
                         @else
                         @endif
                     </div>
-                    @if ($user->website)
-                        <a href="{{ $user->website }}" target="_blank" rel="nofollow" class="text-primary">
-                            {{ str_replace(['https://', 'http://', 'www.'], '', $user->website) }}
-                        </a>
-                    @endif
+                    <div class ="row">
+                        <div class="col-md-6">
+                            @if ($user->website)
+                                <a href="{{ $user->website }}" target="_blank" rel="nofollow" class="text-primary">
+                                    {{ str_replace(['https://', 'http://', 'www.'], '', $user->website) }}
+                                </a>
+                            @endif
+                        </div>
+                        <div class="col-md-6 text-end">
+                            @if ($user->userKnow && $user->userKnow->categories)
+                                @php
+                                    /** Tranlate one by one user spoken languages */
+                                    $cats_translated = collect(explode(",", $user->userKnow->categories))->map(function ( $categorie ) {
+                                    return __($categorie); 
+                                    })->implode(", ");
+
+                                @endphp
+                                <span href="#" style="  font-size: 12px; " class="pointer-cursor spoken-language-list">
+                                    {{ $cats_translated}}
+                                </span>
+                             @endif
+                        </div>
+                    </div>
+                 
+                   
+
+
 
 
                 </div>
