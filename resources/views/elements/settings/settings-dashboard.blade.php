@@ -6,50 +6,104 @@
     <div>
         <canvas id="myChart"></canvas>
     </div>
+    <div id="reportrange" class="text-center mt-2 mb-2"
+        style=" cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar"
+            viewBox="0 0 16 16">
+            <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+        </svg>&nbsp;
+        <span></span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-pen" viewBox="0 0 16 16">
+            <path
+                d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+        </svg>
+    </div>
+    
+    <table class="table caption-top">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">type</th>
+            <th scope="col">total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>bleu</td>
+            <td>sub</td>
+            <td>300.00</td>
+            </tr>
+            <tr>
+            <td>rouge</td>
+            <td>mesages</td>
+            <td>100.33</td>
+            </tr>
+        
+        </tbody>
+    </table>
 </div>
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [{
-                        label: "My First dataset",
-                        data: [10, 80, 56, 60, 6, 45, 15],
-                        fill: false,
-                    }]
+        type: 'line',
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [{
+                label: "From message",
+                data: [10, 80, 56, 60, 6, 45, 15],
+                fill: false,
             },
-            options: {
-                // responsive: true,
-                // legend: {
-                //     position: 'bottom',
-                // },
-                // hover: {
-                //     mode: 'label'
-                // },
-                scales: {
-                    xAxes: [{
-                            display: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Month'
-                            }
-                        }],
-                    yAxes: [{
-                            display: true,
-                            ticks: {
-                                beginAtZero: true,
-                                steps: 10,
-                                stepValue: 5,
-                                max: 100
-                            }
-                        }]
-                },
-                title: {
+            {
+                label: "From tips",
+                data: [20, 35, 45, 12, 16, 43, 50],
+                fill: false,
+            },
+            {
+                label: "from one-month-subscription",
+                data: [11, 0, 0, 0, 0, 0, 11],
+                fill: false,
+            },
+
+            ]
+        },
+        options: {
+            // responsive: true,
+            // legend: {
+            //     position: 'bottom',
+            // },
+            // hover: {
+            //     mode: 'label'
+            // },
+            scales: {
+                xAxes: [{
                     display: true,
-                    text: 'Chart.js Line Chart - Legend'
-                }
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Month'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        beginAtZero: true,
+                        steps: 5,
+                        stepValue: 5,
+                        // max: 100
+                    }
+                }]
+            },
+            title: {
+                display: true,
+                text: 'Chart.js Line Chart - Legend'
             }
-        });
+        }
+    });
+</script>
+<script type="text/javascript">
+
 </script>

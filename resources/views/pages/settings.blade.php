@@ -9,8 +9,7 @@
                 '/js/pages/settings/settings.js',
                 '/js/suggestions.js',
                 '/js/pages/card-box.js',
-                // '/libs/jquery-card-payment/jquery.payment.js',
-                // '/libs/jquery-card-payment/jquery.payment2.js',
+                '/js/pages/settings/chart.js',
          ])
         )->withFullUrl()
     !!}
@@ -20,6 +19,9 @@
     {{-- Select2 JS --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/i18n/{{ App::getLocale() ?? "en" }}.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 @stop
 
 @section('styles')
@@ -39,6 +41,8 @@
         <link href="{{asset('/libs/simplemde/dist/simplemde.min.css')}}" rel="stylesheet">
     @endif
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 @stop
 
 @section('content')
