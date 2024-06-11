@@ -57,6 +57,7 @@ class SettingsController extends Controller
         'notifications' => ['heading' => 'Paramètres de notification', 'icon' => 'notifications'],
         'privacy' => ['heading' => 'Paramètres de confidentialité', 'icon' => 'shield'],
         'verify' => ['heading' => 'Vérification de votre compte', 'icon' => 'checkmark'],
+        'dashboard' => ['heading' => 'Tableau de bord', 'icon' => 'checkmark'],
     ];
 
     public function __construct()
@@ -137,6 +138,9 @@ class SettingsController extends Controller
             case 'subscribers':
                 $subscribers = Subscription::with(['creator'])->where('recipient_user_id', $userID)->orderBy('id', 'desc')->paginate(2);
                 $data['subscribers'] = $subscribers;
+                break;
+            case 'dashboard':
+                $data['auth'] =  Auth::user();
                 break;
             case 'privacy':
                 $devices = UserDevice::where('user_id', $userID)->orderBy('created_at', 'DESC')->get()->map(function ($item) {
@@ -762,5 +766,9 @@ class SettingsController extends Controller
         }
         back()->with('success', __('Vous ne pouvez pas faire ça.'));
         return response()->json(['success' => false,  'message' => __('Vous ne pouvez pas faire ça.')]);
+    }
+    public  function dashboardUser(Request $request)
+    {
+        dd(true);
     }
 }
