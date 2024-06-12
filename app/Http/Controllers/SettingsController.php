@@ -141,7 +141,7 @@ class SettingsController extends Controller
                 $data['subscribers'] = $subscribers;
                 break;
             case 'dashboard':
-                $data['auth'] =  Auth::user();
+                // $data['auth'] =  Auth::user();
                 $start  = '2024-06-01';
                 $end = now()->format('Y-m-d');
                 $interval = CarbonPeriod::create($start, $end);
@@ -170,8 +170,8 @@ class SettingsController extends Controller
                     $dataValue = [];
                     foreach ($interval as $date) {
                         $dataValue[] = $trasanctions->filter(function ($transaction) use ( $date) {
-                            return str_contains($date, $transaction->created_at);
-                        })->where('created_at')->sum('amount');
+                            return str_contains($transaction->created_at ,$date->format('Y-m-d') );
+                        })->sum('amount');
                         
                     }
                     $datasets[] = ['label' => $type  , 'data' => $dataValue  ,'fill' =>false];
@@ -179,7 +179,7 @@ class SettingsController extends Controller
                 foreach ($interval as $date ) {
                     $labels[] = $date->translatedFormat('d-M-Y');
                 }
-             
+                // dd(Auth::user());
                 $data['labels'] =($labels);
                 $data['datasets'] = ($datasets);
                 break;
