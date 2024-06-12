@@ -117,8 +117,8 @@
         <div class="aff_ref_notif_nul">
         {{__('Il n\'y a actuellement aucun abonnement actif ou annulé.')}}
         </div>
-@endif
-
-</div>
+        
+        </div>
+    @endif
 
 @include('elements.settings.transaction-cancel-dialog')

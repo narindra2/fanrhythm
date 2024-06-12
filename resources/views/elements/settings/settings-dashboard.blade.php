@@ -6,83 +6,32 @@
     <div>
         <canvas id="myChart"></canvas>
     </div>
-   
-   
-       
-        {{-- <div class="col-md-6">
-            <div id="reportrange" class=" mt-2 mb-2"  style=" cursor: pointer;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-                </svg>&nbsp;
-                <span></span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-pen" viewBox="0 0 16 16">
-                    <path
-                        d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
-                </svg>
-            </div>
-        </div> --}}
-        <div class="aff_ref_link">
-            <div>
-                <input type="text" name="datetimes" />
-            </div>
+    {{-- <div class="col-md-6">
+        <div id="reportrange" class=" mt-2 mb-2" style=" cursor: pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar"
+                viewBox="0 0 16 16">
+                <path
+                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+            </svg>&nbsp;
+            <span></span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pen" viewBox="0 0 16 16">
+                <path
+                    d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+            </svg>
+        </div>
+    </div> --}}
+    <div class="aff_ref_link">
+        <div>
+            <input type="text" name="datetimes" />
         </div>
     </div>
-   
-
-    <table class="table caption-top">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">type</th>
-                <th scope="col">total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>bleu</td>
-                <td>sub</td>
-                <td>300.00</td>
-            </tr>
-            <tr>
-                <td>rouge</td>
-                <td>mesages</td>
-                <td>100.33</td>
-            </tr>
-
-        </tbody>
-    </table>
+    
 </div>
 
+<div id ='table-info'>
 
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctx = document.getElementById('myChart');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: @json($labels),
-            datasets: @json($datasets)
-        },
-        options: {
-                responsive: true,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Gaing'
-                    }
-                },
-                scales: {
-                    y: {
-                        min: 0,
-                        max: 50,
-                    }
-                }
-            },
-    });
-</script>
-<script type="text/javascript">
+</div>
 
 </script>

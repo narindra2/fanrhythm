@@ -111,6 +111,7 @@ Route::group(['middleware' => ['auth','verified','2fa']], function () {
         Route::get('/settings/{type?}', ['uses' => 'SettingsController@index', 'as'   => 'settings']);
         Route::post('/settings/account/save', ['uses' => 'SettingsController@saveAccount', 'as'   => 'settings.account.save']);
         Route::get('/settings/dashboard', ['uses' => 'SettingsController@dashboardUser', 'as'   => 'settings.dashboard']);
+        Route::post('/settings/dashboard/get-chart-data', ['uses' => 'SettingsController@getChartDataUser', 'as'   => 'settings.dashboard.chartData']);
         // Route::get('/settings/dashboard', ['uses' => 'SettingsController@dashboardUser', 'as'   => 'settings.dashboard']);
 
         /*
