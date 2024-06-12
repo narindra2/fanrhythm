@@ -141,11 +141,9 @@ class SettingsController extends Controller
                 $data['subscribers'] = $subscribers;
                 break;
             case 'dashboard':
-                // $data['auth'] =  Auth::user();
                 $start  = '2024-06-01';
                 $end = now()->format('Y-m-d');
                 $interval = CarbonPeriod::create($start, $end);
-                // Iterate over the period
                 $datasets = [] ;
                 $types =[
                     Transaction::TIP_TYPE,
@@ -161,27 +159,26 @@ class SettingsController extends Controller
                     Transaction::STREAM_ACCESS,
                 ];
                 $trasanctions =Transaction::select(['id','status','recipient_user_id','amount' , 'created_at','type'])
-                    ->where('recipient_user_id',Auth::id())
-                    ->whereIn('type',$types)
-                    ->where('status',Transaction::APPROVED_STATUS)
-                    ->whereBetween('created_at', [$start ." 00:00:00",  $end ." 23:59:59"])
-                    ->get();
+                                ->where('recipient_user_id',Auth::id())
+                                ->whereIn('type',$types)
+                                ->where('status',Transaction::APPROVED_STATUS)
+                                ->whereBetween('created_at', [$start ." 00:00:00",  $end ." 23:59:59"])
+                                ->get();
                 foreach ($types as $type ) {
                     $dataValue = [];
                     foreach ($interval as $date) {
                         $dataValue[] = $trasanctions->where('type',$type)->filter(function ($transaction) use ( $date) {
-                            return $transaction->created_at->format('Y-m-d')  == $date->format('Y-m-d') ;
+                            return $transaction->created_at->format('Y-m-d') == $date->format('Y-m-d') ;
                         })->sum('amount');
                         
                     }
-                    $datasets[] = ['label' => $type  , 'data' => $dataValue  ,'fill' =>false];
+                    $datasets[] = ['label' => $type , 'data' => $dataValue ,'fill' => false];
                 }
                 foreach ($interval as $date ) {
                     $labels[] = $date->translatedFormat('d-M-Y');
                 }
-                // dd(Auth::user());
-                $data['labels'] =($labels);
-                $data['datasets'] = ($datasets);
+                $data['labels'] = $labels;
+                $data['datasets'] = $datasets;
                 break;
             case 'privacy':
                 $devices = UserDevice::where('user_id', $userID)->orderBy('created_at', 'DESC')->get()->map(function ($item) {
