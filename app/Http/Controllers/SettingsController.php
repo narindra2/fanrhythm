@@ -175,7 +175,7 @@ class SettingsController extends Controller
                     $datasets[] = ['label' => $type , 'data' => $dataValue ,'fill' => false];
                 }
                 foreach ($interval as $date ) {
-                    $labels[] = $date->translatedFormat('d-M-Y');
+                    $labels[] = $date->translatedFormat('d-M');
                 }
                 $data['labels'] = $labels;
                 $data['datasets'] = $datasets;
