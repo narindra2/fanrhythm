@@ -169,8 +169,8 @@ class SettingsController extends Controller
                 foreach ($types as $type ) {
                     $dataValue = [];
                     foreach ($interval as $date) {
-                        $dataValue[] = $trasanctions->filter(function ($transaction) use ( $date) {
-                            return str_contains($transaction->created_at ,$date->format('Y-m-d') );
+                        $dataValue[] = $trasanctions->where('type',$type)->filter(function ($transaction) use ( $date) {
+                            return $transaction->created_at->format('Y-m-d')  == $date->format('Y-m-d') ;
                         })->sum('amount');
                         
                     }
