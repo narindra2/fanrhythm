@@ -210,10 +210,11 @@ class SettingsController extends Controller
         return $this->renderSettingView($request->route('type'), $data);
     }
     public function getChartDataUser(Request $request) {
-        // dd($request->all());
-        $start  = $request->startDate ?? now()->subDays(7)->format('Y-m-d');
-        $start  = '2024-06-06';
+       
+        $start   = $request->startDate  ? Carbon::make($request->startDate )->format('Y-m-d') : now()->subDays(7)->format('Y-m-d');
+        // $start  = '2024-06-06';
         $end =  now()->format('Y-m-d');
+        // dd( $start);
         $interval = CarbonPeriod::create($start, $end);
         $datasets = [] ;
         $types =[
@@ -227,7 +228,7 @@ class SettingsController extends Controller
             Transaction::SIX_MONTHS_SUBSCRIPTION,
             Transaction::YEARLY_SUBSCRIPTION,
             Transaction::SUBSCRIPTION_RENEWAL,
-            Transaction::STREAM_ACCESS,
+            // Transaction::STREAM_ACCESS,
         ];
         $trasanctions =Transaction::select(['id','status','recipient_user_id','amount' , 'created_at','type'])
                         ->where('recipient_user_id',Auth::id())
@@ -250,6 +251,8 @@ class SettingsController extends Controller
         }
         $data['labels'] = $labels;
         $data['datasets'] = $datasets;
+        $data['currency_code'] = getSetting('payments.currency_code');
+    
         return ['success' => true,'chartData'=> $data ,'table'=> view('elements.settings.settings-chart-table' ,$data)->render()];
     }
     /**

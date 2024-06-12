@@ -13,9 +13,8 @@ $(function() {
             },
             ranges: {
                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
                'Last 60 Days': [moment().subtract(59, 'days'), moment()],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             }
         }).on('apply.daterangepicker', (e, picker) => {
             var startDate = picker.startDate.format('YYYY-MM-DD');
