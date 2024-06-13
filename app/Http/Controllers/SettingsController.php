@@ -141,44 +141,7 @@ class SettingsController extends Controller
                 $data['subscribers'] = $subscribers;
                 break;
             case 'dashboard':
-                $start  = '2024-06-01';
-                $end = now()->format('Y-m-d');
-                $interval = CarbonPeriod::create($start, $end);
-                $datasets = [] ;
-                $types =[
-                    Transaction::TIP_TYPE,
-                    Transaction::DEPOSIT_TYPE,
-                    Transaction::CHAT_TIP_TYPE,
-                    Transaction::POST_UNLOCK,
-                    Transaction::MESSAGE_UNLOCK,
-                    Transaction::ONE_MONTH_SUBSCRIPTION,
-                    Transaction::THREE_MONTHS_SUBSCRIPTION,
-                    Transaction::SIX_MONTHS_SUBSCRIPTION,
-                    Transaction::YEARLY_SUBSCRIPTION,
-                    Transaction::SUBSCRIPTION_RENEWAL,
-                    Transaction::STREAM_ACCESS,
-                ];
-                $trasanctions =Transaction::select(['id','status','recipient_user_id','amount' , 'created_at','type'])
-                                ->where('recipient_user_id',Auth::id())
-                                ->whereIn('type',$types)
-                                ->where('status',Transaction::APPROVED_STATUS)
-                                ->whereBetween('created_at', [$start ." 00:00:00",  $end ." 23:59:59"])
-                                ->get();
-                foreach ($types as $type ) {
-                    $dataValue = [];
-                    foreach ($interval as $date) {
-                        $dataValue[] = $trasanctions->where('type',$type)->filter(function ($transaction) use ( $date) {
-                            return $transaction->created_at->format('Y-m-d') == $date->format('Y-m-d') ;
-                        })->sum('amount');
-                        
-                    }
-                    $datasets[] = ['label' => $type , 'data' => $dataValue ,'fill' => false];
-                }
-                foreach ($interval as $date ) {
-                    $labels[] = $date->translatedFormat('d-M');
-                }
-                $data['labels'] = $labels;
-                $data['datasets'] = $datasets;
+                
                 break;
             case 'privacy':
                 $devices = UserDevice::where('user_id', $userID)->orderBy('created_at', 'DESC')->get()->map(function ($item) {
@@ -223,7 +186,7 @@ class SettingsController extends Controller
                     ],
                 ]);
                 $data['genders'] = UserGender::all();
-                $data['minBirthDate'] = Carbon::now()->subYear(18)->format('Y-m-d');
+                $data['minBirthDate'] = Carbon::now()->subYears(18)->format('Y-m-d');
                 $data['spokenlanguage'] = collect(getSpokenlanguage())->sortBy("");
                 $data['categories'] = [__("Model"), __("Influenceur(se)"), __("Artiste"),
                 __("Photographe") ,__("Coach") ,__("Coach de vie") , __("Coach en nutrition") ,
@@ -246,7 +209,52 @@ class SettingsController extends Controller
 
         return $this->renderSettingView($request->route('type'), $data);
     }
-
+    public function getChartDataUser(Request $request) {
+       
+        $start   = $request->startDate  ? Carbon::make($request->startDate )->format('Y-m-d') : now()->subDays(7)->format('Y-m-d');
+        // $start  = '2024-06-06';
+        $end =  now()->format('Y-m-d');
+        // dd( $start);
+        $interval = CarbonPeriod::create($start, $end);
+        $datasets = [] ;
+        $types =[
+            Transaction::TIP_TYPE,
+            Transaction::DEPOSIT_TYPE,
+            Transaction::CHAT_TIP_TYPE,
+            Transaction::POST_UNLOCK,
+            Transaction::MESSAGE_UNLOCK,
+            Transaction::ONE_MONTH_SUBSCRIPTION,
+            Transaction::THREE_MONTHS_SUBSCRIPTION,
+            Transaction::SIX_MONTHS_SUBSCRIPTION,
+            Transaction::YEARLY_SUBSCRIPTION,
+            Transaction::SUBSCRIPTION_RENEWAL,
+            // Transaction::STREAM_ACCESS,
+        ];
+        $trasanctions =Transaction::select(['id','status','recipient_user_id','amount' , 'created_at','type'])
+                        ->where('recipient_user_id',Auth::id())
+                        ->whereIn('type',$types)
+                        ->where('status',Transaction::APPROVED_STATUS)
+                        ->whereBetween('created_at', [$start ." 00:00:00",  $end ." 23:59:59"])
+                        ->get();
+        foreach ($types as $type ) {
+            $dataValue = [];
+            foreach ($interval as $date) {
+                $dataValue[] = $trasanctions->where('type',$type)->filter(function ($transaction) use ( $date) {
+                    return $transaction->created_at->format('Y-m-d') == $date->format('Y-m-d') ;
+                })->sum('amount');
+                
+            }
+            $datasets[] = ['label' => $type , 'data' => $dataValue ,'fill' => false];
+        }
+        foreach ($interval as $date ) {
+            $labels[] = $date->translatedFormat('d-M');
+        }
+        $data['labels'] = $labels;
+        $data['datasets'] = $datasets;
+        $data['currency_code'] = getSetting('payments.currency_code');
+    
+        return ['success' => true,'chartData'=> $data ,'table'=> view('elements.settings.settings-chart-table' ,$data)->render()];
+    }
     /**
      * Renders the selected setting type page.
      *
