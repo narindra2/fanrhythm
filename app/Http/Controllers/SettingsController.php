@@ -141,7 +141,7 @@ class SettingsController extends Controller
                 $data['subscribers'] = $subscribers;
                 break;
             case 'dashboard':
-               
+                
                 break;
             case 'privacy':
                 $devices = UserDevice::where('user_id', $userID)->orderBy('created_at', 'DESC')->get()->map(function ($item) {
@@ -217,26 +217,30 @@ class SettingsController extends Controller
         // dd( $start);
         $interval = CarbonPeriod::create($start, $end);
         $datasets = [] ;
-        $types =[
-            Transaction::TIP_TYPE,
-            Transaction::DEPOSIT_TYPE,
-            Transaction::CHAT_TIP_TYPE,
-            Transaction::POST_UNLOCK,
-            Transaction::MESSAGE_UNLOCK,
-            Transaction::ONE_MONTH_SUBSCRIPTION,
-            Transaction::THREE_MONTHS_SUBSCRIPTION,
-            Transaction::SIX_MONTHS_SUBSCRIPTION,
-            Transaction::YEARLY_SUBSCRIPTION,
-            Transaction::SUBSCRIPTION_RENEWAL,
-            // Transaction::STREAM_ACCESS,
-        ];
+        $collection = collect([
+            ["type" =>  Transaction::TIP_TYPE , "color" => "#008080",],
+            ["type" =>  Transaction::DEPOSIT_TYPE , "color" => "#0000FF",],
+            ["type" =>  Transaction::CHAT_TIP_TYPE , "color" => "#8A2BE2",],
+            ["type" =>  Transaction::POST_UNLOCK , "color" => "#7FFF00",],
+            ["type" =>  Transaction::MESSAGE_UNLOCK , "color" => "#DC143C",],
+            ["type" =>  Transaction::ONE_MONTH_SUBSCRIPTION , "color" => "#FF4500",],
+            ["type" =>  Transaction::THREE_MONTHS_SUBSCRIPTION , "color" => "#FF0000",],
+            ["type" =>  Transaction::SIX_MONTHS_SUBSCRIPTION , "color" => "#FF1493",],
+            ["type" =>  Transaction::YEARLY_SUBSCRIPTION , "color" => "#00FF7F",],
+            ["type" =>  Transaction::SUBSCRIPTION_RENEWAL , "color" => "#9ACD32",],
+            // [  "type" =>  Transaction::STREAM_ACCESS, "color" => "", ]
+          ]);
+        $types_available = $collection->pluck("type")->all();
+       
+
         $trasanctions =Transaction::select(['id','status','recipient_user_id','amount' , 'created_at','type'])
                         ->where('recipient_user_id',Auth::id())
-                        ->whereIn('type',$types)
+                        ->whereIn('type', $types_available )
                         ->where('status',Transaction::APPROVED_STATUS)
                         ->whereBetween('created_at', [$start ." 00:00:00",  $end ." 23:59:59"])
                         ->get();
-        foreach ($types as $type ) {
+        foreach ($types_available  as $type ) {
+          
             $dataValue = [];
             foreach ($interval as $date) {
                 $dataValue[] = $trasanctions->where('type',$type)->filter(function ($transaction) use ( $date) {
@@ -244,7 +248,8 @@ class SettingsController extends Controller
                 })->sum('amount');
                 
             }
-            $datasets[] = ['label' => $type , 'data' => $dataValue ,'fill' => false];
+            $labelColor = $collection->firstWhere('type', $type )["color"];
+            $datasets[] = ['label' => $type , 'labelOnTable' => $type ,  'data' => $dataValue ,'tension' => 0.5 , "borderColor" =>  $labelColor,  "backgroundColor" => $labelColor ];
         }
         foreach ($interval as $date ) {
             $labels[] = $date->translatedFormat('d-M');

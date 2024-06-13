@@ -25,7 +25,7 @@
         "laravel/ui": "^3.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "mews/purifier": "^3.3",
-        "owen-oj/laravel-getid3": "*",
+        "owen-oj/laravel-getid3": "^2.3",
         "paydunya/paydunya": "^1.0",
         "paypal/rest-api-sdk-php": "^1.14",
         "pbmedia/laravel-ffmpeg": "^7.5",

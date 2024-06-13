@@ -56,6 +56,7 @@ class JavascriptVariables
                 'user' => [
                     'username' => $auth->username,
                     'user_id' => $auth->id,
+                    'userLang' => $auth->settings['locale'] ?? "en",
                 ],
                 'socketsDriver' => getSetting('websockets.driver'),
                 'pusher' => [
