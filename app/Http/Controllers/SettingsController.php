@@ -248,7 +248,6 @@ class SettingsController extends Controller
                 })->sum('amount');
                 
             }
-           
             $labelColor = $collection->firstWhere('type', $type )["color"];
             $datasets[] = ['label' => $type , 'labelOnTable' => $type ,  'data' => $dataValue ,'tension' => 0.5 , "borderColor" =>  $labelColor,  "backgroundColor" => $labelColor ];
         }
