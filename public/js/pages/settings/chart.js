@@ -5,6 +5,7 @@ $(function() {
     var end = moment().format('DD/MM/YYYY');
    
     $(function() {
+        getDataChart(start ,end);
         $('input[name="datetimes"]').daterangepicker({
             startDate: start,
             endDate: end,
@@ -21,8 +22,10 @@ $(function() {
             var endDate = picker.endDate.format('YYYY-MM-DD');
             getDataChart(startDate ,endDate);
           });
+          $("#icon-calendar").on("click" , function(){
+            $('input[name="datetimes"]').trigger('click')
+          })
       });
-      getDataChart(start ,end);
 
       function getDataChart(startDate = '' ,endDate){
         $.ajax({
@@ -42,6 +45,7 @@ $(function() {
                     const ctx = document.getElementById('myChart');
                     chartDashboar =  new Chart(ctx, {
                         type: 'line',
+                        display: false,
                         data: {
                             labels:result.chartData.labels ,
                             datasets:result.chartData.datasets 
@@ -51,7 +55,10 @@ $(function() {
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: 'Gaing'
+                                    // text: 'Gaing'
+                                },
+                                legend: {
+                                    display: false // Désactiver l'affichage de la légende
                                 }
                             },
                             scales: {
