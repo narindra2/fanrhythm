@@ -9,7 +9,7 @@
                 '/js/pages/settings/settings.js',
                 '/js/suggestions.js',
                 '/js/pages/card-box.js',
-                '/js/pages/settings/chart.js',
+                '/js/pages/settings/transaction-chart.js',
          ])
         )->withFullUrl()
     !!}
