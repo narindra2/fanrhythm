@@ -5,7 +5,7 @@
     <div>
         <canvas id="myChart"></canvas>
     </div>
-    <div class="aff_ref_link" style="padding: 0px 0px 0px 0px;">
+    <div class="aff_ref_link mb-3" style="padding: 0px 0px 0px 0px;">
         <div class= 'datetimes-chart'>
             <input type="text" name="datetimes" />
             <span id="icon-calendar">
@@ -19,7 +19,3 @@
     </div>
     <div id='table-info'></div>
 </div>
-
-<style> 
-
-</style>

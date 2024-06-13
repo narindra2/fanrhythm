@@ -249,7 +249,7 @@ class SettingsController extends Controller
                 
             }
             $labelColor = $collection->firstWhere('type', $type )["color"];
-            $datasets[] = ['label' => $type , 'labelOnTable' => $type ,  'data' => $dataValue ,'tension' => 0.5 , "borderColor" =>  $labelColor,  "backgroundColor" => $labelColor ];
+            $datasets[] = ['label' => $type , 'labelOnTable' => $type ,  'data' => $dataValue ,'tension' => 0.1 , "borderColor" =>  $labelColor,  "backgroundColor" => $labelColor ];
         }
         foreach ($interval as $date ) {
             $labels[] = $date->translatedFormat('d-M');
