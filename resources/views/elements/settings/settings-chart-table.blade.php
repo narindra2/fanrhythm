@@ -77,15 +77,15 @@
       .dark_theme  .daterangepicker .applyBtn:hover, .daterangepicker .cancelBtn:hover {
             background-color: #242526;
         }
-        .dark_theme   .daterangepicker td.off, .daterangepicker td.off.in-range, .daterangepicker td.off.start-date, .daterangepicker td.off.end-date {
+        
+      .dark_theme .daterangepicker td.in-range{
+        background-color:cornflowerblue;
+        border-color: transparent;
+        border-radius: 0;
+    }
+    .dark_theme   .daterangepicker td.off, .daterangepicker td.off.in-range, .daterangepicker td.off.start-date, .daterangepicker td.off.end-date {
           background-color:#242526;
           border-color: transparent;
           color: #999;
       }
-      .dark_theme .daterangepicker td.in-range {
-        background-color:cornflowerblue;
-        border-color: transparent;
-        /* color: #000; */
-        border-radius: 0;
-    }
 </style>

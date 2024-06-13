@@ -213,7 +213,7 @@ class SettingsController extends Controller
         $labels = [];
         $start   = $request->startDate  ? Carbon::make($request->startDate )->format('Y-m-d') : now()->subDays(7)->format('Y-m-d');
         // $start  = '2024-06-06';
-        $end =  now()->format('Y-m-d');
+        $end =  Carbon::make($request->endDate )->isFuture()  ?  now()->format('Y-m-d') : $request->endDate;
         // dd( $start);
         $interval = CarbonPeriod::create($start, $end);
         $datasets = [] ;
