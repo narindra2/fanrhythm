@@ -123,6 +123,7 @@
             </li>
 
         @endif
+        @if(Auth::check())
         <li>
             <a href="{{ url('/my/bookmarks/list?filter=all')}}"
                 class="{{Route::currentRouteName() == 'my.settings' &&  is_int(strpos(Request::path(),'subscriptions')) ? 'active' : ''}}">
@@ -132,6 +133,7 @@
                 {{__('Mes bookmarks')}}
             </a>
         </li>
+        @endif
         <li>
             <a href="https://web.fanrhythm.com/contact">
 

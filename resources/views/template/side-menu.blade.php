@@ -1,22 +1,22 @@
 <div>
     @if(Auth::check())
-    <a id="aff_user" href="{{route('profile',['username'=>Auth::user()->username])}}">
-        @if(Auth::check())
-        <img src="{{Auth::user()->avatar}}" class="rounded-circle user-avatar">
-        @else
-        @include('elements.icon',['icon'=>'person-circle','variant'=>'xlarge text-muted'])
-        @endif
-        @if(Auth::check())
-        <div>
-            <div>
-                {{Auth::user()->name }}
-                
-                @if(Auth::check())
-                @if(Auth::user()->verification && Auth::user()->verification->status == 'verified')
+        <a id="aff_user" href="{{route('profile', ['username' => Auth::user()->username])}}">
+            @if(Auth::check())
+                <img src="{{Auth::user()->avatar}}" class="rounded-circle user-avatar">
+            @else
+                @include('elements.icon', ['icon' => 'person-circle', 'variant' => 'xlarge text-muted'])
+            @endif
+            @if(Auth::check())
+                <div>
+                    <div>
+                        {{Auth::user()->name }}
 
-                <span data-toggle="tooltip" data-placement="top" title="{{__('Verified user')}}">
-                                    <svg style="fill: #59b8f7; height: 16px;" viewBox="0 0 22 22"
-                                        aria-label="Compte certifié" role="img" data-testid="icon-verified">
+                        @if(Auth::check())
+                            @if(Auth::user()->verification && Auth::user()->verification->status == 'verified')
+
+                                <span data-toggle="tooltip" data-placement="top" title="{{__('Verified user')}}">
+                                    <svg style="fill: #59b8f7; height: 16px;" viewBox="0 0 22 22" aria-label="Compte certifié"
+                                        role="img" data-testid="icon-verified">
                                         <g>
                                             <path
                                                 d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z">
@@ -24,23 +24,23 @@
                                         </g>
                                     </svg>
                                 </span>
-                                
-                @endif
-                @endif
-            </div>
-            <div>
-                {{ __('@') }}{{Auth::user()->username}}
-            </div>
-        </div>
-        @endif
-    </a>
+
+                            @endif
+                        @endif
+                    </div>
+                    <div>
+                        {{ __('@') }}{{Auth::user()->username}}
+                    </div>
+                </div>
+            @endif
+        </a>
 
     @endif
 
     @if(!Auth::check())
-    <a href="/" class="non_connecte">
-        <img src="/img/logo.webp" class="mail-logo" width="77">
-    </a>
+        <a href="/" class="non_connecte">
+            <img src="/img/logo.webp" class="mail-logo" width="77">
+        </a>
     @endif
 
 
@@ -98,48 +98,50 @@
             <a href="{{ route('my.settings.dashboard') }}"
                 class="{{Route::currentRouteName() == 'my.settings.dashboard' ? 'active' : ''}}">
                 <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="26px" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/>
-                </svg>
-                 {{__('Tableau de bord')}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26px" height="26px" fill="currentColor"
+                        class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5" />
+                    </svg>
+                    {{__('Tableau de bord')}}
                 </div>
             </a>
         </li>
 
         @if(Auth::check())
-         @if(Auth::user()->verification && Auth::user()->verification->status == 'verified')
+            @if(Auth::user()->verification && Auth::user()->verification->status == 'verified')
 
 
 
-        @if(getSetting('streams.allow_streams'))
-        <li class="d-none">
-            <a href="{{route('search.get')}}?filter=live"
-                class="{{Route::currentRouteName() == 'search.get' && request()->get('filter') == 'live' ? '' : ''}}">
+                @if(getSetting('streams.allow_streams'))
+                    <li class="d-none">
+                        <a href="{{route('search.get')}}?filter=live"
+                            class="{{Route::currentRouteName() == 'search.get' && request()->get('filter') == 'live' ? '' : ''}}">
 
 
-                <div>
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="10---Recherche---Rechercher-une-personne"
-                                transform="translate(-274.000000, -404.000000)" fill="#000000" fill-rule="nonzero">
-                                <g id="play-circle-fill" transform="translate(274.000000, 404.000000)">
-                                    <path
-                                        d="M24,12 C24,18.627417 18.627417,24 12,24 C5.372583,24 0,18.627417 0,12 C0,5.372583 5.372583,0 12,0 C18.627417,0 24,5.372583 24,12 M10.185,7.6395 C9.95637593,7.47672153 9.65600119,7.45520755 9.4065122,7.58374175 C9.15702322,7.71227595 9.00017298,7.96934761 9,8.25 L9,15.75 C9.00017298,16.0306524 9.15702322,16.2877241 9.4065122,16.4162583 C9.65600119,16.5447925 9.95637593,16.5232785 10.185,16.3605 L15.435,12.6105 C15.6322605,12.4697363 15.7493513,12.2423347 15.7493513,12 C15.7493513,11.7576653 15.6322605,11.5302637 15.435,11.3895 L10.185,7.6395 Z"
-                                        id="Shape"></path>
-                                </g>
-                            </g>
-                        </g>
-                    </svg>
+                            <div>
+                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g id="10---Recherche---Rechercher-une-personne"
+                                            transform="translate(-274.000000, -404.000000)" fill="#000000" fill-rule="nonzero">
+                                            <g id="play-circle-fill" transform="translate(274.000000, 404.000000)">
+                                                <path
+                                                    d="M24,12 C24,18.627417 18.627417,24 12,24 C5.372583,24 0,18.627417 0,12 C0,5.372583 5.372583,0 12,0 C18.627417,0 24,5.372583 24,12 M10.185,7.6395 C9.95637593,7.47672153 9.65600119,7.45520755 9.4065122,7.58374175 C9.15702322,7.71227595 9.00017298,7.96934761 9,8.25 L9,15.75 C9.00017298,16.0306524 9.15702322,16.2877241 9.4065122,16.4162583 C9.65600119,16.5447925 9.95637593,16.5232785 10.185,16.3605 L15.435,12.6105 C15.6322605,12.4697363 15.7493513,12.2423347 15.7493513,12 C15.7493513,11.7576653 15.6322605,11.5302637 15.435,11.3895 L10.185,7.6395 Z"
+                                                    id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
 
-                    {{__('Explore live')}}
-                </div>
+                                {{__('Explore live')}}
+                            </div>
 
-            </a>
-        </li>
-        @endif
+                        </a>
+                    </li>
+                @endif
 
-        @endif
+            @endif
         @endif
 
 
@@ -147,160 +149,164 @@
 
 
         @if(GenericHelper::isEmailEnforcedAndValidated())
-        <li>
-            <a href="{{route('my.notifications')}}"
-                class="{{Route::currentRouteName() == 'my.notifications' ? 'active' : ''}}">
-                <div>
+            <li>
+                <a href="{{route('my.notifications')}}"
+                    class="{{Route::currentRouteName() == 'my.notifications' ? 'active' : ''}}">
+                    <div>
 
-                    <svg width="24px" height="26px" viewBox="0 0 24 26" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <g id="menu" transform="translate(1.000000, -124.000000)" stroke="#000000"
-                                stroke-width="2.5">
-                                <g id="bell" transform="translate(1.000000, 126.000000)">
+                        <svg width="24px" height="26px" viewBox="0 0 24 26" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <g id="menu" transform="translate(1.000000, -124.000000)" stroke="#000000"
+                                    stroke-width="2.5">
+                                    <g id="bell" transform="translate(1.000000, 126.000000)">
+                                        <path
+                                            d="M16.5,6.6 C16.5,2.95492065 13.5450793,0 9.9,0 C6.25492065,0 3.3,2.95492065 3.3,6.6 C3.3,14.3 0,16.5 0,16.5 L19.8,16.5 C19.8,16.5 16.5,14.3 16.5,6.6"
+                                            id="Path"></path>
+                                        <path
+                                            d="M11.803,20.9 C11.4094225,21.5784848 10.6843755,21.9961019 9.9,21.9961019 C9.11562453,21.9961019 8.39057754,21.5784848 7.997,20.9"
+                                            id="Path"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                        {{__('Notifications')}}
+                    </div>
+                    <div
+                        class="{{(isset($notificationsCountOverride) && $notificationsCountOverride->total > 0) || (NotificationsHelper::getUnreadNotifications()->total > 0) ? '' : 'd-none'}}">
+                        {{!isset($notificationsCountOverride) ? NotificationsHelper::getUnreadNotifications()->total : $notificationsCountOverride->total}}
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('my.messenger.get')}}"
+                    class="{{Route::currentRouteName() == 'my.messenger.get' ? 'active' : ''}}">
+
+                    <div>
+
+                        <svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <g id="menu" transform="translate(1.000000, -187.000000)" stroke="#000000"
+                                    stroke-width="2.5">
+                                    <g id="message-square" transform="translate(1.000000, 189.000000)">
+                                        <path
+                                            d="M22,14.6666667 C22,16.0166961 20.9055849,17.1111111 19.5555556,17.1111111 L4.88888889,17.1111111 L0,22 L0,2.44444444 C0,1.09441506 1.09441506,0 2.44444444,0 L19.5555556,0 C20.9055849,0 22,1.09441506 22,2.44444444 L22,14.6666667 Z"
+                                            id="Path"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                        {{__('Messages')}}
+                    </div>
+
+                    <div class="{{(NotificationsHelper::getUnreadMessages() > 0) ? '' : 'd-none'}}">
+                        {{NotificationsHelper::getUnreadMessages()}}
+                    </div>
+                </a>
+            </li>
+
+
+
+
+            <li>
+                <a href="{{route('my.lists.all')}}" class="{{Route::currentRouteName() == 'my.lists.all' ? 'active' : ''}}">
+                    <div>
+
+                        <svg width="24px" height="18px" viewBox="0 0 24 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <g id="menu" transform="translate(0.000000, -257.000000)" stroke="#000000"
+                                    stroke-width="2.5">
+                                    <g id="list" transform="translate(1.000000, 258.000000)">
+                                        <line x1="6.85714286" y1="1.14285714" x2="21.7142857" y2="1.14285714" id="Path">
+                                        </line>
+                                        <line x1="6.85714286" y1="8" x2="21.7142857" y2="8" id="Path"></line>
+                                        <line x1="6.85714286" y1="14.8571429" x2="21.7142857" y2="14.8571429" id="Path">
+                                        </line>
+                                        <line x1="1.14285714" y1="1.14285714" x2="1.15428571" y2="1.14285714" id="Path">
+                                        </line>
+                                        <line x1="1.14285714" y1="8" x2="1.15428571" y2="8" id="Path"></line>
+                                        <line x1="1.14285714" y1="14.8571429" x2="1.15428571" y2="14.8571429" id="Path">
+                                        </line>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                        {{__('Listes')}}
+                    </div>
+                </a>
+            </li>
+            {{-- <li>
+                <a href="{{route('my.settings',['type'=>'subscriptions'])}}"
+                    class="{{Route::currentRouteName() == 'my.settings' &&  is_int(strpos(Request::path(),'subscriptions')) ? 'active' : ''}}">
+                    <div>
+                        <svg width="31px" height="26px" viewBox="0 0 31 26" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <g id="users-(1)" transform="translate(2.000000, 2.000000)" stroke="#000000"
+                                    stroke-width="3">
                                     <path
-                                        d="M16.5,6.6 C16.5,2.95492065 13.5450793,0 9.9,0 C6.25492065,0 3.3,2.95492065 3.3,6.6 C3.3,14.3 0,16.5 0,16.5 L19.8,16.5 C19.8,16.5 16.5,14.3 16.5,6.6"
+                                        d="M19.5555556,22 L19.5555556,19.5555556 C19.5555556,16.8554968 17.3667254,14.6666667 14.6666667,14.6666667 L4.88888889,14.6666667 C2.18883011,14.6666667 0,16.8554968 0,19.5555556 L0,22"
+                                        id="Path"></path>
+                                    <circle id="Oval" cx="9.77777778" cy="4.88888889" r="4.88888889"></circle>
+                                    <path
+                                        d="M26.8888889,22 L26.8888889,19.5555556 C26.887227,17.3275884 25.379443,15.3825469 23.2222222,14.8255556"
                                         id="Path"></path>
                                     <path
-                                        d="M11.803,20.9 C11.4094225,21.5784848 10.6843755,21.9961019 9.9,21.9961019 C9.11562453,21.9961019 8.39057754,21.5784848 7.997,20.9"
+                                        d="M18.3333333,0.158888889 C20.4965626,0.712763074 22.0095862,2.66198918 22.0095862,4.895 C22.0095862,7.12801082 20.4965626,9.07723693 18.3333333,9.63111111"
                                         id="Path"></path>
                                 </g>
                             </g>
-                        </g>
-                    </svg>
-                    {{__('Notifications')}}
-                </div>
-                <div
-                    class="{{(isset($notificationsCountOverride) && $notificationsCountOverride->total > 0 ) || (NotificationsHelper::getUnreadNotifications()->total > 0) ? '' : 'd-none'}}">
-                    {{!isset($notificationsCountOverride) ? NotificationsHelper::getUnreadNotifications()->total : $notificationsCountOverride->total}}
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="{{route('my.messenger.get')}}"
-                class="{{Route::currentRouteName() == 'my.messenger.get' ? 'active' : ''}}">
+                        </svg>
+                        {{__('Mes abonnements')}}
+                    </div>
+                </a>
+            </li> --}}
+            @if(Auth::check())
+            <li>
+                <a href="{{ url('/my/bookmarks/list?filter=all')}}"
+                    class="{{Route::currentRouteName() == 'my.settings' && is_int(strpos(Request::path(), 'subscriptions')) ? 'active' : ''}}">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-bookmark" viewBox="0 0 16 16">
+                            <path
+                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z" />
+                        </svg>
+                        {{__('Mes bookmarks')}}
+                    </div>
+                </a>
+            </li>
+            @endif
+            <li>
+                <a href="{{route('profile', ['username' => Auth::user()->username])}}"
+                    class="{{Route::currentRouteName() == 'profile' && (request()->route("username") == Auth::user()->username) ? 'active' : ''}}">
+                    <div>
 
-                <div>
-
-                    <svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <g id="menu" transform="translate(1.000000, -187.000000)" stroke="#000000"
-                                stroke-width="2.5">
-                                <g id="message-square" transform="translate(1.000000, 189.000000)">
-                                    <path
-                                        d="M22,14.6666667 C22,16.0166961 20.9055849,17.1111111 19.5555556,17.1111111 L4.88888889,17.1111111 L0,22 L0,2.44444444 C0,1.09441506 1.09441506,0 2.44444444,0 L19.5555556,0 C20.9055849,0 22,1.09441506 22,2.44444444 L22,14.6666667 Z"
-                                        id="Path"></path>
+                        <svg width="20px" height="22px" viewBox="0 0 20 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <g id="menu" transform="translate(-2.000000, -315.000000)" stroke="#000000"
+                                    stroke-width="2.5">
+                                    <g id="user" transform="translate(4.000000, 317.000000)">
+                                        <path
+                                            d="M16,18 L16,16 C16,13.790861 14.209139,12 12,12 L4,12 C1.790861,12 0,13.790861 0,16 L0,18"
+                                            id="Path"></path>
+                                        <circle id="Oval" cx="8" cy="4" r="4"></circle>
+                                    </g>
                                 </g>
                             </g>
-                        </g>
-                    </svg>
-                    {{__('Messages')}}
-                </div>
+                        </svg>
+                        {{__('Mon profil')}}
+                    </div>
 
-                <div class="{{(NotificationsHelper::getUnreadMessages() > 0) ? '' : 'd-none'}}">
-                    {{NotificationsHelper::getUnreadMessages()}}
-                </div>
-            </a>
-        </li>
-
-
-
-
-        <li>
-            <a href="{{route('my.lists.all')}}" class="{{Route::currentRouteName() == 'my.lists.all' ? 'active' : ''}}">
-                <div>
-
-                    <svg width="24px" height="18px" viewBox="0 0 24 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <g id="menu" transform="translate(0.000000, -257.000000)" stroke="#000000"
-                                stroke-width="2.5">
-                                <g id="list" transform="translate(1.000000, 258.000000)">
-                                    <line x1="6.85714286" y1="1.14285714" x2="21.7142857" y2="1.14285714" id="Path">
-                                    </line>
-                                    <line x1="6.85714286" y1="8" x2="21.7142857" y2="8" id="Path"></line>
-                                    <line x1="6.85714286" y1="14.8571429" x2="21.7142857" y2="14.8571429" id="Path">
-                                    </line>
-                                    <line x1="1.14285714" y1="1.14285714" x2="1.15428571" y2="1.14285714" id="Path">
-                                    </line>
-                                    <line x1="1.14285714" y1="8" x2="1.15428571" y2="8" id="Path"></line>
-                                    <line x1="1.14285714" y1="14.8571429" x2="1.15428571" y2="14.8571429" id="Path">
-                                    </line>
-                                </g>
-                            </g>
-                        </g>
-                    </svg>
-                    {{__('Listes')}}
-                </div>
-            </a>
-        </li>
-        {{-- <li>
-            <a href="{{route('my.settings',['type'=>'subscriptions'])}}"
-                class="{{Route::currentRouteName() == 'my.settings' &&  is_int(strpos(Request::path(),'subscriptions')) ? 'active' : ''}}">
-                <div>
-                    <svg width="31px" height="26px" viewBox="0 0 31 26" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <g id="users-(1)" transform="translate(2.000000, 2.000000)" stroke="#000000"
-                                stroke-width="3">
-                                <path
-                                    d="M19.5555556,22 L19.5555556,19.5555556 C19.5555556,16.8554968 17.3667254,14.6666667 14.6666667,14.6666667 L4.88888889,14.6666667 C2.18883011,14.6666667 0,16.8554968 0,19.5555556 L0,22"
-                                    id="Path"></path>
-                                <circle id="Oval" cx="9.77777778" cy="4.88888889" r="4.88888889"></circle>
-                                <path
-                                    d="M26.8888889,22 L26.8888889,19.5555556 C26.887227,17.3275884 25.379443,15.3825469 23.2222222,14.8255556"
-                                    id="Path"></path>
-                                <path
-                                    d="M18.3333333,0.158888889 C20.4965626,0.712763074 22.0095862,2.66198918 22.0095862,4.895 C22.0095862,7.12801082 20.4965626,9.07723693 18.3333333,9.63111111"
-                                    id="Path"></path>
-                            </g>
-                        </g>
-                    </svg>
-                    {{__('Mes abonnements')}}
-                </div>
-            </a>
-        </li> --}}
-        <li>
-            <a href="{{ url('/my/bookmarks/list?filter=all')}}"
-                class="{{Route::currentRouteName() == 'my.settings' &&  is_int(strpos(Request::path(),'subscriptions')) ? 'active' : ''}}">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
-                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
-                      </svg>
-                    {{__('Mes bookmarks')}}
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="{{route('profile',['username'=>Auth::user()->username])}}"
-                class="{{Route::currentRouteName() == 'profile' && (request()->route("username") == Auth::user()->username) ? 'active' : ''}}">
-                <div>
-
-                    <svg width="20px" height="22px" viewBox="0 0 20 22" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <g id="menu" transform="translate(-2.000000, -315.000000)" stroke="#000000"
-                                stroke-width="2.5">
-                                <g id="user" transform="translate(4.000000, 317.000000)">
-                                    <path
-                                        d="M16,18 L16,16 C16,13.790861 14.209139,12 12,12 L4,12 C1.790861,12 0,13.790861 0,16 L0,18"
-                                        id="Path"></path>
-                                    <circle id="Oval" cx="8" cy="4" r="4"></circle>
-                                </g>
-                            </g>
-                        </g>
-                    </svg>
-                    {{__('Mon profil')}}
-                </div>
-
-            </a>
-        </li>
+                </a>
+            </li>
         @endif
 
         {{-- <li>
@@ -326,62 +332,66 @@
                 </div>
             </a>
         </li> --}}
+        @if(Auth::check())
         <li>
-            
-            <a href="{{url('my/settings/wallet') }}" class="{{ url()->current() == url('my/settings/wallet')  ? 'active' : '' }}">
+
+            <a href="{{url('my/settings/wallet') }}"
+                class="{{ url()->current() == url('my/settings/wallet') ? 'active' : '' }}">
                 <div>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-credit-card-2-back" viewBox="0 0 16 16">
-                        <path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5z"/>
-                        <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1m-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1"/>
-                      </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                        class="bi bi-credit-card-2-back" viewBox="0 0 16 16">
+                        <path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5z" />
+                        <path
+                            d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1m-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1" />
+                    </svg>
                     {{ __('Wallet et paiement') }}
                 </div>
             </a>
         </li>
-
+        @endif
 
 
         @if(Auth::check())
-        @if(Auth::user()->verification && Auth::user()->verification->status == 'verified')
+            @if(Auth::user()->verification && Auth::user()->verification->status == 'verified')
 
 
 
-        @if(GenericHelper::isEmailEnforcedAndValidated())
-        @if(getSetting('streams.allow_streams'))
-        <li>
-            <a role="button" class=""
-                href="{{route('my.streams.get')}}{{StreamsHelper::getUserInProgressStream() ? '' : ( !GenericHelper::isUserVerified() && getSetting('site.enforce_user_identity_checks') ? '' : '?action=create')}}">
+                @if(GenericHelper::isEmailEnforcedAndValidated())
+                    @if(getSetting('streams.allow_streams'))
+                        <li>
+                            <a role="button" class=""
+                                href="{{route('my.streams.get')}}{{StreamsHelper::getUserInProgressStream() ? '' : (!GenericHelper::isUserVerified() && getSetting('site.enforce_user_identity_checks') ? '' : '?action=create')}}">
 
-                <div>
+                                <div>
 
-                    <svg width="30px" height="20px" viewBox="0 0 30 20" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <g id="10---Recherche---Rechercher-une-personne"
-                                transform="translate(-222.000000, -528.000000)" stroke="#000000"
-                                stroke-width="2.66666667">
-                                <g id="video-(1)" transform="translate(224.000000, 530.000000)">
-                                    <polygon id="Path"
-                                        points="26.1904767 2.38095243 17.8571432 8.3333335 26.1904767 14.2857146">
-                                    </polygon>
-                                    <rect id="Rectangle" x="0" y="0" width="17.8571432" height="16.666667"
-                                        rx="2.66666667"></rect>
-                                </g>
-                            </g>
-                        </g>
-                    </svg>
+                                    <svg width="30px" height="20px" viewBox="0 0 30 20" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <g id="10---Recherche---Rechercher-une-personne"
+                                                transform="translate(-222.000000, -528.000000)" stroke="#000000"
+                                                stroke-width="2.66666667">
+                                                <g id="video-(1)" transform="translate(224.000000, 530.000000)">
+                                                    <polygon id="Path"
+                                                        points="26.1904767 2.38095243 17.8571432 8.3333335 26.1904767 14.2857146">
+                                                    </polygon>
+                                                    <rect id="Rectangle" x="0" y="0" width="17.8571432" height="16.666667"
+                                                        rx="2.66666667"></rect>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
 
-                    {{__('Create live video')}}
+                                    {{__('Create live video')}}
 
-                </div>
-            </a>
-        </li>
-        @endif
-        @endif
+                                </div>
+                            </a>
+                        </li>
+                    @endif
+                @endif
 
-        @endif
+            @endif
         @endif
 
 
@@ -416,21 +426,21 @@
 
 
         @if(Auth::check())
-        @if(Auth::user()->email_verified_at)
-        @if(Auth::user()->verification && Auth::user()->verification->status == 'verified')
-        @if(!getSetting('site.hide_create_post_menu'))
-        @if(GenericHelper::isEmailEnforcedAndValidated())
-        <li>
-            <a class="btn btn-primary btn_aff " href="{{route('posts.create')}}">
-                <div>
-                    {{__('Publier')}}
-                </div>
-            </a>
-        </li>
-        @endif
-        @endif
-        @endif
-        @endif
+            @if(Auth::user()->email_verified_at)
+                @if(Auth::user()->verification && Auth::user()->verification->status == 'verified')
+                    @if(!getSetting('site.hide_create_post_menu'))
+                        @if(GenericHelper::isEmailEnforcedAndValidated())
+                            <li>
+                                <a class="btn btn-primary btn_aff " href="{{route('posts.create')}}">
+                                    <div>
+                                        {{__('Publier')}}
+                                    </div>
+                                </a>
+                            </li>
+                        @endif
+                    @endif
+                @endif
+            @endif
         @endif
 
     </ul>
