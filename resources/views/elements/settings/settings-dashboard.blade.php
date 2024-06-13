@@ -1,4 +1,4 @@
-<div class="aff_edit_info_form">
+<div class="aff_edit_info_form" style="padding: 1%;">
     <p>
         {{__("Cet outil vous permettra d’analyser vos ventes afin d’optimiser vos revenus")}}
     </p>
@@ -6,8 +6,7 @@
         <canvas id="myChart"></canvas>
     </div>
     <div class="aff_ref_link" style="padding: 0px 0px 0px 0px;">
-        <div
-            style="cursor: pointer;border: 0px solid var(--text-dark) ;height: 39px ; background: var(--bg-card); border-radius: 8px; height: 55px; display: flex; align-items: center; padding: 0px 42% 0px 34%">
+        <div class= 'datetimes-chart'>
             <input type="text" name="datetimes" />
             <span id="icon-calendar">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -20,3 +19,7 @@
     </div>
     <div id='table-info'></div>
 </div>
+
+<style> 
+
+</style>

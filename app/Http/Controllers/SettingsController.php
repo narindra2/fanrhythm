@@ -210,7 +210,7 @@ class SettingsController extends Controller
         return $this->renderSettingView($request->route('type'), $data);
     }
     public function getChartDataUser(Request $request) {
-       
+        $labels = [];
         $start   = $request->startDate  ? Carbon::make($request->startDate )->format('Y-m-d') : now()->subDays(7)->format('Y-m-d');
         // $start  = '2024-06-06';
         $end =  now()->format('Y-m-d');

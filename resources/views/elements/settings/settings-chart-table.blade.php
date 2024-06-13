@@ -83,7 +83,7 @@
           color: #999;
       }
       .dark_theme .daterangepicker td.in-range {
-        background-color: #000;
+        background-color:cornflowerblue;
         border-color: transparent;
         /* color: #000; */
         border-radius: 0;

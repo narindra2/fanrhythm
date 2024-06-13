@@ -5388,3 +5388,15 @@ color: #fff;
 
     }
 }
+
+
+.datetimes-chart{
+    cursor: pointer;
+    border: 0px solid var(--text-dark) ;
+    height: 39px ; background: var(--bg-card);
+    border-radius: 8px;
+    height: 55px; 
+    display: flex; 
+    align-items: center; 
+    padding: 0px 42% 0px 34%
+}

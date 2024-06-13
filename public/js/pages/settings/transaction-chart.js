@@ -2,7 +2,7 @@
 $(function() {
     var chartDashboar = null;
     var start = moment().subtract(7, 'days').format('DD/MM/YYYY');
-    var end = moment().format('DD/MM/YYYY');
+    var today = moment().format('DD/MM/YYYY');
    
     var rangers = {
         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
@@ -19,10 +19,11 @@ $(function() {
     }
 
     $(function() {
-        getDataChart(start ,end);
+        getDataChart(start ,today);
         $('input[name="datetimes"]').daterangepicker({
             startDate: start,
-            endDate: end,
+            endDate: today,
+            maxDate : today,
             locale: {
                 format: 'DD/MM/YYYY',
                 "applyLabel": trans('Appliquer'),
