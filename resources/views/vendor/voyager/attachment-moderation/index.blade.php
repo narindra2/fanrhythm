@@ -91,6 +91,9 @@
                                     <th class="th-0">
                                         Username
                                     </th>
+                                    <th class="th-0">
+                                        Post text 
+                                    </th>
                                     <th class="th-1">
                                         Statut
                                     </th>
@@ -135,39 +138,47 @@
                                     <td class="td-0">
                                         {{ $attachment->user->username }}
                                     </td>
+                                    <td class="td-0 " style=" word-break: break-word;">
+                                       <span title="{{ $attachment->post->text  }}"> {{  Str::limit($attachment->post->text,40 , ' ...')  }}</span>
+                                    </td>
                                     <td class="td-1">
                                         @php
-                                         $class = "App\Model\Moderation";
+                                         $class = "\App\Model\Moderation";
                                         @endphp
                                         <!-- <div class="afrifan_find_badge_value-2155"> -->
                                            
                                             <div class="dropdown afrifan_admin_more_drop " style="display: flex; margin-left: auto; width: max-content;margin-left: 26px;">
                                             <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                @if ($attachment->moderation_status == \App\Model\Moderation::STATUS_APPROVED)
+                                                @if ($attachment->moderation_status == $class::STATUS_APPROVED)
                                                 <span style="color: #2ecf25e3; ">   {{  $attachment->moderation_status }} </span>
 
-                                                @elseif ($attachment->moderation_status == \App\Model\Moderation::STATUS_DECLINED)
+                                                @elseif ($attachment->moderation_status == $class::STATUS_DECLINED)
                                                     <span style="color: #d11c1c; ">   {{  $attachment->moderation_status }} </span>
                                                 @else
                                                     <span style="color: #e9b60d; ">   {{  $attachment->moderation_status }} </span>
                                                 @endif
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                @if ($attachment->moderation_status != \App\Model\Moderation::STATUS_APPROVED)
-                                                    <a href="javascript:;" title="  {{   \App\Model\Moderation::STATUS_APPROVED }}">
-                                                        {{   \App\Model\Moderation::STATUS_APPROVED }}
+                                                @if ($attachment->moderation_status != $class::STATUS_APPROVED)
+                                                    <a href="{{route('admin.attachment-modeartion.set-status' ,['attachment' =>$attachment->id ,'status' => $class::STATUS_APPROVED])}}" title="  {{   $class::STATUS_APPROVED }}">
+                                                     Mettre en    {{   $class::STATUS_APPROVED }}
                                                     </a>
                                                 @endif
-                                                @if ($attachment->moderation_status !=  \App\Model\Moderation::STATUS_DECLINED)
-                                                    <a href="javascript:;" title="  {{   \App\Model\Moderation::STATUS_DECLINED }}">
-                                                        {{    \App\Model\Moderation::STATUS_DECLINED }}
+                                                @if ($attachment->moderation_status !=  $class::STATUS_DECLINED)
+                                                    <a href="{{route('admin.attachment-modeartion.set-status' ,['attachment' =>$attachment->id ,'status' => $class::STATUS_DECLINED])}}" title="  {{   $class::STATUS_DECLINED }}">
+                                                    Mettre en    {{    $class::STATUS_DECLINED }}
                                                     </a>
                                                 @endif
-                                                @if ($attachment->moderation_status !=  \App\Model\Moderation::STATUS_PENDING)
-                                                    <a href="" title=" {{   \App\Model\Moderation::STATUS_PENDING }}">
-                                                        {{   \App\Model\Moderation::STATUS_PENDING }}
+                                                @if ($attachment->moderation_status !=  $class::STATUS_PENDING)
+                                                    <a href="{{route('admin.attachment-modeartion.set-status' ,['attachment' =>$attachment->id ,'status' => $class::STATUS_PENDING])}}" title=" {{   $class::STATUS_PENDING }}">
+                                                    Mettre en     {{   $class::STATUS_PENDING }}
                                                     </a>
                                                 @endif
+                                                <div class="dropdown-divider"></div>
+                                                <a class="text-danger" href="{{route('admin.attachment-modeartion.set-status' ,['attachment' =>$attachment->id ,'status' => 'delete'])}}" title="  Supprimer definitivement">
+                                                    Supprimer definitivement
+                                                </a>
+                                               
                                                
                                                
                                                 

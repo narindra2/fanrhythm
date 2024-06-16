@@ -208,24 +208,42 @@ class AttachmentController extends Controller
         if (!Auth::check() || !Auth::user()->isAdmin()) {
             return abort(404);
         }
-        $query = Attachment::select("id", "moderation_status", "user_id", "created_at", "filename", "type");
+        $query = Attachment::with(['post:id,text'])->select("id", "moderation_status", "user_id", "post_id","created_at", "filename", "type");
         if ($request->status) {
             $query->where("moderation_status", $request->status);
         }
-        // $start = '01/' . now()->format('m/Y');
-        // $end =  now()->format('d/m/Y');
+
         if ($request->interval) {
             $interval = explode("-", str_replace(" ", "", $request->interval));
             $start =  Carbon::make(str_replace("/", "-", $interval[0]))->format("Y-m-d");
             $end =   Carbon::make(str_replace("/", "-", $interval[1]))->format("Y-m-d");
+
             $query->whereBetween("created_at", [$start, $end]);
         }
         if ($request->search) {
-            $query->whereHas('user', function ($query) use ($request) {
-                $query->Where('username', 'like', '%' . $request->search . '%');
+            $query->where( function ($q) use ($request) {
+                $q->whereHas('user', function ($user) use ($request) {
+                    $user->where('username', 'like', '%' . $request->search . '%');
+                });
+                $q->orWhereHas('post', function ($post) use ($request) {
+                    $post->where('text', 'like', '%' . $request->search . '%');
+                });
             });
         }
         $attachments = $query->with(["user:id,username", "moderationResult"])->latest()->paginate(6);
         return view('vendor.voyager.attachment-moderation.index', ["attachments" => $attachments]);
+    }
+    public function setModerationStatusManuely(Request $request ,Attachment $attachment)
+    {
+        if (!Auth::check() || !Auth::user()->isAdmin()) {
+            return abort(404);
+        }
+        if  ($request->route('status') == 'delete') {
+            $attachment->delete();
+            return back()->with('message', __('Suppressinn avec succès'));
+        }else{
+            $attachment->update(["moderation_status"=> $request->route('status')]);
+            return back()->with('message', __('Enreigistrement avec succès'));
+        }
     }
 }

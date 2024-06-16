@@ -48,7 +48,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'jsVars'], function () {
     Route::post('/theme/generate', 'GenericController@generateCustomTheme')->name('admin.theme.generate');
     Route::post('/license/save', 'GenericController@saveLicense')->name('admin.license.save');
     
-    Route::get('/attachment-modeartion', 'AttachmentController@moderationResult')->name('admin.ttachment-modeartion');
+    Route::get('/attachment-modeartion', 'AttachmentController@moderationResult')->name('admin.attachment-modeartion');
+    Route::get('/attachment-modeartion/set-status-manuely/{attachment}/{status}', 'AttachmentController@setModerationStatusManuely')->name('admin.attachment-modeartion.set-status');
 });
 
 // Home & contact page
