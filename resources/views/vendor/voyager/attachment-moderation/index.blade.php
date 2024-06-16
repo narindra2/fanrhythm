@@ -139,7 +139,11 @@
                                         {{ $attachment->user->username }}
                                     </td>
                                     <td class="td-0 " style=" word-break: break-word;">
-                                       <span title="{{ $attachment->post->text  }}"> {{  Str::limit($attachment->post->text,40 , ' ...')  }}</span>
+                                        @if ( $attachment->post)
+                                            <span title="{{ $attachment->post->text  }}"> {{  Str::limit($attachment->post->text,40 , ' ...')  }}</span>
+                                        @else
+                                            -
+                                        @endif
                                     </td>
                                     <td class="td-1">
                                         @php
