@@ -80,7 +80,13 @@
                             </g>
                         </g>
                     </svg>
-                    Vérifications
+                    @php
+                        $countPendingUserToverify  = App\Model\UserVerify::where('status' , '=', App\Model\UserVerify::REQUESTED_STATUS)->count();
+                    @endphp
+                    Vérifications 
+                    @if ($countPendingUserToverify)
+                        &nbsp; <span class="badge badge-primary">{{ $countPendingUserToverify}}</span>
+                    @endif
 
                 </a>
             </li>
@@ -402,6 +408,7 @@
                 </a>
             </li>
 
+            
             <li class="{{ Request::is('/admin/attachments-modeartion') ? 'active' : '' }}">
                 <a href="/admin/attachment-modeartion">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -411,7 +418,20 @@
                     </svg>
                     Moderations
                 </a>
+                <ul style="margin-left:12px">
+                    <li>
+                        <a href="/admin/attachment-modeartion">
+                            Posts 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/attachment-modeartion-presentaion-video">
+                             Presenation video
+                        </a>
+                    </li>
+                </ul>
             </li>
+            
             <li class="{{ Request::is('admin/media') ? 'active' : '' }}">
                 <a href="/admin/media">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-database"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
