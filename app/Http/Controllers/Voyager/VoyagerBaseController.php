@@ -114,7 +114,15 @@ class VoyagerBaseController extends BaseVoyagerBaseController
                     $getter,
                 ]);
             } elseif ($model->timestamps) {
-                $dataTypeContent = call_user_func([$query->latest($model::CREATED_AT), $getter]);
+                if ($slug =='user-verifies') {
+                    $dataTypeContent = call_user_func([
+                        $query->orderBy('status','ASC'),
+                        $getter,
+                    ]);
+                }else{
+
+                    $dataTypeContent = call_user_func([$query->latest($model::CREATED_AT), $getter]);
+                }
             } else {
                 $dataTypeContent = call_user_func([$query->orderBy($model->getKeyName(), 'DESC'), $getter]);
             }
