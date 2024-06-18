@@ -357,7 +357,13 @@
                             </g>
                         </g>
                     </svg>
-                    Retraits
+                    @php
+                        $counWithdrawalRequested  = App\Model\Withdrawal::where('status' , '=', App\Model\Withdrawal::REQUESTED_STATUS)->count();
+                    @endphp
+                    Retraits 
+                    @if ($counWithdrawalRequested)
+                        &nbsp; <span class="badge badge-primary">{{ $counWithdrawalRequested}}</span>
+                    @endif
 
                 </a>
             </li>
